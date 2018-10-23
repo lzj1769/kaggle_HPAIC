@@ -11,7 +11,7 @@ from keras.optimizers import SGD
 from keras.losses import binary_crossentropy
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from callback import EarlyStopping
-
+from loss import focal_loss
 epochs = 300
 batch_size = 32
 
@@ -80,7 +80,7 @@ def build_model(input_shape, num_classes, weights='imagenet', alpha=1.0, dropout
     sgd = SGD(lr=0.01, momentum=0.9, nesterov=True)
 
     # compile the model (should be done *after* setting layers to non-trainable)
-    model.compile(optimizer=sgd, loss=binary_crossentropy, metrics=['accuracy'])
+    model.compile(optimizer=sgd, loss=focal_loss, metrics=['accuracy'])
 
     model.summary()
 

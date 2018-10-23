@@ -8,6 +8,8 @@ import platform
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import f1_score
 
+import tensorflow as tf
+
 from pynvml import (nvmlInit,
                     nvmlDeviceGetCount,
                     nvmlDeviceGetHandleByIndex,
@@ -113,3 +115,16 @@ def f1_scores_threshold(y_true, y_prab, thresholds):
         f1_scores.append(f1)
 
     return f1_scores
+
+
+def _to_tensor(x, dtype):
+    """Convert the input `x` to a tensor of type `dtype`.
+
+    # Arguments
+        x: An object to be converted (numpy array, list, tensors).
+        dtype: The destination type.
+
+    # Returns
+        A tensor.
+    """
+    return tf.convert_to_tensor(x, dtype=dtype)
