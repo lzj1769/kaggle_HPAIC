@@ -7,10 +7,11 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation
 from keras.optimizers import SGD
-from keras.losses import binary_crossentropy
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 
 from callback import EarlyStopping
+from loss import focal_loss
+
 
 epochs = 300
 batch_size = 32
@@ -79,7 +80,7 @@ def build_model(input_shape, num_classes):
 
     sgd = SGD(lr=0.01, momentum=0.9, nesterov=True)
 
-    model.compile(loss=binary_crossentropy, optimizer=sgd,
+    model.compile(loss=focal_loss, optimizer=sgd,
                   metrics=['accuracy'])
 
     model.summary()
