@@ -1,0 +1,39 @@
+(OK) Loading cuda 9.0.176
+(OK) Loading cudnn 7.0.5
+/home/rs619065/.local/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+load training and validation data...
+2018-10-23 18:29:54.007044: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-10-23 18:29:54.243529: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-10-23 18:29:54.243567: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0
+2018-10-23 18:29:56.768047: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-10-23 18:29:56.768081: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 
+2018-10-23 18:29:56.768090: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N 
+2018-10-23 18:29:56.768518: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+training model...
+training is done!
+evaluating the model...
+/home/rs619065/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/rs619065/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:1137: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no true samples.
+  'recall', 'true', average, warn_for)
+Traceback (most recent call last):
+  File "train.py", line 137, in <module>
+    main()
+  File "train.py", line 125, in main
+    preprocessing_function=preprocessing_function)
+  File "/rwthfs/rz/cluster/home/rs619065/kaggle_HPAIC/src/evaluate.py", line 66, in evaluate
+    train_labels_bin = mlb.fit_transform(train_labels)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/sklearn/preprocessing/label.py", line 722, in fit_transform
+    return self.fit(y).transform(y)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/sklearn/preprocessing/label.py", line 765, in transform
+    yt = self._transform(y, class_to_index)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/sklearn/preprocessing/label.py", line 789, in _transform
+    indices.extend(set(class_mapping[label] for label in labels))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/sklearn/preprocessing/label.py", line 789, in <genexpr>
+    indices.extend(set(class_mapping[label] for label in labels))
+KeyError: '0'

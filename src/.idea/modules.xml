@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/.idea/SingleCellOpenChromatin.iml" filepath="$PROJECT_DIR$/../../SingleCellOpenChromatin/.idea/SingleCellOpenChromatin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Github/models/research/global_objectives/.idea/global_objectives.iml" filepath="$PROJECT_DIR$/../../Github/models/research/global_objectives/.idea/global_objectives.iml" />
+      <module fileurl="file://$USER_HOME$/Github/kaggle-galaxies/.idea/kaggle-galaxies.iml" filepath="$USER_HOME$/Github/kaggle-galaxies/.idea/kaggle-galaxies.iml" />
+      <module fileurl="file://$USER_HOME$/Github/kaggle-ndsb/.idea/kaggle-ndsb.iml" filepath="$USER_HOME$/Github/kaggle-ndsb/.idea/kaggle-ndsb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../reg-gen/.idea/reg-gen.iml" filepath="$PROJECT_DIR$/../../reg-gen/.idea/reg-gen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/src.iml" filepath="$PROJECT_DIR$/.idea/src.iml" />
+    </modules>
+  </component>
+</project>
