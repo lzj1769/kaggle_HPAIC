@@ -12,7 +12,7 @@ from keras.losses import binary_crossentropy
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from callback import EarlyStopping
 
-epochs = 1
+epochs = 300
 batch_size = 32
 
 augment = True

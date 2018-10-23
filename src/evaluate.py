@@ -48,6 +48,7 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
     output_train_labels = list()
     output_valid_labels = list()
 
+    # convert the predicted probabilities into labels for training data
     for i in range(train_pred.shape[0]):
         label_predict = np.arange(N_LABELS)[np.greater(train_pred[i], optimal_thresholds)]
         if label_predict.size == 0:
@@ -59,6 +60,7 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
 
         output_train_labels.append(str_predict_label)
 
+    # convert the predicted probabilities into labels for validation data
     for i in range(valid_pred.shape[0]):
         label_predict = np.arange(N_LABELS)[np.greater(valid_pred[i], optimal_thresholds)]
         if label_predict.size == 0:
@@ -79,7 +81,7 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
     print("evaluation is done, f1 score of training: {}, f1 score of validation: {}".format(train_f1, valid_f1))
 
     df_train = pd.read_csv(TRAINING_DATA_CSV)
-    df_train['Predicted'] = train_labels
+    df_train['Predicted'] = output_train_labels
 
     for i in range(train_pred.shape[1]):
         res = list()
@@ -92,7 +94,7 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
     df_train.to_csv(filename, index=False)
 
     df_valid = pd.read_csv(VALIDATION_DATA_CSV)
-    df_valid['Predicted'] = valid_labels
+    df_valid['Predicted'] = output_valid_labels
 
     for i in range(valid_pred.shape[1]):
         res = list()

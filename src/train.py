@@ -100,7 +100,7 @@ def main():
         history = model.fit_generator(generator=train_generator,
                                       validation_data=valid_generator,
                                       epochs=epochs,
-                                      verbose=1,
+                                      verbose=2,
                                       callbacks=callbacks,
                                       use_multiprocessing=True,
                                       workers=8)

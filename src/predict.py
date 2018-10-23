@@ -41,3 +41,6 @@ def predict(model, net_name, train_f1, val_f1, output_shape, n_channels,
     submission_filename = "{}_train_f1_{}_val_f1_{}.csv".format(net_name, train_f1, val_f1)
     filename = os.path.join(SUBMISSION_PATH, submission_filename)
     df.to_csv(filename, index=False)
+
+
+#def test_time_augment():

@@ -24,7 +24,6 @@ net_list = ['SimpleNet_LogLoss',
             'TrainedFromScratch_ResNet_50_LogLoss',
             'TrainedFromScratch_Xception_LogLoss']
 
-net_list = ['PreTrained_MobileNet_LogLoss']
 for net in net_list:
     job_name = net
     command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \

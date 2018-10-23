@@ -6,6 +6,9 @@ N_CHANNELS = 4
 
 TEST_SIZE = 0.1
 
+TEST_TIME_AUGMENT = 5
+
+
 TRAINING_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/train"
 TEST_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/test"
 

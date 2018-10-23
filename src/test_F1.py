@@ -5,7 +5,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 from configure import *
 
-df = pd.read_csv("/home/rs619065/kaggle_HPAIC/validation/PreTrained_MobileNet_LogLoss_train_f1_0.804_val_f1_0.618.csv")
+df = pd.read_csv("/home/rs619065/kaggle_HPAIC/validation/PreTrained_MobileNet_LogLoss_train_f1_0.809_val_f1_0.614.csv")
 y_true = list()
 y_pred = list()
 

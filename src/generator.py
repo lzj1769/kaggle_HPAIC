@@ -251,7 +251,8 @@ class ImageDataGenerator(Sequence):
                  channel_shift_range=0., fill_mode='nearest', cval=0.,
                  horizontal_flip=False, vertical_flip=False,
                  data_format='channels_last',
-                 preprocessing_function=None):
+                 preprocessing_function=None,
+                 augment_prob=0.75):
         super(ImageDataGenerator, self).__init__()
 
         self.x = None
@@ -302,6 +303,7 @@ class ImageDataGenerator(Sequence):
 
         self.pre_processing(x)
         self.preprocessing_function = preprocessing_function
+        self.augment_prob = augment_prob
 
     def __len__(self):
         return math.ceil(self.x.shape[0] / self.batch_size)
@@ -339,7 +341,7 @@ class ImageDataGenerator(Sequence):
 
         if self.augment:
             for i, idx in enumerate(indexes):
-                if np.random.rand() > 0.25:
+                if np.random.rand() < self.augment_prob:
                     batch_x[i] = self.random_transform(self.x[idx].astype(K.floatx()))
                 else:
                     batch_x[i] = self.x[idx].astype(K.floatx())
