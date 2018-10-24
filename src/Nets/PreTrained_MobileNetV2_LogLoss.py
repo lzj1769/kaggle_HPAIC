@@ -1,5 +1,3 @@
-import os
-
 from keras_applications.mobilenet_v2 import MobileNetV2
 from keras_applications.mobilenet_v2 import preprocess_input
 
@@ -8,8 +6,7 @@ from keras import Model
 from keras.layers import GlobalAveragePooling2D, Dense
 from keras.optimizers import SGD
 from keras.losses import binary_crossentropy
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
-from callback import EarlyStopping
+from callback import build_callbacks
 
 epochs = 300
 batch_size = 32
@@ -18,6 +15,7 @@ augment = True
 use_multiprocessing = True
 INPUT_SHAPE = (224, 224, 3)
 preprocess_input = preprocess_input
+build_callbacks = build_callbacks
 
 augment_parameters = {'rotation_range': 180,
                       'width_shift_range': 0.2,
@@ -30,31 +28,6 @@ augment_parameters = {'rotation_range': 180,
                       'cval': 0.,
                       'horizontal_flip': True,
                       'vertical_flip': True}
-
-
-def build_callbacks(model_path, net_name):
-    fp = os.path.join(model_path, "{}.h5".format(net_name))
-    check_pointer = ModelCheckpoint(filepath=fp,
-                                    monitor='val_loss',
-                                    verbose=1,
-                                    save_best_only=True)
-
-    early_stopper = EarlyStopping(monitor='val_loss',
-                                  patience=20,
-                                  seconds=3600 * 7,
-                                  verbose=1,
-                                  restore_best_weights=True)
-
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss',
-                                  factor=0.5,
-                                  patience=5,
-                                  min_lr=1e-08,
-                                  min_delta=0.,
-                                  verbose=1)
-
-    callbacks = [check_pointer, early_stopper, reduce_lr]
-
-    return callbacks
 
 
 def build_model(input_shape, num_classes, weights='imagenet'):

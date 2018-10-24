@@ -32,6 +32,7 @@ def visua_acc_loss(history, exp_id):
     ax2.set_xlabel('epoch')
     ax2.legend(['train', 'test'], loc='upper left')
 
+    fig.tight_layout()
     fig.savefig(os.path.join(MODEL_ACC_LOSS_PATH, "{}_acc_loss.pdf".format(exp_id)))
 
 

@@ -1,23 +1,19 @@
 from __future__ import print_function
 
-import os
-
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation
 from keras.optimizers import SGD
 from keras.losses import binary_crossentropy
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
-
-from callback import EarlyStopping
+from callback import build_callbacks
 
 epochs = 300
 batch_size = 16
 
 augment = True
 use_multiprocessing = True
-
+build_callbacks = build_callbacks
 INPUT_SHAPE = (512, 512, 4)
 
 augment_parameters = {'rotation_range': 180,
@@ -88,30 +84,3 @@ def build_model(input_shape, num_classes, weights=None):
         model.load_weights(weights)
 
     return model
-
-
-def build_callbacks(model_path, net_name):
-    fp = os.path.join(model_path, "{}.h5".format(net_name))
-    check_pointer = ModelCheckpoint(filepath=fp,
-                                    monitor='val_loss',
-                                    verbose=1,
-                                    save_best_only=True)
-
-    early_stopper = EarlyStopping(monitor='val_loss',
-                                  patience=20,
-                                  seconds=3600 * 7,
-                                  verbose=1,
-                                  restore_best_weights=True)
-
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss',
-                                  factor=0.5,
-                                  patience=5,
-                                  min_lr=1e-08,
-                                  min_delta=0.,
-                                  verbose=1)
-
-    callbacks = [check_pointer, early_stopper, reduce_lr]
-
-    return callbacks
-
-# model = build_model((IMAGE_HEIGHT, IMAGE_WIDTH, 4), N_LABELS)

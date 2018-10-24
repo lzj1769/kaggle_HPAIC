@@ -1,11 +1,15 @@
 from __future__ import print_function
 
+import os
 import sys
 import warnings
 
 import numpy as np
 
-from keras.callbacks import Callback
+from keras.callbacks import Callback, ModelCheckpoint
+from keras.callbacks import ReduceLROnPlateau
+from keras.callbacks import CSVLogger
+
 from sklearn.metrics import f1_score
 
 import time
@@ -145,10 +149,11 @@ class F1ScoreChecker(Callback):
         verbose: verbosity mode.
     """
 
-    def __init__(self, x_val, y_val):
+    def __init__(self, x_val, y_val, thres):
         super(F1ScoreChecker, self).__init__()
         self.x_val = x_val
         self.y_val = y_val
+        self.thres = thres
         self.val_f1 = None
 
     def on_train_begin(self, logs=None):
@@ -164,3 +169,32 @@ class F1ScoreChecker(Callback):
         print('Val f1 score: {}'.format(f1_score_val), file=sys.stdout)
 
         self.val_f1.append(f1_score_val)
+
+
+def build_callbacks(model_path, logs_path, net_name):
+    fp = os.path.join(model_path, "{}.h5".format(net_name))
+    check_pointer = ModelCheckpoint(filepath=fp,
+                                    monitor='val_loss',
+                                    verbose=1,
+                                    save_best_only=True)
+
+    early_stopper = EarlyStopping(monitor='val_loss',
+                                  patience=20,
+                                  seconds=3600 * 7.5,
+                                  verbose=1,
+                                  restore_best_weights=True)
+
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss',
+                                  factor=0.5,
+                                  patience=5,
+                                  min_lr=1e-08,
+                                  min_delta=0.,
+                                  verbose=1)
+
+    filename = os.path.join(logs_path, "{}.log".format(net_name))
+    csv_logger = CSVLogger(filename=filename,
+                           append=True)
+
+    callbacks = [check_pointer, early_stopper, reduce_lr, csv_logger]
+
+    return callbacks

@@ -11,8 +11,6 @@ from keras.utils import Sequence
 from PIL import ImageEnhance
 from PIL import Image as pil_image
 
-from keras_preprocessing.image import ImageDataGenerator
-
 import keras.backend as K
 
 from configure import *
@@ -252,7 +250,7 @@ class ImageDataGenerator(Sequence):
                  horizontal_flip=False, vertical_flip=False,
                  data_format='channels_last',
                  preprocessing_function=None,
-                 augment_prob=0.75):
+                 augment_prob=0.9):
         super(ImageDataGenerator, self).__init__()
 
         self.x = None

@@ -5,7 +5,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 from configure import *
 
-df = pd.read_csv("/home/rs619065/kaggle_HPAIC/validation/PreTrained_MobileNet_LogLoss_train_f1_0.809_val_f1_0.614.csv")
+df = pd.read_csv("/home/rs619065/kaggle_HPAIC/training/PreTrained_ResNet_50_LogLoss_train_f1_0.808_val_f1_0.616.csv")
 y_true = list()
 y_pred = list()
 
@@ -15,11 +15,14 @@ for i in range(df.shape[0]):
     y_true.append(map(int, df['Target'][i].split(" ")))
     y_pred.append(map(int, df['Predicted'][i].split(" ")))
 
-print(y_true[0])
 y_true = mlb.fit_transform(y_true)
 y_pred = mlb.fit_transform(y_pred)
-print(y_true)
-print(y_pred)
 
-f1 = f1_score(y_true, y_pred, average="macro").round(3)
-print(f1)
+
+for i in range(N_LABELS):
+    f1 = f1_score(y_true[:, i], y_pred[:, i])
+    print(list(set(y_true[:, i])))
+    print(list(set(y_pred[:, i])))
+    print("Class: {}, F1: {}".format(i, f1))
+
+print(f1_score(y_true, y_pred, average="macro"))

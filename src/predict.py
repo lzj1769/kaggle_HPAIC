@@ -4,12 +4,27 @@ from __future__ import division
 import os
 import sys
 
+import argparse
+
 import pandas as pd
 import numpy as np
 
 from generator import ImageDataGenerator
 from configure import *
 from utils import load_data
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--net_name")
+    parser.add_argument("--train", default=False, action="store_true")
+    parser.add_argument("--evaluate", default=False, action="store_true")
+    parser.add_argument("--tta", default=False, action="store_true")
+    return parser.parse_args()
+
+
+def main():
+
 
 
 def predict(model, net_name, train_f1, val_f1, output_shape, n_channels,
@@ -43,4 +58,6 @@ def predict(model, net_name, train_f1, val_f1, output_shape, n_channels,
     df.to_csv(filename, index=False)
 
 
-#def test_time_augment():
+
+if __name__ == '__main__':
+    main()

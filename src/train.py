@@ -7,8 +7,6 @@ import importlib
 
 from keras.models import load_model
 from generator import ImageDataGenerator
-from evaluate import evaluate
-from predict import predict
 from visualization import visua_acc_loss
 from utils import *
 
@@ -34,7 +32,7 @@ def main():
     # import model parameters
     epochs = net.epochs
     batch_size = net.batch_size
-    callbacks = net.build_callbacks(MODEL_PATH, args.net_name)
+    callbacks = net.build_callbacks(MODEL_PATH, LOG_PATH, args.net_name)
     input_shape = net.INPUT_SHAPE
     if hasattr(net, 'preprocess_input'):
         preprocessing_function = net.preprocess_input
@@ -92,10 +90,6 @@ def main():
 
     print("training model...", file=sys.stderr)
 
-    # from utils import SysMonitor
-    # sys_mon = SysMonitor()
-    # sys_mon.start()
-
     if net.use_multiprocessing:
         history = model.fit_generator(generator=train_generator,
                                       validation_data=valid_generator,
@@ -111,24 +105,10 @@ def main():
                                       verbose=2,
                                       callbacks=callbacks)
 
-    # sys_mon.stop()
-    # sys_mon.plot(exp_id)
-    # exit(0)
     print("training is done!", file=sys.stderr)
     del train_generator, valid_generator
 
     visua_acc_loss(history, exp_id)
-
-    train_f1, val_f1, optimal_thresholds = evaluate(model, args.net_name, x_train, y_train, x_valid, y_valid,
-                                                    output_shape=(input_shape[0], input_shape[1]),
-                                                    n_channels=input_shape[2],
-                                                    preprocessing_function=preprocessing_function)
-
-    predict(model, args.net_name, train_f1, val_f1,
-            output_shape=(input_shape[0], input_shape[1]),
-            n_channels=input_shape[2],
-            optimal_thresholds=optimal_thresholds,
-            preprocessing_function=preprocessing_function)
 
     print("complete!!")
 

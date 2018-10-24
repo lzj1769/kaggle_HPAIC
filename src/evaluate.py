@@ -6,14 +6,66 @@ import sys
 
 import pandas as pd
 import numpy as np
+import argparse
+import importlib
+
+from keras.models import load_model
 
 from sklearn.metrics import f1_score
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from generator import ImageDataGenerator
 from configure import *
-from utils import optimal_threshold
+from utils import load_data
 from visualization import visua_threshold_f1, visua_f1_classes
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--net_name")
+    return parser.parse_args()
+
+
+def main():
+
+    args = parse_args()
+
+    print("load training and validation data...", file=sys.stderr)
+
+    x_train, y_train = load_data(dataset="train")
+    x_valid, y_valid = load_data(dataset="validation")
+
+    net = importlib.import_module("Nets." + args.net_name)
+
+    # import model parameters
+    batch_size = net.batch_size
+    input_shape = net.INPUT_SHAPE
+    if hasattr(net, 'preprocess_input'):
+        preprocessing_function = net.preprocess_input
+    else:
+        preprocessing_function = None
+
+    print("load model...", file=sys.stderr)
+    weight_filename = os.path.join(MODEL_PATH, "{}.h5".format(args.net_name))
+    assert os.path.exists(weight_filename), print("The model does not exist...")
+    model = load_model(weight_filename)
+
+    print("evaluating the model...", file=sys.stderr)
+    train_generator = ImageDataGenerator(x=x_train, y=y_train, batch_size=batch_size,
+                                         augment=False, shuffle=False,
+                                         output_shape=(input_shape[0], input_shape[1]),
+                                         n_channels=input_shape[2],
+                                         preprocessing_function=preprocessing_function)
+
+    valid_generator = ImageDataGenerator(x=x_valid, y=y_valid, batch_size=batch_size,
+                                         augment=False, shuffle=False,
+                                         output_shape=(input_shape[0], input_shape[1]),
+                                         n_channels=input_shape[2],
+                                         preprocessing_function=preprocessing_function)
+
+    train_pred = model.predict_generator(train_generator)
+    valid_pred = model.predict_generator(valid_generator)
+
 
 
 def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
@@ -34,8 +86,6 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
     train_pred = model.predict_generator(train_generator)
     valid_pred = model.predict_generator(valid_generator)
 
-    # compute the optimal threshold using validation data set
-    f1, optimal_thresholds, optimal_f1_score = optimal_threshold(y_valid, valid_pred)
 
     # visualize the f1 score for each class based on different threshold
     visua_threshold_f1(f1, optimal_thresholds, exp_id)
@@ -107,3 +157,7 @@ def evaluate(model, exp_id, x_train, y_train, x_valid, y_valid,
     df_valid.to_csv(filename, index=False)
 
     return train_f1, valid_f1, optimal_thresholds
+
+
+if __name__ == '__main__':
+    main()

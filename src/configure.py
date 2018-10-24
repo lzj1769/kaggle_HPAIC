@@ -8,6 +8,16 @@ TEST_SIZE = 0.1
 
 TEST_TIME_AUGMENT = 5
 
+FRACTION = [0.36239782, 0.043841336, 0.075268817,
+            0.059322034, 0.075268817, 0.075268817,
+            0.043841336, 0.075268817, 0.007,
+            0.007, 0.007, 0.043841336,
+            0.043841336, 0.014198783, 0.043841336,
+            0.007, 0.028806584, 0.014198783,
+            0.028806584, 0.059322034, 0.007,
+            0.126126126, 0.028806584, 0.075268817,
+            0.007, 0.222493888, 0.028806584,
+            0.007]
 
 TRAINING_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/train"
 TEST_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/test"
@@ -23,6 +33,8 @@ VALIDATION_DATA = "/home/rwth0233/kaggle_HPAIC/data/validation.npz"
 TEST_DATA = "/home/rwth0233/kaggle_HPAIC/data/test.npz"
 
 MODEL_PATH = "/work/rwth0233/kaggle_HPAIC/model"
+LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"
+
 
 SUBMISSION_PATH = "/home/rs619065/kaggle_HPAIC/submission"
 MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"

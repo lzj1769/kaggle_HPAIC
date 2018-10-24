@@ -1,14 +1,11 @@
 from __future__ import print_function, division
 import sys
 import numpy as np
-import pandas as pd
 import time
 import platform
 
-from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import f1_score
 
-import tensorflow as tf
 
 from pynvml import (nvmlInit,
                     nvmlDeviceGetCount,
@@ -20,7 +17,6 @@ from configure import *
 
 
 def load_data(dataset=None):
-    mlb = MultiLabelBinarizer(classes=range(N_LABELS))
 
     if dataset == "test":
         img = np.load(TEST_DATA)['img']
@@ -29,25 +25,15 @@ def load_data(dataset=None):
 
     elif dataset == "validation":
         img = np.load(VALIDATION_DATA)['img']
-        df = pd.read_csv(VALIDATION_DATA_CSV)
+        labels = np.load(VALIDATION_DATA)['labels']
 
-        labels = list()
-        for target in df['Target']:
-            label = map(int, target.split(" "))
-            labels.append(label)
-
-        return img, mlb.fit_transform(labels)
+        return img, labels
 
     elif dataset == "train":
         img = np.load(TRAINING_DATA)['img']
-        df = pd.read_csv(TRAINING_DATA_CSV)
+        labels = np.load(TRAINING_DATA)['labels']
 
-        labels = list()
-        for target in df['Target']:
-            label = map(int, target.split(" "))
-            labels.append(label)
-
-        return img, mlb.fit_transform(labels)
+        return img, labels
 
     else:
         print("the data set doesn't exist...", file=sys.stderr)
@@ -111,20 +97,7 @@ def f1_scores_threshold(y_true, y_prab, thresholds):
     f1_scores = []
     for threshold in thresholds:
         y_pred = y_prab > threshold
-        f1 = f1_score(y_true=y_true.tolist(), y_pred=y_pred.tolist())
+        f1 = f1_score(y_true=y_true, y_pred=y_pred)
         f1_scores.append(f1)
 
     return f1_scores
-
-
-def _to_tensor(x, dtype):
-    """Convert the input `x` to a tensor of type `dtype`.
-
-    # Arguments
-        x: An object to be converted (numpy array, list, tensors).
-        dtype: The destination type.
-
-    # Returns
-        A tensor.
-    """
-    return tf.convert_to_tensor(x, dtype=dtype)

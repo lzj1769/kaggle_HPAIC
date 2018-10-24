@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow.python.ops import array_ops
 
+import keras.backend as K
+
 
 def focal_loss(y_true, y_pred, alpha=0.25, gamma=2):
     r"""Compute focal loss for predictions.
@@ -12,7 +14,6 @@ def focal_loss(y_true, y_pred, alpha=0.25, gamma=2):
         num_classes] representing the predicted logits for each class
      y_true: A float tensor of shape [batch_size, num_anchors,
         num_classes] representing one-hot encoded classification targets
-     weights: A float tensor of shape [batch_size, num_anchors]
      alpha: A scalar tensor for focal loss alpha hyper-parameter
      gamma: A scalar tensor for focal loss gamma hyper-parameter
     Returns:
@@ -31,4 +32,4 @@ def focal_loss(y_true, y_pred, alpha=0.25, gamma=2):
     per_entry_cross_ent = - alpha * (pos_p_sub ** gamma) * tf.log(tf.clip_by_value(y_pred, 1e-8, 1.0)) \
                           - (1 - alpha) * (neg_p_sub ** gamma) * tf.log(tf.clip_by_value(1.0 - y_pred, 1e-8, 1.0))
 
-    return tf.reduce_sum(per_entry_cross_ent)
+    return K.mean(tf.reduce_sum(per_entry_cross_ent, axis=-1), axis=-1)
