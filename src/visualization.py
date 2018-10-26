@@ -13,7 +13,7 @@ from configure import *
 def visua_acc_loss(acc_loss_path, logs_path, exp_config):
     # load logs
     loss_filename = os.path.join(logs_path, "{}.log".format(exp_config))
-    df = pd.read_csv(loss_filename, header=True)
+    df = pd.read_csv(loss_filename)
 
     # plot the training loss and accuracy
     plt.style.use("ggplot")
