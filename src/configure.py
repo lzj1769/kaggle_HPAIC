@@ -4,9 +4,7 @@ IMAGE_WIDTH = 512
 IMAGE_HEIGHT = 512
 N_CHANNELS = 4
 
-TEST_SIZE = 0.1
-
-TEST_TIME_AUGMENT = 5
+TEST_TIME_AUGMENT = 32
 
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,
@@ -19,25 +17,32 @@ FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.007, 0.222493888, 0.028806584,
             0.007]
 
+AUGMENT_PARAMETERS = {'rotation_range': 180,
+                      'width_shift_range': 0.2,
+                      'height_shift_range': 0.2,
+                      'shear_range': 0.2,
+                      'zoom_range': 0.4,
+                      'fill_mode': 'nearest',
+                      'cval': 0.,
+                      'horizontal_flip': True,
+                      'vertical_flip': True}
+
 TRAINING_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/train"
 TEST_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/test"
 
 SAMPLE_SUBMISSION = "/home/rwth0233/kaggle_HPAIC/input/sample_submission.csv"
-TRAINING_LABELS = "/home/rwth0233/kaggle_HPAIC/input/train.csv"
+TRAINING_DATA_CSV = "/home/rwth0233/kaggle_HPAIC/input/train.csv"
 
 DATA_DIR = "/home/rwth0233/kaggle_HPAIC/data"
-TRAINING_DATA_CSV = "/home/rwth0233/kaggle_HPAIC/data/train.csv"
-VALIDATION_DATA_CSV = "/home/rwth0233/kaggle_HPAIC/data/validation.csv"
 TRAINING_DATA = "/home/rwth0233/kaggle_HPAIC/data/train.npz"
-VALIDATION_DATA = "/home/rwth0233/kaggle_HPAIC/data/validation.npz"
 TEST_DATA = "/home/rwth0233/kaggle_HPAIC/data/test.npz"
 
-MODEL_PATH = "/work/rwth0233/kaggle_HPAIC/model"
-LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"
+MODEL_WEIGHTS_PATH = "/work/rwth0233/kaggle_HPAIC/model"
+MODEL_LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"
+MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"
 
 
 SUBMISSION_PATH = "/home/rs619065/kaggle_HPAIC/submission"
-MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"
 VALIDATION_PATH = "/home/rs619065/kaggle_HPAIC/validation"
 TRAINING_PATH = "/home/rs619065/kaggle_HPAIC/training"
 
@@ -78,6 +83,3 @@ LABEL_MAP = {
     26: "Cytoplasmic bodies",
     27: "Rods & rings"
 }
-
-
-

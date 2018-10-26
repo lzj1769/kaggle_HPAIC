@@ -1,37 +1,23 @@
 from __future__ import print_function, division
+import os
 import sys
 import numpy as np
-import time
-import platform
 
 from sklearn.metrics import f1_score
 
-
-from pynvml import (nvmlInit,
-                    nvmlDeviceGetCount,
-                    nvmlDeviceGetHandleByIndex,
-                    nvmlDeviceGetUtilizationRates,
-                    nvmlDeviceGetName)
 
 from configure import *
 
 
 def load_data(dataset=None):
-
     if dataset == "test":
         img = np.load(TEST_DATA)['img']
 
         return img
 
-    elif dataset == "validation":
-        img = np.load(VALIDATION_DATA)['img']
-        labels = np.load(VALIDATION_DATA)['labels']
-
-        return img, labels
-
     elif dataset == "train":
         img = np.load(TRAINING_DATA)['img']
-        labels = np.load(TRAINING_DATA)['labels']
+        labels = np.load(TRAINING_DATA)['label']
 
         return img, labels
 
@@ -40,37 +26,67 @@ def load_data(dataset=None):
         exit(1)
 
 
-def hms(seconds):
-    seconds = np.floor(seconds)
-    minutes, seconds = divmod(seconds, 60)
-    hours, minutes = divmod(minutes, 60)
+def get_input_shape(net_name, pre_trained=True):
+    input_shape = None
 
-    return "%02d:%02d:%02d" % (hours, minutes, seconds)
+    if pre_trained:
+        if net_name in ['DenseNet121', 'DenseNet119', 'DenseNet201', 'MobileNet', 'MobileNetV2',
+                        'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152']:
+            input_shape = (244, 244, 3)
+
+        elif net_name in ['InceptionResNetV2', 'InceptionV3']:
+            input_shape = (299, 299, 3)
+
+        elif net_name in ['NASNetLarge', 'NASNetMobile']:
+            input_shape = (331, 331, 3)
+
+        else:
+            print("Network {} doesn't exist".format(net_name))
+
+    else:
+        input_shape = (IMAGE_HEIGHT, IMAGE_WIDTH, N_CHANNELS)
+
+    return input_shape
 
 
-def timestamp():
-    return time.strftime("%Y%m%d-%H%M%S", time.localtime())
+def get_batch_size(net_name, pre_trained=True):
+    if pre_trained:
+        if net_name in ['NASNetLarge']:
+            batch_size = 8
+        else:
+            batch_size = 16
+
+    else:
+        batch_size = 8
+
+    return batch_size
 
 
-def hostname():
-    return platform.node()
+def generate_exp_config(net_name, pre_trained, include_fc, k_fold):
+    exp_config = net_name
+    if pre_trained:
+        exp_config += "_PreTrained"
+    else:
+        exp_config += "_FromScratch"
+
+    if include_fc:
+        exp_config += "_FC"
+    else:
+        exp_config += "_NoFC"
+
+    return "{}_KFold_{}".format(exp_config, k_fold)
 
 
-def generate_expid(model_name):
-    return "%s-%s" % (model_name, timestamp())
+def get_logs_path(net_name):
+    return os.path.join(MODEL_LOG_PATH, net_name)
 
 
-def gpu_info():
-    "Returns a tuple of (GPU ID, GPU Description, GPU % Utilization)"
-    nvmlInit()
-    deviceCount = nvmlDeviceGetCount()
-    info = []
-    for i in range(0, deviceCount):
-        handle = nvmlDeviceGetHandleByIndex(i)
-        util = nvmlDeviceGetUtilizationRates(handle)
-        desc = nvmlDeviceGetName(handle)
-        info.append((i, desc, util.gpu))
-    return info
+def get_weights_path(net_name):
+    return os.path.join(MODEL_WEIGHTS_PATH, net_name)
+
+
+def get_acc_loss_path(net_name):
+    return os.path.join(MODEL_ACC_LOSS_PATH, net_name)
 
 
 def optimal_threshold(y_true, y_prab):
@@ -101,3 +117,15 @@ def f1_scores_threshold(y_true, y_prab, thresholds):
         f1_scores.append(f1)
 
     return f1_scores
+
+
+def calculate_threshold(y_pred):
+    threshod = []
+
+    for i in range(N_LABELS):
+        prab = y_pred[:, i]
+        frac = FRACTION[i]
+
+        threshod.append(np.quantile(prab, 1 - frac))
+
+    return np.array(threshod)

@@ -32,141 +32,6 @@ def transform_matrix_offset_center(matrix, x, y):
     return transform_matrix
 
 
-def apply_channel_shift(x, intensity, channel_axis=0):
-    """Performs a channel shift.
-
-    # Arguments
-        x: Input tensor. Must be 3D.
-        intensity: Transformation intensity.
-        channel_axis: Index of axis for channels in the input tensor.
-
-    # Returns
-        Numpy image tensor.
-
-    """
-    x = np.rollaxis(x, channel_axis, 0)
-    min_x, max_x = np.min(x), np.max(x)
-    channel_images = [
-        np.clip(x_channel + intensity,
-                min_x,
-                max_x)
-        for x_channel in x]
-    x = np.stack(channel_images, axis=0)
-    x = np.rollaxis(x, 0, channel_axis + 1)
-    return x
-
-
-def apply_brightness_shift(x, brightness):
-    """Performs a brightness shift.
-
-    # Arguments
-        x: Input tensor. Must be 3D.
-        brightness: Float. The new brightness value.
-        channel_axis: Index of axis for channels in the input tensor.
-
-    # Returns
-        Numpy image tensor.
-
-    # Raises
-        ValueError if `brightness_range` isn't a tuple.
-    """
-    if ImageEnhance is None:
-        raise ImportError('Using brightness shifts requires PIL. '
-                          'Install PIL or Pillow.')
-    x = array_to_img(x)
-    x = imgenhancer_Brightness = ImageEnhance.Brightness(x)
-    x = imgenhancer_Brightness.enhance(brightness)
-    x = img_to_array(x)
-    return x
-
-
-def array_to_img(x, data_format='channels_last', scale=True, dtype='float32'):
-    """Converts a 3D Numpy array to a PIL Image instance.
-
-    # Arguments
-        x: Input Numpy array.
-        data_format: Image data format.
-            either "channels_first" or "channels_last".
-        scale: Whether to rescale image values
-            to be within `[0, 255]`.
-        dtype: Dtype to use.
-
-    # Returns
-        A PIL Image instance.
-
-    # Raises
-        ImportError: if PIL is not available.
-        ValueError: if invalid `x` or `data_format` is passed.
-    """
-    if pil_image is None:
-        raise ImportError('Could not import PIL.Image. '
-                          'The use of `array_to_img` requires PIL.')
-    x = np.asarray(x, dtype=dtype)
-    if x.ndim != 3:
-        raise ValueError('Expected image array to have rank 3 (single image). '
-                         'Got array with shape: %s' % (x.shape,))
-
-    if data_format not in {'channels_first', 'channels_last'}:
-        raise ValueError('Invalid data_format: %s' % data_format)
-
-    # Original Numpy array x has format (height, width, channel)
-    # or (channel, height, width)
-    # but target PIL image has format (width, height, channel)
-    if data_format == 'channels_first':
-        x = x.transpose(1, 2, 0)
-    if scale:
-        x = x + max(-np.min(x), 0)
-        x_max = np.max(x)
-        if x_max != 0:
-            x /= x_max
-        x *= 255
-    if x.shape[2] == 4:
-        # RGBA
-        return pil_image.fromarray(x.astype('uint8'), 'RGBA')
-    elif x.shape[2] == 3:
-        # RGB
-        return pil_image.fromarray(x.astype('uint8'), 'RGB')
-    elif x.shape[2] == 1:
-        # grayscale
-        return pil_image.fromarray(x[:, :, 0].astype('uint8'), 'L')
-    else:
-        raise ValueError('Unsupported channel number: %s' % (x.shape[2],))
-
-
-def img_to_array(img, data_format='channels_last', dtype='float32'):
-    """Converts a PIL Image instance to a Numpy array.
-
-    # Arguments
-        img: PIL Image instance.
-        data_format: Image data format,
-            either "channels_first" or "channels_last".
-        dtype: Dtype to use for the returned array.
-
-    # Returns
-        A 3D Numpy array.
-
-    # Raises
-        ValueError: if invalid `img` or `data_format` is passed.
-    """
-    if data_format not in {'channels_first', 'channels_last'}:
-        raise ValueError('Unknown data_format: %s' % data_format)
-    # Numpy array x has format (height, width, channel)
-    # or (channel, height, width)
-    # but original PIL image has format (width, height, channel)
-    x = np.asarray(img, dtype=dtype)
-    if len(x.shape) == 3:
-        if data_format == 'channels_first':
-            x = x.transpose(2, 0, 1)
-    elif len(x.shape) == 2:
-        if data_format == 'channels_first':
-            x = x.reshape((1, x.shape[0], x.shape[1]))
-        else:
-            x = x.reshape((x.shape[0], x.shape[1], 1))
-    else:
-        raise ValueError('Unsupported image shape: %s' % (x.shape,))
-    return x
-
-
 class ImageDataGenerator(Sequence):
     """
     Generate batches of images as well as their labels on the fly
@@ -197,16 +62,11 @@ class ImageDataGenerator(Sequence):
             while with `height_shift_range=1.0` possible values are floats
             in the interval [-1.0, +1.0).
 
-    brightness_range: Tuple or list of two floats. Range for picking
-        a brightness shift value from.
-
     shear_range: Float. Shear Intensity
         (Shear angle in counter-clockwise direction in degrees)
 
     zoom_range: Float or [lower, upper]. Range for random zoom.
         If a float, `[lower, upper] = [1-zoom_range, 1+zoom_range]`.
-
-    channel_shift_range: Float. Range for random channel shifts.
 
     fill_mode: One of {"constant", "nearest", "reflect" or "wrap"}.
         Default is 'nearest'.
@@ -245,8 +105,7 @@ class ImageDataGenerator(Sequence):
                  shuffle=False, augment=False, rescale=1.0 / 255,
                  output_shape=(IMAGE_HEIGHT, IMAGE_WIDTH), n_channels=N_CHANNELS,
                  rotation_range=0, width_shift_range=0., height_shift_range=0.,
-                 brightness_range=None, shear_range=0., zoom_range=0.,
-                 channel_shift_range=0., fill_mode='nearest', cval=0.,
+                 shear_range=0., zoom_range=0., fill_mode='nearest', cval=0.,
                  horizontal_flip=False, vertical_flip=False,
                  data_format='channels_last',
                  preprocessing_function=None,
@@ -287,8 +146,6 @@ class ImageDataGenerator(Sequence):
         self.vertical_flip = vertical_flip
         self.fill_mode = fill_mode
         self.cval = cval
-        self.channel_shift_range = channel_shift_range
-        self.brightness_range = brightness_range
 
         if np.isscalar(zoom_range):
             self.zoom_range = [1 - zoom_range, 1 + zoom_range]
@@ -482,11 +339,6 @@ class ImageDataGenerator(Sequence):
                 cval=self.cval) for x_channel in x]
             x = np.stack(channel_images, axis=0)
             x = np.rollaxis(x, 0, img_channel_axis + 1)
-
-        # random channel shifts
-        if self.channel_shift_range != 0:
-            channel_shift_intensity = np.random.uniform(-self.channel_shift_range, self.channel_shift_range)
-            x = apply_channel_shift(x, channel_shift_intensity, img_channel_axis)
 
         if (np.random.random() < 0.5) * self.horizontal_flip:
             x = flip_axis(x, img_col_axis)

@@ -5,7 +5,6 @@ import sys
 import numpy as np
 import pandas as pd
 
-from skmultilearn.model_selection import IterativeStratification
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from PIL import Image
@@ -32,7 +31,7 @@ np.savez(TEST_DATA, img=test_img)
 
 del test_img
 
-df = pd.read_csv(TRAINING_LABELS)
+df = pd.read_csv(TRAINING_DATA_CSV)
 
 img = np.empty((df.shape[0], IMAGE_HEIGHT, IMAGE_WIDTH, N_CHANNELS), dtype=np.uint8)
 labels = list()
@@ -51,17 +50,4 @@ for i in range(df.shape[0]):
 
 labels = mlb.fit_transform(labels)
 
-stratifier = IterativeStratification(n_splits=2, order=2, sample_distribution_per_fold=[TEST_SIZE, 1.0-TEST_SIZE])
-train_indexes, test_indexes = next(stratifier.split(img, labels))
-
-X_train, y_train = img[train_indexes, :], labels[train_indexes, :]
-X_test, y_test = img[test_indexes, :], labels[test_indexes, :]
-
-np.savez(TRAINING_DATA, img=X_train, label=y_train)
-np.savez(VALIDATION_DATA, img=X_test, label=y_test)
-
-df_train = df.iloc[train_indexes]
-df_validation = df.iloc[test_indexes]
-
-df_train.to_csv(TRAINING_DATA_CSV, index=False)
-df_validation.to_csv(VALIDATION_DATA_CSV, index=False)
+np.savez(TRAINING_DATA, img=img, label=labels)
