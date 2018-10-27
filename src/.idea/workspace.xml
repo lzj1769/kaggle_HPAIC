@@ -2,82 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4a06e7c-8316-4e2f-898b-478b0318a371" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Nets/ResNet152.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_split.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluate.zsh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predict.zsh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gpu/._convnet_conv_3_fc_2_sgd-20181019-115315.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gpu/._convnet_conv_3_fc_2_sgd-login-g.hpc.itc.rwth-aachen.de-20181018-205642.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/zhijian.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/zhijian.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_121_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_121_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_169_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_169_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_201_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_DenseNet_201_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_InceptionResNetV2_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_InceptionResNetV2_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_InceptionV3_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_InceptionV3_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_MobileNetV2_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_MobileNetV2_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_MobileNet_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_MobileNet_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_NASNetLarge_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_NASNetLarge_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_NASNetMobile_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_NASNetMobile_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_ResNet_50_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_Xception_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/PreTrained_Xception_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet_50.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/SimpleNet_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/SimpleNet_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_121_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_121_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_169_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_169_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_201_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_DenseNet_201_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_InceptionResNetV2_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_InceptionResNetV2_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_InceptionV3_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_InceptionV3_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_MobileNetV2_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_MobileNetV2_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_MobileNet_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_MobileNet_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_NASNetLarge_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_NASNetLarge_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_NASNetMobile_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_NASNetMobile_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_ResNet_50_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_ResNet_50_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_Xception_FocalLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/TrainedFromScratch_Xception_LogLoss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/callback.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/call_cluster.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configure.py" beforeDir="false" afterPath="$PROJECT_DIR$/configure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pre_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/pre_processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.zsh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_F1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_f1_score.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_loss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.zsh" beforeDir="false" afterPath="$PROJECT_DIR$/train.zsh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._PreTrained_VGG_19_LogLoss_train_f1_0.213_val_f1_0.205.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._convnet_conv_3_fc_2_adam-lng06.hpc.itc.rwth-aachen.de-20181017-190316_train_f1_0.0_val_f1_0.0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._convnet_conv_3_fc_2_sgd-lng07.hpc.itc.rwth-aachen.de-20181017-191156_train_f1_0.587_val_f1_0.445.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._convnet_train_f1_0.044_val_f1_0.043.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._convnet_train_f1_0.0_val_f1_0.0.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._resnet_20_no_aug_train_f1_0.047_val_f1_0.05.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../validation/._resnet_34_train_f1_0.052_val_f1_0.056.csv" beforeDir="false" />
       <change beforePath="$USER_HOME$/Github/models/research/global_objectives/loss_layers.py" beforeDir="false" afterPath="$USER_HOME$/Github/models/research/global_objectives/loss_layers.py" afterDir="false" />
       <change beforePath="$USER_HOME$/Github/models/research/global_objectives/loss_layers_example.py" beforeDir="false" afterPath="$USER_HOME$/Github/models/research/global_objectives/loss_layers_example.py" afterDir="false" />
     </list>
@@ -108,20 +33,20 @@
     <session id="-1806594868">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="24" />
+          <entry key="project.closed" value="25" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="26" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -144,14 +69,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="14496" />
+          <entry key="py" value="14497" />
           <entry key="zsh" value="245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CommandLine" value="245" />
-          <entry key="Python" value="14496" />
+          <entry key="Python" value="14497" />
         </counts>
       </usages-collector>
     </session>
@@ -197,38 +122,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/DenseNet121.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="44">
-              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/ResNet50.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="13" selection-start-line="13" selection-end-line="43" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="365" column="39" selection-start-line="365" selection-start-column="39" selection-end-line="365" selection-end-column="39" />
-              <folding>
-                <element signature="e#197#207#0" expanded="true" />
-              </folding>
+              <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -236,73 +134,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
-              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+            <state relative-caret-position="294">
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-                <element signature="e#187#510#0" />
-                <marker date="1540555920000" expanded="true" signature="1257:1444" ph="..." />
-                <marker date="1540555920000" expanded="true" signature="1987:2045" ph="..." />
-                <marker date="1540555920000" expanded="true" signature="2044:2045" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/visualization.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_NoFC_KFold_0_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="612" column="24" selection-start-line="612" selection-start-column="24" selection-end-line="612" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_FC_KFold_2_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13796" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configure.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -394,10 +230,8 @@
         <option value="$PROJECT_DIR$/Nets/ResNet50.py" />
         <option value="$PROJECT_DIR$/generator.py" />
         <option value="$PROJECT_DIR$/call_cluster.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/callback.py" />
         <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/Nets/DenseNet121.py" />
         <option value="$PROJECT_DIR$/Nets/DenseNet169.py" />
         <option value="$PROJECT_DIR$/Nets/DenseNet201.py" />
@@ -411,6 +245,8 @@
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet152.py" />
         <option value="$PROJECT_DIR$/visualization.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/run.py" />
       </list>
     </option>
   </component>
@@ -433,18 +269,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="cluster_out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
@@ -459,6 +289,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -565,9 +396,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="709" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="709" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33198708" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31744748" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -581,7 +413,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32992566" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5024233" side_tool="true" weight="0.60940033" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49757674" visible="true" weight="0.4732577" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49757674" weight="0.39059967" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32806692" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -601,15 +433,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="remove files" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_FC_KFold_1_out.txt" />
-    <entry file="file://$PROJECT_DIR$/Nets/TrainedFromScratch_MobileNetV2_FocalLoss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_PreTrained_FC_KFold_0_err.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_PreTrained_FC_KFold_1_err.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_PreTrained_NoFC_KFold_0_err.txt">
       <provider selected="true" editor-type-id="text-editor" />
@@ -629,8 +452,6 @@
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_NoFC_KFold_2_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_NoFC_KFold_3_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_NoFC_KFold_4_out.txt" />
-    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_NoFC_KFold_0_err.txt" />
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_NoFC_KFold_0_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_FC_KFold_0_out.txt" />
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -653,13 +474,6 @@
     <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_FC_KFold_0_err.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_FC_KFold_1_err.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_FC_KFold_0_out.txt" />
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Nets/DenseNet169.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -716,13 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/Xception.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/callback.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -742,6 +549,18 @@
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/applications/imagenet_utils.py" />
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/imagenet_utils.py" />
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/resnet50.py" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_NoFC_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="612" column="24" selection-start-line="612" selection-start-column="24" selection-end-line="612" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_FC_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13796" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Nets/DenseNet121.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -762,6 +581,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7656">
+          <caret line="365" column="39" selection-start-line="365" selection-start-column="39" selection-end-line="365" selection-end-column="39" />
+          <folding>
+            <element signature="e#197#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/configure.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -776,59 +605,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
+    <entry file="file://$PROJECT_DIR$/visualization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="365" column="39" selection-start-line="365" selection-start-column="39" selection-end-line="365" selection-end-column="39" />
+        <state relative-caret-position="50">
+          <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
-            <element signature="e#197#207#0" expanded="true" />
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/Xception_PreTrained_FC_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6580">
+          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_err/Xception_PreTrained_FC_KFold_0_err.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_NoFC_KFold_0_err.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-134" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_NoFC_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11814">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/xception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/Xception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#187#510#0" />
+            <marker date="1540671713000" expanded="true" signature="1269:1456" ph="..." />
+            <marker date="1540671713000" expanded="true" signature="1999:2057" ph="..." />
+            <marker date="1540671713000" expanded="true" signature="2056:2057" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+        <state relative-caret-position="294">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_NoFC_KFold_0_out.txt">
+    <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="612" column="24" selection-start-line="612" selection-start-column="24" selection-end-line="612" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_PreTrained_FC_KFold_2_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13796" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#187#510#0" />
-            <marker date="1540555920000" expanded="true" signature="1257:1444" ph="..." />
-            <marker date="1540555920000" expanded="true" signature="1987:2045" ph="..." />
-            <marker date="1540555920000" expanded="true" signature="2044:2045" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="44">
+          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
         </state>
       </provider>
     </entry>

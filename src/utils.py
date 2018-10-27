@@ -34,7 +34,7 @@ def get_input_shape(net_name, pre_trained=True):
                         'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152']:
             input_shape = (244, 244, 3)
 
-        elif net_name in ['InceptionResNetV2', 'InceptionV3']:
+        elif net_name in ['InceptionResNetV2', 'InceptionV3', 'Xception']:
             input_shape = (299, 299, 3)
 
         elif net_name in ['NASNetLarge', 'NASNetMobile']:
