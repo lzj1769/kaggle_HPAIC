@@ -4,8 +4,12 @@ import numpy as np
 import pandas as pd
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set(rc={'figure.figsize': (12, 10)})
 
 from configure import *
 
@@ -72,3 +76,30 @@ def visua_f1_classes(f1_score, exp_id):
 
     fig.tight_layout()
     fig.savefig(os.path.join(VISUALIZATION_PATH, "{}_f1_class.pdf".format(exp_id)))
+
+
+def visua_prob_distribution(visua_path, exp_config, training_prob, test_prob):
+    training_prob_reshape = training_prob.flatten().tolist()
+    test_prob_reshape = test_prob.flatten().tolist()
+
+    classes = np.arange(N_LABELS).tolist()
+    training_classes = classes * training_prob.shape[0]
+    test_classes = classes * test_prob.shape[0]
+
+    training_labels = ['Training'] * len(training_prob_reshape)
+    test_labels = ['Test'] * len(test_prob_reshape)
+
+    plot_data = dict()
+    plot_data['Prob'] = training_prob_reshape + test_prob_reshape
+    plot_data['Classes'] = training_classes + test_classes
+    plot_data['Dataset'] = training_labels + test_labels
+
+    df = pd.DataFrame(data=plot_data)
+
+    box_plot = sns.boxplot(x="Classes", y="Prob", hue="Dataset", data=df, fliersize=0.1, notch=True)
+
+    box_plot.legend()
+    fig = box_plot.get_figure()
+    fig.tight_layout()
+    filename = os.path.join(visua_path, "{}.png".format(exp_config))
+    fig.savefig(filename)

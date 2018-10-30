@@ -27,4 +27,4 @@ export CUDA_VISIBLE_DEVICES=0
 
 nvidia-smi
 
-python predict.py --net_name $1
+python predict.py --net_name $1 --pre_trained $2 --include_fc $3 --k_fold $4

@@ -62,7 +62,7 @@ def get_batch_size(net_name, pre_trained=True):
     return batch_size
 
 
-def generate_exp_config(net_name, pre_trained, include_fc, k_fold):
+def generate_exp_config(net_name, pre_trained, include_fc, k_fold=None):
     exp_config = net_name
     if pre_trained:
         exp_config += "_PreTrained"
@@ -74,7 +74,10 @@ def generate_exp_config(net_name, pre_trained, include_fc, k_fold):
     else:
         exp_config += "_NoFC"
 
-    return "{}_KFold_{}".format(exp_config, k_fold)
+    if k_fold is not None:
+        return "{}_KFold_{}".format(exp_config, k_fold)
+    else:
+        return exp_config
 
 
 def get_logs_path(net_name):
@@ -89,12 +92,20 @@ def get_acc_loss_path(net_name):
     return os.path.join(MODEL_ACC_LOSS_PATH, net_name)
 
 
+def get_training_predict_path(net_name):
+    return os.path.join(TRAINING_OUTPUT_PATH, net_name)
+
+
+def get_test_predict_path(net_name):
+    return os.path.join(TEST_OUTPUT_PATH, net_name)
+
+
 def optimal_threshold(y_true, y_prab):
     assert y_true.shape == y_prab.shape, print(
         "The shape of true labels is {} {}, while the prediction is {} {}".format(y_true.shape[0], y_true[1],
                                                                                   y_prab[0], y_prab[1]))
     (n_samples, n_classes) = y_true.shape
-    thresholds = np.linspace(0, 1, 100)
+    thresholds = np.linspace(0, 1, 1000)
 
     f1_scores_list = list()
     optimal_thresholds = list()
@@ -119,12 +130,12 @@ def f1_scores_threshold(y_true, y_prab, thresholds):
     return f1_scores
 
 
-def calculate_threshold(y_pred):
+def calculate_threshold(y_pred, fraction):
     threshod = []
 
     for i in range(N_LABELS):
         prab = y_pred[:, i]
-        frac = FRACTION[i]
+        frac = fraction[i]
 
         threshod.append(np.quantile(prab, 1 - frac))
 

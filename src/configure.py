@@ -4,18 +4,21 @@ IMAGE_WIDTH = 512
 IMAGE_HEIGHT = 512
 N_CHANNELS = 4
 
-TEST_TIME_AUGMENT = 32
+N_SPLIT = 8
+
+TEST_TIME_AUGMENT = 1
+
 
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,
-            0.043841336, 0.075268817, 0.007,
-            0.007, 0.007, 0.043841336,
+            0.043841336, 0.075268817, 0.01,
+            0.01, 0.01, 0.043841336,
             0.043841336, 0.014198783, 0.043841336,
-            0.007, 0.028806584, 0.014198783,
-            0.028806584, 0.059322034, 0.007,
+            0.01, 0.028806584, 0.014198783,
+            0.028806584, 0.059322034, 0.01,
             0.126126126, 0.028806584, 0.075268817,
-            0.007, 0.222493888, 0.028806584,
-            0.007]
+            0.01, 0.222493888, 0.028806584,
+            0.01]
 
 AUGMENT_PARAMETERS = {'rotation_range': 180,
                       'width_shift_range': 0.2,
@@ -43,15 +46,12 @@ MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"
 
 
 SUBMISSION_PATH = "/home/rs619065/kaggle_HPAIC/submission"
-VALIDATION_PATH = "/home/rs619065/kaggle_HPAIC/validation"
-TRAINING_PATH = "/home/rs619065/kaggle_HPAIC/training"
+
+TRAINING_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/training"
+TEST_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/test"
 
 VISUALIZATION_PATH = "/home/rs619065/kaggle_HPAIC/visualization"
 
-PREDICTION_PATH = "/home/rwth0233/kaggle_HPAIC/prediction"
-
-TEST_PATH = "/home/rs619065/kaggle_HPAIC/src/test"
-GPU_MONITOR_PATH = "/home/rs619065/kaggle_HPAIC/gpu"
 
 LABEL_MAP = {
     0: "Nucleoplasm",

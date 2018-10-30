@@ -7,43 +7,119 @@ import sys
 import argparse
 import importlib
 
-import pandas as pd
 import numpy as np
 
 from keras.models import load_model
 
 from generator import ImageDataGenerator
 from configure import *
-from utils import load_data, calculate_threshold
+from utils import load_data, generate_exp_config
+from utils import get_weights_path, get_batch_size, get_input_shape
+from utils import get_training_predict_path, get_test_predict_path
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name")
+    parser.add_argument("--net_name", help='name of convolutional neural network', default=None)
+    parser.add_argument("--pre_trained", type=int, default=1,
+                        help="whether use the pre-trained weights or not, set 0 will train the network from "
+                             "scratch and 1 will use the weights from imagenet. DEFAULT: 1")
+    parser.add_argument("--include_fc", type=int, default=0,
+                        help="whether include the full connect layers for trained neural network. DEFAULT 0")
+    parser.add_argument("--k_fold", type=int, default=0, help="number of KFold split, should between 0 and 7")
+    parser.add_argument("--workers", type=int, default=8, help="number of cores for training. DEFAULT: 8")
+    parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
 
-    print("load test data...", file=sys.stderr)
+    print("load the model configuration...", file=sys.stderr)
+    print("=======================================================", file=sys.stderr)
 
-    x_test = load_data(dataset="test")
+    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.include_fc, args.k_fold)
+    weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
 
-    # import model parameters
-    batch_size = net.batch_size
-    input_shape = net.INPUT_SHAPE
-    if hasattr(net, 'preprocess_input'):
+    batch_size = get_batch_size(args.net_name, args.pre_trained)
+    input_shape = get_input_shape(args.net_name, args.pre_trained)
+
+    if args.pre_trained:
         preprocessing_function = net.preprocess_input
     else:
         preprocessing_function = None
 
-    print("load model...", file=sys.stderr)
-    weight_filename = os.path.join(MODEL_PATH, "{}.h5".format(args.net_name))
-    assert os.path.exists(weight_filename), print("The model does not exist...")
-    model = load_model(weight_filename)
+    weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
+
+    assert os.path.exists(weights_filename), print("the model doesn't exist...", file=sys.stderr)
+    model = load_model(weights_filename)
+
+    rotation_range = AUGMENT_PARAMETERS.get('rotation_range', 0.)
+    width_shift_range = AUGMENT_PARAMETERS.get('width_shift_range', 0.)
+    height_shift_range = AUGMENT_PARAMETERS.get('height_shift_range', 0.)
+    shear_range = AUGMENT_PARAMETERS.get('shear_range', 0.)
+    zoom_range = AUGMENT_PARAMETERS.get('zoom_range', 0.)
+    fill_mode = AUGMENT_PARAMETERS.get('fill_mode', 'nearest')
+    cval = AUGMENT_PARAMETERS.get('cval', 0.)
+    horizontal_flip = AUGMENT_PARAMETERS.get('horizontal_flip', True)
+    vertical_flip = AUGMENT_PARAMETERS.get('vertical_flip', True)
+
+    # output path
+    training_predict_path = get_training_predict_path(args.net_name)
+    test_predict_path = get_test_predict_path(args.net_name)
+
+    print("load training data...", file=sys.stderr)
+    print("=======================================================", file=sys.stderr)
+
+    img, label = load_data(dataset="train")
+
+    split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
+    split = np.load(split_filename)
+
+    test_indexes = split['test_indexes']
+
+    print("validate the model on {} samples".format(test_indexes.shape[0]), file=sys.stderr)
+
+    valid_generator = ImageDataGenerator(x=img[test_indexes], y=None,
+                                         batch_size=batch_size,
+                                         augment=False, shuffle=False,
+                                         output_shape=(input_shape[0], input_shape[1]),
+                                         n_channels=input_shape[2],
+                                         preprocessing_function=preprocessing_function)
+
+    valid_generator_aug = ImageDataGenerator(x=img[test_indexes], y=None,
+                                             batch_size=batch_size,
+                                             augment=True, shuffle=False,
+                                             output_shape=(input_shape[0], input_shape[1]),
+                                             n_channels=input_shape[2],
+                                             rotation_range=rotation_range,
+                                             width_shift_range=width_shift_range,
+                                             height_shift_range=height_shift_range,
+                                             shear_range=shear_range,
+                                             zoom_range=zoom_range,
+                                             fill_mode=fill_mode,
+                                             cval=cval,
+                                             horizontal_flip=horizontal_flip,
+                                             vertical_flip=vertical_flip,
+                                             preprocessing_function=preprocessing_function,
+                                             augment_prob=1.0)
+
+    valid_pred = model.predict_generator(valid_generator, use_multiprocessing=True, workers=8)
+    valid_pred_aug = np.zeros((test_indexes.shape[0], N_LABELS), dtype=np.float32)
+    for i in range(TEST_TIME_AUGMENT):
+        valid_pred_aug += model.predict_generator(valid_generator_aug, use_multiprocessing=True, workers=8)
+
+    valid_pred = 0.5 * valid_pred + 0.5 * valid_pred_aug / TEST_TIME_AUGMENT
+
+    filename = os.path.join(training_predict_path, "{}.npz".format(exp_config))
+    np.savez(file=filename, pred=valid_pred, label=label[test_indexes])
+
+    print("load test data...", file=sys.stderr)
+    print("=======================================================", file=sys.stderr)
+
+    x_test = load_data(dataset="test")
 
     test_generator = ImageDataGenerator(x=x_test, batch_size=batch_size,
                                         augment=False, shuffle=False,
@@ -51,47 +127,32 @@ def main():
                                         n_channels=input_shape[2],
                                         preprocessing_function=preprocessing_function)
 
-    test_generator_aug = ImageDataGenerator(x=x_test, batch_size=batch_size,
+    test_generator_aug = ImageDataGenerator(x=x_test,
+                                            batch_size=batch_size,
                                             augment=True, shuffle=False,
                                             output_shape=(input_shape[0], input_shape[1]),
                                             n_channels=input_shape[2],
+                                            rotation_range=rotation_range,
+                                            width_shift_range=width_shift_range,
+                                            height_shift_range=height_shift_range,
+                                            shear_range=shear_range,
+                                            zoom_range=zoom_range,
+                                            fill_mode=fill_mode,
+                                            cval=cval,
+                                            horizontal_flip=horizontal_flip,
+                                            vertical_flip=vertical_flip,
                                             preprocessing_function=preprocessing_function,
-                                            rotation_range=90,
-                                            width_shift_range=0.2,
-                                            height_shift_range=0.2,
-                                            shear_range=0.2,
-                                            zoom_range=0.4,
-                                            horizontal_flip=True,
-                                            vertical_flip=True,
                                             augment_prob=1.0)
 
-    test_pred_1 = model.predict_generator(test_generator)
-    test_pred_2 = model.predict_generator(test_generator_aug, use_multiprocessing=True, workers=8)
-    test_pred_3 = model.predict_generator(test_generator_aug, use_multiprocessing=True, workers=8)
+    test_pred = model.predict_generator(test_generator, use_multiprocessing=True, workers=8)
+    test_pred_aug = np.zeros((x_test.shape[0], N_LABELS), dtype=np.float32)
+    for i in range(TEST_TIME_AUGMENT):
+        test_pred_aug += model.predict_generator(test_generator_aug, use_multiprocessing=True, workers=8)
 
-    test_pred = 0.5 * test_pred_1 + 0.5 * ((test_pred_2 + test_pred_3) / 2)
+    test_pred = 0.5 * test_pred + 0.5 * test_pred_aug / TEST_TIME_AUGMENT
 
-    test_thres = calculate_threshold(test_pred)
-
-    print(test_thres)
-
-    output_test_labels = list()
-
-    # convert the predicted probabilities into labels for training data
-    for i in range(test_pred.shape[0]):
-        label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], test_thres)]
-        if label_predict.size == 0:
-            label_predict = [np.argmax(test_pred[i])]
-
-        str_predict_label = " ".join(str(label) for label in label_predict)
-        output_test_labels.append(str_predict_label)
-
-    df = pd.read_csv(SAMPLE_SUBMISSION)
-    df['Predicted'] = output_test_labels
-
-    submission_filename = "{}_.csv".format(args.net_name)
-    filename = os.path.join(SUBMISSION_PATH, submission_filename)
-    df.to_csv(filename, index=False)
+    filename = os.path.join(test_predict_path, "{}.npz".format(exp_config))
+    np.savez(file=filename, pred=test_pred)
 
 
 if __name__ == '__main__':

@@ -21,5 +21,6 @@ def test_visua_f1_classes():
     f1_score = np.random.rand(N_LABELS)
     visua_f1_classes(f1_score, "test")
 
-test_visua_f1_classes()
-test_visua_threshold_f1()
+
+def test_visua_prob_distribution():
+    training_prob
