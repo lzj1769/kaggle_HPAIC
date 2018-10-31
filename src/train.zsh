@@ -27,4 +27,4 @@ export CUDA_VISIBLE_DEVICES=0
 
 nvidia-smi
 
-python train.py --net_name $1 --pre_trained $2 --include_fc $3 --k_fold $4
+python train.py --net_name $1 --pre_trained $2 --optimizer $3 --k_fold $4

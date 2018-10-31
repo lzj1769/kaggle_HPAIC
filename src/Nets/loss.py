@@ -4,7 +4,7 @@ import numpy as np
 import keras.backend as K
 
 
-def focal_loss(y_true, y_pred, alpha=0.25, gamma=2):
+def focal_loss(y_true, y_pred, gamma=2):
     r"""Compute focal loss for predictions.
         Multi-labels Focal loss formula:
             FL = -alpha * (z-p)^gamma * log(p) -(1-alpha) * p^gamma * log(1-p)
@@ -29,8 +29,8 @@ def focal_loss(y_true, y_pred, alpha=0.25, gamma=2):
     # For negative prediction, only need consider back part loss, front part is 0;
     # target_tensor > zeros <=> z=1, so negative coefficient = 0.
     neg_p_sub = array_ops.where(y_true > zeros, zeros, y_pred)
-    per_entry_cross_ent = - alpha * (pos_p_sub ** gamma) * tf.log(tf.clip_by_value(y_pred, 1e-8, 1.0)) \
-                          - (1 - alpha) * (neg_p_sub ** gamma) * tf.log(tf.clip_by_value(1.0 - y_pred, 1e-8, 1.0))
+    per_entry_cross_ent = pos_p_sub ** gamma * tf.log(tf.clip_by_value(y_pred, 1e-8, 1.0)) - \
+                          neg_p_sub ** gamma * tf.log(tf.clip_by_value(1.0 - y_pred, 1e-8, 1.0))
 
     return K.mean(tf.reduce_sum(per_entry_cross_ent, axis=-1), axis=-1)
 

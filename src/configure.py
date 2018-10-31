@@ -8,6 +8,15 @@ N_SPLIT = 8
 
 TEST_TIME_AUGMENT = 1
 
+OPTIMIZER = {0: 'SGD',
+             1: 'RMSprop',
+             2: 'Adagrad',
+             3: 'Adadelta',
+             4: 'Adam',
+             5: 'Adamax',
+             6: 'Adam_AMSGrad',
+             7: 'Adam_AMSGrad_LR_0.0001'}
+
 
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,

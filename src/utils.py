@@ -62,17 +62,14 @@ def get_batch_size(net_name, pre_trained=True):
     return batch_size
 
 
-def generate_exp_config(net_name, pre_trained, include_fc, k_fold=None):
+def generate_exp_config(net_name, pre_trained, optimizer, k_fold=None):
     exp_config = net_name
     if pre_trained:
-        exp_config += "_PreTrained"
+        exp_config += "_PreTrained_"
     else:
-        exp_config += "_FromScratch"
+        exp_config += "_FromScratch_"
 
-    if include_fc:
-        exp_config += "_FC"
-    else:
-        exp_config += "_NoFC"
+    exp_config += OPTIMIZER[optimizer]
 
     if k_fold is not None:
         return "{}_KFold_{}".format(exp_config, k_fold)

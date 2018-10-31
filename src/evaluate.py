@@ -42,7 +42,7 @@ def main():
     for k_fold in range(N_SPLIT):
         exp_config = generate_exp_config(args.net_name, args.pre_trained, args.include_fc, k_fold)
         filename = os.path.join(train_predict_path, "{}.npz".format(exp_config))
-        assert os.path.exists(filename), print("the prediction {} does not exist".format(filename))
+        assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
         pred = np.load(filename)['pred']
         label = np.load(filename)['label']
 

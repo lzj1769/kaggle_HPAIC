@@ -355,26 +355,19 @@ def ResNet152(include_top=True, weights=None,
     return model
 
 
-def build_model(input_shape, num_classes, weights='imagenet', include_fc=False):
+def build_model(input_shape, num_classes, weights='imagenet'):
     # create the base pre-trained model
 
     base_model = ResNet152(weights=weights, include_top=False, input_shape=input_shape)
 
-    if include_fc:
-        # add a global spatial average pooling layer
-        x = base_model.output
-        x = GlobalAveragePooling2D()(x)
-        x = Dropout(0.2)(x)
-        x = Dense(1024, activation='relu', name='fc2014_1')(x)
-        x = Dropout(0.2)(x)
-        x = Dense(1024, activation='relu', name='fc2014_2')(x)
-        x = Dropout(0.2)(x)
-        x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
-    else:
-        # add a global spatial average pooling layer
-        x = base_model.output
-        x = GlobalAveragePooling2D()(x)
-        x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
+    # add a global spatial average pooling layer
+    x = base_model.output
+    x = GlobalAveragePooling2D()(x)
+    x = Dense(1024, activation='relu', name='fc2014_1')(x)
+    x = Dropout(0.5)(x)
+    x = Dense(1024, activation='relu', name='fc2014_2')(x)
+    x = Dropout(0.5)(x)
+    x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
     model = Model(inputs=base_model.input, outputs=x, name='pre_trained_resnet152')

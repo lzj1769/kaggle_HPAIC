@@ -18,8 +18,8 @@ def parse_args():
     parser.add_argument("--pre_trained", type=int, default=1,
                         help="whether use the pre-trained weights or not, set 0 will train the network from "
                              "scratch and 1 will use the weights from imagenet. DEFAULT: 1")
-    parser.add_argument("--include_fc", type=int, default=0,
-                        help="whether include the full connect layers for trained neural network. DEFAULT 0")
+    parser.add_argument("--optimizer", type=int, default=0,
+                        help="which optimizer should use to train neural network. DEFAULT 0")
     parser.add_argument("--k_fold", type=int, default=0, help="number of KFold split, should between 0 and 7")
     parser.add_argument("--epochs", type=int, default=100, help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("--workers", type=int, default=8, help="number of cores for training. DEFAULT: 8")
@@ -33,7 +33,7 @@ def main():
     print("load the model configuration...", file=sys.stderr)
     print("=======================================================", file=sys.stderr)
 
-    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.include_fc, args.k_fold)
+    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.optimizer, args.k_fold)
     weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
@@ -52,10 +52,10 @@ def main():
     else:
         if args.pre_trained:
             model = net.build_model(input_shape=input_shape, num_classes=N_LABELS,
-                                    weights='imagenet', include_fc=args.include_fc)
+                                    weights='imagenet', opt=args.optimizer)
         else:
             model = net.build_model(input_shape=input_shape, num_classes=N_LABELS,
-                                    weights=None, include_fc=args.include_fc)
+                                    weights=None, opt=args.optimizer)
 
     model.summary()
 
