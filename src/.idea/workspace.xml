@@ -3,26 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c4a06e7c-8316-4e2f-898b-478b0318a371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/DenseNet121.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet121.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/DenseNet169.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet169.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/DenseNet201.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet201.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/InceptionResNetV2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/InceptionResNetV2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/InceptionV3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/InceptionV3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/MobileNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/MobileNet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/MobileNetV2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/MobileNetV2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/NASNetLarge.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/NASNetLarge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/NASNetMobile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/NASNetMobile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet152.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet152.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet50.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet50.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/Xception.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/Xception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/loss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/loss_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/loss_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configure.py" beforeDir="false" afterPath="$PROJECT_DIR$/configure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.zsh" beforeDir="false" afterPath="$PROJECT_DIR$/train.zsh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
       <change beforePath="$USER_HOME$/Github/kaggle-ndsb/data/features_test.pkl" beforeDir="false" />
       <change beforePath="$USER_HOME$/Github/models/research/gan/image_compression/testdata/train-00000-of-00128" beforeDir="false" />
       <change beforePath="$USER_HOME$/Github/models/research/gan/image_compression/testdata/validation-00000-of-00128" beforeDir="false" />
@@ -79,9 +60,9 @@
         <counts>
           <entry key="ProPrecessing" value="1" />
           <entry key="md" value="1" />
-          <entry key="py" value="575" />
+          <entry key="py" value="577" />
           <entry key="train" value="3" />
-          <entry key="txt" value="101" />
+          <entry key="txt" value="103" />
           <entry key="zsh" value="29" />
         </counts>
       </usages-collector>
@@ -89,20 +70,20 @@
         <counts>
           <entry key="CommandLine" value="29" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="105" />
-          <entry key="Python" value="575" />
+          <entry key="PLAIN_TEXT" value="107" />
+          <entry key="Python" value="577" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="15837" />
+          <entry key="py" value="15844" />
           <entry key="zsh" value="245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CommandLine" value="245" />
-          <entry key="Python" value="15837" />
+          <entry key="Python" value="15844" />
         </counts>
       </usages-collector>
     </session>
@@ -148,56 +129,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/MobileNetV2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/InceptionV3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="55" selection-start-column="44" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
+        <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="345" column="20" selection-start-line="345" selection-start-column="20" selection-end-line="345" selection-end-column="20" />
+            <state relative-caret-position="132">
+              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/InceptionResNetV2.py">
+        <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_Adadelta_KFold_0_out.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="31" selection-start-column="31" selection-end-column="31" />
-            </state>
+            <state relative-caret-position="-230" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/MobileNet.py">
+        <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_Adadelta_KFold_0_err.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="46" selection-start-column="46" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/NASNetLarge.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="41" selection-start-column="41" selection-end-column="41" />
+            <state relative-caret-position="286">
+              <caret line="13" column="17" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -274,7 +226,6 @@
         <option value="$PROJECT_DIR$/pre_processing.py" />
         <option value="$PROJECT_DIR$/create_split.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet_50.py" />
-        <option value="$PROJECT_DIR$/generator.py" />
         <option value="$PROJECT_DIR$/call_cluster.py" />
         <option value="$PROJECT_DIR$/callback.py" />
         <option value="$PROJECT_DIR$/predict.zsh" />
@@ -306,6 +257,7 @@
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet50.py" />
         <option value="$PROJECT_DIR$/Nets/MobileNetV2.py" />
+        <option value="$PROJECT_DIR$/generator.py" />
       </list>
     </option>
   </component>
@@ -339,7 +291,12 @@
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Nets" type="462c0819:PsiDirectoryNode" />
+              <item name="cluster_err" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="cluster_out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
@@ -456,8 +413,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="709" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20355412" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2907916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -471,7 +429,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32992566" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5024233" side_tool="true" weight="0.60940033" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49757674" visible="true" weight="0.4910859" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49757674" weight="0.48298216" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32806692" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -491,9 +449,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="remove files" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_FC_KFold_4_out.txt" />
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_FC_KFold_5_out.txt" />
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_FC_KFold_2_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_FC_KFold_1_out.txt" />
     <entry file="file://$PROJECT_DIR$/create_split.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -503,13 +458,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/engine/training.py" />
-    <entry file="file://$PROJECT_DIR$/generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cluster_out/MobileNet_FromScratch_NoFC_KFold_0_out.txt" />
     <entry file="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/convert2matrix.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -706,6 +654,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="344" lean-forward="true" selection-start-line="344" selection-end-line="344" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Nets/InceptionResNetV2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -727,10 +682,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/albumentations/augmentations/transforms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="345" column="20" selection-start-line="345" selection-start-column="20" selection-end-line="345" selection-end-column="20" />
+        <state relative-caret-position="-272">
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_FromScratch_Adadelta_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-230" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_FromScratch_Adadelta_KFold_0_err.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
         </state>
       </provider>
     </entry>

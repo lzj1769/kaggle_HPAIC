@@ -8,9 +8,6 @@ import cv2
 import keras
 from keras.utils import Sequence
 
-from PIL import ImageEnhance
-from PIL import Image as pil_image
-
 import keras.backend as K
 
 from configure import *
