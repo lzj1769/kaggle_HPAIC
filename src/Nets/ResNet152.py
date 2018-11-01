@@ -14,8 +14,6 @@ from keras.layers import Input, Dense, Activation, Flatten, Conv2D
 from keras.layers import MaxPooling2D, GlobalMaxPooling2D, ZeroPadding2D, AveragePooling2D
 from keras.layers import GlobalAveragePooling2D, BatchNormalization, add, Dropout
 from keras.models import Model
-from keras.optimizers import SGD
-from keras.losses import binary_crossentropy
 from keras.engine.topology import get_source_inputs
 from keras.utils import layer_utils
 from keras import initializers
@@ -363,18 +361,15 @@ def build_model(input_shape, num_classes, weights='imagenet'):
     # add a global spatial average pooling layer
     x = base_model.output
     x = GlobalAveragePooling2D()(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc2014_1')(x)
     x = Dropout(0.5)(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc2014_2')(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
-    model = Model(inputs=base_model.input, outputs=x, name='pre_trained_resnet152')
-
-    sgd = SGD(lr=0.01, momentum=0.9, nesterov=True, decay=1e-06)
-
-    # compile the model (should be done *after* setting layers to non-trainable)
-    model.compile(optimizer=sgd, loss=binary_crossentropy, metrics=['accuracy'])
+    model = Model(inputs=base_model.input, outputs=x, name='pre_trained_resnet50')
 
     return model

@@ -56,10 +56,10 @@ def run_predict():
 
 def run_training():
     net_name_list = ['ResNet50']
-    pre_trained_list = [0]
-    optimizer_list = [0, 1, 2, 3, 4, 5, 6, 7]
+    pre_trained_list = [1]
+    loss_list = [1, 2]
 
-    kfold_list = [0]
+    kfold_list = [0, 1, 2, 3, 4, 5, 6, 7]
 
     for net_name in net_name_list:
         logs_path = get_logs_path(net_name=net_name)
@@ -78,15 +78,15 @@ def run_training():
 
         # run
         for pre_trained in pre_trained_list:
-            for optimizer in optimizer_list:
+            for loss in loss_list:
                 for k_fold in kfold_list:
-                    exp_config = generate_exp_config(net_name, pre_trained, optimizer, k_fold)
+                    exp_config = generate_exp_config(net_name, pre_trained, loss, k_fold)
                     job_name = exp_config
                     command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                               "./cluster_err/" + job_name + "_err.txt "
                     command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./train.zsh "
                     os.system(
-                        command + " " + net_name + " " + str(pre_trained) + " " + str(optimizer) + " " + str(k_fold))
+                        command + " " + net_name + " " + str(pre_trained) + " " + str(loss) + " " + str(k_fold))
 
 
 if __name__ == '__main__':

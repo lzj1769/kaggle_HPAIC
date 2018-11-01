@@ -17,6 +17,10 @@ OPTIMIZER = {0: 'SGD',
              6: 'Adam_AMSGrad',
              7: 'Adam_AMSGrad_LR_0.0001'}
 
+LOSS = {0: 'BCE',
+        1: 'FocalLoss',
+        2: 'F1Loss'}
+
 
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,

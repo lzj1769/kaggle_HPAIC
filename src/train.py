@@ -5,6 +5,10 @@ import argparse
 import importlib
 
 from keras.models import load_model
+from keras.losses import binary_crossentropy
+from keras.optimizers import Adamax, Adam
+from keras.metrics import binary_accuracy
+from loss import focal_loss, f1_loss
 
 from generator import ImageDataGenerator
 from visualization import visua_acc_loss
@@ -20,6 +24,8 @@ def parse_args():
                              "scratch and 1 will use the weights from imagenet. DEFAULT: 1")
     parser.add_argument("--optimizer", type=int, default=0,
                         help="which optimizer should use to train neural network. DEFAULT 0")
+    parser.add_argument("--loss", type=int, default=0,
+                        help="which loss function should be used to train the model")
     parser.add_argument("--k_fold", type=int, default=0, help="number of KFold split, should between 0 and 7")
     parser.add_argument("--epochs", type=int, default=100, help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("--workers", type=int, default=8, help="number of cores for training. DEFAULT: 8")
@@ -33,7 +39,7 @@ def main():
     print("load the model configuration...", file=sys.stderr)
     print("=======================================================", file=sys.stderr)
 
-    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.optimizer, args.k_fold)
+    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.loss, args.k_fold)
     weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
@@ -52,10 +58,26 @@ def main():
     else:
         if args.pre_trained:
             model = net.build_model(input_shape=input_shape, num_classes=N_LABELS,
-                                    weights='imagenet', opt=args.optimizer)
+                                    weights='imagenet')
         else:
             model = net.build_model(input_shape=input_shape, num_classes=N_LABELS,
-                                    weights=None, opt=args.optimizer)
+                                    weights=None)
+
+    # setup the optimizer
+    optimizer = None
+    if args.pre_trained == 1:
+        optimizer = Adam(lr=0.0001, amsgrad=True, decay=1e-06)
+
+    elif args.pre_trained == 0:
+        optimizer = Adamax(decay=1e-06)
+
+    # setup the loss function, 0 for binary crossentropy loss, 1 for focal loss
+    if args.loss == 0:
+        model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    elif args.loss == 1:
+        model.compile(optimizer=optimizer, loss=focal_loss, metrics=[binary_accuracy])
+    elif args.loss == 3:
+        model.compile(optimizer=optimizer, loss=f1_loss, metrics=[binary_accuracy])
 
     model.summary()
 

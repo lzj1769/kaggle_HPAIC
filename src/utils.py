@@ -32,7 +32,7 @@ def get_input_shape(net_name, pre_trained=True):
     if pre_trained:
         if net_name in ['DenseNet121', 'DenseNet119', 'DenseNet201', 'MobileNet', 'MobileNetV2',
                         'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152']:
-            input_shape = (244, 244, 3)
+            input_shape = (224, 224, 3)
 
         elif net_name in ['InceptionResNetV2', 'InceptionV3', 'Xception']:
             input_shape = (299, 299, 3)
@@ -62,14 +62,14 @@ def get_batch_size(net_name, pre_trained=True):
     return batch_size
 
 
-def generate_exp_config(net_name, pre_trained, optimizer, k_fold=None):
+def generate_exp_config(net_name, pre_trained, loss, k_fold=None):
     exp_config = net_name
     if pre_trained:
         exp_config += "_PreTrained_"
     else:
         exp_config += "_FromScratch_"
 
-    exp_config += OPTIMIZER[optimizer]
+    exp_config += LOSS[loss]
 
     if k_fold is not None:
         return "{}_KFold_{}".format(exp_config, k_fold)

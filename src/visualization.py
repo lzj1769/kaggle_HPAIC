@@ -22,8 +22,8 @@ def visua_acc_loss(acc_loss_path, logs_path, exp_config):
     # plot the training loss and accuracy
     plt.style.use("ggplot")
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
-    ax1.plot(df['acc'])
-    ax1.plot(df['val_acc'])
+    ax1.plot(df['binary_accuracy'])
+    ax1.plot(df['val_binary_accuracy'])
     ax1.set_title('Accuracy')
     ax1.set_ylabel('accuracy')
     ax1.set_xlabel('epoch')
@@ -93,13 +93,21 @@ def visua_prob_distribution(visua_path, exp_config, training_prob, test_prob):
     plot_data['Prob'] = training_prob_reshape + test_prob_reshape
     plot_data['Classes'] = training_classes + test_classes
     plot_data['Dataset'] = training_labels + test_labels
-
     df = pd.DataFrame(data=plot_data)
 
-    box_plot = sns.boxplot(x="Classes", y="Prob", hue="Dataset", data=df, fliersize=0.1, notch=True)
+    fig, ax = plt.subplots(7, 4, figsize=(10, 12))
+    for i in range(7):
+        for j in range(4):
+            if i * 4 + j < 28:
+                df_subset = df['Class']
+                sns.distplot(a=df_subset['Prob'], hist=False,
+                             kde=True, ax=ax[i][j],
+                             kde_kws={'shade': True, 'linewidth': 3})
+                ax[i][j].set_title("Class: {}".format(i * 4 + j))
+                ax[i][j].set_ylim([0, 1])
+            else:
+                break
 
-    box_plot.legend()
-    fig = box_plot.get_figure()
     fig.tight_layout()
     filename = os.path.join(visua_path, "{}.png".format(exp_config))
     fig.savefig(filename)
