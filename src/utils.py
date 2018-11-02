@@ -97,6 +97,10 @@ def get_test_predict_path(net_name):
     return os.path.join(TEST_OUTPUT_PATH, net_name)
 
 
+def get_submission_path(net_name):
+    return os.path.join(SUBMISSION_PATH, net_name)
+
+
 def optimal_threshold(y_true, y_prab):
     assert y_true.shape == y_prab.shape, print(
         "The shape of true labels is {} {}, while the prediction is {} {}".format(y_true.shape[0], y_true[1],

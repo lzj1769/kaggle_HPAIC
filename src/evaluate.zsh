@@ -27,4 +27,4 @@ export CUDA_VISIBLE_DEVICES=0
 
 nvidia-smi
 
-python evaluate.py --net_name $1
+python evaluate.py --net_name $1 --pre_trained $2 --loss $3

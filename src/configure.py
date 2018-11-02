@@ -6,7 +6,7 @@ N_CHANNELS = 4
 
 N_SPLIT = 8
 
-TEST_TIME_AUGMENT = 1
+TEST_TIME_AUGMENT = 32
 
 OPTIMIZER = {0: 'SGD',
              1: 'RMSprop',

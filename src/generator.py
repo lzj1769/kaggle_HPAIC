@@ -6,11 +6,18 @@ import scipy
 import math
 import cv2
 import keras
+
+from albumentations import HorizontalFlip, ShiftScaleRotate, RandomRotate90
+from albumentations import RandomBrightness, Flip
+
+from albumentations import (
+    HorizontalFlip, IAAPerspective, ShiftScaleRotate, CLAHE, RandomRotate90,
+    Transpose, ShiftScaleRotate, Blur, OpticalDistortion, GridDistortion, HueSaturationValue,
+    IAAAdditiveGaussianNoise, GaussNoise, MotionBlur, MedianBlur, IAAPiecewiseAffine,
+    IAASharpen, IAAEmboss, RandomContrast, RandomBrightness, Flip, OneOf, Compose
+)
+
 from keras.utils import Sequence
-
-from PIL import ImageEnhance
-from PIL import Image as pil_image
-
 import keras.backend as K
 
 from configure import *

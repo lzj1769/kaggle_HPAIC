@@ -71,12 +71,12 @@ def main():
     elif args.pre_trained == 0:
         optimizer = Adamax(decay=1e-06)
 
-    # setup the loss function, 0 for binary crossentropy loss, 1 for focal loss
+    # setup the loss function, 0 for binary crossentropy loss, 1 for focal loss, 2 for f1 score loss
     if args.loss == 0:
         model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
     elif args.loss == 1:
         model.compile(optimizer=optimizer, loss=focal_loss, metrics=[binary_accuracy])
-    elif args.loss == 3:
+    elif args.loss == 2:
         model.compile(optimizer=optimizer, loss=f1_loss, metrics=[binary_accuracy])
 
     model.summary()

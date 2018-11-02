@@ -16,6 +16,7 @@ from configure import *
 from utils import load_data, generate_exp_config
 from utils import get_weights_path, get_batch_size, get_input_shape
 from utils import get_training_predict_path, get_test_predict_path
+from loss import focal_loss, f1_loss
 
 
 def parse_args():
@@ -24,8 +25,8 @@ def parse_args():
     parser.add_argument("--pre_trained", type=int, default=1,
                         help="whether use the pre-trained weights or not, set 0 will train the network from "
                              "scratch and 1 will use the weights from imagenet. DEFAULT: 1")
-    parser.add_argument("--include_fc", type=int, default=0,
-                        help="whether include the full connect layers for trained neural network. DEFAULT 0")
+    parser.add_argument("--loss", type=int, default=0,
+                        help="which loss function should be used to train the model")
     parser.add_argument("--k_fold", type=int, default=0, help="number of KFold split, should between 0 and 7")
     parser.add_argument("--workers", type=int, default=8, help="number of cores for training. DEFAULT: 8")
     parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
@@ -38,7 +39,7 @@ def main():
     print("load the model configuration...", file=sys.stderr)
     print("=======================================================", file=sys.stderr)
 
-    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.include_fc, args.k_fold)
+    exp_config = generate_exp_config(args.net_name, args.pre_trained, args.loss, args.k_fold)
     weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
@@ -53,8 +54,16 @@ def main():
 
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
 
-    assert os.path.exists(weights_filename), print("the model doesn't exist...", file=sys.stderr)
-    model = load_model(weights_filename)
+    assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
+
+    if args.loss == 0:
+        model = load_model(weights_filename)
+
+    elif args.loss == 1:
+        model = load_model(weights_filename, custom_objects={'focal_loss': focal_loss})
+
+    elif args.loss == 2:
+        model = load_model(weights_filename, custom_objects={'f1_loss': f1_loss})
 
     rotation_range = AUGMENT_PARAMETERS.get('rotation_range', 0.)
     width_shift_range = AUGMENT_PARAMETERS.get('width_shift_range', 0.)
