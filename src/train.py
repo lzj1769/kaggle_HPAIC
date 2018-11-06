@@ -1,22 +1,26 @@
 from __future__ import print_function
 
+import os
+import sys
+import numpy as np
 import argparse
 
 import importlib
 
 from keras.models import load_model
 from keras.losses import binary_crossentropy
-from keras.optimizers import Adamax, Adam, SGD
+from keras.optimizers import SGD
 from keras.metrics import binary_accuracy
-from loss import weighted_binary_corssentropy
 
 from generator import ImageDataGenerator
 from visualization import visua_acc_loss
-from utils import *
+from utils import get_acc_loss_path, load_data, generate_exp_config
+from utils import get_weights_path, get_batch_size, get_input_shape
+from utils import get_logs_path
 from callback import build_callbacks
+from configure import *
 
 from albumentations import HorizontalFlip
-from albumentations import VerticalFlip
 from albumentations import RandomBrightness
 from albumentations import ShiftScaleRotate
 
@@ -72,9 +76,6 @@ def main():
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
     model.summary()
-
-    # class_weights = calculating_class_weights(label)
-    # model.compile(optimizer=optimizer, loss=weighted_binary_corssentropy(class_weights), metrics=[binary_accuracy])
 
     # set augmentation parameters
     horizontal_flip = HorizontalFlip(p=0.5)

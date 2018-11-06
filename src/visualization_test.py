@@ -1,5 +1,6 @@
 from __future__ import print_function, division
 import numpy as np
+import pandas as pd
 
 from configure import *
 
@@ -36,8 +37,10 @@ def test_visua_prob_distribution():
 def test_visua_cnn():
     from keras.models import load_model
     from utils import load_data
+    df = pd.read_csv(TRAINING_DATA_CSV)
+
     model = load_model("/work/rwth0233/kaggle_HPAIC/model/ResNet50/ResNet50_KFold_0.h5")
     image, _ = load_data(dataset='train')
-    visua_cnn(model=model, image=image[0][:, :, :3])
+    visua_cnn(model=model, image=image[10300][:, :, :3])
 
 test_visua_cnn()

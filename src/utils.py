@@ -4,7 +4,6 @@ import sys
 import numpy as np
 
 from sklearn.metrics import f1_score
-from generator import ImageDataGenerator
 from albumentations import HorizontalFlip
 from albumentations.augmentations import functional as F
 from albumentations import DualTransform
@@ -32,14 +31,14 @@ def load_data(dataset=None):
 def get_input_shape(net_name):
     input_shape = None
 
-    if net_name in ['ResNet50', 'ResNet101', 'ResNet152']:
+    if net_name in ['ResNet50', 'ResNet101', 'ResNet152', 'Xception']:
         input_shape = (IMAGE_HEIGHT, IMAGE_WIDTH, 3)
 
     return input_shape
 
 
 def get_batch_size(net_name):
-    if net_name in ['NASNetLarge', 'ResNet101', 'ResNet152']:
+    if net_name in ['NASNetLarge', 'ResNet101', 'ResNet152', 'Xception']:
         batch_size = 8
     else:
         batch_size = 16
@@ -164,6 +163,8 @@ class RandomRotate90(DualTransform):
 
 
 def get_test_time_augmentation_generators(image, batch_size, output_shape, n_channels):
+    from generator import ImageDataGenerator
+
     horizontal_flip = HorizontalFlip(p=1.0)
     random_rotate_90_1 = RandomRotate90(factor=1)
     random_rotate_90_2 = RandomRotate90(factor=2)

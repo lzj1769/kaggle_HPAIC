@@ -11,7 +11,7 @@ import argparse
 from sklearn.metrics import f1_score
 
 from configure import *
-from utils import calculating_threshold
+from utils import get_submission_path
 from visualization import visua_prob_distribution
 
 parser = argparse.ArgumentParser()
@@ -28,14 +28,6 @@ assert os.path.exists(filename), "the prediction {} does not exist".format(filen
 training_pred = np.load(filename)['pred']
 training_label = np.load(filename)['label']
 
-print("load prediction of test data...", file=sys.stderr)
-df = pd.read_csv(SAMPLE_SUBMISSION)
-
-filename = os.path.join(TEST_OUTPUT_PATH, "{}.npz".format(args.net_name))
-assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
-
-test_pred = np.load(filename)['pred']
-
 thresholds = np.linspace(0, 1, 1000)
 max_f1 = 0.0
 optimal_threshold = 0.0
@@ -46,12 +38,13 @@ for threshold in thresholds:
         optimal_threshold = threshold
         max_f1 = f1
 
+optimal_threshold = 0.28
 # convert the predicted probabilities into labels for training data
 training_predicted_labels = list()
 for i in range(training_pred.shape[0]):
-    label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], optimal_threshold)]
+    label_predict = np.arange(N_LABELS)[np.greater(training_pred[i], optimal_threshold)]
     if label_predict.size == 0:
-        label_predict = [np.argmax(test_pred[i])]
+        label_predict = [np.argmax(training_pred[i])]
 
     str_predict_label = " ".join(str(label) for label in label_predict)
     training_predicted_labels.append(str_predict_label)
@@ -62,6 +55,15 @@ filename = os.path.join(TRAINING_OUTPUT_PATH,
                         "{}_threshold_{}_f1_{}.csv".format(args.net_name, optimal_threshold, max_f1))
 df.to_csv(filename, index=False)
 
+print("load prediction of test data...", file=sys.stderr)
+df = pd.read_csv(SAMPLE_SUBMISSION)
+
+filename = os.path.join(TEST_OUTPUT_PATH, "{}.npz".format(args.net_name))
+assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
+
+test_pred = np.load(filename)['pred']
+
+submission_path = get_submission_path(net_name=args.net_name)
 print("generating submission file according to the threshold {}...".format(optimal_threshold), file=sys.stderr)
 # convert the predicted probabilities into labels for training data
 output_test_labels = list()
@@ -75,5 +77,7 @@ for i in range(test_pred.shape[0]):
 
 df = pd.read_csv(SAMPLE_SUBMISSION)
 df['Predicted'] = output_test_labels
-filename = os.path.join(SUBMISSION_PATH, "{}_threshold_{}_f1_{}.csv".format(args.net_name, optimal_threshold, max_f1))
+filename = os.path.join(submission_path, "{}_threshold_{}_f1_{}.csv".format(args.net_name, optimal_threshold, max_f1))
 df.to_csv(filename, index=False)
+
+visua_prob_distribution(VISUALIZATION_PATH, args.net_name, training_pred, test_pred)
