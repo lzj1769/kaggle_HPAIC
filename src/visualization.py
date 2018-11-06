@@ -13,6 +13,12 @@ sns.set(rc={'figure.figsize': (12, 10)})
 
 from configure import *
 
+import keras.backend as K
+from keras.layers import Input, Conv2DTranspose
+from keras import Model
+from keras.initializers import Ones, Zeros
+from PIL import Image
+
 
 def visua_acc_loss(acc_loss_path, logs_path, exp_config):
     # load logs
@@ -79,35 +85,122 @@ def visua_f1_classes(f1_score, exp_id):
 
 
 def visua_prob_distribution(visua_path, exp_config, training_prob, test_prob):
-    training_prob_reshape = training_prob.flatten().tolist()
-    test_prob_reshape = test_prob.flatten().tolist()
-
-    classes = np.arange(N_LABELS).tolist()
-    training_classes = classes * training_prob.shape[0]
-    test_classes = classes * test_prob.shape[0]
-
-    training_labels = ['Training'] * len(training_prob_reshape)
-    test_labels = ['Test'] * len(test_prob_reshape)
-
-    plot_data = dict()
-    plot_data['Prob'] = training_prob_reshape + test_prob_reshape
-    plot_data['Classes'] = training_classes + test_classes
-    plot_data['Dataset'] = training_labels + test_labels
-    df = pd.DataFrame(data=plot_data)
-
     fig, ax = plt.subplots(7, 4, figsize=(10, 12))
     for i in range(7):
         for j in range(4):
             if i * 4 + j < 28:
-                df_subset = df['Class']
-                sns.distplot(a=df_subset['Prob'], hist=False,
-                             kde=True, ax=ax[i][j],
-                             kde_kws={'shade': True, 'linewidth': 3})
+                sns.kdeplot(data=training_prob[:, i * 4 + j],
+                            label="Validation",
+                            ax=ax[i][j],
+                            shade=True,
+                            color="r")
+                sns.kdeplot(data=test_prob[:, i * 4 + j],
+                            label="Test",
+                            ax=ax[i][j],
+                            shade=True,
+                            color="b")
                 ax[i][j].set_title("Class: {}".format(i * 4 + j))
-                ax[i][j].set_ylim([0, 1])
             else:
                 break
 
     fig.tight_layout()
-    filename = os.path.join(visua_path, "{}.png".format(exp_config))
+    filename = os.path.join(visua_path, "{}.pdf".format(exp_config))
     fig.savefig(filename)
+
+
+class VisualBackprop:
+    """A SaliencyMask class that computes saliency masks with VisualBackprop (https://arxiv.org/abs/1611.05418).
+    """
+
+    def __init__(self, model):
+        """Constructs a VisualProp SaliencyMask."""
+        inp = model.input
+
+        outputs = [layer.output for layer in model.layers]  # all layer outputs
+        outputs = [output for output in outputs if 'input_' not in output.name]
+
+        self.forward_pass = K.function([inp, K.learning_phase()], outputs)  # evaluation function
+        self.model = model
+
+    def get_mask(self, input_image):
+        """Returns a VisualBackprop mask."""
+        x_value = np.expand_dims(input_image, axis=0)
+        visual_bpr = None
+        layer_outs = self.forward_pass([x_value, 0.])
+
+        for i in range(len(self.model.layers) - 1, -1, -1):
+            if 'Conv2D' in str(type(self.model.layers[i])):
+                layer = np.mean(layer_outs[i], axis=3, keepdims=True)
+                layer = layer - np.min(layer)
+                layer = layer / (np.max(layer) - np.min(layer) + 1e-6)
+
+                if visual_bpr is not None:
+                    if visual_bpr.shape != layer.shape:
+                        visual_bpr = self._deconv(visual_bpr)
+                    visual_bpr = visual_bpr * layer
+                else:
+                    visual_bpr = layer
+
+        return visual_bpr[0]
+
+    def get_smoothed_mask(self, input_image, stdev_spread=.2, nsamples=50):
+        """Returns a mask that is smoothed with the SmoothGrad method.
+        Args:
+            input_image: input image with shape (H, W, 3).
+        """
+        stdev = stdev_spread * (np.max(input_image) - np.min(input_image))
+
+        total_gradients = np.zeros_like(input_image)
+        for i in range(nsamples):
+            noise = np.random.normal(0, stdev, input_image.shape)
+            x_value_plus_noise = input_image + noise
+
+            total_gradients += self.get_mask(x_value_plus_noise)
+
+        return total_gradients / nsamples
+
+    def _deconv(self, feature_map):
+        """The deconvolution operation to upsample the average feature map downstream"""
+        x = Input(shape=(None, None, 1))
+        y = Conv2DTranspose(filters=1,
+                            kernel_size=(3, 3),
+                            strides=(2, 2),
+                            padding='same',
+                            kernel_initializer=Ones(),
+                            bias_initializer=Zeros())(x)
+
+        deconv_model = Model(inputs=[x], outputs=[y])
+
+        inps = [deconv_model.input, K.learning_phase()]  # input placeholder
+        outs = [deconv_model.layers[-1].output]  # output placeholder
+        deconv_func = K.function(inps, outs)  # evaluation function
+
+        return deconv_func([feature_map, 0])[0]
+
+
+def save_image(image, mask, ax=None, title=''):
+    if ax is None:
+        plt.figure()
+    plt.axis('off')
+
+    vmax = np.percentile(image, 99)
+    vmin = np.min(mask)
+
+    plt.imsave("mask.png", mask, cmap=plt.cm.gray, vmin=vmin, vmax=vmax)
+    plt.title(title)
+
+    image = image.astype('uint8')
+    plt.imsave("image.png", image)
+
+
+def visua_cnn(model, image):
+    visua_backprop = VisualBackprop(model=model)
+    processed_image = image.astype(K.floatx())
+    processed_image /= 128.
+    processed_image -= 1.0
+
+    mask = visua_backprop.get_mask(processed_image)
+    mask += 1.0
+    mask *= 128.
+
+    save_image(image, mask)

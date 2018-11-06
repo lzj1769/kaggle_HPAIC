@@ -1,24 +1,27 @@
+import sys
 from keras_applications.resnet50 import ResNet50
-from keras_applications.resnet50 import preprocess_input
 
 import keras
 from keras import Model
-from keras.layers import GlobalAveragePooling2D, Dense, Dropout
-from keras.layers import BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization
 
-preprocess_input = preprocess_input
+
+sys.setrecursionlimit(3000)
 
 
 def build_model(input_shape, num_classes, weights='imagenet'):
     # create the base pre-trained model
-
-    base_model = ResNet50(weights=weights, include_top=False, input_shape=input_shape,
-                          backend=keras.backend, layers=keras.layers, models=keras.models,
-                          utils=keras.utils)
+    base_model = ResNet50(weights=weights,
+                          include_top=False,
+                          input_shape=input_shape,
+                          backend=keras.backend,
+                          layers=keras.layers,
+                          models=keras.models,
+                          utils=keras.utils,
+                          pooling="avg")
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = GlobalAveragePooling2D()(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc2014_1')(x)
     x = Dropout(0.5)(x)

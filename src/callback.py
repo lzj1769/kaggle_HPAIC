@@ -200,9 +200,9 @@ def build_callbacks(weights_path, logs_path, exp_config):
                                   restore_best_weights=True)
 
     reduce_lr = ReduceLROnPlateau(monitor='val_loss',
-                                  factor=0.5,
-                                  patience=5,
-                                  min_lr=1e-08,
+                                  factor=0.1,
+                                  patience=4,
+                                  min_lr=1e-06,
                                   min_delta=0.,
                                   verbose=1)
 
