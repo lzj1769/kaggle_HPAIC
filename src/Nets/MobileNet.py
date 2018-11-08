@@ -2,8 +2,7 @@ from keras_applications.mobilenet import MobileNet
 
 import keras
 from keras import Model
-from keras.layers import Input, Dense, Dropout
-from keras.layers import BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization
 
 
 def build_model(input_shape, num_classes, weights='imagenet'):

@@ -2,20 +2,21 @@ from keras import Model
 from keras import layers
 from keras.losses import binary_crossentropy
 
-def residual_block(input, input_channels=None, output_channels=None,
+
+def residual_block(input_tensor, input_channels=None, output_channels=None,
                    kernel_size=(3, 3), stride=1):
     """
     full pre-activation residual block
     https://arxiv.org/pdf/1603.05027.pdf
     """
     if output_channels is None:
-        output_channels = input.get_shape()[-1].value
+        output_channels = input_tensor.shape[-1]
     if input_channels is None:
         input_channels = output_channels // 4
 
     strides = (stride, stride)
 
-    x = layers.BatchNormalization()(input)
+    x = layers.BatchNormalization()(input_tensor)
     x = layers.Activation('relu')(x)
     x = layers.Conv2D(input_channels, (1, 1))(x)
 
@@ -28,9 +29,9 @@ def residual_block(input, input_channels=None, output_channels=None,
     x = layers.Conv2D(output_channels, (1, 1), padding='same')(x)
 
     if input_channels != output_channels or stride != 1:
-        input = layers.Conv2D(output_channels, (1, 1), padding='same', strides=strides)(input)
+        input_tensor = layers.Conv2D(output_channels, (1, 1), padding='same', strides=strides)(input)
 
-    x = layers.add([x, input])
+    x = layers.add([x, input_tensor])
     return x
 
 
@@ -126,10 +127,10 @@ def AttentionResNet56(shape=(224, 224, 3), n_channels=64, n_classes=100):
 
     x = layers.GlobalAvgPool2D()(x)
     x = layers.BatchNormalization(name="batch_1")(x)
-    x = layers.Dense(1024, activation='relu', name='fc2014_1')(x)
+    x = layers.Dense(1024, activation='relu', name='fc1024_1')(x)
     x = layers.Dropout(0.5)(x)
     x = layers.BatchNormalization(name="batch_2")(x)
-    x = layers.Dense(1024, activation='relu', name='fc2014_2')(x)
+    x = layers.Dense(1024, activation='relu', name='fc1024_2')(x)
     x = layers.Dropout(0.5)(x)
     output = layers.Dense(n_classes, activation='sigmoid', name='fc28')(x)
 
@@ -139,6 +140,3 @@ def AttentionResNet56(shape=(224, 224, 3), n_channels=64, n_classes=100):
 model = AttentionResNet56(shape=(512, 512, 4), n_classes=28)
 model.compile(optimizer="adam", loss=binary_crossentropy)
 model.summary()
-
-from keras.utils import plot_model
-plot_model(model, to_file='model.png')

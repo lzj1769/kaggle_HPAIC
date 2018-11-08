@@ -1,15 +1,24 @@
 from __future__ import print_function
 
+import io
 import os
+import csv
+import six
 import warnings
 
 import numpy as np
+import pandas as pd
+import time
 
+from collections import OrderedDict
+from collections import Iterable
 from keras.callbacks import Callback, ModelCheckpoint
 from keras.callbacks import ReduceLROnPlateau
-from keras.callbacks import CSVLogger
 
-import time
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 
 class EarlyStopping(Callback):
@@ -139,54 +148,125 @@ class EarlyStopping(Callback):
         return monitor_value
 
 
-# class F1ScoreChecker(Callback):
-#     """Calculate F1 score after training for each epoch.
-#
-#     # Arguments
-#         verbose: verbosity mode.
-#     """
-#
-#     def __init__(self, x_val, y_val, fraction):
-#         super(F1ScoreChecker, self).__init__()
-#         self.x_val = x_val
-#         self.y_val = y_val
-#         self.fraction = fraction
-#         self.n_labels = len(fraction)
-#         self.val_f1 = None
-#
-#     def on_train_begin(self, logs=None):
-#         self.val_f1 = []
-#
-#     def on_epoch_end(self, epoch, logs=None):
-#         y_pred = self.model.predict_generator(self.x_val, use_multiprocessing=True, workers=8)
-#         indexes = self.x_val.get_indexes()
-#         y_val = self.y_val[indexes]
-#
-#         threshod = []
-#         for i, frac in enumerate(self.fraction):
-#             prab = y_pred[:, i]
-#             threshod.append(np.quantile(prab, 1 - frac))
-#
-#         threshod = np.array(threshod)
-#
-#         valid_labels = list()
-#         # convert the predicted probabilities into labels for validation data
-#         for i in range(y_pred.shape[0]):
-#             label_predict = np.arange(self.n_labels)[np.greater(y_pred[i], threshod)]
-#             if label_predict.size == 0:
-#                 label_predict = [np.argmax(y_pred[i])]
-#
-#             valid_labels.append(label_predict)
-#
-#         mlb = MultiLabelBinarizer(classes=range(self.n_labels))
-#         valid_labels_bin = mlb.fit_transform(valid_labels)
-#
-#         f1_score_val = f1_score(y_true=y_val, y_pred=valid_labels_bin, average="macro").round(3)
-#
-#         self.val_f1.append(f1_score_val)
+class CSVPDFLogger(Callback):
+    """Callback that streams epoch results to a csv file.
+
+    Supports all values that can be represented as a string,
+    including 1D iterables such as np.ndarray.
+
+    # Example
+
+    ```python
+    csv_logger = CSVLogger('training.log')
+    model.fit(X_train, Y_train, callbacks=[csv_logger])
+    ```
+
+    # Arguments
+        filename: filename of the csv file, e.g. 'run/log.csv'.
+        separator: string used to separate elements in the csv file.
+        append: True: append if file exists (useful for continuing
+            training). False: overwrite existing file,
+    """
+
+    def __init__(self, filename, plot_filename=None, separator=',', append=False):
+        self.sep = separator
+        self.filename = filename
+        self.plot_filename = plot_filename
+        self.append = append
+        self.writer = None
+        self.keys = None
+        self.append_header = True
+        if six.PY2:
+            self.file_flags = 'b'
+            self._open_args = {}
+        else:
+            self.file_flags = ''
+            self._open_args = {'newline': '\n'}
+        super(CSVPDFLogger, self).__init__()
+
+    def on_train_begin(self, logs=None):
+        if self.append:
+            if os.path.exists(self.filename):
+                with open(self.filename, 'r' + self.file_flags) as f:
+                    self.append_header = not bool(len(f.readline()))
+            mode = 'a'
+        else:
+            mode = 'w'
+        self.csv_file = io.open(self.filename,
+                                mode + self.file_flags,
+                                **self._open_args)
+
+    def on_epoch_end(self, epoch, logs=None):
+        logs = logs or {}
+
+        def handle_value(k):
+            is_zero_dim_ndarray = isinstance(k, np.ndarray) and k.ndim == 0
+            if isinstance(k, six.string_types):
+                return k
+            elif isinstance(k, Iterable) and not is_zero_dim_ndarray:
+                return '"[%s]"' % (', '.join(map(str, k)))
+            else:
+                return k
+
+        if self.keys is None:
+            self.keys = sorted(logs.keys())
+
+        if self.model.stop_training:
+            # We set NA so that csv parsers do not fail for this last epoch.
+            logs = dict([(k, logs[k] if k in logs else 'NA') for k in self.keys])
+
+        if not self.writer:
+            class CustomDialect(csv.excel):
+                delimiter = self.sep
+
+            fieldnames = ['epoch'] + self.keys
+            if six.PY2:
+                fieldnames = [unicode(x) for x in fieldnames]
+            self.writer = csv.DictWriter(self.csv_file,
+                                         fieldnames=fieldnames,
+                                         dialect=CustomDialect)
+            if self.append_header:
+                self.writer.writeheader()
+
+        row_dict = OrderedDict({'epoch': epoch})
+        row_dict.update((key, handle_value(logs[key])) for key in self.keys)
+        self.writer.writerow(row_dict)
+        self.csv_file.flush()
+
+        # plot the training loss and accuracy
+        df = pd.read_csv(self.filename)
+        plt.style.use("ggplot")
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
+        ax1.plot(df['classification_binary_accuracy'])
+        ax1.plot(df['val_classification_binary_accuracy'])
+        ax1.set_title('Accuracy')
+        ax1.set_ylabel('accuracy')
+        ax1.set_xlabel('epoch')
+        ax1.legend(['train', 'validation'], loc='upper left')
+
+        ax2.plot(df['classification_loss'])
+        ax2.plot(df['val_classification_loss'])
+        ax2.set_title('Classification Loss')
+        ax2.set_ylabel('loss')
+        ax2.set_xlabel('epoch')
+        ax2.legend(['train', 'validation'], loc='upper left')
+
+        ax3.plot(df['reconstruction_loss'])
+        ax3.plot(df['val_reconstruction_loss'])
+        ax3.set_title('Reconstruction Loss')
+        ax3.set_ylabel('loss')
+        ax3.set_xlabel('epoch')
+        ax3.legend(['train', 'validation'], loc='upper left')
+
+        fig.tight_layout()
+        fig.savefig(self.plot_filename)
+
+    def on_train_end(self, logs=None):
+        self.csv_file.close()
+        self.writer = None
 
 
-def build_callbacks(weights_path, logs_path, exp_config):
+def build_callbacks(weights_path, logs_path, acc_loss_path, exp_config):
     fp = os.path.join(weights_path, "{}.h5".format(exp_config))
     check_pointer = ModelCheckpoint(filepath=fp,
                                     monitor='val_loss',
@@ -207,8 +287,9 @@ def build_callbacks(weights_path, logs_path, exp_config):
                                   verbose=1)
 
     filename = os.path.join(logs_path, "{}.log".format(exp_config))
-    csv_logger = CSVLogger(filename=filename, append=True)
+    plot_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
+    csv_pdf_logger = CSVPDFLogger(filename=filename, plot_filename=plot_filename, append=True)
 
-    callbacks = [check_pointer, early_stopper, reduce_lr, csv_logger]
+    callbacks = [check_pointer, early_stopper, reduce_lr, csv_pdf_logger]
 
     return callbacks

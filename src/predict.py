@@ -15,6 +15,7 @@ from utils import get_weights_path, get_batch_size, get_input_shape
 from utils import get_test_time_augmentation_generators
 from utils import get_training_predict_path
 from utils import get_test_predict_path
+from utils import get_custom_objects
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--net_name", help='name of convolutional neural network', default=None)
@@ -40,7 +41,8 @@ for fold in range(K_FOLD):
     exp_config = generate_exp_config(args.net_name, fold)
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
     assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-    model = load_model(weights_filename)
+    custom_objects = get_custom_objects(args.net_name)
+    model = load_model(filepath=weights_filename, custom_objects=custom_objects)
 
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(fold))
     split = np.load(split_filename)
@@ -85,7 +87,8 @@ for fold in range(K_FOLD):
     exp_config = generate_exp_config(args.net_name, fold)
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
     assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-    model = load_model(weights_filename)
+    custom_objects = get_custom_objects(args.net_name)
+    model = load_model(filepath=weights_filename, custom_objects=custom_objects)
 
     for generator in test_generators:
         test_pred += model.predict_generator(generator,

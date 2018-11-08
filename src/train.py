@@ -8,15 +8,14 @@ import argparse
 import importlib
 
 from keras.models import load_model
-from keras.losses import binary_crossentropy
+from keras.losses import binary_crossentropy, mean_squared_error
 from keras.optimizers import SGD
 from keras.metrics import binary_accuracy
 
 from generator import ImageDataGenerator
-from visualization import visua_acc_loss
 from utils import get_acc_loss_path, load_data, generate_exp_config
 from utils import get_weights_path, get_batch_size, get_input_shape
-from utils import get_logs_path
+from utils import get_logs_path, get_custom_objects
 from callback import build_callbacks
 from configure import *
 
@@ -27,11 +26,16 @@ from albumentations import ShiftScaleRotate
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name", help='name of convolutional neural network', default=None)
-    parser.add_argument("--k_fold", type=int, default=0, help="number of KFold split, should between 0 and 7")
-    parser.add_argument("--epochs", type=int, default=100, help="number of epochs for training. DEFAULT: 100")
-    parser.add_argument("--workers", type=int, default=8, help="number of cores for training. DEFAULT: 8")
-    parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
+    parser.add_argument("--net_name", type=str, default=None,
+                        help='name of convolutional neural network')
+    parser.add_argument("--k_fold", type=int, default=0,
+                        help="number of KFold split, should between 0 and 7")
+    parser.add_argument("--epochs", type=int, default=100,
+                        help="number of epochs for training. DEFAULT: 100")
+    parser.add_argument("--workers", type=int, default=8,
+                        help="number of cores for training. DEFAULT: 8")
+    parser.add_argument("--verbose", type=int, default=2,
+                        help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
 
@@ -66,14 +70,26 @@ def main():
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
 
     if os.path.exists(weights_filename):
-        model = load_model(weights_filename)
+        custom_objects = get_custom_objects(args.net_name)
+        model = load_model(weights_filename, custom_objects=custom_objects)
     else:
         model = net.build_model(input_shape=input_shape, num_classes=N_LABELS)
+        optimizer = SGD(lr=0.01, momentum=0.9, nesterov=True, decay=1e-06)
 
-    optimizer = SGD(lr=0.01, momentum=0.9, nesterov=True)
+        # use binary cross entropy function
+        if 'Attention' in args.net_name:
+            loss_funcs = {
+                "classification": binary_crossentropy,
+                "reconstruction": mean_squared_error
+            }
+            loss_weights = {"classification": 1.0, "reconstruction": 10.0}
+            metrics = {"classification": [binary_accuracy]}
 
-    # use binary coressentropy function
-    model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+            model.compile(optimizer=optimizer, loss=loss_funcs,
+                          loss_weights=loss_weights, metrics=metrics)
+
+        else:
+            model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
     model.summary()
 
@@ -102,7 +118,9 @@ def main():
                                          n_channels=input_shape[2])
 
     logs_path = get_logs_path(net_name=args.net_name)
-    callbacks = build_callbacks(weights_path=weights_path, logs_path=logs_path, exp_config=exp_config)
+    acc_loss_path = get_acc_loss_path(args.net_name)
+    callbacks = build_callbacks(weights_path=weights_path, logs_path=logs_path,
+                                acc_loss_path=acc_loss_path, exp_config=exp_config)
 
     del img, label
     print("training model...", file=sys.stderr)
@@ -114,11 +132,6 @@ def main():
                         callbacks=callbacks,
                         use_multiprocessing=True,
                         workers=args.workers)
-
-    print("training is done!", file=sys.stderr)
-
-    acc_loss_path = get_acc_loss_path(args.net_name)
-    visua_acc_loss(acc_loss_path=acc_loss_path, logs_path=logs_path, exp_config=exp_config)
 
     print("complete!!")
 

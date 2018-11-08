@@ -31,7 +31,8 @@ def load_data(dataset=None):
 def get_input_shape(net_name):
     input_shape = None
 
-    if net_name in ['ResNet50', 'ResNet101', 'ResNet152', 'Xception']:
+    if net_name in ['ResNet50', 'ResNet101', 'ResNet152', 'Xception',
+                    'AttentionResNet50', 'AttentionXception']:
         input_shape = (IMAGE_HEIGHT, IMAGE_WIDTH, 3)
 
     return input_shape
@@ -53,6 +54,23 @@ def generate_exp_config(net_name, k_fold=None):
         return "{}_KFold_{}".format(exp_config, k_fold)
     else:
         return exp_config
+
+
+def get_custom_objects(net_name):
+    custom_objects = None
+    if net_name == 'ResNet101':
+        from Nets.ResNet101 import Scale
+        custom_objects = {'Scale': Scale}
+
+    elif net_name == 'ResNet152':
+        from Nets.ResNet152 import Scale
+        custom_objects = {'Scale': Scale}
+
+    else:
+        print("the net name doesn't exist...", file=sys.stderr)
+        exit(1)
+
+    return custom_objects
 
 
 def get_logs_path(net_name):

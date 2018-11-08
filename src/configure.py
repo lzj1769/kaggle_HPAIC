@@ -10,6 +10,10 @@ K_FOLD = 8
 
 TEST_TIME_AUGMENT = 32
 
+THRESHOLD = [0.565, 0.39, 0.55, 0.345, 0.33, 0.39, 0.33, 0.45, 0.38, 0.39,
+             0.34, 0.42, 0.31, 0.38, 0.49, 0.50, 0.38, 0.43, 0.46, 0.40,
+             0.39, 0.505, 0.37, 0.47, 0.41, 0.545, 0.32, 0.1]
+
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,
             0.043841336, 0.075268817, 0.01,
@@ -35,14 +39,12 @@ MODEL_WEIGHTS_PATH = "/work/rwth0233/kaggle_HPAIC/model"
 MODEL_LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"
 MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"
 
-
 SUBMISSION_PATH = "/home/rs619065/kaggle_HPAIC/submission"
 
 TRAINING_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/training"
 TEST_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/test"
 
 VISUALIZATION_PATH = "/home/rs619065/kaggle_HPAIC/visualization"
-
 
 LABEL_MAP = {
     0: "Nucleoplasm",

@@ -10,9 +10,9 @@ from utils import get_test_predict_path
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--training", default=False, action='store_true')
-    parser.add_argument("--predict", default=False, action='store_true')
-    parser.add_argument("--evaluate", default=False, action='store_true')
+    parser.add_argument('-t', '--training', default=False, action='store_true')
+    parser.add_argument('-p', '--predict', default=False, action='store_true')
+    parser.add_argument('-e', '--evaluate', default=False, action='store_true')
     return parser.parse_args()
 
 
@@ -30,7 +30,7 @@ def main():
 
 
 def run_predict():
-    net_name_list = ['ResNet50']
+    net_name_list = ['Xception']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -50,7 +50,7 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet101', 'Xception']
+    net_name_list = ['AttentionResNet50']
     kfold_list = [0, 1, 2, 3, 4, 5, 6, 7]
 
     for net_name in net_name_list:
@@ -79,7 +79,7 @@ def run_training():
 
 
 def run_evaluate():
-    net_name_list = ['ResNet50']
+    net_name_list = ['Xception']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)

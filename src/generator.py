@@ -63,7 +63,7 @@ class ImageDataGenerator(Sequence):
 
         if self.y is not None:
             batch_y = self.y[indexes].astype(K.floatx())
-            return batch_x, batch_y
+            return batch_x, [batch_y, batch_x]
 
         else:
             return batch_x
@@ -94,8 +94,7 @@ class ImageDataGenerator(Sequence):
 
             batch_x = batch_x_resize
 
-        batch_x /= 128.
-        batch_x -= 1.
+        batch_x /= 255.
 
         return batch_x
 
