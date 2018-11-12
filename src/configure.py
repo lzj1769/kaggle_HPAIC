@@ -6,13 +6,25 @@ IMAGE_WIDTH = 512
 IMAGE_HEIGHT = 512
 N_CHANNELS = 4
 
-K_FOLD = 8
+
+IMAGE_WIDTH_FULL = 2048
+IMAGE_HEIGHT_FULL = 2048
+
+FULL_SIZE_TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
+FULL_SIZE_TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
+FULL_SIZE_DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
+FULL_SIZE_TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train.h5"
+FULL_SIZE_TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test.h5"
+
+K_FOLD = 5
 
 TEST_TIME_AUGMENT = 32
 
-THRESHOLD = [0.565, 0.39, 0.55, 0.345, 0.33, 0.39, 0.33, 0.45, 0.38, 0.39,
-             0.34, 0.42, 0.31, 0.38, 0.49, 0.50, 0.38, 0.43, 0.46, 0.40,
-             0.39, 0.505, 0.37, 0.47, 0.41, 0.545, 0.32, 0.1]
+THRESHOLD = [0.8, 0.3, 0.3, 0.3, 0.3, 0.3,
+             0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+             0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+             0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+             0.3, 0.8, 0.3, 0.1]
 
 FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.059322034, 0.075268817, 0.075268817,

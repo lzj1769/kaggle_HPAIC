@@ -59,7 +59,7 @@ for fold in range(K_FOLD):
     for generator in valid_generators:
         valid_pred += model.predict_generator(generator,
                                               use_multiprocessing=True,
-                                              workers=args.workers)
+                                              workers=args.workers)[0]
 
     valid_pred /= len(valid_generators)
     for i, index in enumerate(valid_indexes):
@@ -93,7 +93,7 @@ for fold in range(K_FOLD):
     for generator in test_generators:
         test_pred += model.predict_generator(generator,
                                              use_multiprocessing=True,
-                                             workers=args.workers)
+                                             workers=args.workers)[0]
 
 test_pred /= (K_FOLD * len(test_generators))
 

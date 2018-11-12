@@ -1,4 +1,4 @@
-"""ResNet-101 model for Keras.
+"""ResNet-18 model for Keras.
 
 # Reference:
 
@@ -11,29 +11,28 @@ https://gist.github.com/flyyufelix/65018873f8cb2bbe95f429c474aa1294#file-resnet-
 
 Implementation is based on Keras 2.0
 """
-from keras.layers import (
-    Input, Dense, Conv2D, MaxPooling2D, AveragePooling2D, ZeroPadding2D,
-    Flatten, Activation, GlobalAveragePooling2D, GlobalMaxPooling2D, add, Dropout)
+from keras.layers import Input, Dense, AveragePooling2D
+from keras.layers import Flatten, GlobalAveragePooling2D, GlobalMaxPooling2D, Dropout
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
 from keras import initializers
 from keras.engine import Layer, InputSpec
 from keras.engine.topology import get_source_inputs
 from keras import backend as K
-from keras_applications.imagenet_utils import _obtain_input_shape
 from keras.utils.data_utils import get_file
+
+from keras import backend
+from keras import layers
 
 import warnings
 import sys
 
 sys.setrecursionlimit(3000)
 
-WEIGHTS_PATH_TH = 'https://dl.dropboxusercontent.com/s/rrp56zm347fbrdn/resnet101_weights_th.h5?dl=0'
-WEIGHTS_PATH_TF = 'https://dl.dropboxusercontent.com/s/a21lyqwgf88nz9b/resnet101_weights_tf.h5?dl=0'
-MD5_HASH_TH = '3d2e9a49d05192ce6e22200324b7defe'
-MD5_HASH_TF = '867a922efc475e9966d0f3f7b884dc15'
+WEIGHTS_PATH_TF = 'https://github.com/qubvel/classification_models/releases/download/0.0.1/resnet18_imagenet_1000_no_top.h5'
+MD5_HASH_TF = '318e3ac0cd98d51e917526c9f62f0b50'
 
-batch_size = 4
+batch_size = 16
 input_shape = (1024, 1024, 3)
 
 
@@ -120,48 +119,43 @@ class Scale(Layer):
 
 
 def identity_block(input_tensor, kernel_size, filters, stage, block):
-    '''The identity_block is the block that has no conv layer at shortcut
+    """The identity block is the block that has no conv layer at shortcut.
+
     # Arguments
         input_tensor: input tensor
-        kernel_size: defualt 3, the kernel size of middle conv layer at main
-            path
-        filters: list of integers, the nb_filters of 3 conv layer at main path
+        kernel_size: default 3, the kernel size of
+            middle conv layer at main path
+        filters: list of integers, the filters of 3 conv layer at main path
         stage: integer, current stage label, used for generating layer names
         block: 'a','b'..., current block label, used for generating layer names
-    '''
-    eps = 1.1e-5
-    if K.image_data_format() == 'channels_last':
+
+    # Returns
+        Output tensor for the block.
+    """
+    filters1, filters2 = filters
+    if backend.image_data_format() == 'channels_last':
         bn_axis = 3
     else:
         bn_axis = 1
-    nb_filter1, nb_filter2, nb_filter3 = filters
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
-    scale_name_base = 'scale' + str(stage) + block + '_branch'
 
-    x = Conv2D(nb_filter1, (1, 1), name=conv_name_base + '2a',
-               use_bias=False)(input_tensor)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2a')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2a')(x)
-    x = Activation('relu', name=conv_name_base + '2a_relu')(x)
+    x = layers.Conv2D(filters1, kernel_size,
+                      padding='same',
+                      kernel_initializer='he_normal',
+                      name=conv_name_base + '2a')(input_tensor)
+    x = layers.BatchNormalization(axis=bn_axis, name=bn_name_base + '2a')(x)
+    x = layers.Activation('relu')(x)
 
-    x = ZeroPadding2D((1, 1), name=conv_name_base + '2b_zeropadding')(x)
-    x = Conv2D(nb_filter2, (kernel_size, kernel_size),
-               name=conv_name_base + '2b', use_bias=False)(x)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2b')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2b')(x)
-    x = Activation('relu', name=conv_name_base + '2b_relu')(x)
+    x = layers.Conv2D(filters2, kernel_size,
+                      padding='same',
+                      kernel_initializer='he_normal',
+                      name=conv_name_base + '2b')(x)
+    x = layers.BatchNormalization(axis=bn_axis, name=bn_name_base + '2b')(x)
+    x = layers.Activation('relu')(x)
 
-    x = Conv2D(nb_filter3, (1, 1), name=conv_name_base + '2c',
-               use_bias=False)(x)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2c')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2c')(x)
-
-    x = add([x, input_tensor], name='res' + str(stage) + block)
-    x = Activation('relu', name='res' + str(stage) + block + '_relu')(x)
+    x = layers.add([x, input_tensor])
+    x = layers.Activation('relu')(x)
     return x
 
 
@@ -171,65 +165,64 @@ def conv_block(input_tensor,
                stage,
                block,
                strides=(2, 2)):
-    '''conv_block is the block that has a conv layer at shortcut
+    """A block that has a conv layer at shortcut.
+
     # Arguments
         input_tensor: input tensor
-        kernel_size: defualt 3, the kernel size of middle conv layer at main
-            path
-        filters: list of integers, the nb_filters of 3 conv layer at main path
+        kernel_size: default 3, the kernel size of
+            middle conv layer at main path
+        filters: list of integers, the filters of 3 conv layer at main path
         stage: integer, current stage label, used for generating layer names
         block: 'a','b'..., current block label, used for generating layer names
-    Note that from stage 3, the first conv layer at main path is with
-    strides=(2,2). And the shortcut should have strides=(2,2) as well
-    '''
-    eps = 1.1e-5
-    if K.image_data_format() == 'channels_last':
+        strides: Strides for the first conv layer in the block.
+
+    # Returns
+        Output tensor for the block.
+
+    Note that from stage 3,
+    the first conv layer at main path is with strides=(2, 2)
+    And the shortcut should have strides=(2, 2) as well
+    """
+    filters1, filters2 = filters
+    if backend.image_data_format() == 'channels_last':
         bn_axis = 3
     else:
         bn_axis = 1
-    nb_filter1, nb_filter2, nb_filter3 = filters
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
-    scale_name_base = 'scale' + str(stage) + block + '_branch'
 
-    x = Conv2D(nb_filter1, (1, 1), strides=strides,
-               name=conv_name_base + '2a', use_bias=False)(input_tensor)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2a')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2a')(x)
-    x = Activation('relu', name=conv_name_base + '2a_relu')(x)
+    x = layers.Conv2D(filters1, kernel_size, strides=strides,
+                      padding='same',
+                      kernel_initializer='he_normal',
+                      name=conv_name_base + '2a')(input_tensor)
+    x = layers.BatchNormalization(axis=bn_axis, name=bn_name_base + '2a')(x)
+    x = layers.Activation('relu')(x)
 
-    x = ZeroPadding2D((1, 1), name=conv_name_base + '2b_zeropadding')(x)
-    x = Conv2D(nb_filter2, (kernel_size, kernel_size),
-               name=conv_name_base + '2b', use_bias=False)(x)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2b')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2b')(x)
-    x = Activation('relu', name=conv_name_base + '2b_relu')(x)
+    x = layers.Conv2D(filters2, kernel_size,
+                      kernel_initializer='he_normal',
+                      padding='same',
+                      name=conv_name_base + '2b')(x)
+    x = layers.BatchNormalization(axis=bn_axis, name=bn_name_base + '2b')(x)
+    x = layers.Activation('relu')(x)
 
-    x = Conv2D(nb_filter3, (1, 1),
-               name=conv_name_base + '2c', use_bias=False)(x)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis,
-                           name=bn_name_base + '2c')(x)
-    x = Scale(axis=bn_axis, name=scale_name_base + '2c')(x)
+    shortcut = layers.Conv2D(filters2, kernel_size, strides=strides,
+                             padding='same',
+                             kernel_initializer='he_normal',
+                             name=conv_name_base + '1')(input_tensor)
+    shortcut = layers.BatchNormalization(
+        axis=bn_axis, name=bn_name_base + '1')(shortcut)
 
-    shortcut = Conv2D(nb_filter3, (1, 1), strides=strides,
-                      name=conv_name_base + '1', use_bias=False)(input_tensor)
-    shortcut = BatchNormalization(epsilon=eps, axis=bn_axis,
-                                  name=bn_name_base + '1')(shortcut)
-    shortcut = Scale(axis=bn_axis, name=scale_name_base + '1')(shortcut)
-
-    x = add([x, shortcut], name='res' + str(stage) + block)
-    x = Activation('relu', name='res' + str(stage) + block + '_relu')(x)
+    x = layers.add([x, shortcut])
+    x = layers.Activation('relu')(x)
     return x
 
 
-def ResNet101(include_top=True,
-              weights='imagenet',
-              input_tensor=None,
-              input_shape=None,
-              pooling=None,
-              classes=1000):
+def ResNet18(include_top=True,
+             weights='imagenet',
+             input_tensor=None,
+             input_shape=None,
+             pooling=None,
+             classes=1000):
     """Instantiates the ResNet-101 architecture.
 
     Optionally loads weights pre-trained on ImageNet. Note that when using
@@ -286,14 +279,6 @@ def ResNet101(include_top=True,
         raise ValueError('If using `weights` as imagenet with `include_top`'
                          ' as true, `classes` should be 1000')
 
-    # Determine proper input shape
-    input_shape = _obtain_input_shape(input_shape,
-                                      default_size=224,
-                                      min_size=197,
-                                      data_format=K.image_data_format(),
-                                      require_flatten=include_top,
-                                      weights=weights)
-
     if input_tensor is None:
         img_input = Input(shape=input_shape, name='data')
     else:
@@ -306,32 +291,29 @@ def ResNet101(include_top=True,
         bn_axis = 3
     else:
         bn_axis = 1
-    eps = 1.1e-5
 
-    x = ZeroPadding2D((3, 3), name='conv1_zeropadding')(img_input)
-    x = Conv2D(64, (7, 7), strides=(2, 2), name='conv1', use_bias=False)(x)
-    x = BatchNormalization(epsilon=eps, axis=bn_axis, name='bn_conv1')(x)
-    x = Scale(axis=bn_axis, name='scale_conv1')(x)
-    x = Activation('relu', name='conv1_relu')(x)
-    x = MaxPooling2D((3, 3), strides=(2, 2), name='pool1')(x)
+    x = layers.ZeroPadding2D(padding=(3, 3), name='conv1_pad')(img_input)
+    x = layers.Conv2D(64, (7, 7),
+                      strides=(2, 2),
+                      padding='valid',
+                      kernel_initializer='he_normal',
+                      name='conv1')(x)
+    x = layers.BatchNormalization(axis=bn_axis, name='bn_conv1')(x)
+    x = layers.Activation('relu')(x)
+    x = layers.ZeroPadding2D(padding=(1, 1), name='pool1_pad')(x)
+    x = layers.MaxPooling2D((3, 3), strides=(2, 2))(x)
 
-    x = conv_block(x, 3, [64, 64, 256], stage=2, block='a', strides=(1, 1))
-    x = identity_block(x, 3, [64, 64, 256], stage=2, block='b')
-    x = identity_block(x, 3, [64, 64, 256], stage=2, block='c')
+    x = conv_block(x, 3, [64, 64], stage=2, block='a', strides=(1, 1))
+    x = identity_block(x, 3, [64, 64], stage=2, block='b')
 
-    x = conv_block(x, 3, [128, 128, 512], stage=3, block='a')
-    for i in range(1, 3):
-        x = identity_block(x, 3, [128, 128, 512], stage=3, block='b' + str(i))
+    x = conv_block(x, 3, [128, 128], stage=3, block='a')
+    x = identity_block(x, 3, [128, 128], stage=3, block='b')
 
-    x = conv_block(x, 3, [256, 256, 1024], stage=4, block='a')
-    for i in range(1, 23):
-        x = identity_block(x, 3, [256, 256, 1024], stage=4, block='b' + str(i))
+    x = conv_block(x, 3, [256, 256], stage=4, block='a')
+    x = identity_block(x, 3, [256, 256], stage=4, block='b')
 
-    x = conv_block(x, 3, [512, 512, 2048], stage=5, block='a')
-    x = identity_block(x, 3, [512, 512, 2048], stage=5, block='b')
-    x = identity_block(x, 3, [512, 512, 2048], stage=5, block='c')
-
-    x = AveragePooling2D((7, 7), name='avg_pool')(x)
+    x = conv_block(x, 3, [512, 512], stage=5, block='a')
+    x = identity_block(x, 3, [512, 512], stage=5, block='b')
 
     if include_top:
         x = Flatten()(x)
@@ -354,12 +336,8 @@ def ResNet101(include_top=True,
     # load weights
     if weights == 'imagenet':
         filename = 'resnet101_weights_{}.h5'.format(K.image_dim_ordering())
-        if K.backend() == 'theano':
-            path = WEIGHTS_PATH_TH
-            md5_hash = MD5_HASH_TH
-        else:
-            path = WEIGHTS_PATH_TF
-            md5_hash = MD5_HASH_TF
+        path = WEIGHTS_PATH_TF
+        md5_hash = MD5_HASH_TF
         weights_path = get_file(
             fname=filename,
             origin=path,
@@ -383,14 +361,15 @@ def ResNet101(include_top=True,
 def build_model(num_classes, weights='imagenet'):
     # create the base pre-trained model
 
-    base_model = ResNet101(weights=weights,
-                           include_top=False,
-                           input_shape=input_shape,
-                           pooling='avg')
+    base_model = ResNet18(weights=weights,
+                          include_top=False,
+                          input_shape=input_shape)
 
     # add a global spatial average pooling layer
     x = base_model.output
+    x = AveragePooling2D((7, 7), name='avg_pool')(x)
     x = BatchNormalization(name="batch_1")(x)
+    x = GlobalAveragePooling2D()(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
     x = Dropout(0.5)(x)
     x = BatchNormalization(name="batch_2")(x)
@@ -402,3 +381,10 @@ def build_model(num_classes, weights='imagenet'):
     model = Model(inputs=base_model.input, outputs=x, name='resnet101')
 
     return model
+
+
+# from keras.losses import binary_crossentropy
+#
+# model = build_model(num_classes=28)
+# model.compile(optimizer="adam", loss=binary_crossentropy)
+# model.summary()

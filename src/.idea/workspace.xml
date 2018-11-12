@@ -7,16 +7,38 @@
       <change afterPath="$USER_HOME$/Github/kaggle-ndsb/.idea/misc.xml" afterDir="false" />
       <change afterPath="$USER_HOME$/Github/kaggle-ndsb/.idea/modules.xml" afterDir="false" />
       <change afterPath="$USER_HOME$/Github/kaggle-ndsb/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nets/ResNet18.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nets/ResNet34.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nets/VGG16.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nets/VGG19.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_4.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_5.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_6.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet50/ResNet50_KFold_7.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_3.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_4.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_5.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_6.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/ResNet50/ResNet50_KFold_7.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_1.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_2.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_2.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_3.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_3.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_4.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_4.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_5.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_5.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_6.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_6.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_7.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_7.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_3.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_4.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_5.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_6.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/Xception/Xception_KFold_7.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/AttentionResNet92.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/AttentionResNet92.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/DenseNet121.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet121.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/DenseNet169.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet169.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/DenseNet201.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet201.py" afterDir="false" />
@@ -26,20 +48,30 @@
       <change beforePath="$PROJECT_DIR$/Nets/MobileNetV2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/MobileNetV2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/NASNetLarge.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/NASNetLarge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/NASNetMobile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/NASNetMobile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nets/ResNet101.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet101.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nets/ResNet152.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet152.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/ResNet50.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet50.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nets/Xception.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/Xception.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callback.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configure.py" beforeDir="false" afterPath="$PROJECT_DIR$/configure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_split.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_split.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/convnet_conv_3_fc_2_adam.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/convnet_conv_3_fc_2_rmsprop.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/convnet_conv_3_fc_2_sgd_f1_loss.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/resnet_50_avg_sgd_f1_loss.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/resnet_50_max_sgd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/resnet_50_max_sgd_f1_loss.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pre_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/pre_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pre_processing.zsh" beforeDir="false" afterPath="$PROJECT_DIR$/pre_processing.zsh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.zsh" beforeDir="false" afterPath="$PROJECT_DIR$/train.zsh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../submission/ResNet50/ResNet50_threshold_0.28_f1_0.683.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../submission/ResNet50/ResNet50_threshold_0.35_f1_0.683.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../submission/ResNet50/ResNet50_threshold_0.3_f1_0.683.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../submission/ResNet50/ResNet50_threshold_0.4_f1_0.683.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,54 +100,55 @@
     <session id="-1806594868">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="34" />
+          <entry key="project.closed" value="40" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="2" />
-          <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.3" value="4" />
           <entry key="project.open.time.33" value="1" />
-          <entry key="project.open.time.4" value="5" />
+          <entry key="project.open.time.4" value="6" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="5" />
-          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="36" />
+          <entry key="project.open.time.9" value="7" />
+          <entry key="project.opened" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ProPrecessing" value="1" />
           <entry key="md" value="1" />
-          <entry key="py" value="803" />
+          <entry key="py" value="1022" />
           <entry key="train" value="3" />
-          <entry key="txt" value="167" />
-          <entry key="zsh" value="43" />
+          <entry key="txt" value="258" />
+          <entry key="zsh" value="52" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CommandLine" value="43" />
+          <entry key="CommandLine" value="52" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="171" />
-          <entry key="Python" value="803" />
+          <entry key="PLAIN_TEXT" value="262" />
+          <entry key="Python" value="1022" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="18658" />
+          <entry key="py" value="20802" />
           <entry key="txt" value="3" />
-          <entry key="zsh" value="259" />
+          <entry key="zsh" value="275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CommandLine" value="259" />
+          <entry key="CommandLine" value="275" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="18658" />
+          <entry key="Python" value="20802" />
         </counts>
       </usages-collector>
     </session>
@@ -133,31 +166,33 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ipynb" value="1" />
-          <entry key="py" value="1349" />
+          <entry key="png" value="3" />
+          <entry key="py" value="1463" />
           <entry key="pyi" value="1" />
-          <entry key="txt" value="224" />
-          <entry key="zsh" value="67" />
+          <entry key="txt" value="246" />
+          <entry key="zsh" value="78" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IPNB" value="1" />
-          <entry key="PLAIN_TEXT" value="291" />
-          <entry key="Python" value="1349" />
+          <entry key="Image" value="3" />
+          <entry key="PLAIN_TEXT" value="324" />
+          <entry key="Python" value="1463" />
           <entry key="PythonStub" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="28291" />
+          <entry key="py" value="29746" />
           <entry key="txt" value="12" />
-          <entry key="zsh" value="167" />
+          <entry key="zsh" value="196" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="179" />
-          <entry key="Python" value="28291" />
+          <entry key="PLAIN_TEXT" value="208" />
+          <entry key="Python" value="29746" />
         </counts>
       </usages-collector>
     </session>
@@ -165,54 +200,17 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Nets/AttentionResNet50.py">
+        <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-44">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="168">
+              <caret line="380" column="16" selection-start-line="380" selection-start-column="16" selection-end-line="380" selection-end-column="16" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/AttentionResNet50_KFold_0_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="420" column="72" selection-start-line="420" selection-start-column="72" selection-end-line="420" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/resnet50.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="110" column="38" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#476#531#0" expanded="true" />
+                <element signature="e#1445#4804#0" />
+                <element signature="e#4881#6869#0" />
+                <element signature="e#7033#9507#0" />
+                <element signature="e#14393#14528#0" />
+                <element signature="e#15471#15933#0" />
               </folding>
             </state>
           </provider>
@@ -229,13 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>binary_accuracy</find>
-      <find>optimizer</find>
-      <find>loss_layers</find>
-      <find>biases</find>
-      <find>precision_recall_auc_loss</find>
-      <find>target_precision</find>
-      <find>use_global_objectives</find>
       <find>include</find>
       <find>regularization</find>
       <find>include_fc</find>
@@ -245,12 +236,10 @@
       <find>rescale</find>
       <find>pop</find>
       <find>Input</find>
-      <find>save</find>
       <find>input</find>
       <find>inputs</find>
       <find>regularizer</find>
       <find>Add</find>
-      <find>Scale</find>
       <find>pre</find>
       <find>optimal_threshold</find>
       <find>submission</find>
@@ -259,6 +248,15 @@
       <find>_obtain_input_shape</find>
       <find>Average</find>
       <find>train</find>
+      <find>predict</find>
+      <find>predict_generator</find>
+      <find>set_model</find>
+      <find>get_input_shape</find>
+      <find>input_shape</find>
+      <find>Scale</find>
+      <find>save</find>
+      <find>zero</find>
+      <find>GlobalMaxPooling2D</find>
     </findStrings>
     <replaceStrings>
       <replace>LogLoss</replace>
@@ -271,12 +269,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Nets/PreTrained_ResNet_50_FocalLoss.py" />
-        <option value="$PROJECT_DIR$/Nets/PreTrained_DenseNet_121_LogLoss.py" />
-        <option value="$PROJECT_DIR$/Nets/PreTrained_DenseNet_121_FocalLoss.py" />
-        <option value="$PROJECT_DIR$/create_split.zsh" />
-        <option value="$PROJECT_DIR$/pre_processing.py" />
-        <option value="$PROJECT_DIR$/create_split.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet_50.py" />
         <option value="$PROJECT_DIR$/call_cluster.py" />
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/convert2vector.py" />
@@ -288,40 +280,46 @@
         <option value="$PROJECT_DIR$/Nets/loss.py" />
         <option value="$PROJECT_DIR$/loss_test.py" />
         <option value="$PROJECT_DIR$/loss.py" />
-        <option value="$PROJECT_DIR$/train.zsh" />
         <option value="$PROJECT_DIR$/AttentionResNet92.py" />
-        <option value="$PROJECT_DIR$/Nets/ResNet152.py" />
-        <option value="$PROJECT_DIR$/Nets/ResNet101.py" />
         <option value="$PROJECT_DIR$/predict.zsh" />
-        <option value="$PROJECT_DIR$/visualization.py" />
-        <option value="$PROJECT_DIR$/visualization_test.py" />
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/phate.py" />
-        <option value="$PROJECT_DIR$/configure.py" />
-        <option value="$PROJECT_DIR$/Nets/DenseNet169.py" />
-        <option value="$PROJECT_DIR$/Nets/DenseNet201.py" />
-        <option value="$PROJECT_DIR$/Nets/InceptionResNetV2.py" />
-        <option value="$PROJECT_DIR$/Nets/InceptionV3.py" />
-        <option value="$PROJECT_DIR$/Nets/MobileNet.py" />
-        <option value="$PROJECT_DIR$/Nets/MobileNetV2.py" />
-        <option value="$PROJECT_DIR$/Nets/NASNetLarge.py" />
-        <option value="$PROJECT_DIR$/Nets/NASNetMobile.py" />
-        <option value="$PROJECT_DIR$/Nets/Xception.py" />
-        <option value="$PROJECT_DIR$/predict.py" />
-        <option value="$PROJECT_DIR$/Nets/DenseNet121.py" />
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/run_phate.py" />
-        <option value="$PROJECT_DIR$/evaluate.py" />
         <option value="$PROJECT_DIR$/evaluate.zsh" />
         <option value="$PROJECT_DIR$/Nets/AttentionResNet92.py" />
-        <option value="$PROJECT_DIR$/Nets/ResNet50.py" />
         <option value="$PROJECT_DIR$/cluster_out/AttentionResNet50_KFold_0_out.txt" />
-        <option value="$PROJECT_DIR$/callback.py" />
         <option value="$PROJECT_DIR$/Nets/AttentionXception.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/generator.py" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/Nets/AttentionResNet50.py" />
+        <option value="$PROJECT_DIR$/predict.py" />
+        <option value="$PROJECT_DIR$/visualization.py" />
+        <option value="$PROJECT_DIR$/evaluate.py" />
+        <option value="$PROJECT_DIR$/visualization_test.py" />
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py" />
+        <option value="$PROJECT_DIR$/create_split.py" />
+        <option value="$PROJECT_DIR$/Nets/MobileNetV2.py" />
+        <option value="$PROJECT_DIR$/Nets/NASNetMobile.py" />
+        <option value="$PROJECT_DIR$/Nets/InceptionResNetV2.py" />
+        <option value="$PROJECT_DIR$/Nets/InceptionV3.py" />
+        <option value="$PROJECT_DIR$/generator.py" />
+        <option value="$PROJECT_DIR$/Nets/MobileNet.py" />
+        <option value="$PROJECT_DIR$/Nets/DenseNet169.py" />
+        <option value="$PROJECT_DIR$/Nets/DenseNet121.py" />
+        <option value="$PROJECT_DIR$/Nets/DenseNet201.py" />
+        <option value="$PROJECT_DIR$/Nets/Xception.py" />
+        <option value="$PROJECT_DIR$/Nets/NASNetLarge.py" />
+        <option value="$PROJECT_DIR$/callback.py" />
+        <option value="$PROJECT_DIR$/Nets/ResNet152.py" />
+        <option value="$PROJECT_DIR$/train.zsh" />
+        <option value="$PROJECT_DIR$/Nets/VGG19.py" />
+        <option value="$PROJECT_DIR$/Nets/VGG16.py" />
+        <option value="$PROJECT_DIR$/Nets/ResNet50.py" />
+        <option value="$PROJECT_DIR$/configure.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/pre_processing.py" />
+        <option value="$PROJECT_DIR$/pre_processing.zsh" />
+        <option value="$PROJECT_DIR$/Nets/ResNet101.py" />
+        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/Nets/ResNet18.py" />
+        <option value="$PROJECT_DIR$/run.py" />
       </list>
     </option>
   </component>
@@ -358,10 +356,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Nets" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SingleCellOpenChromatin" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -396,6 +390,74 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.call_cluster">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="call_cluster" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -440,6 +502,112 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="Python.FlaskServer" factoryName="Flask server">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="kaggle-galaxies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.model" />
       <item itemvalue="Python.call_cluster" />
@@ -475,7 +643,7 @@
     <frame x="65" y="-4" width="1855" height="1204" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15754561" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24599226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -489,7 +657,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32992566" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030404" side_tool="true" weight="0.65241635" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49695966" weight="0.5027881" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49695966" visible="true" weight="0.4684015" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32806692" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -525,257 +693,344 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Nets/MobileNetV2.py">
+    <entry file="file://$PROJECT_DIR$/cluster_out/Xception_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/utils/multi_gpu_utils.py" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/python/keras/engine/training.py" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/callbacks.py" />
+    <entry file="file://$PROJECT_DIR$/cluster_err/DenseNet121_KFold_0_err.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_KFold_0_err.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_err/DenseNet169_KFold_0_err.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_0_out.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet169_KFold_0_out.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet201_KFold_0_out.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_0_out.txt" />
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_0_out.txt" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/inception_v3.py" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/resnet50.py" />
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/xception.py" />
+    <entry file="file://$PROJECT_DIR$/Nets/InceptionResNetV2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/InceptionV3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/MobileNet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/MobileNetV2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Nets/NASNetLarge.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+        <state relative-caret-position="110">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Nets/NASNetMobile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2/_io.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="73" column="43" lean-forward="true" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/layers/__init__.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/layers/pooling.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/engine/saving.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/layers/convolutional.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/engine/base_layer.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/engine/network.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/engine/training.py" />
-    <entry file="file://$PROJECT_DIR$/Nets/DenseNet121.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras/layers/core.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/vis/visualization/saliency.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/vis/utils/utils.py" />
-    <entry file="file://$PROJECT_DIR$/visualization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/run_phate.py" />
-    <entry file="file://$PROJECT_DIR$/evaluate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evaluate.zsh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/engine/input_layer.py" />
-    <entry file="file://$PROJECT_DIR$/Nets/AttentionResNet92.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="139" selection-start-line="139" selection-end-line="141" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/losses.py" />
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/metrics.py" />
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/optimizers.py" />
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_out.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predict.zsh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_err/AttentionResNet50_KFold_0_err.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="82" column="26" selection-start-line="82" selection-start-column="11" selection-end-line="82" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras/layers/pooling.py" />
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/resnet50.py" />
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet50.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/keras_applications/xception.py" />
-    <entry file="file://$PROJECT_DIR$/callback.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="253" column="29" selection-start-line="253" selection-start-column="29" selection-end-line="253" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet101.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="81" column="51" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet101_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="1015" selection-start-line="1015" selection-end-line="1017" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_err/ResNet50_KFold_0_err.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="412" column="14" selection-start-line="412" selection-end-line="412" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/Xception_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="754" column="16" selection-start-line="754" selection-end-line="754" selection-end-column="16" />
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Nets/Xception.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="198">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/AttentionXception.py">
+    <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="364">
+          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+          <folding>
+            <element signature="e#235#375#0" />
+            <element signature="e#2080#2184#0" />
+            <element signature="e#2434#2786#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/AttentionXception_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_err/AttentionXception_KFold_1_err.txt">
+    <entry file="file://$PROJECT_DIR$/Nets/DenseNet121.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="198">
+          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/DenseNet169.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/DenseNet201.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/VGG19.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/h5py/_hl/files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="283" column="34" lean-forward="true" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="330">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <marker date="1542015168000" expanded="true" signature="691:1061" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old/test_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
+    <entry file="file://$PROJECT_DIR$/old/test_generator2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="132">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator.py">
+    <entry file="file://$PROJECT_DIR$/configure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="198">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre_processing.zsh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre_processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-384">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/AttentionResNet50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#1358#1700#0" />
-            <element signature="e#1748#2821#0" />
-            <element signature="e#2398#2750#0" />
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/AttentionXception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="443" column="28" lean-forward="true" selection-start-line="443" selection-start-column="28" selection-end-line="443" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet101_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-183">
+          <caret line="1023" column="46" selection-start-line="1023" selection-start-column="46" selection-end-line="1023" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/vgg16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="190" column="9" lean-forward="true" selection-start-line="190" selection-start-column="9" selection-end-line="190" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/VGG16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/AttentionResNet92.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="418">
+          <caret line="134" column="27" selection-start-line="134" selection-start-column="27" selection-end-line="134" selection-end-column="27" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/resnet50.py">
+    <entry file="file://$PROJECT_DIR$/callback.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="110" column="38" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/AttentionResNet50_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="420" column="72" selection-start-line="420" selection-start-column="72" selection-end-line="420" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/impute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="177">
+          <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
           <folding>
-            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#322#1211#0" />
+            <element signature="e#1249#3352#0" />
+            <element signature="e#1641#2312#0" />
+            <element signature="e#2352#3352#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/AttentionResNet50.py">
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet152.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="790">
+          <caret line="366" selection-start-line="366" selection-end-line="369" selection-end-column="17" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#197#207#0" expanded="true" />
+            <element signature="e#1051#3891#0" />
+            <element signature="e#3968#5808#0" />
+            <element signature="e#5897#8209#0" />
+            <element signature="e#8389#14696#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/keras_applications/resnet50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="119" column="45" lean-forward="true" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="1" column="43" lean-forward="true" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.zsh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet101.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="333" column="52" lean-forward="true" selection-start-line="333" selection-start-column="4" selection-end-line="333" selection-end-column="52" />
+          <folding>
+            <element signature="e#1445#4804#0" />
+            <element signature="e#4881#6869#0" />
+            <element signature="e#7033#9507#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#603#758#0" />
+            <element signature="e#784#1495#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="380" column="16" selection-start-line="380" selection-start-column="16" selection-end-line="380" selection-end-column="16" />
+          <folding>
+            <element signature="e#476#531#0" expanded="true" />
+            <element signature="e#1445#4804#0" />
+            <element signature="e#4881#6869#0" />
+            <element signature="e#7033#9507#0" />
+            <element signature="e#14393#14528#0" />
+            <element signature="e#15471#15933#0" />
           </folding>
         </state>
       </provider>

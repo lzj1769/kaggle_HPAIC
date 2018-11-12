@@ -1,19 +1,11 @@
 from __future__ import print_function
 
-import io
 import os
-import csv
-import six
-import warnings
-
-import numpy as np
 import pandas as pd
 import time
 
-from collections import OrderedDict
-from collections import Iterable
-from keras.callbacks import Callback, ModelCheckpoint
-from keras.callbacks import ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint, EarlyStopping
+from keras.callbacks import CSVLogger, ReduceLROnPlateau
 
 import matplotlib
 
@@ -21,110 +13,23 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-class EarlyStopping(Callback):
-    """Stop training when a monitored quantity has stopped improving.
+class EarlyStoppingWithTime(EarlyStopping):
+    """Stop training when a monitored quantity has stopped improving or the training
+    time is achieved.
 
-    # Arguments
-        monitor: quantity to be monitored.
-        min_delta: minimum change in the monitored quantity
-            to qualify as an improvement, i.e. an absolute
-            change of less than min_delta, will count as no
-            improvement.
-        patience: number of epochs with no improvement
-            after which training will be stopped.
-        verbose: verbosity mode.
-        mode: one of {auto, min, max}. In `min` mode,
-            training will stop when the quantity
-            monitored has stopped decreasing; in `max`
-            mode it will stop when the quantity
-            monitored has stopped increasing; in `auto`
-            mode, the direction is automatically inferred
-            from the name of the monitored quantity.
-        baseline: Baseline value for the monitored quantity to reach.
-            Training will stop if the model doesn't show improvement
-            over the baseline.
-        restore_best_weights: whether to restore model weights from
-            the epoch with the best value of the monitored quantity.
-            If False, the model weights obtained at the last step of
-            training are used.
     """
 
-    def __init__(self,
-                 monitor='val_loss',
-                 min_delta=0,
-                 patience=0,
-                 seconds=None,
-                 verbose=0,
-                 mode='auto',
-                 baseline=None,
-                 restore_best_weights=False):
-        super(EarlyStopping, self).__init__()
-
-        self.monitor = monitor
-        self.baseline = baseline
-        self.patience = patience
-        self.verbose = verbose
-        self.min_delta = min_delta
-        self.wait = 0
+    def __init__(self, seconds=None, **kwargs):
         self.seconds = seconds
-        self.start_time = 0
-        self.stopped_epoch = 0
-        self.restore_best_weights = restore_best_weights
-        self.best_weights = None
-
-        if mode not in ['auto', 'min', 'max']:
-            warnings.warn('EarlyStopping mode %s is unknown, '
-                          'fallback to auto mode.' % mode,
-                          RuntimeWarning)
-            mode = 'auto'
-
-        if mode == 'min':
-            self.monitor_op = np.less
-        elif mode == 'max':
-            self.monitor_op = np.greater
-        else:
-            if 'acc' in self.monitor:
-                self.monitor_op = np.greater
-            else:
-                self.monitor_op = np.less
-
-        if self.monitor_op == np.greater:
-            self.min_delta *= 1
-        else:
-            self.min_delta *= -1
+        self.start_time = None
+        super(EarlyStoppingWithTime, self).__init__(**kwargs)
 
     def on_train_begin(self, logs=None):
-        # Allow instances to be re-used
-        self.wait = 0
-        self.stopped_epoch = 0
+        super(EarlyStoppingWithTime, self).on_train_begin(logs)
         self.start_time = time.time()
-        if self.baseline is not None:
-            self.best = self.baseline
-        else:
-            self.best = np.Inf if self.monitor_op == np.less else -np.Inf
 
     def on_epoch_end(self, epoch, logs=None):
-        current = self.get_monitor_value(logs)
-        if current is None:
-            return
-
-        # check the monitor quantity
-        if self.monitor_op(current - self.min_delta, self.best):
-            self.best = current
-            self.wait = 0
-            if self.restore_best_weights:
-                self.best_weights = self.model.get_weights()
-        else:
-            self.wait += 1
-            if self.wait >= self.patience:
-                self.stopped_epoch = epoch
-                self.model.stop_training = True
-                if self.restore_best_weights:
-                    if self.verbose > 0:
-                        print('Restoring model weights from the end of '
-                              'the best epoch')
-                    self.model.set_weights(self.best_weights)
-
+        super(EarlyStoppingWithTime, self).on_epoch_end(epoch=epoch, logs=logs)
         # check the running time
         if time.time() - self.start_time > self.seconds:
             self.model.stop_training = True
@@ -133,107 +38,42 @@ class EarlyStopping(Callback):
             if self.restore_best_weights:
                 self.model.set_weights(self.best_weights)
 
-    def on_train_end(self, logs=None):
-        if self.stopped_epoch > 0 and self.verbose > 0:
-            print('Epoch %05d: early stopping' % (self.stopped_epoch + 1))
 
-    def get_monitor_value(self, logs):
-        monitor_value = logs.get(self.monitor)
-        if monitor_value is None:
-            warnings.warn(
-                'Early stopping conditioned on metric `%s` '
-                'which is not available. Available metrics are: %s' %
-                (self.monitor, ','.join(list(logs.keys()))), RuntimeWarning
-            )
-        return monitor_value
+class CSVPDFLogger(CSVLogger):
+    """Callback that streams epoch results to a csv file and a pdf plot
 
-
-class CSVPDFLogger(Callback):
-    """Callback that streams epoch results to a csv file.
-
-    Supports all values that can be represented as a string,
-    including 1D iterables such as np.ndarray.
-
-    # Example
-
-    ```python
-    csv_logger = CSVLogger('training.log')
-    model.fit(X_train, Y_train, callbacks=[csv_logger])
-    ```
-
-    # Arguments
-        filename: filename of the csv file, e.g. 'run/log.csv'.
-        separator: string used to separate elements in the csv file.
-        append: True: append if file exists (useful for continuing
-            training). False: overwrite existing file,
     """
 
-    def __init__(self, filename, plot_filename=None, separator=',', append=False):
-        self.sep = separator
-        self.filename = filename
-        self.plot_filename = plot_filename
-        self.append = append
-        self.writer = None
-        self.keys = None
-        self.append_header = True
-        if six.PY2:
-            self.file_flags = 'b'
-            self._open_args = {}
-        else:
-            self.file_flags = ''
-            self._open_args = {'newline': '\n'}
-        super(CSVPDFLogger, self).__init__()
-
-    def on_train_begin(self, logs=None):
-        if self.append:
-            if os.path.exists(self.filename):
-                with open(self.filename, 'r' + self.file_flags) as f:
-                    self.append_header = not bool(len(f.readline()))
-            mode = 'a'
-        else:
-            mode = 'w'
-        self.csv_file = io.open(self.filename,
-                                mode + self.file_flags,
-                                **self._open_args)
+    def __init__(self, pdf_filename=None, **kwargs):
+        self.pdf_filename = pdf_filename
+        super(CSVPDFLogger, self).__init__(**kwargs)
 
     def on_epoch_end(self, epoch, logs=None):
-        logs = logs or {}
+        super(CSVPDFLogger, self).on_epoch_end(epoch=epoch, logs=logs)
+        self.plot()
 
-        def handle_value(k):
-            is_zero_dim_ndarray = isinstance(k, np.ndarray) and k.ndim == 0
-            if isinstance(k, six.string_types):
-                return k
-            elif isinstance(k, Iterable) and not is_zero_dim_ndarray:
-                return '"[%s]"' % (', '.join(map(str, k)))
-            else:
-                return k
+    def plot(self):
+        df = pd.read_csv(self.filename)
+        plt.style.use("ggplot")
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
+        ax1.plot(df['binary_accuracy'])
+        ax1.plot(df['val_binary_accuracy'])
+        ax1.set_title('Accuracy')
+        ax1.set_ylabel('accuracy')
+        ax1.set_xlabel('epoch')
+        ax1.legend(['train', 'validation'], loc='upper left')
 
-        if self.keys is None:
-            self.keys = sorted(logs.keys())
+        ax2.plot(df['loss'])
+        ax2.plot(df['val_loss'])
+        ax2.set_title('Classification Loss')
+        ax2.set_ylabel('loss')
+        ax2.set_xlabel('epoch')
+        ax2.legend(['train', 'validation'], loc='upper left')
 
-        if self.model.stop_training:
-            # We set NA so that csv parsers do not fail for this last epoch.
-            logs = dict([(k, logs[k] if k in logs else 'NA') for k in self.keys])
+        fig.tight_layout()
+        fig.savefig(self.pdf_filename)
 
-        if not self.writer:
-            class CustomDialect(csv.excel):
-                delimiter = self.sep
-
-            fieldnames = ['epoch'] + self.keys
-            if six.PY2:
-                fieldnames = [unicode(x) for x in fieldnames]
-            self.writer = csv.DictWriter(self.csv_file,
-                                         fieldnames=fieldnames,
-                                         dialect=CustomDialect)
-            if self.append_header:
-                self.writer.writeheader()
-
-        row_dict = OrderedDict({'epoch': epoch})
-        row_dict.update((key, handle_value(logs[key])) for key in self.keys)
-        self.writer.writerow(row_dict)
-        self.csv_file.flush()
-
-        # plot the training loss and accuracy
+    def plot_attention(self):
         df = pd.read_csv(self.filename)
         plt.style.use("ggplot")
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
@@ -259,25 +99,38 @@ class CSVPDFLogger(Callback):
         ax3.legend(['train', 'validation'], loc='upper left')
 
         fig.tight_layout()
-        fig.savefig(self.plot_filename)
-
-    def on_train_end(self, logs=None):
-        self.csv_file.close()
-        self.writer = None
+        fig.savefig(self.pdf_filename)
 
 
-def build_callbacks(weights_path, logs_path, acc_loss_path, exp_config):
+class AltModelCheckpoint(ModelCheckpoint):
+    """Additional keyword args are passed to ModelCheckpoint; see those docs for information on what args are accepted.
+    https://github.com/TextpertAi/alt-model-checkpoint/blob/master/alt_model_checkpoint/__init__.py
+    """
+
+    def __init__(self, alternate_model, **kwargs):
+        self.alternate_model = alternate_model
+        super(AltModelCheckpoint, self).__init__(**kwargs)
+
+    def on_epoch_end(self, epoch, logs=None):
+        model_before = self.model
+        self.model = self.alternate_model
+        super(AltModelCheckpoint, self).on_epoch_end(epoch, logs)
+        self.model = model_before
+
+
+def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
     fp = os.path.join(weights_path, "{}.h5".format(exp_config))
-    check_pointer = ModelCheckpoint(filepath=fp,
-                                    monitor='val_loss',
-                                    verbose=1,
-                                    save_best_only=True)
+    check_pointer = AltModelCheckpoint(alternate_model=model,
+                                       filepath=fp,
+                                       monitor='val_loss',
+                                       verbose=1,
+                                       save_best_only=True)
 
-    early_stopper = EarlyStopping(monitor='val_loss',
-                                  patience=20,
-                                  seconds=3600 * 7,
-                                  verbose=1,
-                                  restore_best_weights=True)
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 7,
+                                          monitor='val_loss',
+                                          patience=20,
+                                          verbose=1,
+                                          restore_best_weights=True)
 
     reduce_lr = ReduceLROnPlateau(monitor='val_loss',
                                   factor=0.1,
@@ -287,8 +140,11 @@ def build_callbacks(weights_path, logs_path, acc_loss_path, exp_config):
                                   verbose=1)
 
     filename = os.path.join(logs_path, "{}.log".format(exp_config))
-    plot_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
-    csv_pdf_logger = CSVPDFLogger(filename=filename, plot_filename=plot_filename, append=True)
+    pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
+
+    csv_pdf_logger = CSVPDFLogger(pdf_filename=pdf_filename,
+                                  filename=filename,
+                                  append=True)
 
     callbacks = [check_pointer, early_stopper, reduce_lr, csv_pdf_logger]
 

@@ -30,7 +30,7 @@ def main():
 
 
 def run_predict():
-    net_name_list = ['Xception']
+    net_name_list = ['AttentionResNet50']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -50,8 +50,13 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['AttentionResNet50']
-    kfold_list = [0, 1, 2, 3, 4, 5, 6, 7]
+    net_name_list = ['ResNet50', 'ResNet101',
+                     'DenseNet121', 'DenseNet169', 'DenseNet201',
+                     'InceptionResNetV2', 'InceptionV3',
+                     'Xception']
+    net_name_list = ['ResNet18']
+
+    kfold_list = [0]
 
     for net_name in net_name_list:
         logs_path = get_logs_path(net_name=net_name)
@@ -74,12 +79,13 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./train.zsh "
+            command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            # command = './train.zsh'
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
 def run_evaluate():
-    net_name_list = ['Xception']
+    net_name_list = ['ResNet50']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
@@ -88,9 +94,10 @@ def run_evaluate():
             os.mkdir(submission_path)
 
         job_name = net_name
-        command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
-                  "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
+        # command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
+        #          "./cluster_err/" + job_name + "_err.txt "
+        # command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
+        command = './evaluate.zsh '
         os.system(command + " " + net_name)
 
 

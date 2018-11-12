@@ -5,11 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 2.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="SingleCellOpenChromatin" />
-    <orderEntry type="module" module-name="kaggle-galaxies" />
-    <orderEntry type="module" module-name="reg-gen" />
-    <orderEntry type="module" module-name="kaggle-ndsb" />
     <orderEntry type="module" module-name="keras-multiprocess-image-data-generator" />
-    <orderEntry type="module" module-name="kaggle-ndsb" />
-    <orderEntry type="module" module-name="global_objectives" />
+    <orderEntry type="module" module-name="keras_experiments" />
   </component>
 </module>

@@ -19,8 +19,6 @@ from keras.utils import layer_utils
 from keras import initializers
 from keras.engine import Layer, InputSpec
 from keras.utils.data_utils import get_file
-from keras_applications.imagenet_utils import preprocess_input
-from keras_applications.imagenet_utils import _obtain_input_shape
 
 import keras.backend as K
 
@@ -29,7 +27,8 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf.h5'
 WEIGHTS_PATH_NO_TOP = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf_notop.h5'
 
-preprocess_input = preprocess_input
+batch_size = 2
+input_shape = (1024, 1024, 3)
 
 
 class Scale(Layer):
@@ -247,18 +246,6 @@ def ResNet152(include_top=True, weights=None,
 
     eps = 1.1e-5
 
-    if large_input:
-        img_size = 448
-    else:
-        img_size = 224
-
-    # Determine proper input shape
-    input_shape = _obtain_input_shape(input_shape,
-                                      default_size=img_size,
-                                      min_size=197,
-                                      data_format=K.image_data_format(),
-                                      require_flatten=include_top)
-
     if input_tensor is None:
         img_input = Input(shape=input_shape)
     else:
@@ -353,22 +340,31 @@ def ResNet152(include_top=True, weights=None,
     return model
 
 
-def build_model(input_shape, num_classes, weights='imagenet'):
+def build_model(num_classes, weights='imagenet'):
     # create the base pre-trained model
 
-    base_model = ResNet152(weights=weights, include_top=False, input_shape=input_shape, pooling='avg')
+    base_model = ResNet152(weights=weights,
+                           include_top=False,
+                           input_shape=input_shape,
+                           pooling='avg',
+                           large_input=True)
 
     # add a global spatial average pooling layer
     x = base_model.output
     x = BatchNormalization(name="batch_1")(x)
-    x = Dense(1024, activation='relu', name='fc2014_1')(x)
+    x = Dense(1024, activation='relu', name='fc1024_1')(x)
     x = Dropout(0.5)(x)
     x = BatchNormalization(name="batch_2")(x)
-    x = Dense(1024, activation='relu', name='fc2014_2')(x)
+    x = Dense(1024, activation='relu', name='fc1024_2')(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
-    model = Model(inputs=base_model.input, outputs=x, name='resnet152')
+    model = Model(inputs=base_model.input, outputs=x, name='ResNet152')
 
     return model
+
+# from keras.losses import binary_crossentropy
+# model = build_model(num_classes=28)
+# model.compile(optimizer="adam", loss=binary_crossentropy)
+# model.summary()

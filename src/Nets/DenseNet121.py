@@ -1,11 +1,17 @@
+import sys
 from keras_applications.densenet import DenseNet121
 
 import keras
 from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
+sys.setrecursionlimit(3000)
 
-def build_model(input_shape, num_classes, weights='imagenet'):
+batch_size = 6
+input_shape = (1024, 1024, 3)
+
+
+def build_model(num_classes, weights='imagenet'):
     # create the base DenseNet121-trained model
     base_model = DenseNet121(weights=weights,
                              include_top=False,
@@ -27,6 +33,6 @@ def build_model(input_shape, num_classes, weights='imagenet'):
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
-    model = Model(inputs=base_model.input, outputs=x, name='densenet121')
+    model = Model(inputs=base_model.input, outputs=x, name='DenseNet121')
 
     return model

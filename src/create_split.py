@@ -11,7 +11,7 @@ from configure import *
 def main():
     img, labels = load_data(dataset="train")
 
-    stratifier = IterativeStratification(n_splits=8, random_state=1769)
+    stratifier = IterativeStratification(n_splits=K_FOLD, random_state=1769)
 
     for i, (train_indexes, test_indexes) in enumerate(stratifier.split(X=img, y=labels)):
         print(train_indexes)

@@ -53,7 +53,7 @@ class ImageDataGenerator(Sequence):
         self.kwargs = kwargs
 
     def __len__(self):
-        return math.ceil(self.x.shape[0] / self.batch_size)
+        return math.floor(self.x.shape[0] / self.batch_size)
 
     def __getitem__(self, index):
         # Generate indexes of the batch
@@ -63,8 +63,7 @@ class ImageDataGenerator(Sequence):
 
         if self.y is not None:
             batch_y = self.y[indexes].astype(K.floatx())
-            return batch_x, [batch_y, batch_x]
-
+            return batch_x, batch_y
         else:
             return batch_x
 

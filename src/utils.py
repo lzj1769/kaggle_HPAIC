@@ -2,6 +2,7 @@ from __future__ import print_function, division
 import os
 import sys
 import numpy as np
+import h5py
 
 from sklearn.metrics import f1_score
 from albumentations import HorizontalFlip
@@ -19,32 +20,32 @@ def load_data(dataset=None):
 
     elif dataset == "train":
         img = np.load(TRAINING_DATA)['img']
-        labels = np.load(TRAINING_DATA)['label']
+        label = np.load(TRAINING_DATA)['label']
 
-        return img, labels
+        return img, label
 
     else:
         print("the data set doesn't exist...", file=sys.stderr)
         exit(1)
 
 
-def get_input_shape(net_name):
-    input_shape = None
+def load_data2(dataset=None):
+    if dataset == "test":
+        f = h5py.File(FULL_SIZE_TEST_DATA, "r")
+        img = f['img']
 
-    if net_name in ['ResNet50', 'ResNet101', 'ResNet152', 'Xception',
-                    'AttentionResNet50', 'AttentionXception']:
-        input_shape = (IMAGE_HEIGHT, IMAGE_WIDTH, 3)
+        return img
 
-    return input_shape
+    elif dataset == "train":
+        f = h5py.File(FULL_SIZE_TRAINING_DATA, "r")
+        img = f['img']
+        label = f['label']
 
+        return img, label
 
-def get_batch_size(net_name):
-    if net_name in ['NASNetLarge', 'ResNet101', 'ResNet152', 'Xception']:
-        batch_size = 8
     else:
-        batch_size = 16
-
-    return batch_size
+        print("the data set doesn't exist...", file=sys.stderr)
+        exit(1)
 
 
 def generate_exp_config(net_name, k_fold=None):
@@ -65,10 +66,6 @@ def get_custom_objects(net_name):
     elif net_name == 'ResNet152':
         from Nets.ResNet152 import Scale
         custom_objects = {'Scale': Scale}
-
-    else:
-        print("the net name doesn't exist...", file=sys.stderr)
-        exit(1)
 
     return custom_objects
 

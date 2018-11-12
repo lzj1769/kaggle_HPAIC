@@ -103,7 +103,7 @@ def visua_prob_distribution(visua_path, net_name, training_prob, test_prob):
     fig.savefig(filename)
 
 
-def visua_cnn(model, image):
+def visua_cnn(model, image, id=id):
     from vis.utils.utils import find_layer_idx, apply_modifications
     from keras import activations
     from vis.visualization import overlay, visualize_cam
@@ -121,5 +121,45 @@ def visua_cnn(model, image):
 
     jet_heatmap = np.uint8(cm.jet(grads)[..., :3] * 255)
 
-    plt.imsave("overlay.png", overlay(jet_heatmap, image, alpha=0.3), dpi=300)
-    plt.imsave("image.png", image, dpi=300)
+    fig = plt.figure(dpi=300, tight_layout=True)
+    fig.figimage(jet_heatmap)
+    fig.figimage(image, xo=512)
+
+    DPI = fig.get_dpi()
+    fig.set_size_inches(2 * 512.0 / float(DPI), 512.0 / float(DPI))
+    fig.savefig("{}_without_attention.png".format(id))
+
+
+def visua_decode(model, image, id):
+    import keras.backend as K
+    from vis.utils.utils import find_layer_idx, apply_modifications
+    from keras import activations
+    from vis.visualization import visualize_cam
+
+    x = np.expand_dims(image.astype(K.floatx()) / 255.0, axis=0)
+    [class_output, image_output] = model.predict(x=x)
+
+    # Utility to search for layer index by name.
+    # Alternatively we can specify this as -1 since it corresponds to the last layer.
+    layer_idx = find_layer_idx(model, 'classification')
+    model.layers[layer_idx].activation = activations.linear
+    model = apply_modifications(model)
+
+    penultimate_layer_idx = find_layer_idx(model, 'res5c_branch2c')
+
+    grads = visualize_cam(model, layer_idx, filter_indices=None,
+                          seed_input=x[0], backprop_modifier='guided',
+                          penultimate_layer_idx=penultimate_layer_idx)
+
+    jet_heatmap = np.uint8(cm.jet(grads)[..., :3] * 255)
+    image_output = np.uint8(image_output * 255)
+
+    fig = plt.figure(dpi=300, tight_layout=True)
+    fig.figimage(jet_heatmap)
+    fig.figimage(image_output[0], xo=512)
+    fig.figimage(image, xo=1024)
+
+    DPI = fig.get_dpi()
+    fig.set_size_inches(3 * 512.0 / float(DPI), 512.0 / float(DPI))
+    fig.savefig("{}.png".format(id))
+    print(class_output)

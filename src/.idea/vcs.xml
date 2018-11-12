@@ -6,6 +6,7 @@
     <mapping directory="$USER_HOME$/Github/kaggle-galaxies" vcs="Git" />
     <mapping directory="$USER_HOME$/Github/kaggle-ndsb" vcs="Git" />
     <mapping directory="$USER_HOME$/Github/keras-multiprocess-image-data-generator" vcs="Git" />
+    <mapping directory="$USER_HOME$/Github/keras_experiments" vcs="Git" />
     <mapping directory="$USER_HOME$/Github/models" vcs="Git" />
   </component>
 </project>

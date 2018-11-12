@@ -8,6 +8,7 @@ from visualization import visua_threshold_f1
 from visualization import visua_f1_classes
 from visualization import visua_prob_distribution
 from visualization import visua_cnn
+from visualization import visua_decode
 
 
 def test_visua_threshold_f1():
@@ -17,7 +18,7 @@ def test_visua_threshold_f1():
         f1_score.append(np.random.rand(100))
         optimal_threshold.append(np.random.rand())
 
-    visua_threshold_f1(f1_score,  optimal_threshold, "test")
+    visua_threshold_f1(f1_score, optimal_threshold, "test")
 
 
 def test_visua_f1_classes():
@@ -34,13 +35,25 @@ def test_visua_prob_distribution():
     visua_prob_distribution(visua_path, exp_config, training_prob, test_prob)
 
 
+def test_visua_decoder():
+    from keras.models import load_model
+    from utils import load_data
+    df = pd.read_csv(TRAINING_DATA_CSV)
+    model = load_model(
+        "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/AttentionResNet50/AttentionResNet50_KFold_7.h5")
+    image, _ = load_data(dataset='train')
+    for i in range(3):
+        visua_decode(model=model, image=image[i][:, :, :3], id=df['Id'][i])
+
+
 def test_visua_cnn():
     from keras.models import load_model
     from utils import load_data
     df = pd.read_csv(TRAINING_DATA_CSV)
-
-    model = load_model("/work/rwth0233/kaggle_HPAIC/model/ResNet50/ResNet50_KFold_0.h5")
+    model = load_model(
+        "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/ResNet50/ResNet50_KFold_0.h5")
     image, _ = load_data(dataset='train')
-    visua_cnn(model=model, image=image[10300][:, :, :3])
+    for i in range(3):
+        visua_cnn(model=model, image=image[i][:, :, :3], id=df['Id'][i])
 
-test_visua_cnn()
+test_visua_decoder()
