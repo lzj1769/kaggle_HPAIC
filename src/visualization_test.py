@@ -29,8 +29,8 @@ def test_visua_f1_classes():
 def test_visua_prob_distribution():
     visua_path = VISUALIZATION_PATH
     exp_config = "test"
-    training_prob = np.load("/home/rs619065/kaggle_HPAIC/training/ResNet50/ResNet50_PreTrained__KFold_0.npz")['pred']
-    test_prob = np.load("/home/rs619065/kaggle_HPAIC/test/ResNet50/ResNet50_PreTrained__KFold_0.npz")['pred']
+    training_prob = np.load("/home/rs619065/kaggle_HPAIC/training/ResNet50/ResNet50_PreTrained_KFold_0.npz")['pred']
+    test_prob = np.load("/home/rs619065/kaggle_HPAIC/test/ResNet50/ResNet50_PreTrained_KFold_0.npz")['pred']
 
     visua_prob_distribution(visua_path, exp_config, training_prob, test_prob)
 
@@ -48,12 +48,23 @@ def test_visua_decoder():
 
 def test_visua_cnn():
     from keras.models import load_model
-    from utils import load_data
+    from keras.utils.io_utils import h5dict
+    from utils import load_data, get_custom_objects
     df = pd.read_csv(TRAINING_DATA_CSV)
-    model = load_model(
-        "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/ResNet50/ResNet50_KFold_0.h5")
-    image, _ = load_data(dataset='train')
-    for i in range(3):
-        visua_cnn(model=model, image=image[i][:, :, :3], id=df['Id'][i])
+    custom_objects = get_custom_objects('ResNet152')
+    weights_filename = "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/ResNet152/ResNet152_KFold_0.h5"
+    f = h5dict(weights_filename, 'r')
+    print(f.get('training_config'))
+    f.close()
+    import os
+    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-test_visua_decoder()
+    model = load_model(weights_filename, custom_objects=custom_objects)
+    model.summary()
+    # image, _ = load_data(dataset='train')
+    # for i in range(2):
+    #    visua_cnn(model=model, image=image[i][:, :, :3], id=df['Id'][i])
+
+
+test_visua_cnn()

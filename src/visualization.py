@@ -2,6 +2,7 @@ from __future__ import print_function, division
 import os
 import numpy as np
 import pandas as pd
+import tempfile
 
 import matplotlib
 
@@ -103,8 +104,32 @@ def visua_prob_distribution(visua_path, net_name, training_prob, test_prob):
     fig.savefig(filename)
 
 
-def visua_cnn(model, image, id=id):
-    from vis.utils.utils import find_layer_idx, apply_modifications
+def apply_modifications(model, custom_objects):
+    from keras.models import load_model
+    """Applies modifications to the model layers to create a new Graph. For example, simply changing
+    `model.layers[idx].activation = new activation` does not change the graph. The entire graph needs to be updated
+    with modified inbound and outbound tensors because of change in layer building function.
+
+    Args:
+        model: The `keras.models.Model` instance.
+
+    Returns:
+        The modified model with changes applied. Does not mutate the original `model`.
+    """
+    # The strategy is to save the modified model and load it back. This is done because setting the activation
+    # in a Keras layer doesnt actually change the graph. We have to iterate the entire graph and change the
+    # layer inbound and outbound nodes with modified tensors. This is doubly complicated in Keras 2.x since
+    # multiple inbound and outbound nodes are allowed with the Graph API.
+    model_path = '/tmp/' + next(tempfile._get_candidate_names()) + '.h5'
+    try:
+        model.save(model_path)
+        return load_model(model_path, custom_objects=custom_objects)
+    finally:
+        os.remove(model_path)
+
+
+def visua_cnn(model, custom_objects=None, image=None, id=id):
+    from vis.utils.utils import find_layer_idx
     from keras import activations
     from vis.visualization import overlay, visualize_cam
 
@@ -114,7 +139,7 @@ def visua_cnn(model, image, id=id):
 
     # Swap softmax with linear
     model.layers[layer_idx].activation = activations.linear
-    model = apply_modifications(model)
+    model = apply_modifications(model, custom_objects=custom_objects)
 
     grads = visualize_cam(model, layer_idx, filter_indices=None,
                           seed_input=image, backprop_modifier='guided')
@@ -127,7 +152,7 @@ def visua_cnn(model, image, id=id):
 
     DPI = fig.get_dpi()
     fig.set_size_inches(2 * 512.0 / float(DPI), 512.0 / float(DPI))
-    fig.savefig("{}_without_attention.png".format(id))
+    fig.savefig("{}.png".format(id))
 
 
 def visua_decode(model, image, id):

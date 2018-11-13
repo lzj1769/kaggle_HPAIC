@@ -1,4 +1,4 @@
-"""ResNet-18 model for Keras.
+"""ResNet-34 model for Keras.
 
 # Reference:
 
@@ -11,12 +11,10 @@ https://gist.github.com/flyyufelix/65018873f8cb2bbe95f429c474aa1294#file-resnet-
 
 Implementation is based on Keras 2.0
 """
-from keras.layers import Input, Dense, AveragePooling2D
+from keras.layers import Input, Dense
 from keras.layers import Flatten, GlobalAveragePooling2D, GlobalMaxPooling2D, Dropout
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
-from keras import initializers
-from keras.engine import Layer, InputSpec
 from keras.engine.topology import get_source_inputs
 from keras import backend as K
 from keras.utils.data_utils import get_file
@@ -29,93 +27,11 @@ import sys
 
 sys.setrecursionlimit(3000)
 
-WEIGHTS_PATH_TF = 'https://github.com/qubvel/classification_models/releases/download/0.0.1/resnet18_imagenet_1000_no_top.h5'
-MD5_HASH_TF = '318e3ac0cd98d51e917526c9f62f0b50'
+WEIGHTS_PATH_TF = 'https://github.com/qubvel/classification_models/releases/download/0.0.1/resnet34_imagenet_1000_no_top.h5'
+MD5_HASH_TF = '8caaa0ad39d927cb8ba5385bf945d582'
 
-batch_size = 16
-input_shape = (1024, 1024, 3)
-
-
-class Scale(Layer):
-    '''Learns a set of weights and biases used for scaling the input data.
-    the output consists simply in an element-wise multiplication of the input
-    and a sum of a set of constants:
-
-        out = in * gamma + beta,
-
-    where 'gamma' and 'beta' are the weights and biases larned.
-
-    # Arguments
-        axis: integer, axis along which to normalize in mode 0. For instance,
-            if your input tensor has shape (samples, channels, rows, cols),
-            set axis to 1 to normalize per feature map (channels axis).
-        momentum: momentum in the computation of the
-            exponential average of the mean and standard deviation
-            of the data, for feature-wise normalization.
-        weights: Initialization weights.
-            List of 2 Numpy arrays, with shapes:
-            `[(input_shape,), (input_shape,)]`
-        beta_init: name of initialization function for shift parameter
-            (see [initializers](../initializers.md)), or alternatively,
-            Theano/TensorFlow function to use for weights initialization.
-            This parameter is only relevant if you don't pass a `weights`
-            argument.
-        gamma_init: name of initialization function for scale parameter (see
-            [initializers](../initializers.md)), or alternatively,
-            Theano/TensorFlow function to use for weights initialization.
-            This parameter is only relevant if you don't pass a `weights`
-            argument.
-        gamma_init: name of initialization function for scale parameter (see
-            [initializers](../initializers.md)), or alternatively,
-            Theano/TensorFlow function to use for weights initialization.
-            This parameter is only relevant if you don't pass a `weights`
-            argument.
-    '''
-
-    def __init__(self,
-                 weights=None,
-                 axis=-1,
-                 momentum=0.9,
-                 beta_init='zero',
-                 gamma_init='one',
-                 **kwargs):
-        self.momentum = momentum
-        self.axis = axis
-        self.beta_init = initializers.get(beta_init)
-        self.gamma_init = initializers.get(gamma_init)
-        self.initial_weights = weights
-        super(Scale, self).__init__(**kwargs)
-
-    def build(self, input_shape):
-        self.input_spec = [InputSpec(shape=input_shape)]
-        shape = (int(input_shape[self.axis]),)
-
-        self.gamma = K.variable(
-            self.gamma_init(shape),
-            name='{}_gamma'.format(self.name))
-        self.beta = K.variable(
-            self.beta_init(shape),
-            name='{}_beta'.format(self.name))
-        self.trainable_weights = [self.gamma, self.beta]
-
-        if self.initial_weights is not None:
-            self.set_weights(self.initial_weights)
-            del self.initial_weights
-
-    def call(self, x, mask=None):
-        input_shape = self.input_spec[0].shape
-        broadcast_shape = [1] * len(input_shape)
-        broadcast_shape[self.axis] = input_shape[self.axis]
-
-        out = K.reshape(
-            self.gamma,
-            broadcast_shape) * x + K.reshape(self.beta, broadcast_shape)
-        return out
-
-    def get_config(self):
-        config = {"momentum": self.momentum, "axis": self.axis}
-        base_config = super(Scale, self).get_config()
-        return dict(list(base_config.items()) + list(config.items()))
+batch_size = 6
+input_shape = (2048, 2048, 3)
 
 
 def identity_block(input_tensor, kernel_size, filters, stage, block):
@@ -217,7 +133,7 @@ def conv_block(input_tensor,
     return x
 
 
-def ResNet18(include_top=True,
+def ResNet34(include_top=True,
              weights='imagenet',
              input_tensor=None,
              input_shape=None,
@@ -305,15 +221,23 @@ def ResNet18(include_top=True,
 
     x = conv_block(x, 3, [64, 64], stage=2, block='a', strides=(1, 1))
     x = identity_block(x, 3, [64, 64], stage=2, block='b')
+    x = identity_block(x, 3, [64, 64], stage=2, block='c')
 
     x = conv_block(x, 3, [128, 128], stage=3, block='a')
     x = identity_block(x, 3, [128, 128], stage=3, block='b')
+    x = identity_block(x, 3, [128, 128], stage=3, block='c')
+    x = identity_block(x, 3, [128, 128], stage=3, block='d')
 
     x = conv_block(x, 3, [256, 256], stage=4, block='a')
     x = identity_block(x, 3, [256, 256], stage=4, block='b')
+    x = identity_block(x, 3, [256, 256], stage=4, block='c')
+    x = identity_block(x, 3, [256, 256], stage=4, block='d')
+    x = identity_block(x, 3, [256, 256], stage=4, block='e')
+    x = identity_block(x, 3, [256, 256], stage=4, block='f')
 
     x = conv_block(x, 3, [512, 512], stage=5, block='a')
     x = identity_block(x, 3, [512, 512], stage=5, block='b')
+    x = identity_block(x, 3, [512, 512], stage=5, block='c')
 
     if include_top:
         x = Flatten()(x)
@@ -360,31 +284,30 @@ def ResNet18(include_top=True,
 
 def build_model(num_classes, weights='imagenet'):
     # create the base pre-trained model
-
-    base_model = ResNet18(weights=weights,
+    base_model = ResNet34(weights=weights,
                           include_top=False,
                           input_shape=input_shape)
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = AveragePooling2D((7, 7), name='avg_pool')(x)
-    x = BatchNormalization(name="batch_1")(x)
+
+    x = conv_block(x, 3, [1024, 1024], stage=6, block='a')
     x = GlobalAveragePooling2D()(x)
+
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
-    model = Model(inputs=base_model.input, outputs=x, name='resnet101')
+    model = Model(inputs=base_model.input, outputs=x, name='ResNet34')
 
     return model
 
-
 # from keras.losses import binary_crossentropy
-#
 # model = build_model(num_classes=28)
-# model.compile(optimizer="adam", loss=binary_crossentropy)
+# model.compile(optimizer='adam', loss=binary_crossentropy)
 # model.summary()

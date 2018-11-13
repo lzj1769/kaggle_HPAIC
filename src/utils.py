@@ -204,14 +204,14 @@ def get_test_time_augmentation_generators(image, batch_size, output_shape, n_cha
                                      shuffle=False,
                                      output_shape=output_shape,
                                      n_channels=n_channels,
-                                     random_rotate_90_1=random_rotate_90_2)
+                                     random_rotate_90_2=random_rotate_90_2)
 
     generator_4 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
                                      output_shape=output_shape,
                                      n_channels=n_channels,
-                                     random_rotate_90_1=random_rotate_90_3)
+                                     random_rotate_90_3=random_rotate_90_3)
     generator_5 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
@@ -233,7 +233,7 @@ def get_test_time_augmentation_generators(image, batch_size, output_shape, n_cha
                                      output_shape=output_shape,
                                      n_channels=n_channels,
                                      horizontal_flip=horizontal_flip,
-                                     random_rotate_90_1=random_rotate_90_2)
+                                     random_rotate_90_2=random_rotate_90_2)
 
     generator_8 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
@@ -241,7 +241,7 @@ def get_test_time_augmentation_generators(image, batch_size, output_shape, n_cha
                                      output_shape=output_shape,
                                      n_channels=n_channels,
                                      horizontal_flip=horizontal_flip,
-                                     random_rotate_90_1=random_rotate_90_3)
+                                     random_rotate_90_3=random_rotate_90_3)
 
     return [generator_1, generator_2,
             generator_3, generator_4,

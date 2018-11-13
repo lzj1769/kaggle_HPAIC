@@ -27,8 +27,8 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf.h5'
 WEIGHTS_PATH_NO_TOP = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf_notop.h5'
 
-batch_size = 2
-input_shape = (1024, 1024, 3)
+batch_size = 8
+input_shape = (512, 512, 3)
 
 
 class Scale(Layer):
@@ -283,10 +283,10 @@ def ResNet152(include_top=True, weights=None,
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='b')
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='c')
 
-    if large_input:
-        x = AveragePooling2D((14, 14), name='avg_pool')(x)
-    else:
-        x = AveragePooling2D((7, 7), name='avg_pool')(x)
+    # if large_input:
+    #     x = AveragePooling2D((14, 14), name='avg_pool')(x)
+    # else:
+    #     x = AveragePooling2D((7, 7), name='avg_pool')(x)
 
     # include classification layer by default, not included for feature extraction
     if include_top:
@@ -346,16 +346,15 @@ def build_model(num_classes, weights='imagenet'):
     base_model = ResNet152(weights=weights,
                            include_top=False,
                            input_shape=input_shape,
-                           pooling='avg',
-                           large_input=True)
+                           pooling='avg')
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
@@ -363,8 +362,3 @@ def build_model(num_classes, weights='imagenet'):
     model = Model(inputs=base_model.input, outputs=x, name='ResNet152')
 
     return model
-
-# from keras.losses import binary_crossentropy
-# model = build_model(num_classes=28)
-# model.compile(optimizer="adam", loss=binary_crossentropy)
-# model.summary()

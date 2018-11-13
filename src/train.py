@@ -25,7 +25,6 @@ from callback import build_callbacks
 from configure import *
 
 from albumentations import HorizontalFlip, VerticalFlip
-from albumentations import RandomBrightness
 from albumentations import ShiftScaleRotate
 
 
@@ -35,7 +34,7 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("--epochs", type=int, default=10,
+    parser.add_argument("--epochs", type=int, default=100,
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
@@ -108,7 +107,6 @@ def main():
     horizontal_flip = HorizontalFlip(p=0.5)
     vertical_flip = VerticalFlip(p=0.5)
     shift_scale_rotate = ShiftScaleRotate(p=0.5, rotate_limit=90, scale_limit=0.4)
-    random_brightness = RandomBrightness(p=0.2, limit=0.2)
 
     train_generator = ImageDataGenerator(x=img[train_indexes],
                                          y=label[train_indexes],
@@ -119,8 +117,7 @@ def main():
                                          n_channels=input_shape[2],
                                          horizontal_flip=horizontal_flip,
                                          vertical_flip=vertical_flip,
-                                         shift_scale_rotate=shift_scale_rotate,
-                                         random_brightness=random_brightness)
+                                         shift_scale_rotate=shift_scale_rotate)
 
     valid_generator = ImageDataGenerator(x=img[test_indexes],
                                          y=label[test_indexes],
@@ -147,8 +144,7 @@ def main():
                                  verbose=args.verbose,
                                  callbacks=callbacks,
                                  use_multiprocessing=True,
-                                 workers=args.workers,
-                                 max_queue_size=48)
+                                 workers=args.workers)
 
     print("complete!!")
     K.clear_session()

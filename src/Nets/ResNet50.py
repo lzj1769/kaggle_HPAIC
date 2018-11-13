@@ -24,11 +24,11 @@ def build_model(num_classes, weights='imagenet'):
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 

@@ -4,11 +4,12 @@ from keras_applications.vgg16 import VGG16
 import keras
 from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
+from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 
 sys.setrecursionlimit(3000)
 
-batch_size = 8
-input_shape = (1024, 1024, 3)
+batch_size = 4
+input_shape = (2048, 2048, 3)
 
 
 def build_model(num_classes, weights='imagenet'):
@@ -20,15 +21,15 @@ def build_model(num_classes, weights='imagenet'):
                        layers=keras.layers,
                        models=keras.models,
                        utils=keras.utils,
-                       pooling="avg")
+                       pooling='avg')
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 

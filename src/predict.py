@@ -6,12 +6,13 @@ import sys
 
 import argparse
 import numpy as np
+import importlib
 
 from keras.models import load_model
 
 from configure import *
 from utils import load_data, generate_exp_config
-from utils import get_weights_path, get_batch_size, get_input_shape
+from utils import get_weights_path
 from utils import get_test_time_augmentation_generators
 from utils import get_training_predict_path
 from utils import get_test_predict_path
@@ -26,8 +27,10 @@ args = parser.parse_args()
 print("load the model configuration...", file=sys.stderr)
 print("=======================================================\n", file=sys.stderr)
 
-batch_size = get_batch_size(args.net_name)
-input_shape = get_input_shape(args.net_name)
+net = importlib.import_module("Nets." + args.net_name)
+
+batch_size = net.batch_size
+input_shape = net.input_shape
 
 print("load training data...", file=sys.stderr)
 print("=======================================================\n", file=sys.stderr)

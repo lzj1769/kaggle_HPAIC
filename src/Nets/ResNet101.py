@@ -331,7 +331,7 @@ def ResNet101(include_top=True,
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='b')
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='c')
 
-    x = AveragePooling2D((7, 7), name='avg_pool')(x)
+    # x = AveragePooling2D((7, 7), name='avg_pool')(x)
 
     if include_top:
         x = Flatten()(x)
@@ -382,7 +382,6 @@ def ResNet101(include_top=True,
 
 def build_model(num_classes, weights='imagenet'):
     # create the base pre-trained model
-
     base_model = ResNet101(weights=weights,
                            include_top=False,
                            input_shape=input_shape,
@@ -390,15 +389,15 @@ def build_model(num_classes, weights='imagenet'):
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = BatchNormalization(name="batch_1")(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = BatchNormalization(name="batch_2")(x)
     x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
-    model = Model(inputs=base_model.input, outputs=x, name='resnet101')
+    model = Model(inputs=base_model.input, outputs=x, name='ResNet101')
 
     return model
