@@ -45,6 +45,14 @@ def parse_args():
     return parser.parse_args()
 
 
+def weighted_binary_corssentropy(y_true, y_pred):
+    pos_weights = np.clip(1.0 / np.array(FRACTION) - 1, 1, 10)
+    _epsilon = tf.convert_to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
+    output = tf.clip_by_value(y_pred, _epsilon, 1 - _epsilon)
+    output = tf.log(output / (1 - output))
+    return K.mean(tf.nn.weighted_cross_entropy_with_logits(y_true, output, pos_weights), axis=-1)
+
+
 def main():
     args = parse_args()
 
@@ -84,8 +92,11 @@ def main():
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 
-    model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
-    parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    # model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    # parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+
+    model.compile(optimizer=optimizer, loss=weighted_binary_corssentropy, metrics=[binary_accuracy])
+    parallel_model.compile(optimizer=optimizer, loss=weighted_binary_corssentropy, metrics=[binary_accuracy])
 
     model.summary()
 
@@ -115,6 +126,7 @@ def main():
                                          shuffle=True,
                                          output_shape=(input_shape[0], input_shape[1]),
                                          n_channels=input_shape[2],
+                                         learning_phase=True,
                                          horizontal_flip=horizontal_flip,
                                          vertical_flip=vertical_flip,
                                          shift_scale_rotate=shift_scale_rotate)
@@ -124,6 +136,7 @@ def main():
                                          batch_size=batch_size,
                                          n_classes=N_LABELS,
                                          shuffle=False,
+                                         learning_phase=True,
                                          output_shape=(input_shape[0], input_shape[1]),
                                          n_channels=input_shape[2])
 

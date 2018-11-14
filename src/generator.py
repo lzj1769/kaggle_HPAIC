@@ -33,6 +33,7 @@ class ImageDataGenerator(Sequence):
                  shuffle=False,
                  output_shape=(IMAGE_HEIGHT, IMAGE_WIDTH),
                  n_channels=N_CHANNELS,
+                 learning_phase=False,
                  **kwargs):
 
         super(ImageDataGenerator, self).__init__()
@@ -43,6 +44,7 @@ class ImageDataGenerator(Sequence):
         self.n_classes = n_classes
         self.shuffle = shuffle
         self.indexes = np.arange(x.shape[0])
+        self.learning_phase = learning_phase
 
         if self.shuffle:
             np.random.shuffle(self.indexes)
@@ -53,7 +55,10 @@ class ImageDataGenerator(Sequence):
         self.kwargs = kwargs
 
     def __len__(self):
-        return math.floor(self.x.shape[0] / self.batch_size)
+        if self.learning_phase:
+            return math.floor(self.x.shape[0] / self.batch_size)
+        else:
+            return math.ceil(self.x.shape[0] / self.batch_size)
 
     def __getitem__(self, index):
         # Generate indexes of the batch

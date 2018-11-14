@@ -61,14 +61,14 @@ class CSVPDFLogger(CSVLogger):
         ax1.set_title('Accuracy')
         ax1.set_ylabel('accuracy')
         ax1.set_xlabel('epoch')
-        ax1.legend(['train', 'validation'], loc='upper left')
+        ax1.legend(['train', 'validation'], loc='lower right')
 
         ax2.plot(df['loss'])
         ax2.plot(df['val_loss'])
         ax2.set_title('Classification Loss')
         ax2.set_ylabel('loss')
         ax2.set_xlabel('epoch')
-        ax2.legend(['train', 'validation'], loc='upper left')
+        ax2.legend(['train', 'validation'], loc='upper right')
 
         fig.tight_layout()
         fig.savefig(self.pdf_filename)
