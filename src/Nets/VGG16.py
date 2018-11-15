@@ -4,7 +4,6 @@ from keras_applications.vgg16 import VGG16
 import keras
 from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
-from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 
 sys.setrecursionlimit(3000)
 

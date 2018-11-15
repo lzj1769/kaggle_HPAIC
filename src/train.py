@@ -11,7 +11,7 @@ import json
 from keras.models import load_model
 from keras.losses import binary_crossentropy
 from keras import optimizers
-from keras.optimizers import SGD
+from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
 from keras.utils.multi_gpu_utils import multi_gpu_model
 from keras.utils.io_utils import h5dict
@@ -24,8 +24,7 @@ from utils import get_logs_path, get_custom_objects
 from callback import build_callbacks
 from configure import *
 
-from albumentations import HorizontalFlip, VerticalFlip
-from albumentations import ShiftScaleRotate
+from albumentations import HorizontalFlip, VerticalFlip, Rotate
 
 
 def parse_args():
@@ -88,15 +87,12 @@ def main():
             f.close()
         else:
             model = net.build_model(num_classes=N_LABELS)
-            optimizer = SGD(lr=0.01, momentum=0.9, nesterov=True, decay=1e-06)
+            optimizer = Adam(lr=1e-04, decay=1e-06, amsgrad=True)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 
-    # model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
-    # parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
-
-    model.compile(optimizer=optimizer, loss=weighted_binary_corssentropy, metrics=[binary_accuracy])
-    parallel_model.compile(optimizer=optimizer, loss=weighted_binary_corssentropy, metrics=[binary_accuracy])
+    model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
     model.summary()
 
@@ -117,7 +113,7 @@ def main():
     # set augmentation parameters
     horizontal_flip = HorizontalFlip(p=0.5)
     vertical_flip = VerticalFlip(p=0.5)
-    shift_scale_rotate = ShiftScaleRotate(p=0.5, rotate_limit=90, scale_limit=0.4)
+    rotate = Rotate(p=0.5)
 
     train_generator = ImageDataGenerator(x=img[train_indexes],
                                          y=label[train_indexes],
@@ -129,7 +125,7 @@ def main():
                                          learning_phase=True,
                                          horizontal_flip=horizontal_flip,
                                          vertical_flip=vertical_flip,
-                                         shift_scale_rotate=shift_scale_rotate)
+                                         rotate=rotate)
 
     valid_generator = ImageDataGenerator(x=img[test_indexes],
                                          y=label[test_indexes],

@@ -5,8 +5,8 @@ from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 
-batch_size = 8
-input_shape = (1536, 1536, 3)
+batch_size = 16
+input_shape = (1024, 1024, 3)
 
 
 def build_model(num_classes, weights='imagenet'):

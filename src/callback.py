@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os
+import numpy as np
 import pandas as pd
 import time
 
@@ -107,9 +108,10 @@ class AltModelCheckpoint(ModelCheckpoint):
     https://github.com/TextpertAi/alt-model-checkpoint/blob/master/alt_model_checkpoint/__init__.py
     """
 
-    def __init__(self, alternate_model, **kwargs):
+    def __init__(self, alternate_model, best=np.Inf, **kwargs):
         self.alternate_model = alternate_model
         super(AltModelCheckpoint, self).__init__(**kwargs)
+        self.best = best
 
     def on_epoch_end(self, epoch, logs=None):
         model_before = self.model
@@ -119,9 +121,20 @@ class AltModelCheckpoint(ModelCheckpoint):
 
 
 def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
-    fp = os.path.join(weights_path, "{}.h5".format(exp_config))
+    file_path = os.path.join(weights_path, "{}.h5".format(exp_config))
+    logs_filename = os.path.join(logs_path, "{}.log".format(exp_config))
+    pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
+
+    # check if the log file exists
+    best = np.inf
+    if os.path.exists(logs_filename):
+        # recover the best validation loss from logs
+        df = pd.read_csv(logs_filename)
+        best = np.min(df['val_loss'])
+
     check_pointer = AltModelCheckpoint(alternate_model=model,
-                                       filepath=fp,
+                                       best=best,
+                                       filepath=file_path,
                                        monitor='val_loss',
                                        verbose=1,
                                        save_best_only=True)
@@ -139,11 +152,8 @@ def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
                                   min_delta=0.,
                                   verbose=1)
 
-    filename = os.path.join(logs_path, "{}.log".format(exp_config))
-    pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
-
     csv_pdf_logger = CSVPDFLogger(pdf_filename=pdf_filename,
-                                  filename=filename,
+                                  filename=logs_filename,
                                   append=True)
 
     callbacks = [check_pointer, early_stopper, reduce_lr, csv_pdf_logger]

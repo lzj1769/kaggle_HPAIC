@@ -94,26 +94,6 @@ def get_submission_path(net_name):
     return os.path.join(SUBMISSION_PATH, net_name)
 
 
-def optimal_threshold(y_true, y_prab):
-    assert y_true.shape == y_prab.shape, print(
-        "The shape of true labels is {} {}, while the prediction is {} {}".format(y_true.shape[0], y_true[1],
-                                                                                  y_prab[0], y_prab[1]))
-    (n_samples, n_classes) = y_true.shape
-    thresholds = np.linspace(0, 1, 1000)
-
-    f1_scores_list = list()
-    optimal_thresholds = list()
-    optimal_f1_score = list()
-    for i in range(n_classes):
-        f1_scores = f1_scores_threshold(y_true[:, i], y_prab[:, i], thresholds)
-        f1_scores_list.append(f1_scores)
-        idx = np.argmax(f1_scores)
-        optimal_thresholds.append(thresholds[idx])
-        optimal_f1_score.append(f1_scores[idx])
-
-    return f1_scores_list, np.array(optimal_thresholds), optimal_f1_score
-
-
 def f1_scores_threshold(y_true, y_prab, thresholds):
     f1_scores = []
     for threshold in thresholds:

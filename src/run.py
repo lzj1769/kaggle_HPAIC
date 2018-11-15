@@ -43,10 +43,10 @@ def run_predict():
             os.mkdir(test_predict_path)
 
         job_name = net_name
-        #command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
-        #          "./cluster_err/" + job_name + "_err.txt "
-        #command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
-        command = './predict.zsh'
+        command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
+                  "./cluster_err/" + job_name + "_err.txt "
+        command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
+        #command = './predict.zsh'
         os.system(command + " " + net_name)
 
 
@@ -54,7 +54,7 @@ def run_training():
     net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152', 'VGG16', 'VGG19',
                      'Xception', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2',
                      'InceptionV3', 'NASNetLarge', 'NASNetMobile']
-    net_name_list = ['WeightedResNet152']
+    net_name_list = ['ResNet152', 'NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -79,12 +79,11 @@ def run_training():
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
             command += "-W 8:00 -M 102000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
-            # command = './train.zsh'
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
 def run_evaluate():
-    net_name_list = ['ResNet152']
+    net_name_list = ['ResNet50']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
@@ -94,7 +93,7 @@ def run_evaluate():
 
         job_name = net_name
         # command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
-        #          "./cluster_err/" + job_name + "_err.txt "
+        #         "./cluster_err/" + job_name + "_err.txt "
         # command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
         command = './evaluate.zsh '
         os.system(command + " " + net_name)

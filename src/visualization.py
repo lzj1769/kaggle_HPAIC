@@ -80,30 +80,6 @@ def visua_f1_classes(f1_score, exp_id):
     fig.savefig(os.path.join(VISUALIZATION_PATH, "{}_f1_class.pdf".format(exp_id)))
 
 
-def visua_prob_distribution(visua_path, net_name, training_prob, test_prob):
-    fig, ax = plt.subplots(7, 4, figsize=(10, 12))
-    for i in range(7):
-        for j in range(4):
-            if i * 4 + j < 28:
-                sns.kdeplot(data=training_prob[:, i * 4 + j],
-                            label="Validation",
-                            ax=ax[i][j],
-                            shade=True,
-                            color="r")
-                sns.kdeplot(data=test_prob[:, i * 4 + j],
-                            label="Test",
-                            ax=ax[i][j],
-                            shade=True,
-                            color="b")
-                ax[i][j].set_title("Class: {}".format(i * 4 + j))
-            else:
-                break
-
-    fig.tight_layout()
-    filename = os.path.join(visua_path, "{}.pdf".format(net_name))
-    fig.savefig(filename)
-
-
 def apply_modifications(model, custom_objects):
     from keras.models import load_model
     """Applies modifications to the model layers to create a new Graph. For example, simply changing
