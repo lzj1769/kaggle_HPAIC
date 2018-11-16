@@ -11,7 +11,7 @@ import json
 from keras.models import load_model
 from keras.losses import binary_crossentropy
 from keras import optimizers
-from keras.optimizers import Adam
+from keras.optimizers import SGD
 from keras.metrics import binary_accuracy
 from keras.utils.multi_gpu_utils import multi_gpu_model
 from keras.utils.io_utils import h5dict
@@ -24,7 +24,7 @@ from utils import get_logs_path, get_custom_objects
 from callback import build_callbacks
 from configure import *
 
-from albumentations import HorizontalFlip, VerticalFlip, Rotate
+from albumentations import HorizontalFlip, ShiftScaleRotate, RandomBrightness
 
 
 def parse_args():
@@ -42,14 +42,6 @@ def parse_args():
     parser.add_argument("--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
-
-
-def weighted_binary_corssentropy(y_true, y_pred):
-    pos_weights = np.clip(1.0 / np.array(FRACTION) - 1, 1, 10)
-    _epsilon = tf.convert_to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
-    output = tf.clip_by_value(y_pred, _epsilon, 1 - _epsilon)
-    output = tf.log(output / (1 - output))
-    return K.mean(tf.nn.weighted_cross_entropy_with_logits(y_true, output, pos_weights), axis=-1)
 
 
 def main():
@@ -87,7 +79,7 @@ def main():
             f.close()
         else:
             model = net.build_model(num_classes=N_LABELS)
-            optimizer = Adam(lr=1e-04, decay=1e-06, amsgrad=True)
+            optimizer = SGD(lr=1e-02, momentum=0.9, decay=1e-04, nesterov=True)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 
@@ -104,37 +96,36 @@ def main():
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
     split = np.load(split_filename)
 
-    train_indexes = split['train_indexes']
-    test_indexes = split['test_indexes']
+    train_indexes = split['train_indexes'].tolist()
+    test_indexes = split['test_indexes'].tolist()
 
-    print("Training model on {} samples, validate on {} samples".format(train_indexes.shape[0],
-                                                                        test_indexes.shape[0]), file=sys.stderr)
+    print("Training model on {} samples, validate on {} samples".format(len(train_indexes),
+                                                                        len(test_indexes),
+                                                                        file=sys.stderr))
 
     # set augmentation parameters
     horizontal_flip = HorizontalFlip(p=0.5)
-    vertical_flip = VerticalFlip(p=0.5)
-    rotate = Rotate(p=0.5)
+    shift_scale_rotate = ShiftScaleRotate(p=0.5, scale_limit=0.2, rotate_limit=90)
+    random_brightness = RandomBrightness(p=0.2, limit=0.2)
 
-    train_generator = ImageDataGenerator(x=img[train_indexes],
-                                         y=label[train_indexes],
+    train_generator = ImageDataGenerator(x=img,
+                                         y=label,
                                          batch_size=batch_size,
-                                         n_classes=N_LABELS,
                                          shuffle=True,
-                                         output_shape=(input_shape[0], input_shape[1]),
-                                         n_channels=input_shape[2],
+                                         indexes=train_indexes,
+                                         input_shape=input_shape,
                                          learning_phase=True,
                                          horizontal_flip=horizontal_flip,
-                                         vertical_flip=vertical_flip,
-                                         rotate=rotate)
+                                         shift_scale_rotate=shift_scale_rotate,
+                                         random_brightness=random_brightness)
 
-    valid_generator = ImageDataGenerator(x=img[test_indexes],
-                                         y=label[test_indexes],
+    valid_generator = ImageDataGenerator(x=img,
+                                         y=label,
                                          batch_size=batch_size,
-                                         n_classes=N_LABELS,
                                          shuffle=False,
-                                         learning_phase=True,
-                                         output_shape=(input_shape[0], input_shape[1]),
-                                         n_channels=input_shape[2])
+                                         indexes=test_indexes,
+                                         input_shape=input_shape,
+                                         learning_phase=True)
 
     logs_path = get_logs_path(net_name=args.net_name)
     acc_loss_path = get_acc_loss_path(args.net_name)
@@ -144,7 +135,6 @@ def main():
                                 acc_loss_path=acc_loss_path,
                                 exp_config=exp_config)
 
-    del img, label
     print("training model...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
     parallel_model.fit_generator(generator=train_generator,

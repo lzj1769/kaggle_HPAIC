@@ -8,8 +8,6 @@ import cv2
 from keras.utils import Sequence
 import keras.backend as K
 
-from configure import *
-
 
 def image_augment(aug, image):
     image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
@@ -29,10 +27,9 @@ class ImageDataGenerator(Sequence):
     def __init__(self,
                  x=None, y=None,
                  batch_size=16,
-                 n_classes=N_LABELS,
                  shuffle=False,
-                 output_shape=(IMAGE_HEIGHT, IMAGE_WIDTH),
-                 n_channels=N_CHANNELS,
+                 indexes=None,
+                 input_shape=None,
                  learning_phase=False,
                  **kwargs):
 
@@ -41,31 +38,39 @@ class ImageDataGenerator(Sequence):
         self.x = x
         self.y = y
         self.batch_size = batch_size
-        self.n_classes = n_classes
         self.shuffle = shuffle
-        self.indexes = np.arange(x.shape[0])
         self.learning_phase = learning_phase
+        self.kwargs = kwargs
 
         if self.shuffle:
             np.random.shuffle(self.indexes)
 
-        self.output_shape = output_shape
-        self.n_channels = n_channels
+        if indexes is not None:
+            self.indexes = indexes
+        else:
+            self.indexes = np.arange(self.x.shape[0]).tolist()
 
-        self.kwargs = kwargs
+        if input_shape is not None:
+            self.input_shape = input_shape
+        else:
+            self.input_shape = (self.x.shape[1], self.x.shape[2], self.x.shape[3])
+
+        self.n_samples = len(self.indexes)
 
     def __len__(self):
         if self.learning_phase:
-            return math.floor(self.x.shape[0] / self.batch_size)
+            return math.floor(self.n_samples / self.batch_size)
         else:
-            return math.ceil(self.x.shape[0] / self.batch_size)
+            return math.ceil(self.n_samples / self.batch_size)
 
     def __getitem__(self, index):
         # Generate indexes of the batch
         indexes = self.indexes[index * self.batch_size:(index + 1) * self.batch_size]
 
-        batch_x = self.generate_data(indexes)
+        # Sort the indexes in increasing order
+        indexes.sort()
 
+        batch_x = self.generate_data(indexes)
         if self.y is not None:
             batch_y = self.y[indexes].astype(K.floatx())
             return batch_x, batch_y
@@ -85,16 +90,16 @@ class ImageDataGenerator(Sequence):
                     batch_x[i] = image_augment(aug, batch_x[i])
 
         # drop the yellow channel if using 3 channels
-        if self.n_channels == 3:
+        if self.input_shape[2] == 3:
             batch_x = batch_x[:, :, :, :3]
 
         # resize the image if need
-        if self.output_shape != (batch_x.shape[1], batch_x.shape[2]):
-            batch_x_resize = np.empty((batch_x.shape[0], self.output_shape[0], self.output_shape[1], self.n_channels),
+        if (self.input_shape[0], self.input_shape[1]) != (batch_x.shape[1], batch_x.shape[2]):
+            batch_x_resize = np.empty((batch_x.shape[0], self.input_shape[0], self.input_shape[1], self.input_shape[2]),
                                       dtype=K.floatx())
 
             for i in range(batch_x.shape[0]):
-                batch_x_resize[i] = cv2.resize(batch_x[i], (self.output_shape[0], self.output_shape[1]))
+                batch_x_resize[i] = cv2.resize(batch_x[i], (self.input_shape[0], self.input_shape[1]))
 
             batch_x = batch_x_resize
 
@@ -104,9 +109,5 @@ class ImageDataGenerator(Sequence):
 
     def on_epoch_end(self):
         # Updates indexes after each epoch
-        self.indexes = np.arange(self.x.shape[0])
         if self.shuffle:
             np.random.shuffle(self.indexes)
-
-    def get_indexes(self):
-        return self.indexes

@@ -30,7 +30,7 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH_TF = 'https://github.com/qubvel/classification_models/releases/download/0.0.1/resnet34_imagenet_1000_no_top.h5'
 MD5_HASH_TF = '8caaa0ad39d927cb8ba5385bf945d582'
 
-batch_size = 6
+batch_size = 4
 input_shape = (2048, 2048, 3)
 
 

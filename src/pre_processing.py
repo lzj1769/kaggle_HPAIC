@@ -47,9 +47,9 @@ df = pd.read_csv(TRAINING_DATA_CSV)
 f = h5py.File(FULL_SIZE_TRAINING_DATA, "w")
 f.create_dataset(name="img", shape=(df.shape[0], IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL, N_CHANNELS),
                  dtype=np.uint8)
-f.create_dataset(name="label", shape=(df.shape[0], N_LABELS), dtype=np.uint8)
 
 mlb = MultiLabelBinarizer(classes=range(N_LABELS))
+labels = list()
 
 for i in range(df.shape[0]):
     prefix = df.iloc[i][0]
@@ -63,6 +63,7 @@ for i in range(df.shape[0]):
         img = cv2.resize(img, (IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL))
 
     f["img"][i, ...] = img
-    f["label"][i] = mlb.fit_transform(map(int, df.iloc[i][1].split(" ")))
+    labels.append(map(int, df.iloc[i][1].split(" ")))
 
+f.create_dataset(name="label", data=mlb.fit_transform(labels))
 f.close()
