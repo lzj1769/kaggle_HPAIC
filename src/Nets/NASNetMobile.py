@@ -5,15 +5,16 @@ from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 
-batch_size = 16
-input_shape = (1024, 1024, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_mobile_no_top.h5'
+BATCH_SIZE = 16
+INPUT_SHAPE = (1024, 1024, 3)
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base DenseNet121-trained model
-    base_model = NASNetMobile(weights=weights,
+    base_model = NASNetMobile(weights=WEIGHTS_PATH,
                               include_top=False,
-                              input_shape=input_shape,
+                              input_shape=INPUT_SHAPE,
                               backend=keras.backend,
                               layers=keras.layers,
                               models=keras.models,

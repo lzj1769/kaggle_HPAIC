@@ -1,8 +1,5 @@
 from __future__ import print_function
 
-import os
-import sys
-import numpy as np
 import argparse
 import tensorflow as tf
 import importlib
@@ -18,10 +15,8 @@ from keras.utils.io_utils import h5dict
 import keras.backend as K
 
 from generator import ImageDataGenerator
-from utils import get_acc_loss_path, load_data, generate_exp_config
-from utils import get_weights_path
-from utils import get_logs_path, get_custom_objects
 from callback import build_callbacks
+from utils import *
 from configure import *
 
 from albumentations import HorizontalFlip, ShiftScaleRotate
@@ -38,7 +33,7 @@ def parse_args():
     parser.add_argument("--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
     parser.add_argument("--workers", type=int, default=32,
-                        help="number of cores for training. DEFAULT: 32")
+                        help="number of cores for training. DEFAULT: All cpus")
     parser.add_argument("--verbose", type=int, default=1,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
@@ -55,8 +50,8 @@ def main():
 
     net = importlib.import_module("Nets." + args.net_name)
 
-    batch_size = net.batch_size
-    input_shape = net.input_shape
+    batch_size = net.BATCH_SIZE
+    input_shape = net.INPUT_SHAPE
 
     # Training models with weights merge on CPU
     with tf.device('/cpu:0'):
@@ -91,13 +86,13 @@ def main():
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
 
-    img, label = load_data(dataset="train")
-
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
     split = np.load(split_filename)
 
     train_indexes = split['train_indexes'].tolist()
     test_indexes = split['test_indexes'].tolist()
+
+    img, target = load_data("train")
 
     print("Training model on {} samples, validate on {} samples".format(len(train_indexes),
                                                                         len(test_indexes),
@@ -108,7 +103,7 @@ def main():
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
 
     train_generator = ImageDataGenerator(x=img,
-                                         y=label,
+                                         y=target,
                                          indexes=train_indexes,
                                          batch_size=batch_size,
                                          shuffle=True,
@@ -118,7 +113,7 @@ def main():
                                          shift_scale_rotate=shift_scale_rotate)
 
     valid_generator = ImageDataGenerator(x=img,
-                                         y=label,
+                                         y=target,
                                          indexes=test_indexes,
                                          batch_size=batch_size,
                                          shuffle=False,
@@ -142,8 +137,7 @@ def main():
                                  callbacks=callbacks,
                                  use_multiprocessing=True,
                                  workers=args.workers,
-                                 max_queue_size=32,
-                                 shuffle=False)
+                                 max_queue_size=100)
 
     print("complete!!")
     K.clear_session()

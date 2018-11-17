@@ -2,9 +2,11 @@ from __future__ import print_function, division
 import os
 import sys
 import numpy as np
+import pandas as pd
 import h5py
 
 from sklearn.metrics import f1_score
+from sklearn.preprocessing import MultiLabelBinarizer
 from albumentations import HorizontalFlip
 from albumentations.augmentations import functional as F
 from albumentations import DualTransform
@@ -14,38 +16,29 @@ from configure import *
 
 def load_data(dataset=None):
     if dataset == "test":
-        img = np.load(TEST_DATA)['img']
+        f = h5py.File(FULL_SIZE_TEST_DATA, mode="r",  swmr=True)
+        img = f['img']
 
         return img
 
     elif dataset == "train":
-        img = np.load(TRAINING_DATA)['img']
-        label = np.load(TRAINING_DATA)['label']
+        f = h5py.File("/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train.h5", mode="r", swmr=True)
+        img = f['img']
 
-        return img, label
+        # get the targets
+        df = pd.read_csv(TRAINING_DATA_CSV)
+        mlb = MultiLabelBinarizer(classes=range(N_LABELS))
+        target = list()
+        for i in range(df.shape[0]):
+            target.append(map(int, df.iloc[i][1].split(" ")))
+
+        target = mlb.fit_transform(target)
+
+        return img, target
 
     else:
         print("the data set doesn't exist...", file=sys.stderr)
         exit(1)
-
-
-# def load_data(dataset=None):
-#     if dataset == "test":
-#         f = h5py.File(FULL_SIZE_TEST_DATA, "r")
-#         img = f['img']
-#
-#         return img
-#
-#     elif dataset == "train":
-#         f = h5py.File(FULL_SIZE_TRAINING_DATA, "r")
-#         img = f['img']
-#         label = f['label']
-#
-#         return img, label
-#
-#     else:
-#         print("the data set doesn't exist...", file=sys.stderr)
-#         exit(1)
 
 
 def generate_exp_config(net_name, k_fold=None):

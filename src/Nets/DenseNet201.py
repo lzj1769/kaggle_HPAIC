@@ -4,15 +4,16 @@ import keras
 from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
-batch_size = 4
-input_shape = (1024, 1024, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/densenet201_weights_tf_dim_ordering_tf_kernels_notop.h5'
+BATCH_SIZE = 16
+INPUT_SHAPE = (512, 512, 3)
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base DenseNet121-trained model
-    base_model = DenseNet201(weights=weights,
+    base_model = DenseNet201(weights=WEIGHTS_PATH,
                              include_top=False,
-                             input_shape=input_shape,
+                             input_shape=INPUT_SHAPE,
                              backend=keras.backend,
                              layers=keras.layers,
                              models=keras.models,

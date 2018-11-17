@@ -32,6 +32,6 @@ export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
 ### that means for 80 minutes you could also use this: 1:20
 #BSUB -W 120:00
 
-#BSUB -M 102400 -S 100 -P izkf -R select[hpcwork]
+#BSUB -M 500000 -S 100 -P izkf -R select[hpcwork]
 
 python pre_processing.py

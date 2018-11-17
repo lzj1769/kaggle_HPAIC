@@ -4,15 +4,16 @@ import keras
 from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
-batch_size = 8
-input_shape = (512, 512, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_large_no_top.h5'
+BATCH_SIZE = 8
+INPUT_SHAPE = (512, 512, 3)
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base DenseNet121-trained model
-    base_model = NASNetLarge(weights=weights,
+    base_model = NASNetLarge(weights=WEIGHTS_PATH,
                              include_top=False,
-                             input_shape=input_shape,
+                             input_shape=INPUT_SHAPE,
                              backend=keras.backend,
                              layers=keras.layers,
                              models=keras.models,

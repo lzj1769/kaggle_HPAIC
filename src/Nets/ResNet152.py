@@ -24,11 +24,9 @@ import keras.backend as K
 
 sys.setrecursionlimit(3000)
 
-WEIGHTS_PATH = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf.h5'
-WEIGHTS_PATH_NO_TOP = 'https://github.com/adamcasson/resnet152/releases/download/v0.1/resnet152_weights_tf_notop.h5'
-
-batch_size = 8
-input_shape = (512, 512, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet152_weights_tf_notop.h5'
+BATCH_SIZE = 8
+INPUT_SHAPE = (512, 512, 3)
 
 
 class Scale(Layer):
@@ -108,7 +106,7 @@ def identity_block(input_tensor, kernel_size, filters, stage, block):
     block -- 'a','b'..., current block label, used for generating layer names
 
     """
-    eps = 1.1e-5
+    eps = K.epsilon()
 
     if K.image_dim_ordering() == 'tf':
         bn_axis = 3
@@ -194,8 +192,7 @@ def conv_block(input_tensor, kernel_size, filters, stage, block, strides=(2, 2))
 
 def ResNet152(include_top=True, weights=None,
               input_tensor=None, input_shape=None,
-              large_input=False, pooling=None,
-              classes=1000):
+              pooling=None, classes=1000):
     """Instantiate the ResNet152 architecture.
 
     Keyword arguments:
@@ -235,15 +232,6 @@ def ResNet152(include_top=True, weights=None,
     ValueError: in case of invalid argument for `weights`,
         or invalid input shape.
     """
-    if weights not in {'imagenet', None}:
-        raise ValueError('The `weights` argument should be either '
-                         '`None` (random initialization) or `imagenet` '
-                         '(pre-training on ImageNet).')
-
-    if weights == 'imagenet' and include_top and classes != 1000:
-        raise ValueError('If using `weights` as imagenet with `include_top`'
-                         ' as true, `classes` should be 1000')
-
     eps = 1.1e-5
 
     if input_tensor is None:
@@ -308,44 +296,17 @@ def ResNet152(include_top=True, weights=None,
     model = Model(inputs, x, name='resnet152')
 
     # load weights
-    if weights == 'imagenet':
-        if include_top:
-            weights_path = get_file('resnet152_weights_tf.h5',
-                                    WEIGHTS_PATH,
-                                    cache_subdir='models',
-                                    md5_hash='cdb18a2158b88e392c0905d47dcef965')
-        else:
-            weights_path = get_file('resnet152_weights_tf_notop.h5',
-                                    WEIGHTS_PATH_NO_TOP,
-                                    cache_subdir='models',
-                                    md5_hash='4a90dcdafacbd17d772af1fb44fc2660')
-        model.load_weights(weights_path, by_name=True)
-        if K.backend() == 'theano':
-            layer_utils.convert_all_kernels_in_model(model)
-            if include_top:
-                maxpool = model.get_layer(name='avg_pool')
-                shape = maxpool.output_shape[1:]
-                dense = model.get_layer(name='fc1000')
-                layer_utils.convert_dense_weights_data_format(dense, shape, 'channels_first')
+    model.load_weights(weights, by_name=True)
 
-        if K.image_data_format() == 'channels_first' and K.backend() == 'tensorflow':
-            warnings.warn('You are using the TensorFlow backend, yet you '
-                          'are using the Theano '
-                          'image data format convention '
-                          '(`image_data_format="channels_first"`). '
-                          'For best performance, set '
-                          '`image_data_format="channels_last"` in '
-                          'your Keras config '
-                          'at ~/.keras/keras.json.')
     return model
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base pre-trained model
 
-    base_model = ResNet152(weights=weights,
+    base_model = ResNet152(weights=WEIGHTS_PATH,
                            include_top=False,
-                           input_shape=input_shape,
+                           input_shape=INPUT_SHAPE,
                            pooling='avg')
 
     # add a global spatial average pooling layer

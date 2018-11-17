@@ -28,13 +28,10 @@ import sys
 
 sys.setrecursionlimit(3000)
 
-WEIGHTS_PATH_TH = 'https://dl.dropboxusercontent.com/s/rrp56zm347fbrdn/resnet101_weights_th.h5?dl=0'
-WEIGHTS_PATH_TF = 'https://dl.dropboxusercontent.com/s/a21lyqwgf88nz9b/resnet101_weights_tf.h5?dl=0'
-MD5_HASH_TH = '3d2e9a49d05192ce6e22200324b7defe'
-MD5_HASH_TF = '867a922efc475e9966d0f3f7b884dc15'
 
-batch_size = 4
-input_shape = (1024, 1024, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet101_weights_tf.h5'
+BATCH_SIZE = 4
+INPUT_SHAPE = (1024, 1024, 3)
 
 
 class Scale(Layer):
@@ -225,7 +222,7 @@ def conv_block(input_tensor,
 
 
 def ResNet101(include_top=True,
-              weights='imagenet',
+              weights=None,
               input_tensor=None,
               input_shape=None,
               pooling=None,
@@ -277,23 +274,7 @@ def ResNet101(include_top=True,
         ValueError: in case of invalid argument for `weights`, or invalid input
         shape.
     """
-    if weights not in {'imagenet', None}:
-        raise ValueError('The `weights` argument should be either '
-                         '`None` (random initialization) or `imagenet` '
-                         '(pre-training on ImageNet).')
-
-    if weights == 'imagenet' and include_top and classes != 1000:
-        raise ValueError('If using `weights` as imagenet with `include_top`'
-                         ' as true, `classes` should be 1000')
-
     # Determine proper input shape
-    input_shape = _obtain_input_shape(input_shape,
-                                      default_size=224,
-                                      min_size=197,
-                                      data_format=K.image_data_format(),
-                                      require_flatten=include_top,
-                                      weights=weights)
-
     if input_tensor is None:
         img_input = Input(shape=input_shape, name='data')
     else:
@@ -352,39 +333,16 @@ def ResNet101(include_top=True,
     model = Model(inputs, x, name='resnet101')
 
     # load weights
-    if weights == 'imagenet':
-        filename = 'resnet101_weights_{}.h5'.format(K.image_dim_ordering())
-        if K.backend() == 'theano':
-            path = WEIGHTS_PATH_TH
-            md5_hash = MD5_HASH_TH
-        else:
-            path = WEIGHTS_PATH_TF
-            md5_hash = MD5_HASH_TF
-        weights_path = get_file(
-            fname=filename,
-            origin=path,
-            cache_subdir='models',
-            md5_hash=md5_hash,
-            hash_algorithm='md5')
-        model.load_weights(weights_path, by_name=True)
+    model.load_weights(weights, by_name=True)
 
-        if K.image_data_format() == 'channels_first' and K.backend() == 'tensorflow':
-            warnings.warn('You are using the TensorFlow backend, yet you '
-                          'are using the Theano '
-                          'image data format convention '
-                          '(`image_data_format="channels_first"`). '
-                          'For best performance, set '
-                          '`image_data_format="channels_last"` in '
-                          'your Keras config '
-                          'at ~/.keras/keras.json.')
     return model
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base pre-trained model
-    base_model = ResNet101(weights=weights,
+    base_model = ResNet101(weights=WEIGHTS_PATH,
                            include_top=False,
-                           input_shape=input_shape,
+                           input_shape=INPUT_SHAPE,
                            pooling='avg')
 
     # add a global spatial average pooling layer

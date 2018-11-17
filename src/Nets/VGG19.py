@@ -7,15 +7,16 @@ from keras.layers import Dense, Dropout, BatchNormalization
 
 sys.setrecursionlimit(3000)
 
-batch_size = 8
-input_shape = (1024, 1024, 3)
+WEIGHTS_PATH = '/home/rs619065/.keras/models/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5'
+BATCH_SIZE = 8
+INPUT_SHAPE = (1024, 1024, 3)
 
 
-def build_model(num_classes, weights='imagenet'):
+def build_model(num_classes):
     # create the base pre-trained model
-    base_model = VGG19(weights=weights,
+    base_model = VGG19(weights=WEIGHTS_PATH,
                        include_top=False,
-                       input_shape=input_shape,
+                       input_shape=INPUT_SHAPE,
                        backend=keras.backend,
                        layers=keras.layers,
                        models=keras.models,
