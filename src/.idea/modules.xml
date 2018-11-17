@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../SingleCellOpenChromatin/.idea/SingleCellOpenChromatin.iml" filepath="$PROJECT_DIR$/../../SingleCellOpenChromatin/.idea/SingleCellOpenChromatin.iml" />
       <module fileurl="file://$USER_HOME$/Github/keras_experiments/.idea/keras_experiments.iml" filepath="$USER_HOME$/Github/keras_experiments/.idea/keras_experiments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../reg-gen/.idea/reg-gen.iml" filepath="$PROJECT_DIR$/../../reg-gen/.idea/reg-gen.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/src.iml" filepath="$PROJECT_DIR$/.idea/src.iml" />
     </modules>
   </component>

@@ -65,5 +65,5 @@ for i in range(df.shape[0]):
     f["img"][i, ...] = img
     labels.append(map(int, df.iloc[i][1].split(" ")))
 
-f.create_dataset(name="label", data=mlb.fit_transform(labels))
+f.create_dataset(name="label", data=mlb.fit_transform(labels), dtype=np.uint8)
 f.close()

@@ -42,9 +42,6 @@ class ImageDataGenerator(Sequence):
         self.learning_phase = learning_phase
         self.kwargs = kwargs
 
-        if self.shuffle:
-            np.random.shuffle(self.indexes)
-
         if indexes is not None:
             self.indexes = indexes
         else:
@@ -56,6 +53,9 @@ class ImageDataGenerator(Sequence):
             self.input_shape = (self.x.shape[1], self.x.shape[2], self.x.shape[3])
 
         self.n_samples = len(self.indexes)
+
+        if self.shuffle:
+            np.random.shuffle(self.indexes)
 
     def __len__(self):
         if self.learning_phase:
@@ -72,7 +72,7 @@ class ImageDataGenerator(Sequence):
 
         batch_x = self.generate_data(indexes)
         if self.y is not None:
-            batch_y = self.y[indexes].astype(K.floatx())
+            batch_y = self.y[indexes]
             return batch_x, batch_y
         else:
             return batch_x

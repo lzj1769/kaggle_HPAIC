@@ -12,40 +12,40 @@ from albumentations import DualTransform
 from configure import *
 
 
-# def load_data(dataset=None):
-#     if dataset == "test":
-#         img = np.load(TEST_DATA)['img']
-#
-#         return img
-#
-#     elif dataset == "train":
-#         img = np.load(TRAINING_DATA)['img']
-#         label = np.load(TRAINING_DATA)['label']
-#
-#         return img, label
-#
-#     else:
-#         print("the data set doesn't exist...", file=sys.stderr)
-#         exit(1)
-
-
 def load_data(dataset=None):
     if dataset == "test":
-        f = h5py.File(FULL_SIZE_TEST_DATA, "r")
-        img = f['img']
+        img = np.load(TEST_DATA)['img']
 
         return img
 
     elif dataset == "train":
-        f = h5py.File(FULL_SIZE_TRAINING_DATA, "r")
-        img = f['img']
-        label = f['label']
+        img = np.load(TRAINING_DATA)['img']
+        label = np.load(TRAINING_DATA)['label']
 
         return img, label
 
     else:
         print("the data set doesn't exist...", file=sys.stderr)
         exit(1)
+
+
+# def load_data(dataset=None):
+#     if dataset == "test":
+#         f = h5py.File(FULL_SIZE_TEST_DATA, "r")
+#         img = f['img']
+#
+#         return img
+#
+#     elif dataset == "train":
+#         f = h5py.File(FULL_SIZE_TRAINING_DATA, "r")
+#         img = f['img']
+#         label = f['label']
+#
+#         return img, label
+#
+#     else:
+#         print("the data set doesn't exist...", file=sys.stderr)
+#         exit(1)
 
 
 def generate_exp_config(net_name, k_fold=None):

@@ -24,7 +24,7 @@ from utils import get_logs_path, get_custom_objects
 from callback import build_callbacks
 from configure import *
 
-from albumentations import HorizontalFlip, ShiftScaleRotate, RandomBrightness
+from albumentations import HorizontalFlip, ShiftScaleRotate
 
 
 def parse_args():
@@ -33,13 +33,13 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("--epochs", type=int, default=100,
+    parser.add_argument("--epochs", type=int, default=2,
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
     parser.add_argument("--workers", type=int, default=32,
                         help="number of cores for training. DEFAULT: 32")
-    parser.add_argument("--verbose", type=int, default=2,
+    parser.add_argument("--verbose", type=int, default=1,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
@@ -105,25 +105,23 @@ def main():
 
     # set augmentation parameters
     horizontal_flip = HorizontalFlip(p=0.5)
-    shift_scale_rotate = ShiftScaleRotate(p=0.5, scale_limit=0.2, rotate_limit=90)
-    random_brightness = RandomBrightness(p=0.2, limit=0.2)
+    shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
 
     train_generator = ImageDataGenerator(x=img,
                                          y=label,
+                                         indexes=train_indexes,
                                          batch_size=batch_size,
                                          shuffle=True,
-                                         indexes=train_indexes,
                                          input_shape=input_shape,
                                          learning_phase=True,
                                          horizontal_flip=horizontal_flip,
-                                         shift_scale_rotate=shift_scale_rotate,
-                                         random_brightness=random_brightness)
+                                         shift_scale_rotate=shift_scale_rotate)
 
     valid_generator = ImageDataGenerator(x=img,
                                          y=label,
+                                         indexes=test_indexes,
                                          batch_size=batch_size,
                                          shuffle=False,
-                                         indexes=test_indexes,
                                          input_shape=input_shape,
                                          learning_phase=True)
 
@@ -143,7 +141,9 @@ def main():
                                  verbose=args.verbose,
                                  callbacks=callbacks,
                                  use_multiprocessing=True,
-                                 workers=args.workers)
+                                 workers=args.workers,
+                                 max_queue_size=32,
+                                 shuffle=False)
 
     print("complete!!")
     K.clear_session()

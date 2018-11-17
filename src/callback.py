@@ -125,9 +125,9 @@ def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
     logs_filename = os.path.join(logs_path, "{}.log".format(exp_config))
     pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
 
-    # check if the log file exists
     best = np.inf
-    if os.path.exists(logs_filename):
+    # check if the log file exists and empty
+    if os.path.exists(logs_filename) and os.stat(logs_filename).st_size > 0:
         # recover the best validation loss from logs
         df = pd.read_csv(logs_filename)
         best = np.min(df['val_loss'])
