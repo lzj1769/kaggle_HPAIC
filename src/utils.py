@@ -16,14 +16,12 @@ from configure import *
 
 def load_data(dataset=None):
     if dataset == "test":
-        f = h5py.File(FULL_SIZE_TEST_DATA, mode="r",  swmr=True)
-        img = f['img']
+        data = np.load(FULL_SIZE_TEST_DATA, mmap_mode='r')
 
-        return img
+        return data
 
     elif dataset == "train":
-        f = h5py.File("/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train.h5", mode="r", swmr=True)
-        img = f['img']
+        data = np.load(FULL_SIZE_TRAINING_DATA, mmap_mode='r')
 
         # get the targets
         df = pd.read_csv(TRAINING_DATA_CSV)
@@ -34,7 +32,7 @@ def load_data(dataset=None):
 
         target = mlb.fit_transform(target)
 
-        return img, target
+        return data, target
 
     else:
         print("the data set doesn't exist...", file=sys.stderr)

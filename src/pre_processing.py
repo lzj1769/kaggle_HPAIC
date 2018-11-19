@@ -15,13 +15,10 @@ if not os.path.exists(DATA_DIR):
 print("processing test data...", file=sys.stderr)
 
 df = pd.read_csv(SAMPLE_SUBMISSION)
-test_img = np.memmap(FULL_SIZE_TEST_DATA,
-                     dtype=np.uint8,
-                     mode='w+',
-                     shape=(df.shape[0], IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL, N_CHANNELS))
+test_img = np.empty((df.shape[0], IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL, N_CHANNELS), dtype=np.uint8)
 
 for i in range(df.shape[0]):
-    if i % 100 == 0:
+    if i % 500 == 0:
         print("processing {} images".format(i), file=sys.stderr)
 
     prefix = df.iloc[i][0]
@@ -36,15 +33,15 @@ for i in range(df.shape[0]):
 
     test_img[i] = img
 
-df = pd.read_csv(TRAINING_DATA_CSV)
+np.save(FULL_SIZE_TEST_DATA, test_img)
 
-train_img = np.memmap(FULL_SIZE_TRAINING_DATA,
-                      dtype=np.uint8,
-                      mode='w+',
-                      shape=(df.shape[0], IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL, N_CHANNELS))
+del test_img
+
+df = pd.read_csv(TRAINING_DATA_CSV)
+train_img = np.empty((df.shape[0], IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL, N_CHANNELS), dtype=np.uint8)
 
 for i in range(df.shape[0]):
-    if i % 100 == 0:
+    if i % 500 == 0:
         print("processing {} images".format(i), file=sys.stderr)
 
     prefix = df.iloc[i][0]
@@ -58,3 +55,5 @@ for i in range(df.shape[0]):
         img = cv2.resize(img, (IMAGE_WIDTH_FULL, IMAGE_HEIGHT_FULL))
 
     train_img[i] = img
+
+np.save(FULL_SIZE_TRAINING_DATA, train_img)

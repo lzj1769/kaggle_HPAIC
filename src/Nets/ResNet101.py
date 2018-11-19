@@ -12,7 +12,7 @@ https://gist.github.com/flyyufelix/65018873f8cb2bbe95f429c474aa1294#file-resnet-
 Implementation is based on Keras 2.0
 """
 from keras.layers import (
-    Input, Dense, Conv2D, MaxPooling2D, AveragePooling2D, ZeroPadding2D,
+    Input, Dense, Conv2D, MaxPooling2D, ZeroPadding2D,
     Flatten, Activation, GlobalAveragePooling2D, GlobalMaxPooling2D, add, Dropout)
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
@@ -20,10 +20,6 @@ from keras import initializers
 from keras.engine import Layer, InputSpec
 from keras.engine.topology import get_source_inputs
 from keras import backend as K
-from keras_applications.imagenet_utils import _obtain_input_shape
-from keras.utils.data_utils import get_file
-
-import warnings
 import sys
 
 sys.setrecursionlimit(3000)

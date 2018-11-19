@@ -64,11 +64,7 @@ class ImageDataGenerator(Sequence):
         batch_x = self.generate_data(indexes)
 
         if self.y is not None:
-            batch_y = np.empty(shape=(self.batch_size, self.y.shape[1]), dtype=K.floatx())
-
-            for i, index in enumerate(indexes):
-                batch_y[i] = self.y[index]
-
+            batch_y = self.y[indexes].astype(K.floatx())
             return batch_x, batch_y
 
         else:
@@ -82,7 +78,7 @@ class ImageDataGenerator(Sequence):
                            dtype=K.floatx())
 
         for i, index in enumerate(indexes):
-            img = self.x[index]
+            img = np.copy(self.x[index])
 
             if self.kwargs:
                 for key, aug in self.kwargs.items():
@@ -105,6 +101,10 @@ class ImageDataGenerator(Sequence):
         # Updates indexes after each epoch
         if self.shuffle:
             np.random.shuffle(self.indexes)
+
+    def get_indexes(self):
+        return self.indexes
+
 
 # class ImageDataGeneratorFromDirectory(Sequence):
 #     """

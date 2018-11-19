@@ -137,7 +137,7 @@ def main():
                                  callbacks=callbacks,
                                  use_multiprocessing=True,
                                  workers=args.workers,
-                                 max_queue_size=100)
+                                 max_queue_size=20)
 
     print("complete!!")
     K.clear_session()
