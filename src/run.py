@@ -54,8 +54,8 @@ def run_training():
     net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152', 'VGG16', 'VGG19',
                      'Xception', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2',
                      'InceptionV3', 'NASNetLarge', 'NASNetMobile']
-    net_name_list = ['ResNet50']
-    kfold_list = [0]
+    net_name_list = ['ResNet18', 'VGG16']
+    kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
         logs_path = get_logs_path(net_name=net_name)
@@ -79,7 +79,7 @@ def run_training():
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
             command += "-W 8:00 -M 120000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
-            # command = './train.zsh'
+            command = './train.zsh'
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

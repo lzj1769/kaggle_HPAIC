@@ -88,9 +88,6 @@ class ImageDataGenerator(Sequence):
             if self.input_shape[2] == 3:
                 img = img[:, :, :3]
 
-            if (img.shape[0], img.shape[1]) != (self.input_shape[0], self.input_shape[1]):
-                img = cv2.resize(img, (self.input_shape[0], self.input_shape[1]))
-
             batch_x[i] = img
 
         batch_x /= 255.

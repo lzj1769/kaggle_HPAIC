@@ -4,6 +4,7 @@ import argparse
 import tensorflow as tf
 import importlib
 import json
+import sys
 
 from keras.models import load_model
 from keras.losses import binary_crossentropy
@@ -28,13 +29,13 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("--epochs", type=int, default=2,
+    parser.add_argument("--epochs", type=int, default=100,
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
     parser.add_argument("--workers", type=int, default=32,
                         help="number of cores for training. DEFAULT: All cpus")
-    parser.add_argument("--verbose", type=int, default=1,
+    parser.add_argument("--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
@@ -52,6 +53,7 @@ def main():
 
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
+    train_data = net.TRAINING_DATA
 
     # Training models with weights merge on CPU
     with tf.device('/cpu:0'):
@@ -81,18 +83,19 @@ def main():
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
     parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
-    model.summary()
+    # model.summary()
 
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
 
+    img = load_data(data_path=train_data, image_size=(input_shape[0], input_shape[1]))
+    target = get_target()
+
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
     split = np.load(split_filename)
 
-    train_indexes = split['train_indexes'].tolist()
-    test_indexes = split['test_indexes'].tolist()
-
-    img, target = load_data("train")
+    train_indexes = split['train_indexes']
+    test_indexes = split['test_indexes']
 
     print("Training model on {} samples, validate on {} samples".format(len(train_indexes),
                                                                         len(test_indexes),

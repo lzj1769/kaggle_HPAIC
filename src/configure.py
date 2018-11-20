@@ -2,18 +2,28 @@ N_TRAINING = 31072
 N_TEST = 11702
 N_LABELS = 28
 
-IMAGE_WIDTH = 512
-IMAGE_HEIGHT = 512
+IMAGE_WIDTH_512 = 512
+IMAGE_HEIGHT_512 = 512
+IMAGE_WIDTH_1024 = 1024
+IMAGE_HEIGHT_1024 = 1024
+IMAGE_WIDTH_2048 = 2048
+IMAGE_HEIGHT_2048 = 2048
 N_CHANNELS = 4
 
-IMAGE_WIDTH_FULL = 2048
-IMAGE_HEIGHT_FULL = 2048
 
-FULL_SIZE_TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
-FULL_SIZE_TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
-FULL_SIZE_DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
-FULL_SIZE_TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train.npy"
-FULL_SIZE_TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test.npy"
+DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
+
+TRAINING_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_512.npy"
+TEST_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_512.npy"
+
+TRAINING_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
+TEST_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
+
+TRAINING_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
+TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_2048.npy"
+
+TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
+TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
 
 K_FOLD = 5
 
@@ -34,15 +44,8 @@ FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.01, 0.222493888, 0.028806584,
             0.01]
 
-TRAINING_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/train"
-TEST_INPUT_DIR = "/home/rwth0233/kaggle_HPAIC/input/test"
-
 SAMPLE_SUBMISSION = "/home/rwth0233/kaggle_HPAIC/input/sample_submission.csv"
 TRAINING_DATA_CSV = "/home/rwth0233/kaggle_HPAIC/input/train.csv"
-
-DATA_DIR = "/home/rwth0233/kaggle_HPAIC/data"
-TRAINING_DATA = "/home/rwth0233/kaggle_HPAIC/data/train.npz"
-TEST_DATA = "/home/rwth0233/kaggle_HPAIC/data/test.npz"
 
 MODEL_WEIGHTS_PATH = "/work/rwth0233/kaggle_HPAIC/model"
 MODEL_LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"

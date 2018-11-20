@@ -1,9 +1,7 @@
 from __future__ import print_function, division
 import os
-import sys
 import numpy as np
 import pandas as pd
-import h5py
 
 from sklearn.metrics import f1_score
 from sklearn.preprocessing import MultiLabelBinarizer
@@ -14,29 +12,23 @@ from albumentations import DualTransform
 from configure import *
 
 
-def load_data(dataset=None):
-    if dataset == "test":
-        data = np.load(FULL_SIZE_TEST_DATA, mmap_mode='r')
-
-        return data
-
-    elif dataset == "train":
-        data = np.load(FULL_SIZE_TRAINING_DATA, mmap_mode='r')
-
-        # get the targets
-        df = pd.read_csv(TRAINING_DATA_CSV)
-        mlb = MultiLabelBinarizer(classes=range(N_LABELS))
-        target = list()
-        for i in range(df.shape[0]):
-            target.append(map(int, df.iloc[i][1].split(" ")))
-
-        target = mlb.fit_transform(target)
-
-        return data, target
-
+def load_data(data_path=None, image_size=None):
+    if image_size in [(IMAGE_WIDTH_512, IMAGE_HEIGHT_512), (IMAGE_WIDTH_1024, IMAGE_HEIGHT_2048)]:
+        data = np.load(data_path)
     else:
-        print("the data set doesn't exist...", file=sys.stderr)
-        exit(1)
+        data = np.load(data_path, mmap_mode='r')
+
+    return data
+
+
+def get_target():
+    df = pd.read_csv(TRAINING_DATA_CSV)
+    mlb = MultiLabelBinarizer(classes=range(N_LABELS))
+    target = list()
+    for i in range(df.shape[0]):
+        target.append(map(int, df.iloc[i][1].split(" ")))
+
+    return mlb.fit_transform(target)
 
 
 def generate_exp_config(net_name, k_fold=None):

@@ -28,6 +28,8 @@ import sys
 sys.setrecursionlimit(3000)
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet34_imagenet_1000_no_top.h5'
+TRAINING_DATA = "/home/rwth0233/kaggle_HPAIC/data/train_2048.npy"
+TEST_DATA = "/home/rwth0233/kaggle_HPAIC/data/test_2048.npy"
 BATCH_SIZE = 4
 INPUT_SHAPE = (2048, 2048, 3)
 
