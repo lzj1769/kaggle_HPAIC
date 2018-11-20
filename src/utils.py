@@ -12,11 +12,12 @@ from albumentations import DualTransform
 from configure import *
 
 
-def load_data(data_path=None, image_size=None):
-    if image_size in [(IMAGE_WIDTH_512, IMAGE_HEIGHT_512), (IMAGE_WIDTH_1024, IMAGE_HEIGHT_2048)]:
-        data = np.load(data_path)
-    else:
+def load_data(data_path=None):
+    if "2048" in data_path:
         data = np.load(data_path, mmap_mode='r')
+
+    else:
+        data = np.load(data_path)
 
     return data
 

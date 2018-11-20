@@ -51,13 +51,14 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152', 'VGG16', 'VGG19',
-                     'Xception', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2',
-                     'InceptionV3', 'NASNetLarge', 'NASNetMobile']
-    net_name_list = ['ResNet18', 'VGG16']
+    net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
+    net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
+                          'InceptionResNetV2', 'NASNetMobile']
+    net_name_list_512 = ['ResNet152', 'NASNetLarge', 'DenseNet201']
+
     kfold_list = [0, 1, 2, 3, 4]
 
-    for net_name in net_name_list:
+    for net_name in net_name_list_2048:
         logs_path = get_logs_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)
@@ -78,8 +79,8 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 8:00 -M 120000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
-            command = './train.zsh'
+            command += "-W 24:00 -M 102400 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            # command = './train.zsh'
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

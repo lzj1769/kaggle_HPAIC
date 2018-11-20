@@ -139,7 +139,7 @@ def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
                                        verbose=1,
                                        save_best_only=True)
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 7,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 22,
                                           monitor='val_loss',
                                           patience=20,
                                           verbose=1,

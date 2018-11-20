@@ -6,8 +6,8 @@ from keras.layers import Dense, Dropout, BatchNormalization
 from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_mobile_no_top.h5'
-TRAINING_DATA = "/home/rwth0233/kaggle_HPAIC/data/train_1024.npy"
-TEST_DATA = "/home/rwth0233/kaggle_HPAIC/data/test_1024.npy"
+TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
+TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
 BATCH_SIZE = 12
 INPUT_SHAPE = (1024, 1024, 3)
 

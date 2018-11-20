@@ -76,6 +76,7 @@ def main():
             f.close()
         else:
             model = net.build_model(num_classes=N_LABELS)
+            model.summary()
             optimizer = SGD(lr=1e-02, momentum=0.9, decay=1e-04, nesterov=True)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
@@ -83,12 +84,10 @@ def main():
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
     parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
-    # model.summary()
-
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
 
-    img = load_data(data_path=train_data, image_size=(input_shape[0], input_shape[1]))
+    img = load_data(data_path=train_data)
     target = get_target()
 
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
