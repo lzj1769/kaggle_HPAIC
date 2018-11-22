@@ -8,8 +8,9 @@ IMAGE_WIDTH_1024 = 1024
 IMAGE_HEIGHT_1024 = 1024
 IMAGE_WIDTH_2048 = 2048
 IMAGE_HEIGHT_2048 = 2048
-N_CHANNELS = 4
 
+N_CHANNELS = 4
+K_FOLD = 5
 
 DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
 
@@ -25,7 +26,9 @@ TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test
 TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
 TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
 
-K_FOLD = 5
+SAMPLE_SUBMISSION = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/sample_submission.csv"
+TRAINING_DATA_CSV = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train.csv"
+MODEL_WEIGHTS_PATH = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/model"
 
 THRESHOLD = [0.5, 0.4, 0.4, 0.4, 0.4, 0.4,
              0.4, 0.4, 0.2, 0.2, 0.2, 0.4,
@@ -44,19 +47,15 @@ FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.01, 0.222493888, 0.028806584,
             0.01]
 
-SAMPLE_SUBMISSION = "/home/rwth0233/kaggle_HPAIC/input/sample_submission.csv"
-TRAINING_DATA_CSV = "/home/rwth0233/kaggle_HPAIC/input/train.csv"
+MODEL_LOG_PATH = "/home/rs619065/HPAIC/logs"
+MODEL_ACC_LOSS_PATH = "/home/rs619065/HPAIC/acc_loss"
 
-MODEL_WEIGHTS_PATH = "/work/rwth0233/kaggle_HPAIC/model"
-MODEL_LOG_PATH = "/home/rs619065/kaggle_HPAIC/logs"
-MODEL_ACC_LOSS_PATH = "/home/rs619065/kaggle_HPAIC/acc_loss"
+SUBMISSION_PATH = "/home/rs619065/HPAIC/submission"
 
-SUBMISSION_PATH = "/home/rs619065/kaggle_HPAIC/submission"
+TRAINING_OUTPUT_PATH = "/home/rs619065/HPAIC/training"
+TEST_OUTPUT_PATH = "/home/rs619065/HPAIC/test"
 
-TRAINING_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/training"
-TEST_OUTPUT_PATH = "/home/rs619065/kaggle_HPAIC/test"
-
-VISUALIZATION_PATH = "/home/rs619065/kaggle_HPAIC/visualization"
+VISUALIZATION_PATH = "/home/rs619065/HPAIC/visualization"
 
 LABEL_MAP = {
     0: "Nucleoplasm",
