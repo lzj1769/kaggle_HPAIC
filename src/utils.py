@@ -123,16 +123,16 @@ class RandomRotate90(DualTransform):
         uint8, float32
     """
 
-    def __init__(self, factor):
-        super(RandomRotate90, self).__init__()
+    def __init__(self, factor, p=1.0):
+        super(RandomRotate90, self).__init__(p)
         self.factor = factor
 
-    def apply(self, img, factor=0, **params):
+    def apply(self, img, **params):
         """
         Args:
             factor (int): number of times the input will be rotated by 90 degrees.
         """
-        return np.ascontiguousarray(np.rot90(img, factor))
+        return np.ascontiguousarray(np.rot90(img, self.factor))
 
     def get_params(self):
         return {'factor': self.factor}
@@ -141,7 +141,7 @@ class RandomRotate90(DualTransform):
         return F.bbox_rot90(bbox, factor, **params)
 
 
-def get_test_time_augmentation_generators(image, batch_size, output_shape, n_channels):
+def get_test_time_augmentation_generators(image, batch_size=None, indexes=None, input_shape=None):
     from generator import ImageDataGenerator
 
     horizontal_flip = HorizontalFlip(p=1.0)
@@ -153,57 +153,58 @@ def get_test_time_augmentation_generators(image, batch_size, output_shape, n_cha
     generator_1 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels)
+                                     indexes=indexes,
+                                     input_shape=input_shape,
+                                     learning_phase=False)
 
     generator_2 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      random_rotate_90_1=random_rotate_90_1)
 
     generator_3 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      random_rotate_90_2=random_rotate_90_2)
 
     generator_4 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      random_rotate_90_3=random_rotate_90_3)
     generator_5 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      horizontal_flip=horizontal_flip)
 
     generator_6 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      horizontal_flip=horizontal_flip,
                                      random_rotate_90_1=random_rotate_90_1)
 
     generator_7 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      horizontal_flip=horizontal_flip,
                                      random_rotate_90_2=random_rotate_90_2)
 
     generator_8 = ImageDataGenerator(x=image,
                                      batch_size=batch_size,
                                      shuffle=False,
-                                     output_shape=output_shape,
-                                     n_channels=n_channels,
+                                     input_shape=input_shape,
+                                     learning_phase=False,
                                      horizontal_flip=horizontal_flip,
                                      random_rotate_90_3=random_rotate_90_3)
 

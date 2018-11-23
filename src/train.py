@@ -46,7 +46,7 @@ def main():
     print("load the model configuration...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
 
-    exp_config = generate_exp_config(args.net_name, args.k_fold)
+    exp_config = generate_exp_config(net_name=args.net_name, k_fold=args.k_fold)
     weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
@@ -60,7 +60,7 @@ def main():
         weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
 
         if os.path.exists(weights_filename):
-            custom_objects = get_custom_objects(args.net_name)
+            custom_objects = get_custom_objects(net_name=args.net_name)
             f = h5dict(weights_filename, 'r')
             training_config = f.get('training_config')
 
@@ -69,7 +69,7 @@ def main():
             optimizer = optimizers.deserialize(optimizer_config,
                                                custom_objects=custom_objects)
 
-            model = load_model(weights_filename,
+            model = load_model(filepath=weights_filename,
                                custom_objects=custom_objects,
                                compile=False)
 
@@ -91,7 +91,7 @@ def main():
     target = get_target()
 
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
-    split = np.load(split_filename)
+    split = np.load(file=split_filename)
 
     train_indexes = split['train_indexes']
     test_indexes = split['test_indexes']
@@ -123,7 +123,7 @@ def main():
                                          learning_phase=True)
 
     logs_path = get_logs_path(net_name=args.net_name)
-    acc_loss_path = get_acc_loss_path(args.net_name)
+    acc_loss_path = get_acc_loss_path(net_name=args.net_name)
     callbacks = build_callbacks(model=model,
                                 weights_path=weights_path,
                                 logs_path=logs_path,

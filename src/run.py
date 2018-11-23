@@ -30,9 +30,12 @@ def main():
 
 
 def run_predict():
-    net_name_list = ['ResNet152']
+    net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
+    net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
+                          'InceptionResNetV2', 'NASNetMobile']
+    net_name_list_512 = ['DenseNet201']
 
-    for net_name in net_name_list:
+    for net_name in net_name_list_512:
         training_predict_path = get_training_predict_path(net_name)
         test_predict_path = get_test_predict_path(net_name)
 
@@ -45,8 +48,7 @@ def run_predict():
         job_name = net_name
         command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                   "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 8:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
-        # command = './predict.zsh'
+        command += "-W 24:00 -M 60000 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
         os.system(command + " " + net_name)
 
 
@@ -57,7 +59,7 @@ def run_training():
     net_name_list_512 = ['DenseNet201', 'NASNetLarge', 'ResNet152']
     kfold_list = [0, 1, 2, 3, 4]
 
-    for net_name in net_name_list_512:
+    for net_name in net_name_list_1024:
         logs_path = get_logs_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)

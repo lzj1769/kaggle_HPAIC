@@ -16,12 +16,13 @@ from utils import get_weights_path
 from utils import get_training_predict_path
 from utils import get_test_predict_path
 from utils import get_custom_objects
-from generator import ImageDataGenerator
+from utils import get_target
+from utils import get_test_time_augmentation_generators
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name", type=str, default=None, help='name of convolutional neural network')
+    parser.add_argument("--net_name", type=str, default=None, help='name of convolutional neural network. DEFAULT: None')
     parser.add_argument("--workers", type=int, default=32, help="number of cores for training. DEFAULT: 32")
     parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
@@ -29,89 +30,97 @@ def parse_args():
 
 def predict_validation(args):
     net = importlib.import_module("Nets." + args.net_name)
-    batch_size = net.batch_size
-    input_shape = net.input_shape
     weights_path = get_weights_path(net_name=args.net_name)
+
+    batch_size = net.BATCH_SIZE
+    input_shape = net.INPUT_SHAPE
+    train_data = net.TRAINING_DATA
 
     print("load training data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)
 
-    img, label = load_data(dataset="train")
+    img = load_data(data_path=train_data)
+    target = get_target()
 
-    training_pred = np.zeros((N_TRAINING, N_LABELS), dtype=np.float32)
+    training_pred = np.zeros(shape=(N_TRAINING, N_LABELS), dtype=np.float32)
+
     for fold in range(K_FOLD):
-        exp_config = generate_exp_config(args.net_name, fold)
+        exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
         weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
         assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-        custom_objects = get_custom_objects(args.net_name)
+        custom_objects = get_custom_objects(net_name=args.net_name)
         model = load_model(filepath=weights_filename, custom_objects=custom_objects)
 
         split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(fold))
-        split = np.load(split_filename)
+        split = np.load(file=split_filename)
 
         valid_indexes = split['test_indexes']
 
         print("validate the model on {} samples".format(valid_indexes.shape[0]), file=sys.stderr)
-        valid_generators = ImageDataGenerator(x=img[valid_indexes],
-                                              batch_size=batch_size,
-                                              shuffle=False,
-                                              output_shape=(input_shape[0], input_shape[1]),
-                                              n_channels=input_shape[2])
 
-        valid_pred = model.predict_generator(valid_generators,
-                                             use_multiprocessing=True,
-                                             workers=args.workers,
-                                             verbose=args.verbose)
+        valid_generators = get_test_time_augmentation_generators(image=img,
+                                                                 batch_size=batch_size,
+                                                                 indexes=valid_indexes,
+                                                                 input_shape=input_shape)
+
+        valid_pred = np.zeros(shape=(valid_indexes.shape[0], N_LABELS), dtype=np.float32)
+
+        for valid_generator in valid_generators:
+            valid_pred += model.predict_generator(generator=valid_generator,
+                                                  use_multiprocessing=True,
+                                                  workers=args.workers,
+                                                  verbose=args.verbose)
+
+        valid_pred /= len(valid_generators)
 
         for i, index in enumerate(valid_indexes):
             training_pred[index] = valid_pred[i]
 
-    training_predict_path = get_training_predict_path(args.net_name)
+    training_predict_path = get_training_predict_path(net_name=args.net_name)
     filename = os.path.join(training_predict_path, "{}.npz".format(args.net_name))
-    np.savez(file=filename, pred=training_pred, label=label)
-
-    del img, label
+    np.savez(file=filename, pred=training_pred, label=target)
 
 
 def predict_test(args):
     net = importlib.import_module("Nets." + args.net_name)
-    batch_size = net.batch_size
-    input_shape = net.input_shape
     weights_path = get_weights_path(net_name=args.net_name)
+
+    batch_size = net.BATCH_SIZE
+    input_shape = net.INPUT_SHAPE
+    test_data = net.TEST_DATA
 
     print("load test data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)
 
-    x_test = load_data(dataset="test")
-    test_generators = ImageDataGenerator(x=x_test,
-                                         batch_size=batch_size,
-                                         shuffle=False,
-                                         output_shape=(input_shape[0], input_shape[1]),
-                                         n_channels=input_shape[2])
+    img = load_data(data_path=test_data)
+    test_generators = get_test_time_augmentation_generators(image=img,
+                                                            batch_size=batch_size,
+                                                            input_shape=input_shape)
 
-    test_pred = np.zeros((x_test.shape[0], N_LABELS), dtype=np.float32)
+    test_pred = np.zeros(shape=(img.shape[0], N_LABELS), dtype=np.float32)
     for fold in range(K_FOLD):
         print("predicting for fold {}...\n".format(fold), file=sys.stderr)
 
-        exp_config = generate_exp_config(args.net_name, fold)
+        exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
         weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
         assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-        custom_objects = get_custom_objects(args.net_name)
+        custom_objects = get_custom_objects(net_name=args.net_name)
         model = load_model(filepath=weights_filename, custom_objects=custom_objects)
 
-        test_pred += model.predict_generator(test_generators,
-                                             use_multiprocessing=True,
-                                             workers=args.workers,
-                                             verbose=args.verbose)
+        for test_generator in test_generators:
+            test_pred += model.predict_generator(generator=test_generator,
+                                                 use_multiprocessing=True,
+                                                 workers=args.workers,
+                                                 verbose=args.verbose)
 
-    test_pred /= K_FOLD
+    test_pred /= (K_FOLD * len(test_generators))
 
-    test_predict_path = get_test_predict_path(args.net_name)
+    test_predict_path = get_test_predict_path(net_name=args.net_name)
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
     np.savez(file=filename, pred=test_pred)
 
 
 if __name__ == '__main__':
     arguments = parse_args()
-    predict_validation(arguments)
-    predict_test(arguments)
+    predict_validation(args=arguments)
+    predict_test(args=arguments)
