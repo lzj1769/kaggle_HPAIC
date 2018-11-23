@@ -56,10 +56,10 @@ def run_training():
     net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
     net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
                           'InceptionResNetV2', 'NASNetMobile']
-    net_name_list_512 = ['DenseNet201', 'NASNetLarge', 'ResNet152']
+    net_name_list_512 = ['NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
-    for net_name in net_name_list_1024:
+    for net_name in net_name_list_512:
         logs_path = get_logs_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)

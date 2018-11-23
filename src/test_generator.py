@@ -93,9 +93,17 @@ if args.tta:
 
     img = load_data(data_path=TRAINING_DATA_2048)
 
+    split_filename = os.path.join(DATA_DIR, "KFold_0.npz")
+    split = np.load(file=split_filename)
+
+    valid_indexes = split['test_indexes']
+
     valid_generators = get_test_time_augmentation_generators(image=img,
                                                              batch_size=8,
+                                                             indexes=valid_indexes,
                                                              input_shape=(2048, 2048, 3))
+    print(len(valid_generators[0]))
+    exit(0)
 
     prefix = df.iloc[2][0]
     r_img = Image.open(os.path.join(TRAINING_INPUT_DIR, "{}_red.tif".format(prefix)))

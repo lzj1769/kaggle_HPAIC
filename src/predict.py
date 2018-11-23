@@ -58,9 +58,8 @@ def predict_validation(args):
 
         print("validate the model on {} samples".format(valid_indexes.shape[0]), file=sys.stderr)
 
-        valid_generators = get_test_time_augmentation_generators(image=img,
+        valid_generators = get_test_time_augmentation_generators(image=img[valid_indexes],
                                                                  batch_size=batch_size,
-                                                                 indexes=valid_indexes,
                                                                  input_shape=input_shape)
 
         valid_pred = np.zeros(shape=(valid_indexes.shape[0], N_LABELS), dtype=np.float32)
