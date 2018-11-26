@@ -77,7 +77,7 @@ def main():
         else:
             model = net.build_model(num_classes=N_LABELS)
             model.summary()
-            optimizer = SGD(lr=1e-02, momentum=0.9, decay=1e-04, nesterov=True)
+            optimizer = SGD(lr=1e-02, momentum=0.9, nesterov=True)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 

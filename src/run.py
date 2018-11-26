@@ -59,7 +59,7 @@ def run_training():
     net_name_list_512 = ['NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
-    for net_name in net_name_list_512:
+    for net_name in net_name_list_1024:
         logs_path = get_logs_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)

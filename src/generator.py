@@ -3,7 +3,6 @@ from __future__ import division
 
 import numpy as np
 import math
-import cv2
 from keras.utils import Sequence
 import keras.backend as K
 
@@ -53,9 +52,9 @@ class ImageDataGenerator(Sequence):
 
     def __len__(self):
         if self.learning_phase:
-            return math.floor(self.n_samples / self.batch_size)
+            return int(math.floor(self.n_samples / self.batch_size))
         else:
-            return math.ceil(self.n_samples / self.batch_size)
+            return int(math.ceil(self.n_samples / self.batch_size))
 
     def __getitem__(self, index):
         # Generate indexes of the batch
@@ -74,7 +73,7 @@ class ImageDataGenerator(Sequence):
         """
         Generates data containing batch_size samples' # X : (n_samples, IMAGE_HEIGHT, IMAGE_WIDTH, n_channels)
         """
-        batch_x = np.empty(shape=(self.batch_size, self.input_shape[0], self.input_shape[1], self.input_shape[2]),
+        batch_x = np.empty(shape=(len(indexes), self.input_shape[0], self.input_shape[1], self.input_shape[2]),
                            dtype=K.floatx())
 
         for i, index in enumerate(indexes):
@@ -101,6 +100,9 @@ class ImageDataGenerator(Sequence):
 
     def get_indexes(self):
         return self.indexes
+
+    def get_n_samples(self):
+        return self.n_samples
 
 
 # class ImageDataGeneratorFromDirectory(Sequence):

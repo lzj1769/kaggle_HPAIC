@@ -102,7 +102,11 @@ if args.tta:
                                                              batch_size=8,
                                                              indexes=valid_indexes,
                                                              input_shape=(2048, 2048, 3))
+
     print(len(valid_generators[0]))
+    print(len(valid_generators[0].get_indexes()))
+    print(valid_generators[0][-1].shape)
+    print(valid_generators[0][-2].shape)
     exit(0)
 
     prefix = df.iloc[2][0]
