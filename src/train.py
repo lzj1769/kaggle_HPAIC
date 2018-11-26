@@ -9,13 +9,12 @@ import sys
 from keras.models import load_model
 from keras.losses import binary_crossentropy
 from keras import optimizers
-from keras.optimizers import SGD
+from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
 from keras.utils.multi_gpu_utils import multi_gpu_model
 from keras.utils.io_utils import h5dict
 import keras.backend as K
 
-from generator import ImageDataGenerator
 from callback import build_callbacks
 from utils import *
 from configure import *
@@ -77,7 +76,7 @@ def main():
         else:
             model = net.build_model(num_classes=N_LABELS)
             model.summary()
-            optimizer = SGD(lr=1e-02, momentum=0.9, nesterov=True)
+            optimizer = Adam(lr=1e-04)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 

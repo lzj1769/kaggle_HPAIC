@@ -53,13 +53,13 @@ def run_predict():
 
 
 def run_training():
-    net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
-    net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
-                          'InceptionResNetV2', 'NASNetMobile']
-    net_name_list_512 = ['NASNetLarge']
+    net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152',
+                     'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169', 'DenseNet201',
+                     'Xception', 'InceptionResNetV2', 'NASNetMobile', 'NASNetLarge',
+                     'InceptionV3']
     kfold_list = [0, 1, 2, 3, 4]
 
-    for net_name in net_name_list_1024:
+    for net_name in net_name_list:
         logs_path = get_logs_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)

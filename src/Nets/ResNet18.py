@@ -28,10 +28,10 @@ import sys
 sys.setrecursionlimit(3000)
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet18_imagenet_1000_no_top.h5'
-TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
-TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_2048.npy"
-BATCH_SIZE = 8
-INPUT_SHAPE = (2048, 2048, 3)
+TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
+TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
+BATCH_SIZE = 32
+INPUT_SHAPE = (1024, 1024, 3)
 
 
 def identity_block(input_tensor, kernel_size, filters, stage, block):
