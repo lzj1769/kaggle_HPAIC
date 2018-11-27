@@ -8,17 +8,14 @@ Adaptation of code from flyyufelix, mvoelk, BigMoyan, fchollet
 
 """
 import sys
-import warnings
 
 from keras.layers import Input, Dense, Activation, Flatten, Conv2D
-from keras.layers import MaxPooling2D, GlobalMaxPooling2D, ZeroPadding2D, AveragePooling2D
+from keras.layers import MaxPooling2D, GlobalMaxPooling2D, ZeroPadding2D
 from keras.layers import GlobalAveragePooling2D, BatchNormalization, add, Dropout
 from keras.models import Model
 from keras.engine.topology import get_source_inputs
-from keras.utils import layer_utils
 from keras import initializers
 from keras.engine import Layer, InputSpec
-from keras.utils.data_utils import get_file
 
 import keras.backend as K
 

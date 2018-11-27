@@ -60,23 +60,16 @@ def main():
 
         if os.path.exists(weights_filename):
             custom_objects = get_custom_objects(net_name=args.net_name)
-            f = h5dict(weights_filename, 'r')
-            training_config = f.get('training_config')
-
-            training_config = json.loads(training_config.decode('utf-8'))
-            optimizer_config = training_config['optimizer_config']
-            optimizer = optimizers.deserialize(optimizer_config,
-                                               custom_objects=custom_objects)
 
             model = load_model(filepath=weights_filename,
-                               custom_objects=custom_objects,
-                               compile=False)
+                               custom_objects=custom_objects)
 
-            f.close()
+            optimizer = Adam(lr=1e-06)
+
         else:
             model = net.build_model(num_classes=N_LABELS)
             model.summary()
-            optimizer = Adam(lr=1e-04)
+            optimizer = Adam(lr=3e-04)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 

@@ -139,16 +139,16 @@ def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
                                        verbose=1,
                                        save_best_only=True)
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 22,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 22.5,
                                           monitor='val_loss',
-                                          patience=10,
+                                          patience=20,
                                           verbose=1,
                                           restore_best_weights=True)
 
     reduce_lr = ReduceLROnPlateau(monitor='val_loss',
                                   factor=0.1,
                                   patience=2,
-                                  min_lr=1e-06,
+                                  min_lr=3e-06,
                                   min_delta=0.,
                                   verbose=1)
 

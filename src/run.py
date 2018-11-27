@@ -33,7 +33,7 @@ def run_predict():
     net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
     net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
                           'InceptionResNetV2', 'NASNetMobile']
-    net_name_list_512 = ['DenseNet201']
+    net_name_list_512 = ['ResNet18']
 
     for net_name in net_name_list_512:
         training_predict_path = get_training_predict_path(net_name)

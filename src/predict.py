@@ -64,20 +64,18 @@ def predict_validation(args):
                                                                  batch_size=batch_size,
                                                                  input_shape=input_shape)
 
-        # valid_pred = np.zeros(shape=(valid_indexes.shape[0], N_LABELS), dtype=np.float32)
+        valid_pred = np.zeros(shape=(valid_indexes.shape[0], N_LABELS), dtype=np.float32)
 
         for valid_generator in valid_generators:
-            valid_pred = model.predict_generator(generator=valid_generator,
-                                                 use_multiprocessing=True,
-                                                 workers=args.workers,
-                                                 verbose=args.verbose)
-            print(valid_pred.shape)
+            valid_pred += model.predict_generator(generator=valid_generator,
+                                                  use_multiprocessing=True,
+                                                  workers=args.workers,
+                                                  verbose=args.verbose)
 
-        exit(0)
-        # valid_pred /= len(valid_generators)
+        valid_pred /= len(valid_generators)
 
-        # for i, index in enumerate(valid_indexes):
-        #    training_pred[index] = valid_pred[i]
+        for i, index in enumerate(valid_indexes):
+            training_pred[index] = valid_pred[i]
 
     training_predict_path = get_training_predict_path(net_name=args.net_name)
     filename = os.path.join(training_predict_path, "{}.npz".format(args.net_name))
