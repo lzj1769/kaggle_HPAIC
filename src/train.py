@@ -95,7 +95,7 @@ def main():
     horizontal_flip = HorizontalFlip(p=0.5)
     vertical_flip = VerticalFlip(p=0.5)
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
-    random_brightness = RandomBrightness(p=0.2, limit=0.1)
+    random_brightness = RandomBrightness(p=0.1, limit=0.1)
 
     train_generator = ImageDataGenerator(x=img,
                                          y=target,

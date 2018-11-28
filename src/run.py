@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from utils import get_acc_loss_path, get_logs_path, get_weights_path
+from utils import get_acc_loss_path, get_history_path, get_weights_path
 from utils import generate_exp_config
 from utils import get_submission_path
 from utils import get_training_predict_path
@@ -57,17 +57,17 @@ def run_training():
                      'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
-    net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge']
+    # net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
-        logs_path = get_logs_path(net_name=net_name)
+        history_path = get_history_path(net_name=net_name)
         weights_path = get_weights_path(net_name=net_name)
         acc_loss_path = get_acc_loss_path(net_name=net_name)
 
         # create the output path
-        if not os.path.exists(logs_path):
-            os.mkdir(logs_path)
+        if not os.path.exists(history_path):
+            os.mkdir(history_path)
 
         if not os.path.exists(weights_path):
             os.mkdir(weights_path)
