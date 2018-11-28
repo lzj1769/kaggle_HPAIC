@@ -10,7 +10,6 @@ from albumentations.augmentations import functional as F
 from albumentations import DualTransform
 
 from configure import *
-from generator import ImageDataGenerator
 
 
 def load_data(data_path=None):
@@ -162,6 +161,8 @@ class RandomRotate90(DualTransform):
 
 
 def get_test_time_augmentation_generators(image, batch_size=None, indexes=None, input_shape=None):
+    from generator import ImageDataGenerator
+
     horizontal_flip = HorizontalFlip(p=1.0)
     random_rotate_90_1 = RandomRotate90(factor=1)
     random_rotate_90_2 = RandomRotate90(factor=2)

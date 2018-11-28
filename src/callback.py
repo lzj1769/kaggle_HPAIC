@@ -141,7 +141,7 @@ def build_callbacks(model=None,
                                        verbose=1,
                                        save_best_only=True)
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 22.5,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 46,
                                           monitor='val_loss',
                                           patience=20,
                                           verbose=1,

@@ -25,6 +25,4 @@ export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_VISIBLE_DEVICES=0,1
 
-nvidia-smi
-
 python train.py --net_name $1 --k_fold $2

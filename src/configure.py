@@ -12,7 +12,7 @@ IMAGE_HEIGHT_2048 = 2048
 N_CHANNELS = 4
 K_FOLD = 5
 
-DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
+DATA_DIR = "/work/rwth0233/HPAIC/data"
 
 TRAINING_DATA_512 = "/work/rwth0233/HPAIC/data/train_512.npy"
 TEST_DATA_512 = "/work/rwth0233/HPAIC/data/test_512.npy"

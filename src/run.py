@@ -53,10 +53,11 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152',
-                     'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169', 'DenseNet201',
-                     'Xception', 'InceptionResNetV2', 'NASNetMobile', 'NASNetLarge',
+    net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101',
+                     'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
+                     'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
+    net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -80,7 +81,7 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 24:00 -M 120000 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 48:00 -M 120000 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

@@ -13,6 +13,7 @@ from keras.utils.multi_gpu_utils import multi_gpu_model
 import keras.backend as K
 
 from callback import build_callbacks
+from generator import ImageDataGenerator
 from utils import *
 from configure import *
 
