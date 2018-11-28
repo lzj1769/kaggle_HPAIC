@@ -14,11 +14,11 @@ K_FOLD = 5
 
 DATA_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data"
 
-TRAINING_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_512.npy"
-TEST_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_512.npy"
+TRAINING_DATA_512 = "/work/rwth0233/HPAIC/data/train_512.npy"
+TEST_DATA_512 = "/work/rwth0233/HPAIC/data/test_512.npy"
 
-TRAINING_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
-TEST_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
+TRAINING_DATA_1024 = "/work/rwth0233/HPAIC/data/train_1024.npy"
+TEST_DATA_1024 = "/work/rwth0233/HPAIC/data/test_1024.npy"
 
 TRAINING_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
 TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_2048.npy"
@@ -26,9 +26,9 @@ TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test
 TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
 TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
 
-SAMPLE_SUBMISSION = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/sample_submission.csv"
-TRAINING_DATA_CSV = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train.csv"
-MODEL_WEIGHTS_PATH = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/model"
+SAMPLE_SUBMISSION = "/home/rs619065/HPAIC/input/sample_submission.csv"
+TRAINING_DATA_CSV = "/home/rs619065/HPAIC/input/train.csv"
+MODEL_WEIGHTS_PATH = "/home/rs619065/HPAIC/model"
 
 THRESHOLD = [0.5, 0.4, 0.4, 0.4, 0.4, 0.4,
              0.4, 0.4, 0.2, 0.2, 0.2, 0.4,
@@ -47,7 +47,7 @@ FRACTION = [0.36239782, 0.043841336, 0.075268817,
             0.01, 0.222493888, 0.028806584,
             0.01]
 
-MODEL_LOG_PATH = "/home/rs619065/HPAIC/logs"
+MODEL_HISTORY_PATH = "/home/rs619065/HPAIC/history"
 MODEL_ACC_LOSS_PATH = "/home/rs619065/HPAIC/acc_loss"
 
 SUBMISSION_PATH = "/home/rs619065/HPAIC/submission"

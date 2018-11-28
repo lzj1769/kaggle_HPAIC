@@ -5,8 +5,6 @@ from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/xception_weights_tf_dim_ordering_tf_kernels_notop.h5'
-TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
-TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
 

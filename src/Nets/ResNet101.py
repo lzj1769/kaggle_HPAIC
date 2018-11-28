@@ -12,7 +12,7 @@ https://gist.github.com/flyyufelix/65018873f8cb2bbe95f429c474aa1294#file-resnet-
 Implementation is based on Keras 2.0
 """
 from keras.layers import (
-    Input, Dense, Conv2D, MaxPooling2D, ZeroPadding2D,
+    Input, Dense, Conv2D, MaxPooling2D, ZeroPadding2D, AveragePooling2D,
     Flatten, Activation, GlobalAveragePooling2D, GlobalMaxPooling2D, add, Dropout)
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
@@ -24,10 +24,7 @@ import sys
 
 sys.setrecursionlimit(3000)
 
-
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet101_weights_tf.h5'
-TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
-TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_1024.npy"
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
 
@@ -310,7 +307,7 @@ def ResNet101(include_top=True,
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='b')
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='c')
 
-    # x = AveragePooling2D((7, 7), name='avg_pool')(x)
+    x = AveragePooling2D((7, 7), name='avg_pool')(x)
 
     if include_top:
         x = Flatten()(x)

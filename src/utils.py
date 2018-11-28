@@ -23,6 +23,25 @@ def load_data(data_path=None):
     return data
 
 
+def get_data_path(input_shape=None):
+    training_data_path = None
+    test_data_path = None
+
+    if input_shape[0] == 512:
+        training_data_path = TRAINING_DATA_512
+        test_data_path = TEST_DATA_512
+
+    elif input_shape[0] == 1024:
+        training_data_path = TRAINING_DATA_1024
+        test_data_path = TEST_DATA_1024
+
+    elif input_shape[0] == 2048:
+        training_data_path = TRAINING_DATA_2048
+        test_data_path = TEST_DATA_2048
+
+    return training_data_path, test_data_path
+
+
 def get_target():
     df = pd.read_csv(TRAINING_DATA_CSV)
     mlb = MultiLabelBinarizer(classes=range(N_LABELS))
@@ -55,8 +74,8 @@ def get_custom_objects(net_name):
     return custom_objects
 
 
-def get_logs_path(net_name):
-    return os.path.join(MODEL_LOG_PATH, net_name)
+def get_history_path(net_name):
+    return os.path.join(MODEL_HISTORY_PATH, net_name)
 
 
 def get_weights_path(net_name):

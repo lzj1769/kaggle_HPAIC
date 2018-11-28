@@ -5,9 +5,7 @@ import numpy as np
 import pandas as pd
 import time
 
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.callbacks import CSVLogger, ReduceLROnPlateau
-
+from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
 import matplotlib
 
 matplotlib.use("Agg")
@@ -120,21 +118,25 @@ class AltModelCheckpoint(ModelCheckpoint):
         self.model = model_before
 
 
-def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
-    file_path = os.path.join(weights_path, "{}.h5".format(exp_config))
-    logs_filename = os.path.join(logs_path, "{}.log".format(exp_config))
+def build_callbacks(model=None,
+                    weights_path=None,
+                    history_path=None,
+                    acc_loss_path=None,
+                    exp_config=None):
+    check_point_path = os.path.join(weights_path, "{}.h5".format(exp_config))
+    history_filename = os.path.join(history_path, "{}.log".format(exp_config))
     pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
 
     best = np.inf
     # check if the log file exists and empty
-    if os.path.exists(logs_filename) and os.stat(logs_filename).st_size > 0:
+    if os.path.exists(history_filename) and os.stat(history_filename).st_size > 0:
         # recover the best validation loss from logs
-        df = pd.read_csv(logs_filename)
+        df = pd.read_csv(history_filename)
         best = np.min(df['val_loss'])
 
     check_pointer = AltModelCheckpoint(alternate_model=model,
                                        best=best,
-                                       filepath=file_path,
+                                       filepath=check_point_path,
                                        monitor='val_loss',
                                        verbose=1,
                                        save_best_only=True)
@@ -145,17 +147,10 @@ def build_callbacks(model, weights_path, logs_path, acc_loss_path, exp_config):
                                           verbose=1,
                                           restore_best_weights=True)
 
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss',
-                                  factor=0.1,
-                                  patience=2,
-                                  min_lr=3e-06,
-                                  min_delta=0.,
-                                  verbose=1)
-
     csv_pdf_logger = CSVPDFLogger(pdf_filename=pdf_filename,
-                                  filename=logs_filename,
+                                  filename=history_filename,
                                   append=True)
 
-    callbacks = [check_pointer, early_stopper, reduce_lr, csv_pdf_logger]
+    callbacks = [check_pointer, early_stopper, csv_pdf_logger]
 
     return callbacks

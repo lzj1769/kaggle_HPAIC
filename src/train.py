@@ -3,23 +3,20 @@ from __future__ import print_function
 import argparse
 import tensorflow as tf
 import importlib
-import json
 import sys
 
 from keras.models import load_model
 from keras.losses import binary_crossentropy
-from keras import optimizers
 from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
 from keras.utils.multi_gpu_utils import multi_gpu_model
-from keras.utils.io_utils import h5dict
 import keras.backend as K
 
 from callback import build_callbacks
 from utils import *
 from configure import *
 
-from albumentations import HorizontalFlip, ShiftScaleRotate
+from albumentations import HorizontalFlip, VerticalFlip, ShiftScaleRotate, RandomBrightness
 
 
 def parse_args():
@@ -52,7 +49,6 @@ def main():
 
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
-    train_data = net.TRAINING_DATA
 
     # Training models with weights merge on CPU
     with tf.device('/cpu:0'):
@@ -69,7 +65,7 @@ def main():
         else:
             model = net.build_model(num_classes=N_LABELS)
             model.summary()
-            optimizer = Adam(lr=3e-04)
+            optimizer = Adam(lr=1e-04)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 
@@ -78,6 +74,8 @@ def main():
 
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
+
+    train_data, _ = get_data_path(input_shape=input_shape)
 
     img = load_data(data_path=train_data)
     target = get_target()
@@ -94,7 +92,9 @@ def main():
 
     # set augmentation parameters
     horizontal_flip = HorizontalFlip(p=0.5)
+    vertical_flip = VerticalFlip(p=0.5)
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
+    random_brightness = RandomBrightness(p=0.2, limit=0.1)
 
     train_generator = ImageDataGenerator(x=img,
                                          y=target,
@@ -104,7 +104,9 @@ def main():
                                          input_shape=input_shape,
                                          learning_phase=True,
                                          horizontal_flip=horizontal_flip,
-                                         shift_scale_rotate=shift_scale_rotate)
+                                         vertical_flip=vertical_flip,
+                                         shift_scale_rotate=shift_scale_rotate,
+                                         random_brightness=random_brightness)
 
     valid_generator = ImageDataGenerator(x=img,
                                          y=target,
@@ -114,11 +116,11 @@ def main():
                                          input_shape=input_shape,
                                          learning_phase=True)
 
-    logs_path = get_logs_path(net_name=args.net_name)
+    history_path = get_history_path(net_name=args.net_name)
     acc_loss_path = get_acc_loss_path(net_name=args.net_name)
     callbacks = build_callbacks(model=model,
                                 weights_path=weights_path,
-                                logs_path=logs_path,
+                                history_path=history_path,
                                 acc_loss_path=acc_loss_path,
                                 exp_config=exp_config)
 

@@ -5,8 +5,6 @@ from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_large_no_top.h5'
-TRAINING_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_512.npy"
-TEST_DATA = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_512.npy"
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
 
