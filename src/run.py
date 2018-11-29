@@ -53,11 +53,11 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18', 'ResNet34', 'ResNet50', 'ResNet101',
+    net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge',
+                     'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101',
                      'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
-    # net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
