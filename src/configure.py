@@ -30,22 +30,19 @@ SAMPLE_SUBMISSION = "/home/rs619065/HPAIC/input/sample_submission.csv"
 TRAINING_DATA_CSV = "/home/rs619065/HPAIC/input/train.csv"
 MODEL_WEIGHTS_PATH = "/home/rs619065/HPAIC/model"
 
-THRESHOLD = [0.5, 0.4, 0.4, 0.4, 0.4, 0.4,
-             0.4, 0.4, 0.2, 0.2, 0.2, 0.4,
-             0.4, 0.4, 0.4, 0.4, 0.4, 0.4,
-             0.4, 0.4, 0.2, 0.4, 0.4, 0.4,
-             0.4, 0.4, 0.4, 0.2]
+THRESHOLD = [0.5, 0.3, 0.3, 0.4, 0.4, 0.4,
+             0.3, 0.3, 0.2, 0.2, 0.2, 0.4,
+             0.3, 0.3, 0.3, 0.4, 0.4, 0.4,
+             0.3, 0.3, 0.2, 0.4, 0.4, 0.4,
+             0.3, 0.3, 0.4, 0.2]
 
-FRACTION = [0.36239782, 0.043841336, 0.075268817,
-            0.059322034, 0.075268817, 0.075268817,
-            0.043841336, 0.075268817, 0.01,
-            0.01, 0.01, 0.043841336,
-            0.043841336, 0.014198783, 0.043841336,
-            0.01, 0.028806584, 0.014198783,
-            0.028806584, 0.059322034, 0.01,
-            0.126126126, 0.028806584, 0.075268817,
-            0.01, 0.222493888, 0.028806584,
-            0.01]
+FRACTION = [0.36239782, 0.043841336, 0.075268817, 0.059322034,
+            0.07526881, 0.075268817, 0.043841336, 0.07526881,
+            0.01000000, 0.010000000, 0.010000000, 0.043841336,
+            0.04384133, 0.014198783, 0.043841336, 0.010000000,
+            0.02880658, 0.014198780, 0.028806584, 0.059322034,
+            0.00100000, 0.126126126, 0.028806584, 0.075268817,
+            0.00100000, 0.222493888, 0.028806584, 0.010000000]
 
 MODEL_HISTORY_PATH = "/home/rs619065/HPAIC/history"
 MODEL_ACC_LOSS_PATH = "/home/rs619065/HPAIC/acc_loss"
@@ -56,6 +53,47 @@ TRAINING_OUTPUT_PATH = "/home/rs619065/HPAIC/training"
 TEST_OUTPUT_PATH = "/home/rs619065/HPAIC/test"
 
 VISUALIZATION_PATH = "/home/rs619065/HPAIC/visualization"
+
+HPAV18_CSV = "/home/rs619065/HPAIC/input/HPAv18.csv"
+HPAV18_DIR = "/home/rwth0233/HPAIC/input/HPAv18"
+SUBCELLULAR_LOCATION_CSV = "/home/rs619065/HPAIC/input/subcellular_location.tsv"
+
+
+NAME_LABEL_DICT = {
+    0: 'Nucleoplasm (GO:0005654)',
+    1: 'Nuclear membrane (GO:0031965)',
+    2: 'Nucleoli (GO:0005730)',
+    3: 'Nucleoli fibrillar center (GO:0001650)',
+    4: 'Nuclear speckles (GO:0016607)',
+    5: 'Nuclear bodies (GO:0016604)',
+    6: 'Endoplasmic reticulum (GO:0005783)',
+    7: 'Golgi apparatus (GO:0005794)',
+    8: 'Peroxisomes (GO:0005777)',
+    9: 'Endosomes (GO:0005768)',
+    10: 'Lysosomes (GO:0005764)',
+    11: 'Intermediate filaments (GO:0045111)',
+    12: 'Actin filaments (GO:0015629)',
+    13: 'Focal adhesion sites (GO:0005925)',
+    14: 'Microtubules (GO:0015630)',
+    15: 'Microtubule ends (GO:1990752)',
+    16: 'Cytokinetic bridge (GO:0045171)',
+    17: 'Mitotic spindle (GO:0072686)',
+    18: 'Microtubule organizing center (GO:0005815)',
+    19: 'Centrosome (GO:0005813)',
+    20: 'Lipid droplets (GO:0005811)',
+    21: 'Plasma membrane (GO:0005886)',
+    22: 'Cell Junctions (GO:0030054)',
+    23: 'Mitochondria (GO:0005739)',
+    24: 'Aggresome (GO:0016235)',
+    25: 'Cytosol (GO:0005829)',
+    26: 'Cytoplasmic bodies (GO:0036464)',
+    27: 'Rods & Rings ()',
+    28: 'Midbody (GO:0030496)',
+    29: 'Cleavage furrow (GO:0032154)',
+    30: 'Nucleus (GO:0005634)',
+    31: 'Vesicles (GO:0043231)',
+    32: 'Midbody ring (GO:0090543)'
+}
 
 LABEL_MAP = {
     0: "Nucleoplasm",

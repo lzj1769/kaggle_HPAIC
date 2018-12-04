@@ -107,6 +107,18 @@ def f1_scores_threshold(y_true, y_prab, thresholds):
     return f1_scores
 
 
+def calculating_fraction(y_pred, threshold):
+    fraction = []
+
+    for i in range(N_LABELS):
+        prab = y_pred[:, i]
+        frac = 1.0 * np.sum(prab >= threshold[i]) / y_pred.shape[0]
+
+        fraction.append(frac)
+
+    return fraction
+
+
 def calculating_threshold(y_pred, fraction):
     threshod = []
 

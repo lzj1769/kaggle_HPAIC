@@ -8,9 +8,14 @@ import keras.backend as K
 
 
 def image_augment(aug, image):
-    image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
-    image[:, :, 3] = aug(image=image[:, :, 1:4])['image'][:, :, 2]
-    return image
+    if image.shape[3] == 4:
+        image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
+        image[:, :, 3] = aug(image=image[:, :, 1:4])['image'][:, :, 2]
+        return image
+
+    else:
+        image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
+        return image
 
 
 class ImageDataGenerator(Sequence):
@@ -77,15 +82,15 @@ class ImageDataGenerator(Sequence):
                            dtype=K.floatx())
 
         for i, index in enumerate(indexes):
-            img = np.copy(self.x[index])
-
-            if self.kwargs:
-                for key, aug in self.kwargs.items():
-                    img = image_augment(aug, img)
+            img = np.array(self.x[index], copy=True)
 
             # drop the yellow channel if using 3 channels
             if self.input_shape[2] == 3:
                 img = img[:, :, :3]
+
+            if self.kwargs:
+                for key, aug in self.kwargs.items():
+                    img = image_augment(aug, img)
 
             batch_x[i] = img
 

@@ -17,6 +17,7 @@ from utils import get_training_predict_path
 from utils import get_test_predict_path
 from utils import get_custom_objects
 from utils import get_target
+from utils import get_data_path
 from utils import get_test_time_augmentation_generators
 
 
@@ -35,7 +36,8 @@ def predict_validation(args):
 
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
-    train_data = net.TRAINING_DATA
+
+    train_data, _ = get_data_path(input_shape=input_shape)
 
     print("load training data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)
@@ -88,7 +90,8 @@ def predict_test(args):
 
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
-    test_data = net.TEST_DATA
+
+    _, test_data = get_data_path(input_shape=input_shape)
 
     print("load test data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)

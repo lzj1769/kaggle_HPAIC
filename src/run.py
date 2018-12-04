@@ -33,7 +33,7 @@ def run_predict():
     net_name_list_2048 = ['ResNet18', 'ResNet34', 'VGG16', 'InceptionV3']
     net_name_list_1024 = ['ResNet50', 'ResNet101', 'VGG19', 'Xception', 'DenseNet121', 'DenseNet169',
                           'InceptionResNetV2', 'NASNetMobile']
-    net_name_list_512 = ['ResNet18']
+    net_name_list_512 = ['DenseNet201', 'ResNet152']
 
     for net_name in net_name_list_512:
         training_predict_path = get_training_predict_path(net_name)
@@ -48,13 +48,12 @@ def run_predict():
         job_name = net_name
         command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                   "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 24:00 -M 60000 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
+        command += "-W 24:00 -M 102400 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
         os.system(command + " " + net_name)
 
 
 def run_training():
-    net_name_list = ['DenseNet201', 'ResNet152', 'NASNetLarge',
-                     'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101',
+    net_name_list = ['ResNet50', 'ResNet101',
                      'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
@@ -81,12 +80,12 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 48:00 -M 120000 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 48:00 -M 60000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
 def run_evaluate():
-    net_name_list = ['ResNet50']
+    net_name_list = ['DenseNet201']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
