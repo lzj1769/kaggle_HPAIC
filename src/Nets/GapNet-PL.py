@@ -16,6 +16,7 @@ sys.setrecursionlimit(3000)
 
 BATCH_SIZE = 8
 INPUT_SHAPE = (2048, 2048, 4)
+MAX_QUEUE_SIZE = 10
 
 
 def build_model(num_classes=None,

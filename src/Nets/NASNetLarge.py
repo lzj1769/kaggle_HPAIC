@@ -7,6 +7,7 @@ from keras.layers import Dense, Dropout, BatchNormalization
 WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_large_no_top.h5'
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
+MAX_QUEUE_SIZE = 64
 
 
 def build_model(num_classes):

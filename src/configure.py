@@ -14,13 +14,12 @@ K_FOLD = 5
 
 DATA_DIR = "/work/rwth0233/HPAIC/data"
 
-TRAINING_DATA_512 = "/work/rwth0233/HPAIC/data/train_512.npy"
-TEST_DATA_512 = "/work/rwth0233/HPAIC/data/test_512.npy"
-
+TRAINING_DATA_512 = "/home/rwth0233/HPAIC/data/train_512.npy"
 TRAINING_DATA_1024 = "/work/rwth0233/HPAIC/data/train_1024.npy"
-TEST_DATA_1024 = "/work/rwth0233/HPAIC/data/test_1024.npy"
-
 TRAINING_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
+
+TEST_DATA_512 = "/home/rwth0233/HPAIC/data/test_512.npy"
+TEST_DATA_1024 = "/home/rwth0233/HPAIC/data/test_1024.npy"
 TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_2048.npy"
 
 TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"

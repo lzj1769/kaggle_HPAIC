@@ -30,6 +30,7 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet34_imagenet_1000_no_top.h5'
 BATCH_SIZE = 16
 INPUT_SHAPE = (1024, 1024, 3)
+MAX_QUEUE_SIZE = 20
 
 
 def identity_block(input_tensor, kernel_size, filters, stage, block):

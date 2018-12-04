@@ -8,6 +8,7 @@ from keras.layers import MaxPooling2D, GlobalAveragePooling2D
 WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_mobile_no_top.h5'
 BATCH_SIZE = 12
 INPUT_SHAPE = (1024, 1024, 3)
+MAX_QUEUE_SIZE = 20
 
 
 def build_model(num_classes):

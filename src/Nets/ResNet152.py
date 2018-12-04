@@ -24,6 +24,7 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet152_weights_tf_notop.h5'
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
+MAX_QUEUE_SIZE = 20
 
 
 class Scale(Layer):

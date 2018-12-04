@@ -10,6 +10,7 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5'
 BATCH_SIZE = 16
 INPUT_SHAPE = (1024, 1024, 3)
+MAX_QUEUE_SIZE = 20
 
 
 def build_model(num_classes):

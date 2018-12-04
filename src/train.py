@@ -50,6 +50,7 @@ def main():
 
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
+    max_queue_size = net.MAX_QUEUE_SIZE
 
     # Training models with weights merge on CPU
     with tf.device('/cpu:0'):
@@ -134,7 +135,7 @@ def main():
                                  callbacks=callbacks,
                                  use_multiprocessing=True,
                                  workers=args.workers,
-                                 max_queue_size=10)
+                                 max_queue_size=max_queue_size)
 
     print("complete!!")
     K.clear_session()
