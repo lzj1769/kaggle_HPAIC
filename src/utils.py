@@ -42,22 +42,38 @@ def get_data_path(input_shape=None):
 
 
 def get_target():
-    df = pd.read_csv(TRAINING_DATA_CSV)
     mlb = MultiLabelBinarizer(classes=range(N_LABELS))
     target = list()
+
+    df = pd.read_csv(TRAINING_DATA_CSV)
+    for i in range(df.shape[0]):
+        target.append(map(int, df.iloc[i][1].split(" ")))
+
+    df = pd.read_csv(HPAV18_CSV)
     for i in range(df.shape[0]):
         target.append(map(int, df.iloc[i][1].split(" ")))
 
     return mlb.fit_transform(target)
 
 
-def generate_exp_config(net_name, k_fold=None):
-    exp_config = net_name
+def get_ids():
+    ids = list()
+    df = pd.read_csv(TRAINING_DATA_CSV)
+    for i in range(df.shape[0]):
+        ids.append(df.iloc[i][0])
 
+    df = pd.read_csv(HPAV18_CSV)
+    for i in range(df.shape[0]):
+        ids.append(df.iloc[i][0])
+
+    return ids
+
+
+def generate_exp_config(net_name, k_fold=None):
     if k_fold is not None:
-        return "{}_KFold_{}".format(exp_config, k_fold)
+        return "{}_KFold_{}".format(net_name, k_fold)
     else:
-        return exp_config
+        return net_name
 
 
 def get_custom_objects(net_name):
