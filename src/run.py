@@ -54,7 +54,7 @@ def run_predict():
 
 def run_training():
     net_name_list = ['ResNet50', 'ResNet101',
-                     'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
+                     'VGG16', 'VGG19',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
     net_name_list = ['DenseNet121', 'DenseNet169', 'DenseNet201']

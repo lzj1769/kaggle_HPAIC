@@ -38,7 +38,12 @@ from configure import *
 df = pd.read_csv(TRAINING_DATA_CSV)
 df_hpa_v18 = pd.read_csv(HPAV18_CSV)
 
-train_img = np.empty((df.shape[0] + df_hpa_v18.shape[0], IMAGE_WIDTH_2048, IMAGE_HEIGHT_2048, N_CHANNELS), dtype=np.uint8)
+train_img = np.memmap(filename=TRAINING_DATA_2048,
+                      dtype=np.uint8,
+                      mode='w+',
+                      shape=(df.shape[0] + df_hpa_v18.shape[0], IMAGE_WIDTH_2048, IMAGE_HEIGHT_2048, N_CHANNELS))
+
+# train_img = np.empty((df.shape[0] + df_hpa_v18.shape[0], IMAGE_WIDTH_2048, IMAGE_HEIGHT_2048, N_CHANNELS), dtype=np.uint8)
 
 for i in range(df.shape[0]):
     if i % 500 == 0:
@@ -74,6 +79,6 @@ for i in range(df_hpa_v18.shape[0]):
 
     train_img[i + df.shape[0]] = img
 
-np.save(TRAINING_DATA_2048, train_img)
+#np.save(TRAINING_DATA_2048, train_img)
 
-del train_img
+#del train_img
