@@ -57,7 +57,7 @@ def run_training():
                      'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
-    net_name_list = ['DenseNet201', 'DenseNet121', 'DenseNet169']
+    net_name_list = ['DenseNet121', 'DenseNet169', 'DenseNet201']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
