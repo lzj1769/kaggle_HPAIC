@@ -54,7 +54,7 @@ TEST_OUTPUT_PATH = "/home/rs619065/HPAIC/test"
 VISUALIZATION_PATH = "/home/rs619065/HPAIC/visualization"
 
 HPAV18_CSV = "/home/rs619065/HPAIC/input/HPAv18.csv"
-HPAV18_DIR = "/home/rwth0233/HPAIC/input/HPAv18/"
+HPAV18_DIR = "/home/rwth0233/HPAIC/input/HPAv18"
 SUBCELLULAR_LOCATION_CSV = "/home/rs619065/HPAIC/input/subcellular_location.tsv"
 
 

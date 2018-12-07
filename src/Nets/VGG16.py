@@ -11,6 +11,7 @@ WEIGHTS_PATH = '/home/rs619065/.keras/models/vgg16_weights_tf_dim_ordering_tf_ke
 BATCH_SIZE = 16
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 20
+LEARNING_RATE = 1e-04
 
 
 def build_model(num_classes):

@@ -7,7 +7,8 @@ from keras.layers import Dense, Dropout, BatchNormalization
 WEIGHTS_PATH = '/home/rs619065/.keras/models/nasnet_large_no_top.h5'
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
-MAX_QUEUE_SIZE = 64
+MAX_QUEUE_SIZE = 128
+LEARNING_RATE = 1e-05
 
 
 def build_model(num_classes):
@@ -23,6 +24,7 @@ def build_model(num_classes):
 
     # add a global spatial average pooling layer
     x = base_model.output
+
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)

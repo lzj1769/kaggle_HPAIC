@@ -22,17 +22,17 @@ from albumentations import HorizontalFlip, VerticalFlip, ShiftScaleRotate, Rando
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name", type=str, default=None,
+    parser.add_argument("-n", "--net_name", type=str, default=None,
                         help='name of convolutional neural network.')
-    parser.add_argument("--k_fold", type=int, default=0,
+    parser.add_argument("-k", "--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("--epochs", type=int, default=100,
+    parser.add_argument("-e", "--epochs", type=int, default=100,
                         help="number of epochs for training. DEFAULT: 100")
-    parser.add_argument("--n_gpus", type=int, default=2,
+    parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
-    parser.add_argument("--workers", type=int, default=32,
+    parser.add_argument("-w", "--workers", type=int, default=64,
                         help="number of cores for training. DEFAULT: All cpus")
-    parser.add_argument("--verbose", type=int, default=2,
+    parser.add_argument("-v", "--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
@@ -51,6 +51,7 @@ def main():
     batch_size = net.BATCH_SIZE
     input_shape = net.INPUT_SHAPE
     max_queue_size = net.MAX_QUEUE_SIZE
+    learning_rate = net.LEARNING_RATE
 
     # Training models with weights merge on CPU
     with tf.device('/cpu:0'):
@@ -62,12 +63,12 @@ def main():
             model = load_model(filepath=weights_filename,
                                custom_objects=custom_objects)
 
-            optimizer = Adam(lr=1e-06)
+            optimizer = Adam(lr=learning_rate)
 
         else:
             model = net.build_model(num_classes=N_LABELS)
             model.summary()
-            optimizer = Adam(lr=1e-04)
+            optimizer = Adam(lr=learning_rate)
 
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 

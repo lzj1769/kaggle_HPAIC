@@ -8,13 +8,13 @@ import keras.backend as K
 
 
 def image_augment(aug, image):
-    if image.shape[3] == 4:
+    if image.shape[2] == 4:
         image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
         image[:, :, 3] = aug(image=image[:, :, 1:4])['image'][:, :, 2]
         return image
 
     else:
-        image[:, :, 0:3] = aug(image=image[:, :, 0:3])['image']
+        image = aug(image=image)['image']
         return image
 
 

@@ -5,7 +5,9 @@ import numpy as np
 import pandas as pd
 import time
 
+from keras.callbacks import ProgbarLogger
 from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
+from keras.utils.generic_utils import Progbar
 import matplotlib
 
 matplotlib.use("Agg")
@@ -118,6 +120,46 @@ class AltModelCheckpoint(ModelCheckpoint):
         self.model = model_before
 
 
+class BatchProgbarLogger(ProgbarLogger):
+
+    def __init__(self, display=1, **kwargs):
+        self.display = display
+        super(BatchProgbarLogger, self).__init__(**kwargs)
+        self.target = None
+        self.progbar = None
+        self.seen = None
+
+    def on_epoch_begin(self, epoch, logs=None):
+        print('Epoch %d/%d' % (epoch + 1, self.epochs))
+        if self.use_steps:
+            target = self.params['steps']
+        else:
+            target = self.params['samples']
+        self.target = target
+        self.progbar = Progbar(target=self.target,
+                               verbose=1,
+                               stateful_metrics=self.stateful_metrics)
+
+        self.seen = 0
+
+    def on_batch_end(self, batch, logs=None):
+        logs = logs or {}
+        batch_size = logs.get('size', 0)
+        if self.use_steps:
+            self.seen += 1
+        else:
+            self.seen += batch_size
+
+        for k in self.params['metrics']:
+            if k in logs:
+                self.log_values.append((k, logs[k]))
+
+        # Skip progbar update for the last batch;
+        # will be handled by on_epoch_end.
+        if self.seen < self.target and self.seen % self.display == 0:
+            self.progbar.update(self.seen, self.log_values)
+
+
 def build_callbacks(model=None,
                     weights_path=None,
                     history_path=None,
@@ -151,6 +193,10 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    callbacks = [check_pointer, early_stopper, csv_pdf_logger]
+    batch_logger = BatchProgbarLogger(display=100,
+                                      count_mode='steps',
+                                      stateful_metrics=model.stateful_metric_names)
+
+    callbacks = [check_pointer, early_stopper, csv_pdf_logger, batch_logger]
 
     return callbacks

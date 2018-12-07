@@ -28,7 +28,8 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet18_imagenet_1000_no_top.h5'
 BATCH_SIZE = 16
 INPUT_SHAPE = (1024, 1024, 3)
-MAX_QUEUE_SIZE = 20
+MAX_QUEUE_SIZE = 64
+LEARNING_RATE = 1e-04
 
 
 def identity_block(input_tensor, kernel_size, filters, stage, block):
@@ -253,14 +254,14 @@ def build_model(num_classes):
     # add a global spatial average pooling layer
     x = base_model.output
 
-    x = conv_block(x, 3, [1024, 1024], stage=6, block='a')
+    x = conv_block(x, 3, [32, 32], stage=6, block='a')
     x = GlobalAveragePooling2D()(x)
 
-    x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    x = Dense(512, activation='relu', name='fc1024_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = Dense(1024, activation='relu', name='fc1024_2')(x)
-    x = BatchNormalization(name="batch_2")(x)
+    x = Dense(512, activation='relu', name='fc1024_2')(x)
+    x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 

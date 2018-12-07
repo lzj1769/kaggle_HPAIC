@@ -11,6 +11,7 @@ WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet50_weights_tf_dim_ordering_tf
 BATCH_SIZE = 8
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
+LEARNING_RATE = 1e-04
 
 
 def build_model(num_classes):

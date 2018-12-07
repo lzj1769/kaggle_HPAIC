@@ -9,7 +9,7 @@ Adaptation of code from flyyufelix, mvoelk, BigMoyan, fchollet
 """
 import sys
 
-from keras.layers import Input, Dense, Activation, Flatten, Conv2D
+from keras.layers import Input, Dense, Activation, Flatten, Conv2D, AveragePooling2D
 from keras.layers import MaxPooling2D, GlobalMaxPooling2D, ZeroPadding2D
 from keras.layers import GlobalAveragePooling2D, BatchNormalization, add, Dropout
 from keras.models import Model
@@ -24,7 +24,8 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet152_weights_tf_notop.h5'
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
-MAX_QUEUE_SIZE = 20
+MAX_QUEUE_SIZE = 64
+LEARNING_RATE = 1e-05
 
 
 class Scale(Layer):
@@ -190,7 +191,7 @@ def conv_block(input_tensor, kernel_size, filters, stage, block, strides=(2, 2))
 
 def ResNet152(include_top=True, weights=None,
               input_tensor=None, input_shape=None,
-              pooling=None, classes=1000):
+              pooling=None, classes=1000, large_input=False):
     """Instantiate the ResNet152 architecture.
 
     Keyword arguments:
@@ -269,10 +270,10 @@ def ResNet152(include_top=True, weights=None,
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='b')
     x = identity_block(x, 3, [512, 512, 2048], stage=5, block='c')
 
-    # if large_input:
-    #     x = AveragePooling2D((14, 14), name='avg_pool')(x)
-    # else:
-    #     x = AveragePooling2D((7, 7), name='avg_pool')(x)
+    if large_input:
+        x = AveragePooling2D((14, 14), name='avg_pool')(x)
+    else:
+        x = AveragePooling2D((7, 7), name='avg_pool')(x)
 
     # include classification layer by default, not included for feature extraction
     if include_top:
@@ -309,6 +310,7 @@ def build_model(num_classes):
 
     # add a global spatial average pooling layer
     x = base_model.output
+
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
