@@ -193,7 +193,7 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    batch_logger = BatchProgbarLogger(display=100,
+    batch_logger = BatchProgbarLogger(display=500,
                                       count_mode='steps',
                                       stateful_metrics=model.stateful_metric_names)
 

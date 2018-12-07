@@ -10,7 +10,7 @@ sys.setrecursionlimit(3000)
 WEIGHTS_PATH = '/home/rs619065/.keras/models/densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5'
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
-MAX_QUEUE_SIZE = 128
+MAX_QUEUE_SIZE = 64
 LEARNING_RATE = 1e-04
 
 

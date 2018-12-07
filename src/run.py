@@ -57,7 +57,7 @@ def run_training():
                      'VGG16', 'VGG19', 'DenseNet121', 'DenseNet169',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
-    net_name_list = ['GapNet-PL']
+    net_name_list = ['DenseNet201', 'DenseNet121', 'DenseNet169']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -81,7 +81,7 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 48:00 -M 120000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 120:00 -M 120000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

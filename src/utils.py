@@ -49,9 +49,9 @@ def get_target():
     for i in range(df.shape[0]):
         target.append(map(int, df.iloc[i][1].split(" ")))
 
-    # df = pd.read_csv(HPAV18_CSV)
-    # for i in range(df.shape[0]):
-    #     target.append(map(int, df.iloc[i][1].split(" ")))
+    df = pd.read_csv(HPAV18_CSV)
+    for i in range(df.shape[0]):
+        target.append(map(int, df.iloc[i][1].split(" ")))
 
     return mlb.fit_transform(target)
 
@@ -62,9 +62,9 @@ def get_ids():
     for i in range(df.shape[0]):
         ids.append(df.iloc[i][0])
 
-    # df = pd.read_csv(HPAV18_CSV)
-    # for i in range(df.shape[0]):
-    #     ids.append(df.iloc[i][0])
+    df = pd.read_csv(HPAV18_CSV)
+    for i in range(df.shape[0]):
+        ids.append(df.iloc[i][0])
 
     return ids
 
