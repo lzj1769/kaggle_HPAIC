@@ -30,9 +30,9 @@ export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
 ### Request the time you need for execution in minutes
 ### The format for the parameter is: [hour:]minute,
 ### that means for 80 minutes you could also use this: 1:20
-#BSUB -W 120:00
+#BSUB -W 300:00
 
-#BSUB -M 502400 -S 100 -P izkf
+#BSUB -M 409600 -S 100 -P izkf
 
 #python download_HPAv18.py
 python pre_processing.py

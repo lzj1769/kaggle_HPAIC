@@ -14,10 +14,10 @@ import sys
 
 sys.setrecursionlimit(3000)
 
-BATCH_SIZE = 4
-INPUT_SHAPE = (2048, 2048, 4)
+BATCH_SIZE = 16
+INPUT_SHAPE = (1024, 1024, 4)
 MAX_QUEUE_SIZE = 32
-LEARNING_RATE = 1e-04
+LEARNING_RATE = 1e-05
 
 
 def build_model(num_classes=None,

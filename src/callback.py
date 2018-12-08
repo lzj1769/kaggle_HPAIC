@@ -4,9 +4,10 @@ import os
 import numpy as np
 import pandas as pd
 import time
+import warnings
 
-from keras.callbacks import ProgbarLogger
-from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
+from keras.callbacks import ProgbarLogger, Callback
+from keras.callbacks import EarlyStopping, CSVLogger
 from keras.utils.generic_utils import Progbar
 import matplotlib
 
@@ -74,50 +75,49 @@ class CSVPDFLogger(CSVLogger):
         fig.tight_layout()
         fig.savefig(self.pdf_filename)
 
-    def plot_attention(self):
-        df = pd.read_csv(self.filename)
-        plt.style.use("ggplot")
-        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
-        ax1.plot(df['classification_binary_accuracy'])
-        ax1.plot(df['val_classification_binary_accuracy'])
-        ax1.set_title('Accuracy')
-        ax1.set_ylabel('accuracy')
-        ax1.set_xlabel('epoch')
-        ax1.legend(['train', 'validation'], loc='upper left')
 
-        ax2.plot(df['classification_loss'])
-        ax2.plot(df['val_classification_loss'])
-        ax2.set_title('Classification Loss')
-        ax2.set_ylabel('loss')
-        ax2.set_xlabel('epoch')
-        ax2.legend(['train', 'validation'], loc='upper left')
-
-        ax3.plot(df['reconstruction_loss'])
-        ax3.plot(df['val_reconstruction_loss'])
-        ax3.set_title('Reconstruction Loss')
-        ax3.set_ylabel('loss')
-        ax3.set_xlabel('epoch')
-        ax3.legend(['train', 'validation'], loc='upper left')
-
-        fig.tight_layout()
-        fig.savefig(self.pdf_filename)
-
-
-class AltModelCheckpoint(ModelCheckpoint):
+class MultiGPUModelCheckpoint(Callback):
     """Additional keyword args are passed to ModelCheckpoint; see those docs for information on what args are accepted.
     https://github.com/TextpertAi/alt-model-checkpoint/blob/master/alt_model_checkpoint/__init__.py
     """
 
-    def __init__(self, alternate_model, best=np.Inf, **kwargs):
-        self.alternate_model = alternate_model
-        super(AltModelCheckpoint, self).__init__(**kwargs)
+    def __init__(self,
+                 filepath=None,
+                 model_to_save=None,
+                 best=np.Inf,
+                 save_best_only=True,
+                 monitor='val_loss',
+                 verbose=0):
+        super(MultiGPUModelCheckpoint, self).__init__()
+        self.filepath = filepath
+        self.model_to_save = model_to_save
         self.best = best
+        self.monitor = monitor
+        self.save_best_only = save_best_only
+        self.verbose = verbose
+        self.monitor_op = np.less
 
     def on_epoch_end(self, epoch, logs=None):
-        model_before = self.model
-        self.model = self.alternate_model
-        super(AltModelCheckpoint, self).on_epoch_end(epoch, logs)
-        self.model = model_before
+        logs = logs or {}
+        filepath = self.filepath.format(epoch=epoch + 1, **logs)
+        if self.save_best_only:
+            current = logs.get(self.monitor)
+            if current is None:
+                warnings.warn('Can save best model only with %s available, '
+                              'skipping.' % (self.monitor), RuntimeWarning)
+            else:
+                if self.monitor_op(current, self.best):
+                    if self.verbose > 0:
+                        print('\nEpoch %05d: %s improved from %0.5f to %0.5f,'
+                              ' saving model to %s'
+                              % (epoch + 1, self.monitor, self.best,
+                                 current, filepath))
+                    self.best = current
+                    self.model_to_save.save(filepath, overwrite=True)
+                else:
+                    if self.verbose > 0:
+                        print('\nEpoch %05d: %s did not improve from %0.5f' %
+                              (epoch + 1, self.monitor, self.best))
 
 
 class BatchProgbarLogger(ProgbarLogger):
@@ -176,14 +176,14 @@ def build_callbacks(model=None,
         df = pd.read_csv(history_filename)
         best = np.min(df['val_loss'])
 
-    check_pointer = AltModelCheckpoint(alternate_model=model,
-                                       best=best,
-                                       filepath=check_point_path,
-                                       monitor='val_loss',
-                                       verbose=1,
-                                       save_best_only=True)
+    check_pointer = MultiGPUModelCheckpoint(model_to_save=model,
+                                            best=best,
+                                            filepath=check_point_path,
+                                            monitor='val_loss',
+                                            verbose=1,
+                                            save_best_only=True)
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 46,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 110,
                                           monitor='val_loss',
                                           patience=20,
                                           verbose=1,
@@ -193,10 +193,10 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    batch_logger = BatchProgbarLogger(display=500,
-                                      count_mode='steps',
-                                      stateful_metrics=model.stateful_metric_names)
+    # batch_logger = BatchProgbarLogger(display=500,
+    #                                   count_mode='steps',
+    #                                   stateful_metrics=model.stateful_metric_names)
 
-    callbacks = [check_pointer, early_stopper, csv_pdf_logger, batch_logger]
+    callbacks = [check_pointer, early_stopper, csv_pdf_logger]
 
     return callbacks

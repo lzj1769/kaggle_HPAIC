@@ -61,7 +61,8 @@ def main():
             custom_objects = get_custom_objects(net_name=args.net_name)
 
             model = load_model(filepath=weights_filename,
-                               custom_objects=custom_objects)
+                               custom_objects=custom_objects,
+                               compile=False)
 
             optimizer = Adam(lr=learning_rate)
 
@@ -73,6 +74,7 @@ def main():
     parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
 
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+
     parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
     print("load training and validation data...", file=sys.stderr)
