@@ -23,10 +23,10 @@ from utils import get_test_time_augmentation_generators
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name", type=str, default=None,
+    parser.add_argument('-n', "--net_name", type=str, default=None,
                         help='name of convolutional neural network. DEFAULT: None')
-    parser.add_argument("--workers", type=int, default=32, help="number of cores for training. DEFAULT: 32")
-    parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
+    parser.add_argument('-w', "--workers", type=int, default=32, help="number of cores for training. DEFAULT: 32")
+    parser.add_argument('-v', "--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
 

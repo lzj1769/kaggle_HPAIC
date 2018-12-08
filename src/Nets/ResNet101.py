@@ -24,7 +24,7 @@ import sys
 
 sys.setrecursionlimit(3000)
 
-WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet101_weights_tf.h5'
+WEIGHTS_PATH = '/home/rs619065/.keras/models/ResNet-101-model.keras.h5'
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
@@ -339,12 +339,12 @@ def build_model(num_classes):
     # create the base pre-trained model
     base_model = ResNet101(weights=WEIGHTS_PATH,
                            include_top=False,
-                           input_shape=INPUT_SHAPE,
-                           pooling='avg')
+                           input_shape=INPUT_SHAPE)
 
     # add a global spatial average pooling layer
     x = base_model.output
 
+    x = GlobalAveragePooling2D()(x)
     x = Dense(1024, activation='relu', name='fc1024_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)

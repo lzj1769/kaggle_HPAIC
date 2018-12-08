@@ -7,7 +7,7 @@ from keras.layers import Dense, Dropout, BatchNormalization
 WEIGHTS_PATH = '/home/rs619065/.keras/models/densenet169_weights_tf_dim_ordering_tf_kernels_notop.h5'
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
-MAX_QUEUE_SIZE = 64
+MAX_QUEUE_SIZE = 32
 LEARNING_RATE = 1e-05
 
 

@@ -7,11 +7,19 @@ import pandas as pd
 import time
 import warnings
 
-from keras.callbacks import ProgbarLogger, Callback
+from keras.callbacks import Callback
 from keras.callbacks import EarlyStopping, CSVLogger
-from keras.utils.generic_utils import Progbar
-import matplotlib
+from keras.utils.io_utils import h5dict
+from keras.engine.saving import _serialize_model
 
+try:
+    import h5py
+
+    HDF5_OBJECT_HEADER_LIMIT = 64512
+except ImportError:
+    h5py = None
+
+import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
@@ -98,9 +106,10 @@ class MultiGPUModelCheckpoint(Callback):
         logs = logs or {}
         filepath = self.filepath.format(epoch=epoch + 1, **logs)
         current = logs.get(self.monitor)
+
         if current is None:
             warnings.warn('Can save best model only with %s available, '
-                          'skipping.' % (self.monitor), RuntimeWarning)
+                          'skipping.' % self.monitor, RuntimeWarning)
         else:
             if self.monitor_op(current, self.best):
                 print('\nEpoch %05d: %s improved from %0.8f to %0.8f,'
@@ -108,50 +117,14 @@ class MultiGPUModelCheckpoint(Callback):
                       % (epoch + 1, self.monitor, self.best,
                          current, filepath), file=sys.stdout)
                 self.best = current
-                self.model_to_save.save(filepath, overwrite=True)
+
+                f = h5dict(filepath, mode='w')
+                _serialize_model(self.model_to_save, f, include_optimizer=True)
+                f.close()
+
             else:
                 print('\nEpoch %05d: %s did not improve from %0.8f' %
                       (epoch + 1, self.monitor, self.best), file=sys.stdout)
-
-
-class BatchProgbarLogger(ProgbarLogger):
-
-    def __init__(self, display=1, **kwargs):
-        self.display = display
-        super(BatchProgbarLogger, self).__init__(**kwargs)
-        self.target = None
-        self.progbar = None
-        self.seen = None
-
-    def on_epoch_begin(self, epoch, logs=None):
-        print('Epoch %d/%d' % (epoch + 1, self.epochs))
-        if self.use_steps:
-            target = self.params['steps']
-        else:
-            target = self.params['samples']
-        self.target = target
-        self.progbar = Progbar(target=self.target,
-                               verbose=1,
-                               stateful_metrics=self.stateful_metrics)
-
-        self.seen = 0
-
-    def on_batch_end(self, batch, logs=None):
-        logs = logs or {}
-        batch_size = logs.get('size', 0)
-        if self.use_steps:
-            self.seen += 1
-        else:
-            self.seen += batch_size
-
-        for k in self.params['metrics']:
-            if k in logs:
-                self.log_values.append((k, logs[k]))
-
-        # Skip progbar update for the last batch;
-        # will be handled by on_epoch_end.
-        if self.seen < self.target and self.seen % self.display == 0:
-            self.progbar.update(self.seen, self.log_values)
 
 
 def build_callbacks(model=None,
@@ -184,10 +157,6 @@ def build_callbacks(model=None,
     csv_pdf_logger = CSVPDFLogger(pdf_filename=pdf_filename,
                                   filename=history_filename,
                                   append=True)
-
-    # batch_logger = BatchProgbarLogger(display=500,
-    #                                   count_mode='steps',
-    #                                   stateful_metrics=model.stateful_metric_names)
 
     callbacks = [check_pointer, early_stopper, csv_pdf_logger]
 

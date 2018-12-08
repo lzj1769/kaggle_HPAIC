@@ -27,7 +27,7 @@ sys.setrecursionlimit(3000)
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet18_imagenet_1000_no_top.h5'
 BATCH_SIZE = 4
-INPUT_SHAPE = (2048, 2048, 3)
+INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
 LEARNING_RATE = 1e-04
 

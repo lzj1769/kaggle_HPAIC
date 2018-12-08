@@ -30,8 +30,8 @@ def parse_args():
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
-    parser.add_argument("-w", "--workers", type=int, default=64,
-                        help="number of cores for training. DEFAULT: All cpus")
+    parser.add_argument("-w", "--workers", type=int, default=16,
+                        help="number of cores for training. DEFAULT: All 16 cpus")
     parser.add_argument("-v", "--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
@@ -53,25 +53,22 @@ def main():
     max_queue_size = net.MAX_QUEUE_SIZE
     learning_rate = net.LEARNING_RATE
 
-    # Training models with weights merge on CPU
-    with tf.device('/cpu:0'):
-        weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
+    weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
+    if os.path.exists(weights_filename):
+        custom_objects = get_custom_objects(net_name=args.net_name)
 
-        if os.path.exists(weights_filename):
-            custom_objects = get_custom_objects(net_name=args.net_name)
+        model = load_model(filepath=weights_filename,
+                           custom_objects=custom_objects,
+                           compile=False)
 
-            model = load_model(filepath=weights_filename,
-                               custom_objects=custom_objects,
-                               compile=False)
+        optimizer = Adam(lr=learning_rate)
 
-            optimizer = Adam(lr=learning_rate)
+    else:
+        model = net.build_model(num_classes=N_LABELS)
+        model.summary()
+        optimizer = Adam(lr=learning_rate)
 
-        else:
-            model = net.build_model(num_classes=N_LABELS)
-            model.summary()
-            optimizer = Adam(lr=learning_rate)
-
-    parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus)
+    parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus, cpu_merge=False)
 
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
@@ -88,8 +85,8 @@ def main():
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
     split = np.load(file=split_filename)
 
-    train_indexes = split['train_indexes']
-    test_indexes = split['test_indexes']
+    train_indexes = split['train_indexes'][:1000]
+    test_indexes = split['test_indexes'][:100]
 
     print("Training model on {} samples, validate on {} samples".format(len(train_indexes),
                                                                         len(test_indexes),
