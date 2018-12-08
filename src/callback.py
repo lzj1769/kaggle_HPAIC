@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os
+import sys
 import numpy as np
 import pandas as pd
 import time
@@ -85,39 +86,32 @@ class MultiGPUModelCheckpoint(Callback):
                  filepath=None,
                  model_to_save=None,
                  best=np.Inf,
-                 save_best_only=True,
-                 monitor='val_loss',
-                 verbose=0):
+                 monitor='val_loss'):
         super(MultiGPUModelCheckpoint, self).__init__()
         self.filepath = filepath
         self.model_to_save = model_to_save
         self.best = best
         self.monitor = monitor
-        self.save_best_only = save_best_only
-        self.verbose = verbose
         self.monitor_op = np.less
 
     def on_epoch_end(self, epoch, logs=None):
         logs = logs or {}
         filepath = self.filepath.format(epoch=epoch + 1, **logs)
-        if self.save_best_only:
-            current = logs.get(self.monitor)
-            if current is None:
-                warnings.warn('Can save best model only with %s available, '
-                              'skipping.' % (self.monitor), RuntimeWarning)
+        current = logs.get(self.monitor)
+        if current is None:
+            warnings.warn('Can save best model only with %s available, '
+                          'skipping.' % (self.monitor), RuntimeWarning)
+        else:
+            if self.monitor_op(current, self.best):
+                print('\nEpoch %05d: %s improved from %0.8f to %0.8f,'
+                      ' saving model to %s'
+                      % (epoch + 1, self.monitor, self.best,
+                         current, filepath), file=sys.stdout)
+                self.best = current
+                self.model_to_save.save(filepath, overwrite=True)
             else:
-                if self.monitor_op(current, self.best):
-                    if self.verbose > 0:
-                        print('\nEpoch %05d: %s improved from %0.5f to %0.5f,'
-                              ' saving model to %s'
-                              % (epoch + 1, self.monitor, self.best,
-                                 current, filepath))
-                    self.best = current
-                    self.model_to_save.save(filepath, overwrite=True)
-                else:
-                    if self.verbose > 0:
-                        print('\nEpoch %05d: %s did not improve from %0.5f' %
-                              (epoch + 1, self.monitor, self.best))
+                print('\nEpoch %05d: %s did not improve from %0.8f' %
+                      (epoch + 1, self.monitor, self.best), file=sys.stdout)
 
 
 class BatchProgbarLogger(ProgbarLogger):
@@ -179,9 +173,7 @@ def build_callbacks(model=None,
     check_pointer = MultiGPUModelCheckpoint(model_to_save=model,
                                             best=best,
                                             filepath=check_point_path,
-                                            monitor='val_loss',
-                                            verbose=1,
-                                            save_best_only=True)
+                                            monitor='val_loss')
 
     early_stopper = EarlyStoppingWithTime(seconds=3600 * 110,
                                           monitor='val_loss',

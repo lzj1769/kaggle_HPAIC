@@ -13,13 +13,7 @@ from configure import *
 
 
 def load_data(data_path=None):
-    if "2048" in data_path or "1024" in data_path:
-        data = np.load(data_path, mmap_mode='r')
-
-    else:
-        data = np.load(data_path)
-
-    return data
+    return np.load(data_path, mmap_mode='r')
 
 
 def get_data_path(input_shape=None):
