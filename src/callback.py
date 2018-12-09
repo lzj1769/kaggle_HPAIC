@@ -118,9 +118,12 @@ class MultiGPUModelCheckpoint(Callback):
                          current, filepath), file=sys.stdout)
                 self.best = current
 
-                f = h5dict(filepath, mode='w')
-                _serialize_model(self.model_to_save, f, include_optimizer=True)
-                f.close()
+                try:
+                    f = h5dict(filepath, mode='w')
+                    _serialize_model(self.model_to_save, f, include_optimizer=True)
+                    f.close()
+                except:
+                    print("There is something wrong with saving model, will skip it", file=sys.stderr)
 
             else:
                 print('\nEpoch %05d: %s did not improve from %0.8f' %
