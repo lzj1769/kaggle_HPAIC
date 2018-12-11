@@ -264,10 +264,17 @@ def build_model(num_classes):
     # add a global spatial average pooling layer
     x = base_model.output
 
-    x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    gap1 = GlobalAveragePooling2D()(base_model.get_layer('res2a_branch1').output)
+    gap2 = GlobalAveragePooling2D()(base_model.get_layer('res3a_branch1').output)
+    gap3 = GlobalAveragePooling2D()(base_model.get_layer('res4a_branch1').output)
+    gap4 = GlobalAveragePooling2D()(base_model.get_layer('res5a_branch1').output)
+
+    x = layers.Concatenate()([gap1, gap2, gap3, gap4, x])
+
+    x = Dense(512, activation='relu', name='fc1024_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = Dense(512, activation='relu', name='fc1024_2')(x)
     x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)

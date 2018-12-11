@@ -3,7 +3,7 @@ from keras_applications.vgg19 import VGG19
 
 import keras
 from keras import Model
-from keras.layers import Dense, Dropout, BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization, GlobalAveragePooling2D, Concatenate
 
 sys.setrecursionlimit(3000)
 
@@ -27,10 +27,19 @@ def build_model(num_classes):
 
     # add a global spatial average pooling layer
     x = base_model.output
-    x = Dense(1024, activation='relu', name='fc1024_1')(x)
+
+    gap1 = GlobalAveragePooling2D()(base_model.get_layer('block1_conv2').output)
+    gap2 = GlobalAveragePooling2D()(base_model.get_layer('block2_conv2').output)
+    gap3 = GlobalAveragePooling2D()(base_model.get_layer('block3_conv4').output)
+    gap4 = GlobalAveragePooling2D()(base_model.get_layer('block4_conv4').output)
+    gap5 = GlobalAveragePooling2D()(base_model.get_layer('block5_conv4').output)
+
+    x = Concatenate()([gap1, gap2, gap3, gap4, gap5, x])
+
+    x = Dense(512, activation='relu', name='fc512_1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = Dense(512, activation='relu', name='fc512_2')(x)
     x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
@@ -39,3 +48,6 @@ def build_model(num_classes):
     model = Model(inputs=base_model.input, outputs=x, name='VGG19')
 
     return model
+
+model = build_model(num_classes=28)
+print model.summary()

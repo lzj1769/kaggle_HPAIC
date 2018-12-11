@@ -84,8 +84,8 @@ def main():
     split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
     split = np.load(file=split_filename)
 
-    train_indexes = split['train_indexes']
-    test_indexes = split['test_indexes']
+    train_indexes = split['train_indexes'][:500]
+    test_indexes = split['test_indexes'][:100]
 
     print("Training model on {} samples, validate on {} samples".format(len(train_indexes),
                                                                         len(test_indexes),
