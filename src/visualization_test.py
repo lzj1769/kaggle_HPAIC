@@ -40,7 +40,7 @@ def test_visua_cnn():
     from utils import load_data, get_custom_objects
     df = pd.read_csv(SAMPLE_SUBMISSION)
     custom_objects = get_custom_objects('ResNet50')
-    weights_filename = "GapNet-PL_KFold_2.h5"
+    weights_filename = "ResNet18_KFold_2.h5"
     f = h5dict(weights_filename, 'r')
     print(f.get('training_config'))
     f.close()
@@ -50,9 +50,9 @@ def test_visua_cnn():
 
     model = load_model(weights_filename, custom_objects=custom_objects)
     model.summary()
-    image = load_data(TEST_DATA_1024)
-    for i in range(100, 150, 1):
-       visua_cnn(model=model, image=image[i], id=df['Id'][i])
+    image = load_data(TRAINING_DATA_1024)
+    for i in range(10):
+       visua_cnn(model=model, image=image[i, :, :, :3], id=df['Id'][i])
 
 
 test_visua_cnn()
