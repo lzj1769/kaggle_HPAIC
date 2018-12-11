@@ -8,8 +8,8 @@ from keras.layers import Dense, Dropout, BatchNormalization
 sys.setrecursionlimit(3000)
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5'
-BATCH_SIZE = 4
-INPUT_SHAPE = (2048, 2048, 3)
+BATCH_SIZE = 16
+INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
 LEARNING_RATE = 1e-04
 

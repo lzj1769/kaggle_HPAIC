@@ -2,7 +2,6 @@ from __future__ import print_function, division
 import os
 import numpy as np
 import pandas as pd
-import tempfile
 
 import matplotlib
 
@@ -104,87 +103,28 @@ def visua_prob_distribution(visua_path, net_name, training_prob, test_prob):
     fig.savefig(filename)
 
 
-def apply_modifications(model, custom_objects):
-    from keras.models import load_model
-    """Applies modifications to the model layers to create a new Graph. For example, simply changing
-    `model.layers[idx].activation = new activation` does not change the graph. The entire graph needs to be updated
-    with modified inbound and outbound tensors because of change in layer building function.
-
-    Args:
-        model: The `keras.models.Model` instance.
-
-    Returns:
-        The modified model with changes applied. Does not mutate the original `model`.
-    """
-    # The strategy is to save the modified model and load it back. This is done because setting the activation
-    # in a Keras layer doesnt actually change the graph. We have to iterate the entire graph and change the
-    # layer inbound and outbound nodes with modified tensors. This is doubly complicated in Keras 2.x since
-    # multiple inbound and outbound nodes are allowed with the Graph API.
-    model_path = '/tmp/' + next(tempfile._get_candidate_names()) + '.h5'
-    try:
-        model.save(model_path)
-        return load_model(model_path, custom_objects=custom_objects)
-    finally:
-        os.remove(model_path)
-
-
-def visua_cnn(model, custom_objects=None, image=None, id=id):
+def visua_cnn(model, image=None, id=id):
     from vis.utils.utils import find_layer_idx
     from keras import activations
-    from vis.visualization import overlay, visualize_cam
+    from vis.visualization import visualize_cam
+    from vis.utils.utils import apply_modifications
 
     # Utility to search for layer index by name.
     # Alternatively we can specify this as -1 since it corresponds to the last layer.
-    layer_idx = find_layer_idx(model, 'fc28')
+
+    penultimate_layer = find_layer_idx(model, 'conv2d_6')
 
     # Swap softmax with linear
-    model.layers[layer_idx].activation = activations.linear
-    model = apply_modifications(model, custom_objects=custom_objects)
-
-    grads = visualize_cam(model, layer_idx, filter_indices=None,
-                          seed_input=image, backprop_modifier='guided')
-
-    jet_heatmap = np.uint8(cm.jet(grads)[..., :3] * 255)
-
-    fig = plt.figure(dpi=300, tight_layout=True)
-    fig.figimage(jet_heatmap)
-    fig.figimage(image, xo=512)
-
-    DPI = fig.get_dpi()
-    fig.set_size_inches(2 * 512.0 / float(DPI), 512.0 / float(DPI))
-    fig.savefig("{}.png".format(id))
-
-
-def visua_decode(model, image, id):
-    import keras.backend as K
-    from vis.utils.utils import find_layer_idx, apply_modifications
-    from keras import activations
-    from vis.visualization import visualize_cam
-
-    x = np.expand_dims(image.astype(K.floatx()) / 255.0, axis=0)
-    [class_output, image_output] = model.predict(x=x)
-
-    # Utility to search for layer index by name.
-    # Alternatively we can specify this as -1 since it corresponds to the last layer.
-    layer_idx = find_layer_idx(model, 'classification')
-    model.layers[layer_idx].activation = activations.linear
+    model.layers[penultimate_layer].activation = activations.linear
     model = apply_modifications(model)
 
-    penultimate_layer_idx = find_layer_idx(model, 'res5c_branch2c')
-
-    grads = visualize_cam(model, layer_idx, filter_indices=None,
-                          seed_input=x[0], backprop_modifier='guided',
-                          penultimate_layer_idx=penultimate_layer_idx)
-
-    jet_heatmap = np.uint8(cm.jet(grads)[..., :3] * 255)
-    image_output = np.uint8(image_output * 255)
+    grads = visualize_cam(model, penultimate_layer, filter_indices=None,
+                          seed_input=image / 255.0, backprop_modifier='guided')
 
     fig = plt.figure(dpi=300, tight_layout=True)
-    fig.figimage(jet_heatmap)
-    fig.figimage(image_output[0], xo=512)
-    fig.figimage(image, xo=1024)
+    fig.figimage(np.uint8(grads[:, :, :3]), vmin=0, vmax=255, cmap='jet')
+    fig.figimage(image[:, :, :3], xo=1024)
 
     DPI = fig.get_dpi()
-    fig.set_size_inches(3 * 512.0 / float(DPI), 512.0 / float(DPI))
+    fig.set_size_inches(2 * 1024.0 / float(DPI), 1024.0 / float(DPI))
     fig.savefig("{}.png".format(id))
-    print(class_output)

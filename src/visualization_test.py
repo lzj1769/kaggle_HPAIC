@@ -8,7 +8,6 @@ from visualization import visua_threshold_f1
 from visualization import visua_f1_classes
 from visualization import visua_prob_distribution
 from visualization import visua_cnn
-from visualization import visua_decode
 
 
 def test_visua_threshold_f1():
@@ -35,24 +34,13 @@ def test_visua_prob_distribution():
     visua_prob_distribution(visua_path, exp_config, training_prob, test_prob)
 
 
-def test_visua_decoder():
-    from keras.models import load_model
-    from utils import load_data
-    df = pd.read_csv(TRAINING_DATA_CSV)
-    model = load_model(
-        "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/AttentionResNet50/AttentionResNet50_KFold_7.h5")
-    image, _ = load_data(dataset='train')
-    for i in range(3):
-        visua_decode(model=model, image=image[i][:, :, :3], id=df['Id'][i])
-
-
 def test_visua_cnn():
     from keras.models import load_model
     from keras.utils.io_utils import h5dict
     from utils import load_data, get_custom_objects
-    df = pd.read_csv(TRAINING_DATA_CSV)
-    custom_objects = get_custom_objects('ResNet152')
-    weights_filename = "/rwthfs/rz/cluster/work/rwth0233/kaggle_HPAIC/model/ResNet152/ResNet152_KFold_0.h5"
+    df = pd.read_csv(SAMPLE_SUBMISSION)
+    custom_objects = get_custom_objects('ResNet50')
+    weights_filename = "GapNet-PL_KFold_2.h5"
     f = h5dict(weights_filename, 'r')
     print(f.get('training_config'))
     f.close()
@@ -62,9 +50,9 @@ def test_visua_cnn():
 
     model = load_model(weights_filename, custom_objects=custom_objects)
     model.summary()
-    # image, _ = load_data(dataset='train')
-    # for i in range(2):
-    #    visua_cnn(model=model, image=image[i][:, :, :3], id=df['Id'][i])
+    image = load_data(TEST_DATA_1024)
+    for i in range(100, 150, 1):
+       visua_cnn(model=model, image=image[i], id=df['Id'][i])
 
 
 test_visua_cnn()

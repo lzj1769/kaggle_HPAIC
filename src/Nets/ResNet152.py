@@ -25,7 +25,7 @@ WEIGHTS_PATH = '/home/rs619065/.keras/models/resnet152_weights_tf_notop.h5'
 BATCH_SIZE = 8
 INPUT_SHAPE = (512, 512, 3)
 MAX_QUEUE_SIZE = 32
-LEARNING_RATE = 1e-05
+LEARNING_RATE = 5e-05
 
 
 class Scale(Layer):
