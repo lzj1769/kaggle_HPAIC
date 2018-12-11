@@ -112,7 +112,7 @@ def visua_cnn(model, image=None, id=id):
     # Utility to search for layer index by name.
     # Alternatively we can specify this as -1 since it corresponds to the last layer.
 
-    penultimate_layer = find_layer_idx(model, 'res5b_branch2b')
+    penultimate_layer = find_layer_idx(model, 'fc28')
 
     # Swap softmax with linear
     model.layers[penultimate_layer].activation = activations.linear

@@ -15,6 +15,7 @@ from keras.layers import (
     Input, Dense, Conv2D, MaxPooling2D, ZeroPadding2D, AveragePooling2D,
     Flatten, Activation, GlobalAveragePooling2D, GlobalMaxPooling2D, add, Dropout)
 from keras.layers.normalization import BatchNormalization
+from keras.layers import Concatenate
 from keras.models import Model
 from keras import initializers
 from keras.engine import Layer, InputSpec
@@ -28,7 +29,7 @@ WEIGHTS_PATH = '/home/rs619065/.keras/models/ResNet-101-model.keras.h5'
 BATCH_SIZE = 4
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
-LEARNING_RATE = 1e-05
+LEARNING_RATE = 1e-04
 
 
 class Scale(Layer):
@@ -339,16 +340,22 @@ def build_model(num_classes):
     # create the base pre-trained model
     base_model = ResNet101(weights=WEIGHTS_PATH,
                            include_top=False,
-                           input_shape=INPUT_SHAPE)
+                           input_shape=INPUT_SHAPE,
+                           pooling='avg')
 
-    # add a global spatial average pooling layer
     x = base_model.output
 
-    x = GlobalAveragePooling2D()(x)
-    x = Dense(1024, activation='relu', name='fc1024_1')(x)
+    gap1 = GlobalAveragePooling2D()(base_model.get_layer('res2a_branch1').output)
+    gap2 = GlobalAveragePooling2D()(base_model.get_layer('res3a_branch1').output)
+    gap3 = GlobalAveragePooling2D()(base_model.get_layer('res4a_branch1').output)
+    gap4 = GlobalAveragePooling2D()(base_model.get_layer('res5a_branch1').output)
+
+    x = Concatenate()([gap1, gap2, gap3, gap4, x])
+
+    x = Dense(512, activation='relu', name='fc1')(x)
     x = BatchNormalization(name="batch_1")(x)
     x = Dropout(0.5)(x)
-    x = Dense(1024, activation='relu', name='fc1024_2')(x)
+    x = Dense(512, activation='relu', name='fc2')(x)
     x = BatchNormalization(name="batch_2")(x)
     x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)

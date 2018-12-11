@@ -11,7 +11,7 @@ WEIGHTS_PATH = '/home/rs619065/.keras/models/vgg19_weights_tf_dim_ordering_tf_ke
 BATCH_SIZE = 8
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
-LEARNING_RATE = 5e-04
+LEARNING_RATE = 1e-04
 
 
 def build_model(num_classes):
@@ -28,11 +28,11 @@ def build_model(num_classes):
     # add a global spatial average pooling layer
     x = base_model.output
 
-    gap1 = GlobalAveragePooling2D()(base_model.get_layer('block1_conv2').output)
-    gap2 = GlobalAveragePooling2D()(base_model.get_layer('block2_conv2').output)
-    gap3 = GlobalAveragePooling2D()(base_model.get_layer('block3_conv4').output)
-    gap4 = GlobalAveragePooling2D()(base_model.get_layer('block4_conv4').output)
-    gap5 = GlobalAveragePooling2D()(base_model.get_layer('block5_conv4').output)
+    gap1 = GlobalAveragePooling2D()(base_model.get_layer('block1_pool').output)
+    gap2 = GlobalAveragePooling2D()(base_model.get_layer('block2_pool').output)
+    gap3 = GlobalAveragePooling2D()(base_model.get_layer('block3_pool').output)
+    gap4 = GlobalAveragePooling2D()(base_model.get_layer('block4_pool').output)
+    gap5 = GlobalAveragePooling2D()(base_model.get_layer('block5_pool').output)
 
     x = Concatenate()([gap1, gap2, gap3, gap4, gap5, x])
 
