@@ -112,14 +112,14 @@ def visua_cnn(model, image=None, id=id):
     # Utility to search for layer index by name.
     # Alternatively we can specify this as -1 since it corresponds to the last layer.
 
-    penultimate_layer = find_layer_idx(model, 'fc28')
+    penultimate_layer = find_layer_idx(model, 'res5b_branch2b')
 
     # Swap softmax with linear
     model.layers[penultimate_layer].activation = activations.linear
     model = apply_modifications(model)
 
     grads = visualize_cam(model, penultimate_layer, filter_indices=None,
-                          seed_input=image / 255.0, backprop_modifier='guided')
+                          seed_input=image, backprop_modifier='guided')
 
     fig = plt.figure(dpi=300, tight_layout=True)
     fig.figimage(np.uint8(grads[:, :, :3]), vmin=0, vmax=255, cmap='jet')
