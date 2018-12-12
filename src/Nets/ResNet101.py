@@ -26,7 +26,7 @@ import sys
 sys.setrecursionlimit(3000)
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/ResNet-101-model.keras.h5'
-BATCH_SIZE = 4
+BATCH_SIZE = 16
 INPUT_SHAPE = (1024, 1024, 3)
 MAX_QUEUE_SIZE = 32
 LEARNING_RATE = 1e-04
@@ -219,7 +219,7 @@ def conv_block(input_tensor,
     return x
 
 
-def ResNet101(include_top=True,
+def ResNet152(include_top=True,
               weights=None,
               input_tensor=None,
               input_shape=None,
@@ -338,7 +338,7 @@ def ResNet101(include_top=True,
 
 def build_model(num_classes):
     # create the base pre-trained model
-    base_model = ResNet101(weights=WEIGHTS_PATH,
+    base_model = ResNet152(weights=WEIGHTS_PATH,
                            include_top=False,
                            input_shape=INPUT_SHAPE,
                            pooling='avg')

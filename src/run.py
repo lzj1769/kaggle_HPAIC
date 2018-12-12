@@ -57,11 +57,11 @@ def run_training():
                      'VGG16', 'VGG19',
                      'Xception', 'InceptionResNetV2', 'NASNetMobile',
                      'InceptionV3']
-    kfold_list = [1, 3, 4]
+    kfold_list = [1, 2, 3, 4]
     net_name_list = ['ResNet18', 'ResNet34', 'ResNet50',
                      'GapNet-PL', 'ResNet101', 'VGG16', 'VGG19']
 
-    net_name_list = ['ResNet18']
+    net_name_list = ['ResNet50']
 
     for net_name in net_name_list:
         history_path = get_history_path(net_name=net_name)

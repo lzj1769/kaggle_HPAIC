@@ -38,16 +38,16 @@ def test_visua_cnn():
     from keras.models import load_model
     from utils import load_data
     df = pd.read_csv(SAMPLE_SUBMISSION)
-    weights_filename = "ResNet18_KFold_2.h5"
+    weights_filename = "ResNet50_KFold_0.h5"
     import os
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
     model = load_model(weights_filename)
     model.summary()
     image = load_data(TEST_DATA_1024)
     for i in range(10):
-       visua_cnn(model=model, image=image[i, :, :, :3], id=df['Id'][i])
+       visua_cnn(model=model, image=image[i, :, :, :3], image_id=df['Id'][i])
 
 
 test_visua_cnn()

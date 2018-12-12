@@ -103,7 +103,7 @@ def visua_prob_distribution(visua_path, net_name, training_prob, test_prob):
     fig.savefig(filename)
 
 
-def visua_cnn(model, image=None, id=id):
+def visua_cnn(model, image=None, image_id=None):
     from vis.utils.utils import find_layer_idx
     from keras import activations
     from vis.visualization import visualize_cam
@@ -112,7 +112,7 @@ def visua_cnn(model, image=None, id=id):
     # Utility to search for layer index by name.
     # Alternatively we can specify this as -1 since it corresponds to the last layer.
 
-    penultimate_layer = find_layer_idx(model, 'res5b_branch2b')
+    penultimate_layer = find_layer_idx(model, 'res5c_branch2c')
 
     # Swap softmax with linear
     model.layers[penultimate_layer].activation = activations.linear
@@ -122,9 +122,9 @@ def visua_cnn(model, image=None, id=id):
                           seed_input=image, backprop_modifier='guided')
 
     fig = plt.figure(dpi=300, tight_layout=True)
-    fig.figimage(np.uint8(grads[:, :, :3]), vmin=0, vmax=255, cmap='jet')
+    fig.figimage(np.uint8(grads[:, :, :3]), cmap='jet')
     fig.figimage(image[:, :, :3], xo=1024)
 
     DPI = fig.get_dpi()
     fig.set_size_inches(2 * 1024.0 / float(DPI), 1024.0 / float(DPI))
-    fig.savefig("{}.png".format(id))
+    fig.savefig("{}.png".format(image_id))
