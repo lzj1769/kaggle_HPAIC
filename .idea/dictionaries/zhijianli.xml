@@ -9,6 +9,8 @@
       <w>relu</w>
       <w>resnet</w>
       <w>rwth</w>
+      <w>sepconv</w>
+      <w>xception</w>
     </words>
   </dictionary>
 </component>
