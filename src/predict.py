@@ -45,7 +45,7 @@ def predict_validation(args):
     img = load_data(data_path=train_data)
     target = get_target()
 
-    training_pred = np.zeros(shape=(N_TRAINING, N_LABELS), dtype=np.float32)
+    training_pred = np.zeros(shape=target.shape, dtype=np.float32)
 
     for fold in range(K_FOLD):
         exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
