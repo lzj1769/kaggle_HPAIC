@@ -41,7 +41,7 @@ def transition_block(x, reduction, name):
         output tensor for the block.
     """
     bn_axis = 3 if backend.image_data_format() == 'channels_last' else 1
-    x = layers.BatchNormalization(axis=bn_axis, epsilon=1.001e-5,
+    x = layers.BatchNormalization(axis=bn_axis, epsilon=1.001e-8,
                                   name=name + '_bn')(x)
     x = layers.Activation('relu', name=name + '_relu')(x)
     x = layers.Conv2D(int(backend.int_shape(x)[bn_axis] * reduction), 1,
@@ -64,7 +64,7 @@ def conv_block(x, growth_rate, name):
     """
     bn_axis = 3 if backend.image_data_format() == 'channels_last' else 1
     x1 = layers.BatchNormalization(axis=bn_axis,
-                                   epsilon=1.001e-5,
+                                   epsilon=1.001e-8,
                                    name=name + '_0_bn')(x)
     x1 = layers.Activation('relu', name=name + '_0_relu')(x1)
     x1 = layers.Conv2D(4 * growth_rate, 1,
@@ -109,7 +109,7 @@ def build_model(num_classes=None,
     x = dense_block(x, 2, name='conv5')
 
     x = layers.BatchNormalization(
-        axis=-1, epsilon=1.001e-5, name='bn')(x)
+        axis=-1, epsilon=1.001e-8, name='bn')(x)
     x = layers.Activation('relu', name='relu')(x)
 
     x = layers.GlobalAveragePooling2D(name='avg_pool')(x)
@@ -118,10 +118,10 @@ def build_model(num_classes=None,
 
     x = Dense(512, activation='relu', name='fc1')(x)
     x = BatchNormalization(name="batch_1")(x)
-    x = Dropout(0.5)(x)
+    x = Dropout(0.1)(x)
     x = Dense(512, activation='relu', name='fc2')(x)
     x = BatchNormalization(name="batch_2")(x)
-    x = Dropout(0.5)(x)
+    x = Dropout(0.1)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train

@@ -196,52 +196,54 @@ def get_test_time_augmentation_generators(image, batch_size=None, indexes=None, 
                                      indexes=indexes,
                                      input_shape=input_shape)
 
-    generator_2 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     random_rotate_90_1=random_rotate_90_1)
+    # generator_2 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  random_rotate_90_1=random_rotate_90_1)
+    #
+    # generator_3 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  random_rotate_90_2=random_rotate_90_2)
+    #
+    # generator_4 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  random_rotate_90_3=random_rotate_90_3)
+    #
+    # generator_5 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  horizontal_flip=horizontal_flip)
+    #
+    # generator_6 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  horizontal_flip=horizontal_flip,
+    #                                  random_rotate_90_1=random_rotate_90_1)
+    #
+    # generator_7 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  horizontal_flip=horizontal_flip,
+    #                                  random_rotate_90_2=random_rotate_90_2)
+    #
+    # generator_8 = ImageDataGenerator(x=image,
+    #                                  batch_size=batch_size,
+    #                                  indexes=indexes,
+    #                                  input_shape=input_shape,
+    #                                  horizontal_flip=horizontal_flip,
+    #                                  random_rotate_90_3=random_rotate_90_3)
 
-    generator_3 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     random_rotate_90_2=random_rotate_90_2)
+    # return [generator_1, generator_2,
+    #         generator_3, generator_4,
+    #         generator_5, generator_6,
+    #         generator_7, generator_8]
 
-    generator_4 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     random_rotate_90_3=random_rotate_90_3)
-
-    generator_5 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     horizontal_flip=horizontal_flip)
-
-    generator_6 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     horizontal_flip=horizontal_flip,
-                                     random_rotate_90_1=random_rotate_90_1)
-
-    generator_7 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     horizontal_flip=horizontal_flip,
-                                     random_rotate_90_2=random_rotate_90_2)
-
-    generator_8 = ImageDataGenerator(x=image,
-                                     batch_size=batch_size,
-                                     indexes=indexes,
-                                     input_shape=input_shape,
-                                     horizontal_flip=horizontal_flip,
-                                     random_rotate_90_3=random_rotate_90_3)
-
-    return [generator_1, generator_2,
-            generator_3, generator_4,
-            generator_5, generator_6,
-            generator_7, generator_8]
+    return [generator_1]

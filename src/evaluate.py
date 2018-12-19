@@ -19,7 +19,6 @@ from sklearn.metrics import f1_score, precision_recall_curve
 
 from configure import *
 from utils import get_submission_path, get_training_predict_path, get_test_predict_path
-from utils import calculating_threshold, calculating_fraction
 
 
 def parse_args():
@@ -35,7 +34,7 @@ def search_threshold(y_true, y_pred, net_name):
                                            y_pred[0], y_pred[1])
 
     (n_samples, n_classes) = y_true.shape
-    thresholds = np.linspace(0, 1, 1000)
+    thresholds = np.linspace(0, 1, 100)
 
     f1_score_list = list()
     max_f1_list = list()
@@ -146,10 +145,17 @@ def evaluate_validation(args):
     valid_predicted_labels = list()
     for i in range(valid_pred.shape[0]):
         label_predict = np.arange(N_LABELS)[np.greater(valid_pred[i], optimal_thresholds)]
+
+        if label_predict.size == 0:
+            label_predict = [np.argmax(valid_pred[i])]
+
         str_predict_label = " ".join(str(label) for label in label_predict)
         valid_predicted_labels.append(str_predict_label)
 
-    df = pd.read_csv(TRAINING_DATA_CSV)
+    df1 = pd.read_csv(TRAINING_DATA_CSV)
+    df2 = pd.read_csv(HPAV18_CSV)
+
+    df = pd.concat([df1, df2])
     df['Predicted'] = valid_predicted_labels
     filename = os.path.join(training_predicted_path, "{}_f1_{}.csv".format(args.net_name, macro_f1))
     df.to_csv(filename, index=False)
@@ -157,13 +163,7 @@ def evaluate_validation(args):
     return macro_f1, optimal_thresholds
 
 
-def get_submission(args, f1=None, thres=None):
-    training_predicted_path = get_training_predict_path(args.net_name)
-    filename = os.path.join(training_predicted_path, "{}.npz".format(args.net_name))
-    assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
-
-    valid_pred = np.load(filename)['pred']
-
+def get_submission(args, f1=None, threshold=0.3):
     print("load prediction of test data...", file=sys.stderr)
     test_predict_path = get_test_predict_path(args.net_name)
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
@@ -173,15 +173,14 @@ def get_submission(args, f1=None, thres=None):
 
     submission_path = get_submission_path(net_name=args.net_name)
 
-    # calculate threshold for test data
-    fraction = calculating_fraction(valid_pred, thres)
-
-    threshod = calculating_threshold(test_pred, fraction)
-
     # convert the predicted probabilities into labels for training data
     output_test_labels = list()
     for i in range(test_pred.shape[0]):
-        label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], threshod)]
+        label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], threshold)]
+
+        if label_predict.size == 0:
+            label_predict = [np.argmax(test_pred[i])]
+
         str_predict_label = " ".join(str(label) for label in label_predict)
         output_test_labels.append(str_predict_label)
 
@@ -190,11 +189,8 @@ def get_submission(args, f1=None, thres=None):
     filename = os.path.join(submission_path, "{}_val_f1_{}.csv".format(args.net_name, f1))
     df.to_csv(filename, index=False)
 
-    visua_prob_distribution(VISUALIZATION_PATH, args.net_name, valid_pred, test_pred)
-
 
 if __name__ == '__main__':
     arguments = parse_args()
-    f1, thres = evaluate_validation(arguments)
-    print(thres)
-    get_submission(arguments, f1, thres)
+    #f1, thres = evaluate_validation(arguments)
+    get_submission(arguments)

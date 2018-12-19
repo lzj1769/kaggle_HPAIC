@@ -25,7 +25,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', "--net_name", type=str, default=None,
                         help='name of convolutional neural network. DEFAULT: None')
-    parser.add_argument('-w', "--workers", type=int, default=32, help="number of cores for training. DEFAULT: 32")
+    parser.add_argument('-w', "--workers", type=int, default=16, help="number of cores for prediction. DEFAULT: 32")
     parser.add_argument('-v', "--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
@@ -102,7 +102,7 @@ def predict_test(args):
                                                             input_shape=input_shape)
 
     test_pred = np.zeros(shape=(img.shape[0], N_LABELS), dtype=np.float32)
-    for fold in range(K_FOLD):
+    for fold in range(1):
         print("predicting for fold {}...\n".format(fold), file=sys.stderr)
 
         exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
@@ -117,7 +117,7 @@ def predict_test(args):
                                                  workers=args.workers,
                                                  verbose=args.verbose)
 
-    test_pred /= (K_FOLD * len(test_generators))
+    test_pred /= (1 * len(test_generators))
 
     test_predict_path = get_test_predict_path(net_name=args.net_name)
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
@@ -126,5 +126,5 @@ def predict_test(args):
 
 if __name__ == '__main__':
     arguments = parse_args()
-    predict_validation(args=arguments)
+    # predict_validation(args=arguments)
     predict_test(args=arguments)
