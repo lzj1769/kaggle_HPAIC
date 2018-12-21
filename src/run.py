@@ -50,7 +50,7 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['VGG16', 'VGG19']
+    net_name_list = ['DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3', 'Xception', 'VGG16', 'VGG19']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:

@@ -31,7 +31,7 @@ def single_label_split():
 
         for j, (train_indexes, test_indexes) in enumerate(stratifier.split(X=ids, y=labels)):
 
-            split_filename = os.path.join(DATA_DIR, "Class_{}_KFold_{}".format(i, j))
+            split_filename = os.path.join(DATA_DIR, "Label_{}_KFold_{}".format(i, j))
             np.savez(file=split_filename, train_indexes=train_indexes, test_indexes=test_indexes)
 
 

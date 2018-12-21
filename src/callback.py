@@ -8,7 +8,7 @@ import time
 import warnings
 
 from keras.callbacks import Callback
-from keras.callbacks import EarlyStopping, CSVLogger
+from keras.callbacks import EarlyStopping, CSVLogger, ReduceLROnPlateau
 from keras.utils.io_utils import h5dict
 from keras.engine.saving import _serialize_model
 
@@ -151,9 +151,9 @@ def build_callbacks(model=None,
                                             filepath=check_point_path,
                                             monitor='val_loss')
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 110,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 20,
                                           monitor='val_loss',
-                                          patience=20,
+                                          patience=5,
                                           verbose=1,
                                           restore_best_weights=True)
 
@@ -161,6 +161,8 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    callbacks = [check_pointer, early_stopper, csv_pdf_logger]
+    learning_rate = ReduceLROnPlateau(patience=2, min_lr=1e-05)
+
+    callbacks = [check_pointer, early_stopper, csv_pdf_logger, learning_rate]
 
     return callbacks

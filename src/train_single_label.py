@@ -12,6 +12,7 @@ import keras.backend as K
 
 from callback import build_callbacks
 from generator import ImageDataGenerator
+from generator import BatchBalanceImageDataGenerator
 from utils import *
 from configure import *
 
@@ -23,15 +24,17 @@ def parse_args():
     parser.add_argument("-n", "--net_name", type=str, default=None,
                         help='name of convolutional neural network.')
     parser.add_argument("-k", "--k_fold", type=int, default=0,
-                        help="number of KFold split, should between 0 and 5")
-    parser.add_argument("-e", "--epochs", type=int, default=30,
-                        help="number of epochs for training. DEFAULT: 30")
+                        help="number of KFold split, should between 0 and 1")
+    parser.add_argument("-e", "--epochs", type=int, default=10,
+                        help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
     parser.add_argument("-w", "--workers", type=int, default=8,
                         help="number of cores for training. DEFAULT: All 16 cpus")
     parser.add_argument("-v", "--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
+    parser.add_argument("-l", "--label", type=int, default=None,
+                        help="label of training")
     return parser.parse_args()
 
 
@@ -41,7 +44,7 @@ def main():
     print("load the model configuration...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
 
-    exp_config = generate_exp_config(net_name=args.net_name, k_fold=args.k_fold)
+    exp_config = generate_exp_config_single_label(net_name=args.net_name, k_fold=args.k_fold)
     weights_path = get_weights_path(net_name=args.net_name)
 
     net = importlib.import_module("Nets." + args.net_name)
@@ -52,11 +55,11 @@ def main():
     learning_rate = net.LEARNING_RATE
 
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
-    model = net.build_model(num_classes=N_LABELS)
+    model = net.build_model(num_classes=1)
 
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
-        optimizer = Adam(lr=learning_rate)
+        optimizer = Adam(lr=learning_rate * 0.1)
 
     else:
         model.summary()
@@ -74,9 +77,9 @@ def main():
     train_data, _ = get_data_path(input_shape=input_shape)
 
     img = load_data(data_path=train_data)
-    target = get_target()
+    target = get_target()[:, args.label]
 
-    split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(args.k_fold))
+    split_filename = os.path.join(DATA_DIR, "Label_{}_KFold_{}.npz".format(args.label, args.k_fold))
     split = np.load(file=split_filename)
 
     train_indexes = split['train_indexes']
@@ -92,17 +95,16 @@ def main():
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
     random_brightness = RandomBrightness(p=0.1, limit=0.1)
 
-    train_generator = ImageDataGenerator(x=img,
-                                         y=target,
-                                         indexes=train_indexes,
-                                         batch_size=batch_size,
-                                         shuffle=True,
-                                         input_shape=input_shape,
-                                         learning_phase=True,
-                                         horizontal_flip=horizontal_flip,
-                                         vertical_flip=vertical_flip,
-                                         shift_scale_rotate=shift_scale_rotate,
-                                         random_brightness=random_brightness)
+    train_generator = BatchBalanceImageDataGenerator(x=img,
+                                                     y=target,
+                                                     indexes=train_indexes,
+                                                     batch_size=batch_size,
+                                                     shuffle=True,
+                                                     input_shape=input_shape,
+                                                     horizontal_flip=horizontal_flip,
+                                                     vertical_flip=vertical_flip,
+                                                     shift_scale_rotate=shift_scale_rotate,
+                                                     random_brightness=random_brightness)
 
     valid_generator = ImageDataGenerator(x=img,
                                          y=target,
