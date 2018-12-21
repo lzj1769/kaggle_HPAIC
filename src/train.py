@@ -4,7 +4,6 @@ import argparse
 import importlib
 import sys
 
-from keras.models import load_model
 from keras.losses import binary_crossentropy
 from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
@@ -25,11 +24,11 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("-k", "--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("-e", "--epochs", type=int, default=50,
+    parser.add_argument("-e", "--epochs", type=int, default=10,
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
-    parser.add_argument("-w", "--workers", type=int, default=16,
+    parser.add_argument("-w", "--workers", type=int, default=8,
                         help="number of cores for training. DEFAULT: All 16 cpus")
     parser.add_argument("-v", "--verbose", type=int, default=2,
                         help="Verbosity mode. DEFAULT: 2")
@@ -54,6 +53,7 @@ def main():
 
     weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
     model = net.build_model(num_classes=N_LABELS)
+
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
         optimizer = Adam(lr=learning_rate * 0.1)

@@ -15,7 +15,7 @@ SINGLE_LABEL_K_FOLD = 2
 
 DATA_DIR = "/work/rwth0233/HPAIC/data"
 
-TRAINING_DATA_512 = "/work/rwth0233/HPAIC/data/train_512.npy"
+TRAINING_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_512.npy"
 TRAINING_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
 TRAINING_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
 

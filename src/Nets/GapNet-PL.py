@@ -66,10 +66,8 @@ def build_model(num_classes=None,
 
     x = layers.Dense(512, activation='relu', name='fc1')(x)
     x = layers.BatchNormalization()(x)
-    # x = layers.Dropout(0.1)(x)
     x = layers.Dense(512, activation='relu', name='fc2')(x)
     x = layers.BatchNormalization()(x)
-    # x = layers.Dropout(0.1)(x)
     x = layers.Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train

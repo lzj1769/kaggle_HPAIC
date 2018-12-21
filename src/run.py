@@ -30,7 +30,7 @@ def main():
 
 
 def run_predict():
-    net_name_list = ['GapNet-PL']
+    net_name_list = ['ResNet18']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -50,7 +50,7 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['GapNet-PL']
+    net_name_list = ['VGG16', 'VGG19']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -74,7 +74,7 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 120:00 -M 60000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 120:00 -M 80000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

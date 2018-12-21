@@ -15,7 +15,6 @@ from utils import load_data, generate_exp_config
 from utils import get_weights_path
 from utils import get_training_predict_path
 from utils import get_test_predict_path
-from utils import get_custom_objects
 from utils import get_target
 from utils import get_data_path
 from utils import get_test_time_augmentation_generators
@@ -51,8 +50,7 @@ def predict_validation(args):
         exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
         weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
         assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-        custom_objects = get_custom_objects(net_name=args.net_name)
-        model = load_model(filepath=weights_filename, custom_objects=custom_objects)
+        model = load_model(filepath=weights_filename)
 
         split_filename = os.path.join(DATA_DIR, "KFold_{}.npz".format(fold))
         split = np.load(file=split_filename)
@@ -108,8 +106,7 @@ def predict_test(args):
         exp_config = generate_exp_config(net_name=args.net_name, k_fold=fold)
         weights_filename = os.path.join(weights_path, "{}.h5".format(exp_config))
         assert os.path.exists(weights_filename), "the file: {} doesn't exist...".format(weights_filename)
-        custom_objects = get_custom_objects(net_name=args.net_name)
-        model = load_model(filepath=weights_filename, custom_objects=custom_objects)
+        model = load_model(filepath=weights_filename)
 
         for test_generator in test_generators:
             test_pred += model.predict_generator(generator=test_generator,
@@ -126,5 +123,5 @@ def predict_test(args):
 
 if __name__ == '__main__':
     arguments = parse_args()
-    # predict_validation(args=arguments)
+    predict_validation(args=arguments)
     predict_test(args=arguments)

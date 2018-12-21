@@ -70,19 +70,6 @@ def generate_exp_config(net_name, k_fold=None):
         return net_name
 
 
-def get_custom_objects(net_name):
-    custom_objects = None
-    if net_name == 'ResNet101':
-        from Nets.ResNet101 import Scale
-        custom_objects = {'Scale': Scale}
-
-    elif net_name == 'ResNet152':
-        from Nets.ResNet152 import Scale
-        custom_objects = {'Scale': Scale}
-
-    return custom_objects
-
-
 def get_history_path(net_name):
     return os.path.join(MODEL_HISTORY_PATH, net_name)
 
