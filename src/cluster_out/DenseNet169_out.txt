@@ -1,0 +1,59 @@
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46301198: <DenseNet169> in cluster <rcc> Exited
+
+Job <DenseNet169> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 16:01:43 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Thu Dec 27 10:17:49 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Thu Dec 27 10:17:49 2018
+Terminated at Thu Dec 27 19:25:43 2018
+Results reported at Thu Dec 27 19:25:43 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh DenseNet169
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   64391.00 sec.
+    Max Memory :                                 32541 MB
+    Average Memory :                             17029.18 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               27459.00 MB
+    Max Swap :                                   -
+    Max Processes :                              21
+    Max Threads :                                84
+    Run time :                                   32874 sec.
+    Turnaround time :                            98640 sec.
+
+The output (if any) follows:
+
+Thu Dec 27 10:17:54 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:84:00.0 Off |                    0 |
+| N/A   43C    P0    34W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/DenseNet169_err.txt> for stderr output of this job.
+

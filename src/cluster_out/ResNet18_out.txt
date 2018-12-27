@@ -1,0 +1,235 @@
+Sender: LSF System <lsfadmin@lng07>
+Subject: Job 46210934: <ResNet18> in cluster <rcc> Done
+
+Job <ResNet18> was submitted from host <login> by user <rs619065> in cluster <rcc> at Sun Dec 16 23:44:03 2018
+Job was executed on host(s) <lng07>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Mon Dec 17 11:20:32 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Mon Dec 17 11:20:32 2018
+Terminated at Tue Dec 18 09:48:07 2018
+Results reported at Tue Dec 18 09:48:07 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet18
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   179459.00 sec.
+    Max Memory :                                 60000 MB
+    Average Memory :                             21663.00 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              69
+    Max Threads :                                132
+    Run time :                                   80855 sec.
+    Turnaround time :                            122644 sec.
+
+The output (if any) follows:
+
+Mon Dec 17 11:20:37 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   41C    P0    32W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46301032: <ResNet18> in cluster <rcc> Exited
+
+Job <ResNet18> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 14:33:00 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 15:16:38 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 15:16:38 2018
+Terminated at Wed Dec 26 15:29:02 2018
+Results reported at Wed Dec 26 15:29:02 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet18
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   71.00 sec.
+    Max Memory :                                 60000 MB
+    Average Memory :                             45616.11 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                61
+    Run time :                                   744 sec.
+    Turnaround time :                            3362 sec.
+
+The output (if any) follows:
+
+Wed Dec 26 15:16:43 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   40C    P0    50W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng01>
+Subject: Job 46301154: <ResNet18> in cluster <rcc> Exited
+
+Job <ResNet18> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 15:34:27 2018
+Job was executed on host(s) <lng01>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 15:42:51 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 15:42:51 2018
+Terminated at Wed Dec 26 16:02:05 2018
+Results reported at Wed Dec 26 16:02:05 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet18
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   2184.00 sec.
+    Max Memory :                                 59999 MB
+    Average Memory :                             48973.04 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               1.00 MB
+    Max Swap :                                   -
+    Max Processes :                              21
+    Max Threads :                                84
+    Run time :                                   1154 sec.
+    Turnaround time :                            1658 sec.
+
+The output (if any) follows:
+
+Wed Dec 26 15:42:56 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:84:00.0 Off |                    0 |
+| N/A   46C    P0    49W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46301195: <ResNet18> in cluster <rcc> Exited
+
+Job <ResNet18> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 16:01:42 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 16:44:23 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 16:44:23 2018
+Terminated at Thu Dec 27 19:25:20 2018
+Results reported at Thu Dec 27 19:25:20 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet18
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   143218.00 sec.
+    Max Memory :                                 60000 MB
+    Average Memory :                             30573.60 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              21
+    Max Threads :                                84
+    Run time :                                   96057 sec.
+    Turnaround time :                            98618 sec.
+
+The output (if any) follows:
+
+Wed Dec 26 16:44:28 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   39C    P0    49W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_err.txt> for stderr output of this job.
+

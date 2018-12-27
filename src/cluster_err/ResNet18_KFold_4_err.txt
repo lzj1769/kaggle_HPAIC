@@ -1,0 +1,685 @@
+(OK) Loading cuda 9.0.176
+(OK) Loading cudnn 7.0.5
+/home/rs619065/.local/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+load the model configuration...
+===========================================================================
+
+2018-12-19 18:50:39.963461: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-19 18:50:40.222832: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-19 18:50:40.428647: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 1 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:84:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-19 18:50:40.428704: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0, 1
+2018-12-19 18:50:43.816298: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-19 18:50:43.816330: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 1 
+2018-12-19 18:50:43.816337: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N Y 
+2018-12-19 18:50:43.816341: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 1:   Y N 
+2018-12-19 18:50:43.816985: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2018-12-19 18:50:43.965063: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 15135 MB memory) -> physical GPU (device: 1, name: Tesla P100-SXM2-16GB, pci bus id: 0000:84:00.0, compute capability: 6.0)
+load training and validation data...
+===========================================================================
+
+training model...
+===========================================================================
+
+Process PoolWorker-637:
+Process PoolWorker-640:
+Process PoolWorker-612:
+Process PoolWorker-621:
+Process PoolWorker-631:
+Process PoolWorker-633:
+Process PoolWorker-610:
+Process PoolWorker-625:
+Process PoolWorker-639:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-613:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-611:
+Process PoolWorker-630:
+Traceback (most recent call last):
+Process PoolWorker-636:
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-632:
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-634:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Process PoolWorker-627:
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-626:
+Traceback (most recent call last):
+Traceback (most recent call last):
+    self.run()
+Process PoolWorker-628:
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-638:
+Process PoolWorker-635:
+Process PoolWorker-629:
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    put((job, i, result))
+Traceback (most recent call last):
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+KeyboardInterrupt
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+    self.run()
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+Traceback (most recent call last):
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    racquire()
+    self._target(*self._args, **self._kwargs)
+    racquire()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+KeyboardInterrupt
+KeyboardInterrupt
+    put((job, i, result))
+    put((job, i, result))
+KeyboardInterrupt
+KeyboardInterrupt
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+    racquire()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    racquire()
+    self._target(*self._args, **self._kwargs)
+KeyboardInterrupt
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+KeyboardInterrupt
+    racquire()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    self.run()
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+KeyboardInterrupt
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    put((job, i, result))
+    racquire()
+KeyboardInterrupt
+KeyboardInterrupt
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    self.run()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self.run()
+    self.run()
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+    self.run()
+    self._target(*self._args, **self._kwargs)
+    racquire()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self.run()
+KeyboardInterrupt
+    self._target(*self._args, **self._kwargs)
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    task = get()
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    self._target(*self._args, **self._kwargs)
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    racquire()
+    task = get()
+    racquire()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 376, in get
+KeyboardInterrupt
+    racquire()
+KeyboardInterrupt
+    racquire()
+    task = get()
+    task = get()
+    task = get()
+    racquire()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+    return recv()
+KeyboardInterrupt
+    racquire()
+    racquire()
+    racquire()
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+    racquire()
+KeyboardInterrupt
+Process PoolWorker-623:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 376, in get
+    return recv()
+KeyboardInterrupt
+Process PoolWorker-616:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+Process PoolWorker-615:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+Process PoolWorker-622:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+Process PoolWorker-620:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+    batch_x = self.generate_data(indexes)
+    batch_x = self.generate_data(indexes)
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+    img = np.array(self.x[index], copy=True)
+    img = np.array(self.x[index], copy=True)
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+Process PoolWorker-624:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-609:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 390, in put
+    return send(obj)
+KeyboardInterrupt
+Process PoolWorker-614:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-617:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-619:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-618:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 139, in <module>
+    main()
+  File "train.py", line 132, in main
+    max_queue_size=max_queue_size)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/legacy/interfaces.py", line 91, in wrapper
+    return func(*args, **kwargs)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training.py", line 1418, in fit_generator
+    initial_epoch=initial_epoch)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training_generator.py", line 217, in fit_generator
+    class_weight=class_weight)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training.py", line 1217, in train_on_batch
+    outputs = self.train_function(ins)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/backend/tensorflow_backend.py", line 2715, in __call__
+    return self._call(inputs)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/backend/tensorflow_backend.py", line 2675, in _call
+    fetched = self._callable_fn(*array_vals)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1451, in __call__
+    self._session._session, self._handle, args, status, None)
+KeyboardInterrupt
+Terminated
+(OK) Loading cuda 9.0.176
+(OK) Loading cudnn 7.0.5
+/home/rs619065/.local/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+load the model configuration...
+===========================================================================
+
+2018-12-20 21:30:41.986418: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-20 21:30:42.268600: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-20 21:30:42.479432: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 1 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:84:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-20 21:30:42.479492: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0, 1
+2018-12-20 21:30:46.222462: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-20 21:30:46.222494: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 1 
+2018-12-20 21:30:46.222502: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N Y 
+2018-12-20 21:30:46.222505: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 1:   Y N 
+2018-12-20 21:30:46.223146: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2018-12-20 21:30:46.371147: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 15135 MB memory) -> physical GPU (device: 1, name: Tesla P100-SXM2-16GB, pci bus id: 0000:84:00.0, compute capability: 6.0)
+load training and validation data...
+===========================================================================
+
+training model...
+===========================================================================
+
+Process PoolWorker-142:
+Process PoolWorker-143:
+Process PoolWorker-141:
+Process PoolWorker-137:
+Process PoolWorker-140:
+Process PoolWorker-138:
+Process PoolWorker-139:
+Process PoolWorker-144:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+Process PoolWorker-134:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    self.run()
+    self.run()
+    racquire()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    racquire()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+KeyboardInterrupt
+    self.run()
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+KeyboardInterrupt
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self.run()
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    task = get()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+    result = (True, func(*args, **kwds))
+    racquire()
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    racquire()
+    racquire()
+    racquire()
+    task = get()
+    task = get()
+KeyboardInterrupt
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 376, in get
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+    racquire()
+    return recv()
+KeyboardInterrupt
+KeyboardInterrupt
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 95, in generate_data
+    batch_x[i] = img
+KeyboardInterrupt
+Process PoolWorker-129:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+Process PoolWorker-130:
+Traceback (most recent call last):
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    batch_x = self.generate_data(indexes)
+    self.run()
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    img = np.array(self.x[index], copy=True)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+KeyboardInterrupt
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 97, in generate_data
+    batch_x /= 255.
+KeyboardInterrupt
+Process PoolWorker-135:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Process PoolWorker-136:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 390, in put
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    return send(obj)
+KeyboardInterrupt
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-132:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-131:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Process PoolWorker-133:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 113, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/utils/data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 68, in __getitem__
+    batch_x = self.generate_data(indexes)
+  File "/rwthfs/rz/cluster/home/rs619065/HPAIC/src/generator.py", line 85, in generate_data
+    img = np.array(self.x[index], copy=True)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 139, in <module>
+    main()
+  File "train.py", line 132, in main
+    max_queue_size=max_queue_size)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/legacy/interfaces.py", line 91, in wrapper
+    return func(*args, **kwargs)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training.py", line 1418, in fit_generator
+    initial_epoch=initial_epoch)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training_generator.py", line 217, in fit_generator
+    class_weight=class_weight)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/engine/training.py", line 1217, in train_on_batch
+    outputs = self.train_function(ins)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/backend/tensorflow_backend.py", line 2715, in __call__
+    return self._call(inputs)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/keras/backend/tensorflow_backend.py", line 2675, in _call
+    fetched = self._callable_fn(*array_vals)
+  File "/home/rs619065/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1451, in __call__
+    self._session._session, self._handle, args, status, None)
+KeyboardInterrupt

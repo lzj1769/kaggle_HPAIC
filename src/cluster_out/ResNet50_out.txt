@@ -1,0 +1,176 @@
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46272699: <ResNet50> in cluster <rcc> Exited
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Mon Dec 24 13:17:38 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Tue Dec 25 21:12:21 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Tue Dec 25 21:12:21 2018
+Terminated at Wed Dec 26 11:11:39 2018
+Results reported at Wed Dec 26 11:11:39 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet50
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   33125.00 sec.
+    Max Memory :                                 26195 MB
+    Average Memory :                             18498.05 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               33805.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              37
+    Max Threads :                                100
+    Run time :                                   50358 sec.
+    Turnaround time :                            165241 sec.
+
+The output (if any) follows:
+
+Tue Dec 25 21:12:26 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   33C    P0    31W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46300746: <ResNet50> in cluster <rcc> Done
+
+Job <ResNet50> was submitted from host <login> by user <rs619065> in cluster <rcc> at Wed Dec 26 11:12:11 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 12:26:23 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 12:26:23 2018
+Terminated at Wed Dec 26 12:47:42 2018
+Results reported at Wed Dec 26 12:47:42 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet50
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   3349.99 sec.
+    Max Memory :                                 18964 MB
+    Average Memory :                             16954.53 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               41036.00 MB
+    Max Swap :                                   -
+    Max Processes :                              37
+    Max Threads :                                100
+    Run time :                                   1279 sec.
+    Turnaround time :                            5731 sec.
+
+The output (if any) follows:
+
+Wed Dec 26 12:26:28 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   37C    P0    49W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng01>
+Subject: Job 46301194: <ResNet50> in cluster <rcc> Exited
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 16:01:42 2018
+Job was executed on host(s) <lng01>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 16:02:50 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 16:02:50 2018
+Terminated at Thu Dec 27 09:02:09 2018
+Results reported at Thu Dec 27 09:02:09 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh ResNet50
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   43510.05 sec.
+    Max Memory :                                 27645 MB
+    Average Memory :                             8671.15 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               32355.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              21
+    Max Threads :                                84
+    Run time :                                   61159 sec.
+    Turnaround time :                            61227 sec.
+
+The output (if any) follows:
+
+Wed Dec 26 16:02:55 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:84:00.0 Off |                    0 |
+| N/A   41C    P0    31W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+

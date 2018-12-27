@@ -1,0 +1,79 @@
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 45979648: <pre_processing> in cluster <rcc> Done
+
+Job <pre_processing> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Fri Dec  7 16:16:48 2018
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Fri Dec  7 16:18:34 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Fri Dec  7 16:18:34 2018
+Terminated at Thu Dec 13 21:15:10 2018
+Results reported at Thu Dec 13 21:15:10 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/usr/bin/env zsh
+
+# PATH
+export PATH=/home/rs619065/local/bin:$PATH
+export PATH=/home/rs619065/.local/bin:$PATH
+export PATH=/home/rs619065/local/bamtools/bin:$PATH
+export PATH=/usr/local_rwth/sw/cuda/9.0.176/bin:$PATH
+export PATH=/home/rs619065/perl5/bin:$PATH
+
+################################################################
+# LIBRARYPATH
+export LD_LIBRARY_PATH=/home/rs619065/local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/rs619065/local/bamtools/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local_rwth/sw/cuda/9.0.176/lib64:$LD_LIBRARY_PATH
+
+export R_LIBS_USER=$R_LIBS_USER:/home/rs619065/local/lib64/R/library
+export PERL5LIB=/home/rs619065/perl5/lib/5.26.1:$PERL5LIB
+export PERL5LIB=/home/rs619065/perl5/lib/perl5:$PERL5LIB
+
+export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
+
+### Job name
+#BSUB -J pre_processing
+ 
+### File / path where STDOUT & STDERR will be written
+###    %J is the job ID, %I is the array ID
+#BSUB -o ./cluster_out/pre_processing.txt
+#BSUB -e ./cluster_err/pre_processing.txt
+
+### Request the time you need for execution in minutes
+### The format for the parameter is: [hour:]minute,
+### that means for 80 minutes you could also use this: 1:20
+#BSUB -W 300:00
+
+#BSUB -M 10240 -S 100 -P izkf
+
+#python download_HPAv18.py
+python pre_processing.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   98504.97 sec.
+    Max Memory :                                 10240 MB
+    Average Memory :                             7171.43 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                86
+    Run time :                                   536196 sec.
+    Turnaround time :                            536302 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/pre_processing.txt> for stderr output of this job.
+

@@ -1,0 +1,82 @@
+Sender: LSF System <lsfadmin@lng01>
+Subject: Job 46301020: <SingleLabelResNet50.py_KFold_0> in cluster <rcc> Exited
+
+Job <SingleLabelResNet50.py_KFold_0> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 14:29:11 2018
+Job was executed on host(s) <lng01>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 14:29:33 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 14:29:33 2018
+Terminated at Wed Dec 26 14:29:43 2018
+Results reported at Wed Dec 26 14:29:43 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train_single_label.zsh SingleLabelResNet50.py 15 0
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   5.73 sec.
+    Max Memory :                                 167 MB
+    Average Memory :                             1.00 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               79833.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   10 sec.
+    Turnaround time :                            32 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/SingleLabelResNet50.py_KFold_0_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng01>
+Subject: Job 46301022: <SingleLabelResNet50.py_KFold_0> in cluster <rcc> Exited
+
+Job <SingleLabelResNet50.py_KFold_0> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 26 14:29:12 2018
+Job was executed on host(s) <lng01>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Wed Dec 26 14:30:03 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Dec 26 14:30:03 2018
+Terminated at Wed Dec 26 14:30:15 2018
+Results reported at Wed Dec 26 14:30:15 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train_single_label.zsh SingleLabelResNet50.py 27 0
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   5.85 sec.
+    Max Memory :                                 291 MB
+    Average Memory :                             1.00 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               79709.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   12 sec.
+    Turnaround time :                            63 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/SingleLabelResNet50.py_KFold_0_err.txt> for stderr output of this job.
+

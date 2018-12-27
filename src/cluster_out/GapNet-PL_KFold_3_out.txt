@@ -1,0 +1,324 @@
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46185814: <GapNet-PL_KFold_3> in cluster <rcc> Exited
+
+Job <GapNet-PL_KFold_3> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Dec 12 10:52:19 2018
+Job was executed on host(s) <lng03>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Sun Dec 16 15:42:55 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Dec 16 15:42:55 2018
+Terminated at Tue Dec 18 19:40:44 2018
+Results reported at Tue Dec 18 19:40:44 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh GapNet-PL 3
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   691168.00 sec.
+    Max Memory :                                 50245 MB
+    Average Memory :                             41407.48 MB
+    Total Requested Memory :                     102400.00 MB
+    Delta Memory :                               52155.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              37
+    Max Threads :                                873
+    Run time :                                   187069 sec.
+    Turnaround time :                            550105 sec.
+
+The output (if any) follows:
+
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+data (InputLayer)               (None, 1024, 1024, 4 0                                            
+__________________________________________________________________________________________________
+conv1 (Conv2D)                  (None, 511, 511, 32) 1184        data[0][0]                       
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 511, 511, 32) 128         conv1[0][0]                      
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 511, 511, 32) 0           batch_normalization_1[0][0]      
+__________________________________________________________________________________________________
+max_pooling2d_1 (MaxPooling2D)  (None, 255, 255, 32) 0           activation_1[0][0]               
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 127, 127, 64) 18496       max_pooling2d_1[0][0]            
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 127, 127, 64) 256         conv2d_1[0][0]                   
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 127, 127, 64) 0           batch_normalization_2[0][0]      
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 125, 125, 64) 36928       activation_2[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 125, 125, 64) 256         conv2d_2[0][0]                   
+__________________________________________________________________________________________________
+activation_3 (Activation)       (None, 125, 125, 64) 0           batch_normalization_3[0][0]      
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 123, 123, 64) 36928       activation_3[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 123, 123, 64) 256         conv2d_3[0][0]                   
+__________________________________________________________________________________________________
+activation_4 (Activation)       (None, 123, 123, 64) 0           batch_normalization_4[0][0]      
+__________________________________________________________________________________________________
+max_pooling2d_2 (MaxPooling2D)  (None, 61, 61, 64)   0           activation_4[0][0]               
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 59, 59, 128)  73856       max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 59, 59, 128)  512         conv2d_4[0][0]                   
+__________________________________________________________________________________________________
+activation_5 (Activation)       (None, 59, 59, 128)  0           batch_normalization_5[0][0]      
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 57, 57, 128)  147584      activation_5[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 57, 57, 128)  512         conv2d_5[0][0]                   
+__________________________________________________________________________________________________
+activation_6 (Activation)       (None, 57, 57, 128)  0           batch_normalization_6[0][0]      
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 55, 55, 128)  147584      activation_6[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 55, 55, 128)  512         conv2d_6[0][0]                   
+__________________________________________________________________________________________________
+activation_7 (Activation)       (None, 55, 55, 128)  0           batch_normalization_7[0][0]      
+__________________________________________________________________________________________________
+global_average_pooling2d_1 (Glo (None, 32)           0           max_pooling2d_1[0][0]            
+__________________________________________________________________________________________________
+global_average_pooling2d_2 (Glo (None, 64)           0           max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+global_average_pooling2d_3 (Glo (None, 128)          0           activation_7[0][0]               
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 224)          0           global_average_pooling2d_1[0][0] 
+                                                                 global_average_pooling2d_2[0][0] 
+                                                                 global_average_pooling2d_3[0][0] 
+__________________________________________________________________________________________________
+fc1 (Dense)                     (None, 512)          115200      concatenate_1[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_8 (BatchNor (None, 512)          2048        fc1[0][0]                        
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 512)          0           batch_normalization_8[0][0]      
+__________________________________________________________________________________________________
+fc2 (Dense)                     (None, 512)          262656      dropout_1[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_9 (BatchNor (None, 512)          2048        fc2[0][0]                        
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 512)          0           batch_normalization_9[0][0]      
+__________________________________________________________________________________________________
+fc28 (Dense)                    (None, 28)           14364       dropout_2[0][0]                  
+==================================================================================================
+Total params: 861,308
+Trainable params: 858,044
+Non-trainable params: 3,264
+__________________________________________________________________________________________________
+Training model on 84510 samples, validate on 21167 samples
+Epoch 1/100
+Epoch 1/100
+ - 6689s - loss: 0.3236 - binary_accuracy: 0.8653 - val_loss: 0.1475 - val_binary_accuracy: 0.9513
+
+Epoch 00001: val_loss improved from inf to 0.14749553, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 2/100
+ - 7015s - loss: 0.1546 - binary_accuracy: 0.9504 - val_loss: 0.1361 - val_binary_accuracy: 0.9543
+
+Epoch 00002: val_loss improved from 0.14749553 to 0.13612043, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 3/100
+ - 6843s - loss: 0.1400 - binary_accuracy: 0.9539 - val_loss: 0.1413 - val_binary_accuracy: 0.9538
+
+Epoch 00003: val_loss did not improve from 0.13612043
+Epoch 4/100
+
+Epoch 00003: val_loss did not improve from 0.13612043
+ - 7327s - loss: 0.1301 - binary_accuracy: 0.9569 - val_loss: 0.1280 - val_binary_accuracy: 0.9558
+
+Epoch 00004: val_loss improved from 0.13612043 to 0.12797103, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 5/100
+ - 6865s - loss: 0.1239 - binary_accuracy: 0.9589 - val_loss: 0.1135 - val_binary_accuracy: 0.9617
+
+Epoch 00005: val_loss improved from 0.12797103 to 0.11354937, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 6/100
+
+Epoch 00005: val_loss improved from 0.12797103 to 0.11354937, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+ - 6677s - loss: 0.1197 - binary_accuracy: 0.9601 - val_loss: 0.1194 - val_binary_accuracy: 0.9587
+
+Epoch 00006: val_loss did not improve from 0.11354937
+Epoch 7/100
+ - 6934s - loss: 0.1168 - binary_accuracy: 0.9609 - val_loss: 0.1235 - val_binary_accuracy: 0.9580
+
+Epoch 00007: val_loss did not improve from 0.11354937
+Epoch 8/100
+ - 6924s - loss: 0.1144 - binary_accuracy: 0.9616 - val_loss: 0.1112 - val_binary_accuracy: 0.9627
+
+Epoch 00008: val_loss improved from 0.11354937 to 0.11116671, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 9/100
+ - 6696s - loss: 0.1124 - binary_accuracy: 0.9622 - val_loss: 0.1082 - val_binary_accuracy: 0.9636
+
+Epoch 00009: val_loss improved from 0.11116671 to 0.10821130, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 10/100
+ - 6894s - loss: 0.1113 - binary_accuracy: 0.9625 - val_loss: 0.1042 - val_binary_accuracy: 0.9646
+
+Epoch 00010: val_loss improved from 0.10821130 to 0.10419717, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 11/100
+ - 6614s - loss: 0.1099 - binary_accuracy: 0.9630 - val_loss: 0.1193 - val_binary_accuracy: 0.9594
+
+Epoch 00011: val_loss did not improve from 0.10419717
+Epoch 12/100
+
+Epoch 00011: val_loss did not improve from 0.10419717
+ - 7218s - loss: 0.1089 - binary_accuracy: 0.9634 - val_loss: 0.1044 - val_binary_accuracy: 0.9652
+
+Epoch 00012: val_loss did not improve from 0.10419717
+Epoch 13/100
+ - 7006s - loss: 0.1077 - binary_accuracy: 0.9636 - val_loss: 0.0993 - val_binary_accuracy: 0.9665
+
+Epoch 00013: val_loss improved from 0.10419717 to 0.09929802, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 14/100
+
+Epoch 00013: val_loss improved from 0.10419717 to 0.09929802, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+ - 6751s - loss: 0.1069 - binary_accuracy: 0.9640 - val_loss: 0.0968 - val_binary_accuracy: 0.9667
+
+Epoch 00014: val_loss improved from 0.09929802 to 0.09675272, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 15/100
+ - 6888s - loss: 0.1063 - binary_accuracy: 0.9641 - val_loss: 0.1026 - val_binary_accuracy: 0.9650
+
+Epoch 00015: val_loss did not improve from 0.09675272
+Epoch 16/100
+ - 7609s - loss: 0.1055 - binary_accuracy: 0.9643 - val_loss: 0.0991 - val_binary_accuracy: 0.9667
+
+Epoch 00016: val_loss did not improve from 0.09675272
+Epoch 17/100
+
+Epoch 00016: val_loss did not improve from 0.09675272
+ - 7297s - loss: 0.1049 - binary_accuracy: 0.9646 - val_loss: 0.0951 - val_binary_accuracy: 0.9677
+
+Epoch 00017: val_loss improved from 0.09675272 to 0.09512110, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 18/100
+ - 6963s - loss: 0.1041 - binary_accuracy: 0.9649 - val_loss: 0.0970 - val_binary_accuracy: 0.9675
+
+Epoch 00018: val_loss did not improve from 0.09512110
+Epoch 19/100
+
+Epoch 00018: val_loss did not improve from 0.09512110
+ - 6987s - loss: 0.1034 - binary_accuracy: 0.9651 - val_loss: 0.0969 - val_binary_accuracy: 0.9670
+
+Epoch 00019: val_loss did not improve from 0.09512110
+Epoch 20/100
+ - 6998s - loss: 0.1030 - binary_accuracy: 0.9653 - val_loss: 0.0977 - val_binary_accuracy: 0.9671
+
+Epoch 00020: val_loss did not improve from 0.09512110
+Epoch 21/100
+
+Epoch 00020: val_loss did not improve from 0.09512110
+ - 6909s - loss: 0.1023 - binary_accuracy: 0.9655 - val_loss: 0.0975 - val_binary_accuracy: 0.9668
+
+Epoch 00021: val_loss did not improve from 0.09512110
+Epoch 22/100
+ - 6937s - loss: 0.1019 - binary_accuracy: 0.9656 - val_loss: 0.0932 - val_binary_accuracy: 0.9685
+
+Epoch 00022: val_loss improved from 0.09512110 to 0.09320537, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 23/100
+
+Epoch 00022: val_loss improved from 0.09512110 to 0.09320537, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+ - 7029s - loss: 0.1015 - binary_accuracy: 0.9658 - val_loss: 0.0943 - val_binary_accuracy: 0.9679
+
+Epoch 00023: val_loss did not improve from 0.09320537
+Epoch 24/100
+ - 6781s - loss: 0.1011 - binary_accuracy: 0.9659 - val_loss: 0.0955 - val_binary_accuracy: 0.9676
+
+Epoch 00024: val_loss did not improve from 0.09320537
+Epoch 25/100
+
+Epoch 00024: val_loss did not improve from 0.09320537
+ - 6610s - loss: 0.1009 - binary_accuracy: 0.9659 - val_loss: 0.0925 - val_binary_accuracy: 0.9684
+
+Epoch 00025: val_loss improved from 0.09320537 to 0.09253663, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 26/100
+ - 6858s - loss: 0.1001 - binary_accuracy: 0.9662 - val_loss: 0.0956 - val_binary_accuracy: 0.9674
+
+Epoch 00026: val_loss did not improve from 0.09253663
+Epoch 27/100
+
+Epoch 00026: val_loss did not improve from 0.09253663
+ - 6604s - loss: 0.1000 - binary_accuracy: 0.9663 - val_loss: 0.0947 - val_binary_accuracy: 0.9675
+
+Epoch 00027: val_loss did not improve from 0.09253663
+Epoch 28/100
+
+
+PS:
+
+Read file <./cluster_err/GapNet-PL_KFold_3_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng08>
+Subject: Job 46237548: <GapNet-PL_KFold_3> in cluster <rcc> Exited
+
+Job <GapNet-PL_KFold_3> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Thu Dec 20 01:08:42 2018
+Job was executed on host(s) <lng08>, in queue <jara-clx>, as user <rs619065> in cluster <rcc> at Thu Dec 20 01:32:33 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Thu Dec 20 01:32:33 2018
+Terminated at Thu Dec 20 16:08:09 2018
+Results reported at Thu Dec 20 16:08:09 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh GapNet-PL 3
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   147415.97 sec.
+    Max Memory :                                 46995 MB
+    Average Memory :                             36753.34 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               13005.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              23
+    Max Threads :                                473
+    Run time :                                   52536 sec.
+    Turnaround time :                            53967 sec.
+
+The output (if any) follows:
+
+Training model on 84510 samples, validate on 21167 samples
+Epoch 1/10
+ - 6988s - loss: 0.0929 - binary_accuracy: 0.9682 - val_loss: 0.0879 - val_binary_accuracy: 0.9700
+
+Epoch 00001: val_loss improved from 0.09253663 to 0.08790889, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 2/10
+ - 7200s - loss: 0.0918 - binary_accuracy: 0.9685 - val_loss: 0.0873 - val_binary_accuracy: 0.9702
+
+Epoch 00002: val_loss improved from 0.08790889 to 0.08727448, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 3/10
+ - 6820s - loss: 0.0914 - binary_accuracy: 0.9688 - val_loss: 0.0869 - val_binary_accuracy: 0.9703
+
+Epoch 00003: val_loss improved from 0.08727448 to 0.08686175, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 4/10
+ - 6898s - loss: 0.0910 - binary_accuracy: 0.9689 - val_loss: 0.0866 - val_binary_accuracy: 0.9704
+
+Epoch 00004: val_loss improved from 0.08686175 to 0.08662957, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 5/10
+ - 7652s - loss: 0.0907 - binary_accuracy: 0.9690 - val_loss: 0.0867 - val_binary_accuracy: 0.9704
+
+Epoch 00005: val_loss did not improve from 0.08662957
+Epoch 6/10
+ - 8157s - loss: 0.0907 - binary_accuracy: 0.9690 - val_loss: 0.0865 - val_binary_accuracy: 0.9704
+
+Epoch 00006: val_loss improved from 0.08662957 to 0.08649452, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 7/10
+ - 8152s - loss: 0.0904 - binary_accuracy: 0.9691 - val_loss: 0.0864 - val_binary_accuracy: 0.9703
+
+Epoch 00007: val_loss improved from 0.08649452 to 0.08639043, saving model to /home/rs619065/HPAIC/model/GapNet-PL/GapNet-PL_KFold_3.h5
+Epoch 8/10
+
+
+PS:
+
+Read file <./cluster_err/GapNet-PL_KFold_3_err.txt> for stderr output of this job.
+
