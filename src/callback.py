@@ -151,9 +151,9 @@ def build_callbacks(model=None,
                                             filepath=check_point_path,
                                             monitor='val_loss')
 
-    early_stopper = EarlyStoppingWithTime(seconds=3600 * 20,
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 110,
                                           monitor='val_loss',
-                                          patience=5,
+                                          patience=20,
                                           verbose=1,
                                           restore_best_weights=True)
 
@@ -161,7 +161,7 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    learning_rate = ReduceLROnPlateau(patience=2, min_lr=1e-05)
+    learning_rate = ReduceLROnPlateau(patience=5, min_lr=1e-08, verbose=1)
 
     callbacks = [check_pointer, early_stopper, csv_pdf_logger, learning_rate]
 

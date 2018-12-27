@@ -24,7 +24,7 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("-k", "--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 5")
-    parser.add_argument("-e", "--epochs", type=int, default=30,
+    parser.add_argument("-e", "--epochs", type=int, default=100,
                         help="number of epochs for training. DEFAULT: 30")
     parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")
@@ -56,7 +56,7 @@ def main():
 
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
-        optimizer = Adam(lr=learning_rate)
+        optimizer = Adam(lr=learning_rate * 0.1)
 
     else:
         model.summary()

@@ -28,13 +28,13 @@ def parse_args():
     return parser.parse_args()
 
 
-def search_threshold(y_true, y_pred, net_name):
+def search_threshold(y_true, y_pred, net_name, visua_path):
     assert y_true.shape == y_pred.shape, "The shape of true labels is {} {}, "
     "while the prediction is {} {}".format(y_true.shape[0], y_true[1],
                                            y_pred[0], y_pred[1])
 
     (n_samples, n_classes) = y_true.shape
-    thresholds = np.linspace(0, 1, 100)
+    thresholds = np.linspace(0, 1, 1000)
 
     f1_score_list = list()
     max_f1_list = list()
@@ -54,7 +54,7 @@ def search_threshold(y_true, y_pred, net_name):
         max_f1_list.append(max_f1)
         optimal_thresholds.append(optimal_threshold)
 
-    visua_f1_score(VISUALIZATION_PATH, net_name, f1_score_list, thresholds)
+    visua_f1_score(visua_path, net_name, f1_score_list, thresholds)
 
     return max_f1_list, np.array(optimal_thresholds)
 
@@ -133,11 +133,22 @@ def evaluate_validation(args):
     valid_label = np.load(filename)['label']
     valid_pred = np.load(filename)['pred']
 
+    visua_path = os.path.join(VISUALIZATION_PATH, args.net_name)
+    if not os.path.exists(visua_path):
+        os.mkdir(visua_path)
+
     # visualize the aupr
-    visua_precision_recall_curve(VISUALIZATION_PATH, args.net_name, valid_label, valid_pred)
+    visua_precision_recall_curve(visua_path, args.net_name, valid_label, valid_pred)
 
     # get the optimal threshold from validation data
-    max_f1_list, optimal_thresholds = search_threshold(y_true=valid_label, y_pred=valid_pred, net_name=args.net_name)
+    max_f1_list, optimal_thresholds = search_threshold(y_true=valid_label, y_pred=valid_pred,
+                                                       net_name=args.net_name, visua_path=visua_path)
+
+    fig, ax = plt.subplots(figsize=(10, 12))
+    ax.bar(x=range(N_LABELS), height=max_f1_list)
+    fig.tight_layout()
+    filename = os.path.join(visua_path, "{}_max_f1.pdf".format(args.net_name))
+    fig.savefig(filename)
 
     macro_f1 = np.mean(max_f1_list)
 
@@ -163,7 +174,7 @@ def evaluate_validation(args):
     return macro_f1, optimal_thresholds
 
 
-def get_submission(args, f1=None, threshold=0.3):
+def get_submission(args, f1=None, threshold=0.1):
     print("load prediction of test data...", file=sys.stderr)
     test_predict_path = get_test_predict_path(args.net_name)
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
@@ -192,5 +203,6 @@ def get_submission(args, f1=None, threshold=0.3):
 
 if __name__ == '__main__':
     arguments = parse_args()
-    #f1, thres = evaluate_validation(arguments)
-    get_submission(arguments)
+    f1, thres = evaluate_validation(arguments)
+    print(thres)
+    get_submission(arguments, f1, thres)

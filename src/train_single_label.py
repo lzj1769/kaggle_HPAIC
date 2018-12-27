@@ -25,7 +25,7 @@ def parse_args():
                         help='name of convolutional neural network.')
     parser.add_argument("-k", "--k_fold", type=int, default=0,
                         help="number of KFold split, should between 0 and 1")
-    parser.add_argument("-e", "--epochs", type=int, default=10,
+    parser.add_argument("-e", "--epochs", type=int, default=100,
                         help="number of epochs for training. DEFAULT: 100")
     parser.add_argument("-g", "--n_gpus", type=int, default=2,
                         help="number of GPUS for training, DEFAULT: 2")

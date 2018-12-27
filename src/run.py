@@ -6,6 +6,7 @@ from utils import generate_exp_config
 from utils import get_submission_path
 from utils import get_training_predict_path
 from utils import get_test_predict_path
+from utils import generate_exp_config_single_label
 
 
 def parse_args():
@@ -13,6 +14,7 @@ def parse_args():
     parser.add_argument('-t', '--training', default=False, action='store_true')
     parser.add_argument('-p', '--predict', default=False, action='store_true')
     parser.add_argument('-e', '--evaluate', default=False, action='store_true')
+    parser.add_argument('-ts', '--training-single', default=False, action='store_true')
     return parser.parse_args()
 
 
@@ -28,9 +30,12 @@ def main():
     if args.evaluate:
         run_evaluate()
 
+    if args.training_single:
+        run_training_single()
+
 
 def run_predict():
-    net_name_list = ['ResNet18']
+    net_name_list = ['ResNet50', 'ResNet18', 'DenseNet121', 'GapNet-PL', 'DenseNet169']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -50,7 +55,7 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3', 'Xception', 'VGG16', 'VGG19']
+    net_name_list = ['InceptionResNetV2']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -78,8 +83,38 @@ def run_training():
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
+def run_training_single():
+    net_name_list = ['SingleLabelResNet50']
+    kfold_list = [0, 1]
+
+    for net_name in net_name_list:
+        history_path = get_history_path(net_name=net_name)
+        weights_path = get_weights_path(net_name=net_name)
+        acc_loss_path = get_acc_loss_path(net_name=net_name)
+
+        # create the output path
+        if not os.path.exists(history_path):
+            os.mkdir(history_path)
+
+        if not os.path.exists(weights_path):
+            os.mkdir(weights_path)
+
+        if not os.path.exists(acc_loss_path):
+            os.mkdir(acc_loss_path)
+
+        # run
+        for label in [15, 27]:
+            for k_fold in kfold_list:
+                exp_config = generate_exp_config_single_label(net_name, k_fold, label)
+                job_name = exp_config
+                command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
+                          "./cluster_err/" + job_name + "_err.txt "
+                command += "-W 120:00 -M 80000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train_single_label.zsh "
+                os.system(command + " " + net_name + " " + str(label) + " " + str(k_fold))
+
+
 def run_evaluate():
-    net_name_list = ['ResNet18']
+    net_name_list = ['ResNet18', 'DenseNet169']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
