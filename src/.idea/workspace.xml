@@ -2,41 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4a06e7c-8316-4e2f-898b-478b0318a371" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Nets/Siamese.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Nets/keras_blender.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lightGBM_blender.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train_siamese.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/zhijian.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/zhijian.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/DenseNet118.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet118.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/InceptionV3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/InceptionV3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet18.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet18.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet34.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet34.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/SingleLabelResNet50.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/Xception.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/Xception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/DenseNet121_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/DenseNet121_err.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/DenseNet169_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/DenseNet169_err.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/GapNet-PL_KFold_0_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/GapNet-PL_KFold_0_err.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet50_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet50_err.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/SingleLabelResNet50.py_KFold_0_err.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/SingleLabelResNet50.py_KFold_1_err.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/SingleLabelResNet50_Label_15_KFold_0_err.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/DenseNet118_KFold_0_out.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/DenseNet121_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/DenseNet121_out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/DenseNet169_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/DenseNet169_out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/GapNet-PL_KFold_0_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/GapNet-PL_KFold_0_out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet50_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet50_out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/SingleLabelResNet50.py_KFold_0_out.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/SingleLabelResNet50.py_KFold_1_out.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/SingleLabelResNet50_Label_15_KFold_0_out.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configure.py" beforeDir="false" afterPath="$PROJECT_DIR$/configure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_single_label.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_single_label.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Estimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Plotting.py" afterDir="false" />
     </list>
@@ -81,7 +47,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="272" />
+          <entry key="py" value="274" />
           <entry key="txt" value="216" />
           <entry key="zsh" value="15" />
         </counts>
@@ -90,7 +56,7 @@
         <counts>
           <entry key="CommandLine" value="15" />
           <entry key="PLAIN_TEXT" value="216" />
-          <entry key="Python" value="272" />
+          <entry key="Python" value="274" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -109,11 +75,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="255" column="25" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
+            <state relative-caret-position="218">
+              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+              <folding>
+                <element signature="e#1109#2583#0" />
+                <element signature="e#2747#4764#0" />
+                <element signature="e#4947#9106#0" />
+                <element signature="e#9143#9879#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Nets/DenseNet118.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/callback.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+              <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -131,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/download_HPAv18.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="282">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -139,59 +132,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pre_processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-62">
-              <caret line="58" column="31" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="31" />
+            <state relative-caret-position="268">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/albumentations/augmentations/transforms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="277" column="9" selection-start-line="277" selection-start-column="9" selection-end-line="277" selection-end-column="9" />
-              <folding>
-                <element signature="e#864#1502#0" />
-                <element signature="e#1536#2395#0" />
-                <element signature="e#2437#2813#0" />
-                <element signature="e#2857#3235#0" />
-                <element signature="e#3269#4096#0" />
-                <element signature="e#4135#4527#0" />
-                <element signature="e#4571#5410#0" />
-                <element signature="e#5455#6258#0" />
-                <element signature="e#6294#7374#0" />
-                <element signature="e#7418#8105#0" />
-                <element signature="e#9637#10926#0" />
-                <element signature="e#26452#27148#0" />
-                <element signature="e#27187#27851#0" />
-                <element signature="e#27882#28291#0" />
-                <element signature="e#28322#28897#0" />
-                <element signature="e#28942#29660#0" />
-                <element signature="e#29700#30544#0" />
-                <element signature="e#30593#30882#0" />
-                <element signature="e#30926#31206#0" />
-                <element signature="e#31252#31707#0" />
-                <element signature="e#31748#32130#0" />
-                <element signature="e#32172#32930#0" />
-                <element signature="e#32974#34127#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_ensemble.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -394,6 +341,11 @@
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Nets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
@@ -827,13 +779,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cluster_out/SingleLabelInceptionV3_Label_0_KFold_0_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_out/SingleLabelInceptionV3_Label_0_KFold_1_out.txt" />
-    <entry file="file://$PROJECT_DIR$/Nets/DenseNet118.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Nets/SingleLabelResNet50.py" />
     <entry file="file://$PROJECT_DIR$/cluster_out/SingleLabelDenseNet121_Label_17_KFold_0_out.txt" />
     <entry file="file://$PROJECT_DIR$/cluster_err/SingleLabelDenseNet121_Label_27_KFold_0_err.txt" />
@@ -951,13 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" selection-start-line="9" selection-end-line="13" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="266" selection-start-line="266" selection-end-line="273" />
         </state>
       </provider>
     </entry>
@@ -1119,24 +1057,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="255" column="25" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/callback.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="155" column="19" lean-forward="true" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
+          <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/download_HPAv18.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -1145,10 +1076,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pre_processing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="58" column="31" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="268">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/DenseNet118.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+          <folding>
+            <element signature="e#1109#2583#0" />
+            <element signature="e#2747#4764#0" />
+            <element signature="e#4947#9106#0" />
+            <element signature="e#9143#9879#0" />
           </folding>
         </state>
       </provider>
