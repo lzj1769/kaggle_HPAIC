@@ -78,8 +78,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+            <state relative-caret-position="24">
+              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+              <folding>
+                <element signature="e#1169#2643#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -254,7 +257,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="709" />
@@ -646,8 +649,7 @@
     <option name="totallyTimeSpent" value="100022000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="709" extended-state="1" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="709" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2180937" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -663,7 +665,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32992566" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50403875" side_tool="true" weight="0.55267423" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49596122" weight="0.5591572" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49596122" visible="true" weight="0.86709887" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.34034416" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1062,8 +1064,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        <state relative-caret-position="24">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="e#1169#2643#0" />
+          </folding>
         </state>
       </provider>
     </entry>
