@@ -5,7 +5,7 @@ from keras import Model
 from keras.layers import Dense, Dropout, BatchNormalization
 
 WEIGHTS_PATH = '/home/rs619065/.keras/models/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5'
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 INPUT_SHAPE = (512, 512, 3)
 MAX_QUEUE_SIZE = 32
 LEARNING_RATE = 1e-04

@@ -23,8 +23,8 @@ from utils import get_submission_path, get_training_predict_path, get_test_predi
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--net_name", help='name of convolutional neural network', default=None)
-    parser.add_argument("--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
+    parser.add_argument('-n', "--net_name", help='name of convolutional neural network', default=None)
+    parser.add_argument('-v', "--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
 

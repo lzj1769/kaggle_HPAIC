@@ -8,6 +8,8 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from albumentations import HorizontalFlip
 from albumentations.augmentations import functional as F
 from albumentations import DualTransform
+from albumentations import RandomBrightness
+from albumentations import ShiftScaleRotate
 
 from configure import *
 
@@ -135,16 +137,6 @@ def calculating_threshold(y_pred, fraction):
     return np.array(threshod)
 
 
-def calculating_class_weights(y_true):
-    from sklearn.utils.class_weight import compute_class_weight
-    n_dim = y_true.shape[1]
-    weights = np.empty([n_dim, 2])
-    for i in range(n_dim):
-        weights[i] = compute_class_weight('balanced', [0., 1.], y_true[:, i])
-
-    return weights
-
-
 class RandomRotate90(DualTransform):
     """Randomly rotate the input by 90 degrees zero or more times.
 
@@ -183,6 +175,9 @@ def get_test_time_augmentation_generators(image, batch_size=None, indexes=None, 
     random_rotate_90_1 = RandomRotate90(factor=1)
     random_rotate_90_2 = RandomRotate90(factor=2)
     random_rotate_90_3 = RandomRotate90(factor=3)
+
+    shift_scale_rotate = ShiftScaleRotate(p=1.0, scale_limit=0.2, rotate_limit=90)
+    random_brightness = RandomBrightness(p=1.0, limit=0.1)
 
     # using raw image
     generator_1 = ImageDataGenerator(x=image,
@@ -235,9 +230,77 @@ def get_test_time_augmentation_generators(image, batch_size=None, indexes=None, 
                                      horizontal_flip=horizontal_flip,
                                      random_rotate_90_3=random_rotate_90_3)
 
+    generator_9 = ImageDataGenerator(x=image,
+                                     batch_size=batch_size,
+                                     indexes=indexes,
+                                     input_shape=input_shape,
+                                     shift_scale_rotate=shift_scale_rotate,
+                                     random_brightness=random_brightness)
+
+    generator_10 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      random_rotate_90_1=random_rotate_90_1,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_11 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      random_rotate_90_2=random_rotate_90_2,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_12 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      random_rotate_90_3=random_rotate_90_3,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_13 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      horizontal_flip=horizontal_flip,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_14 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      horizontal_flip=horizontal_flip,
+                                      random_rotate_90_1=random_rotate_90_1,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_15 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      horizontal_flip=horizontal_flip,
+                                      random_rotate_90_2=random_rotate_90_2,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
+    generator_16 = ImageDataGenerator(x=image,
+                                      batch_size=batch_size,
+                                      indexes=indexes,
+                                      input_shape=input_shape,
+                                      horizontal_flip=horizontal_flip,
+                                      random_rotate_90_3=random_rotate_90_3,
+                                      shift_scale_rotate=shift_scale_rotate,
+                                      random_brightness=random_brightness)
+
     return [generator_1, generator_2,
             generator_3, generator_4,
             generator_5, generator_6,
-            generator_7, generator_8]
-
-    return [generator_1]
+            generator_7, generator_8,
+            generator_9, generator_10,
+            generator_11, generator_12,
+            generator_13, generator_14,
+            generator_15, generator_16]

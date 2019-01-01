@@ -14,7 +14,7 @@ def main():
     img_list = pd.read_csv(HPAV18_CSV)
     print(len(img_list), file=sys.stderr)
 
-    for i in img_list['Id'][34240:]:
+    for i in img_list['Id']:
         img = i.split('_')
         for color in colors:
             img_path = img[0] + '/' + "_".join(img[1:]) + "_" + color + ".jpg"

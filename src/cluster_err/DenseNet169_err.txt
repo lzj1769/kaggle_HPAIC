@@ -142,3 +142,218 @@ Traceback (most recent call last):
     wacquire()
 KeyboardInterrupt
 Terminated
+(OK) Loading cuda 9.0.176
+(OK) Loading cudnn 7.0.5
+/home/rs619065/.local/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+load training data...
+=======================================================
+
+2018-12-30 21:48:20.874433: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-30 21:48:21.146060: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-30 21:48:21.146095: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0
+2018-12-30 21:48:21.520855: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-30 21:48:21.520887: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 
+2018-12-30 21:48:21.520895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N 
+2018-12-30 21:48:21.521262: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+validate the model on 21108 samples
+validate the model on 21131 samples
+validate the model on 21166 samples
+validate the model on 21167 samples
+validate the model on 21105 samples
+load test data...
+=======================================================
+
+predicting for fold 0...
+
+predicting for fold 1...
+
+predicting for fold 2...
+
+predicting for fold 3...
+
+predicting for fold 4...
+
+Process PoolWorker-157:
+Error in atexit._run_exitfuncs:Process PoolWorker-153:
+
+Process PoolWorker-160:
+Process PoolWorker-155:
+Process PoolWorker-156:
+Process PoolWorker-154:
+Process PoolWorker-158:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/atexit.py", line 24, in _run_exitfuncs
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 299, in _exit_function
+    _run_finalizers(0)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 268, in _run_finalizers
+    finalizer()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 201, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 487, in _terminate_pool
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    self.run()
+    self.run()
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    self._target(*self._args, **self._kwargs)
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 102, in worker
+    outqueue.put(None)                  # sentinel
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    self._target(*self._args, **self._kwargs)
+    self.run()
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    self.run()
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 117, in worker
+    wacquire()
+    wacquire()
+KeyboardInterrupt
+Error in sys.exitfunc:
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 299, in _exit_function
+    _run_finalizers(0)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 268, in _run_finalizers
+    finalizer()
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 201, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 487, in _terminate_pool
+    outqueue.put(None)                  # sentinel
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    task = get()
+    wacquire()
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 374, in get
+KeyboardInterrupt
+    put((job, i, result))
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    put((job, i, result))
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    put((job, i, result))
+  File "/usr/lib64/python2.7/multiprocessing/queues.py", line 388, in put
+    racquire()
+    wacquire()
+KeyboardInterrupt
+    wacquire()
+    wacquire()
+    wacquire()
+    wacquire()
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+KeyboardInterrupt
+Terminated
+(OK) Loading cuda 9.0.176
+(OK) Loading cudnn 7.0.5
+/home/rs619065/.local/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+load training data...
+=======================================================
+
+2018-12-31 09:54:49.716164: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-31 09:54:49.970898: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2018-12-31 09:54:49.970938: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0
+2018-12-31 09:54:50.407482: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-31 09:54:50.407513: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 
+2018-12-31 09:54:50.407520: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N 
+2018-12-31 09:54:50.407873: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+validate the model on 21108 samples
+validate the model on 21131 samples
+validate the model on 21166 samples
+validate the model on 21167 samples
+validate the model on 21105 samples
+load test data...
+=======================================================
+
+predicting for fold 0...
+
+predicting for fold 1...
+
+predicting for fold 2...
+
+predicting for fold 3...
+
+predicting for fold 4...
+
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 299, in _exit_function
+    _run_finalizers(0)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 268, in _run_finalizers
+    finalizer()
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 201, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 504, in _terminate_pool
+    task_handler.join(1e100)
+  File "/usr/lib64/python2.7/threading.py", line 962, in join
+    self.__block.wait(delay, balancing)
+  File "/usr/lib64/python2.7/threading.py", line 362, in wait
+    _sleep(delay)
+KeyboardInterrupt
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 299, in _exit_function
+    _run_finalizers(0)
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 268, in _run_finalizers
+    finalizer()
+  File "/usr/lib64/python2.7/multiprocessing/util.py", line 201, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib64/python2.7/multiprocessing/pool.py", line 504, in _terminate_pool
+    task_handler.join(1e100)
+  File "/usr/lib64/python2.7/threading.py", line 962, in join
+    self.__block.wait(delay, balancing)
+  File "/usr/lib64/python2.7/threading.py", line 362, in wait
+    _sleep(delay)
+KeyboardInterrupt
+Terminated

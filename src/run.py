@@ -35,7 +35,7 @@ def main():
 
 
 def run_predict():
-    net_name_list = ['ResNet50', 'ResNet18', 'DenseNet121', 'GapNet-PL', 'DenseNet169']
+    net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -50,12 +50,12 @@ def run_predict():
         job_name = net_name
         command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                   "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 120:00 -M 60000 -S 100 -P nova0019 -gpu - -R gpu ./predict.zsh "
+        command += "-W 120:00 -M 60000 -S 100 -gpu - -R gpu -R pascal ./predict.zsh "
         os.system(command + " " + net_name)
 
 
 def run_training():
-    net_name_list = ['InceptionResNetV2']
+    net_name_list = ['ResNet18', 'ResNet34']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -79,12 +79,12 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 120:00 -M 80000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 120:00 -M 80000 -S 100 -gpu \"num=2\" -R gpu ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
 def run_training_single():
-    net_name_list = ['SingleLabelResNet50']
+    net_name_list = ['SingleLabelResNet34']
     kfold_list = [0, 1]
 
     for net_name in net_name_list:
@@ -103,18 +103,19 @@ def run_training_single():
             os.mkdir(acc_loss_path)
 
         # run
-        for label in [15, 27]:
+        for label in [0, 1, 2]:
             for k_fold in kfold_list:
                 exp_config = generate_exp_config_single_label(net_name, k_fold, label)
                 job_name = exp_config
                 command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                           "./cluster_err/" + job_name + "_err.txt "
-                command += "-W 120:00 -M 80000 -S 100 -P nova0019 -gpu \"num=2\" -R gpu ./train_single_label.zsh "
+                command += "-W 120:00 -M 60000 -S 100 -gpu - -R gpu -R pascal ./train_single_label.zsh "
                 os.system(command + " " + net_name + " " + str(label) + " " + str(k_fold))
 
 
 def run_evaluate():
     net_name_list = ['ResNet18', 'DenseNet169']
+    net_name_list = ['InceptionResNetV2']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)

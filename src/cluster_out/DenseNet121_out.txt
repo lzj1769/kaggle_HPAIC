@@ -57,3 +57,122 @@ PS:
 
 Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@lng04>
+Subject: Job 46355246: <DenseNet121> in cluster <rcc> Exited
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Sun Dec 30 21:47:48 2018
+Job was executed on host(s) <lng04>, in queue <normal>, as user <rs619065> in cluster <rcc> at Sun Dec 30 21:47:52 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Dec 30 21:47:52 2018
+Terminated at Sun Dec 30 23:00:07 2018
+Results reported at Sun Dec 30 23:00:07 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh DenseNet121
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   8707.00 sec.
+    Max Memory :                                 26911 MB
+    Average Memory :                             14919.69 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               33089.00 MB
+    Max Swap :                                   -
+    Max Processes :                              13
+    Max Threads :                                74
+    Run time :                                   4335 sec.
+    Turnaround time :                            4339 sec.
+
+The output (if any) follows:
+
+Sun Dec 30 21:47:57 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:84:00.0 Off |                    0 |
+| N/A   36C    P0    30W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng08>
+Subject: Job 46356104: <DenseNet121> in cluster <rcc> Exited
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Mon Dec 31 09:52:37 2018
+Job was executed on host(s) <lng08>, in queue <normal>, as user <rs619065> in cluster <rcc> at Mon Dec 31 09:54:03 2018
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Mon Dec 31 09:54:03 2018
+Terminated at Mon Dec 31 22:37:01 2018
+Results reported at Mon Dec 31 22:37:01 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./predict.zsh DenseNet121
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   125514.00 sec.
+    Max Memory :                                 26155 MB
+    Average Memory :                             13025.80 MB
+    Total Requested Memory :                     60000.00 MB
+    Delta Memory :                               33845.00 MB
+    Max Swap :                                   -
+    Max Processes :                              21
+    Max Threads :                                852
+    Run time :                                   45778 sec.
+    Turnaround time :                            45864 sec.
+
+The output (if any) follows:
+
+Mon Dec 31 09:54:08 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.26                 Driver Version: 396.26                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-SXM2...  Off  | 00000000:06:00.0 Off |                    0 |
+| N/A   39C    P0    34W / 300W |      0MiB / 16280MiB |      0%   E. Process |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+complete!!
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+

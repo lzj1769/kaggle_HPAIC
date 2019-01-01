@@ -41,7 +41,7 @@ def predict_validation(args):
     print("load training data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)
 
-    img = load_data(data_path=train_data)
+    img = np.load(train_data, mmap_mode='r')
     target = get_target()
 
     training_pred = np.zeros(shape=target.shape, dtype=np.float32)
@@ -119,6 +119,8 @@ def predict_test(args):
     test_predict_path = get_test_predict_path(net_name=args.net_name)
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
     np.savez(file=filename, pred=test_pred)
+
+    print("complete!!")
 
 
 if __name__ == '__main__':

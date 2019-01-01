@@ -96,15 +96,12 @@ def build_model(num_classes=None,
 
     x = dense_block(x, 2, name='conv2')
     x = transition_block(x, 0.5, name='pool2')
-    gap1 = layers.GlobalAveragePooling2D()(x)
 
     x = dense_block(x, 4, name='conv3')
     x = transition_block(x, 0.5, name='pool3')
-    gap2 = layers.GlobalAveragePooling2D()(x)
 
     x = dense_block(x, 4, name='conv4')
     x = transition_block(x, 0.5, name='pool4')
-    gap3 = layers.GlobalAveragePooling2D()(x)
 
     x = dense_block(x, 2, name='conv5')
 
@@ -114,12 +111,12 @@ def build_model(num_classes=None,
 
     x = layers.GlobalAveragePooling2D(name='avg_pool')(x)
 
-    x = layers.Concatenate()([gap1, gap2, gap3, x])
-
     x = Dense(512, activation='relu', name='fc1')(x)
     x = BatchNormalization(name="batch_1")(x)
+    x = Dropout(0.5)(x)
     x = Dense(512, activation='relu', name='fc2')(x)
     x = BatchNormalization(name="batch_2")(x)
+    x = Dropout(0.5)(x)
     x = Dense(num_classes, activation='sigmoid', name='fc28')(x)
 
     # this is the model we will train
