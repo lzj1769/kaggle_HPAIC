@@ -10,13 +10,13 @@ from keras.metrics import binary_accuracy
 import keras.backend as K
 
 from generator import ImageDataGenerator
-from generator import UpSamplingImageDataGenerator
 from utils import *
 from configure import *
 from callback import EarlyStoppingWithTime
 from callback import CSVPDFLogger
 from keras.callbacks import ReduceLROnPlateau
 from keras.callbacks import ModelCheckpoint
+import tensorflow as tf
 
 from albumentations import HorizontalFlip, VerticalFlip, ShiftScaleRotate, RandomBrightness
 
@@ -70,6 +70,42 @@ def build_callbacks(weights_path=None,
     return callbacks
 
 
+def focal_loss(gamma=2., alpha=4.):
+
+    gamma = float(gamma)
+    alpha = float(alpha)
+
+    def focal_loss_fixed(y_true, y_pred):
+        """Focal loss for multi-classification
+        FL(p_t)=-alpha(1-p_t)^{gamma}ln(p_t)
+        Notice: y_pred is probability after softmax
+        gradient is d(Fl)/d(p_t) not d(Fl)/d(x) as described in paper
+        d(Fl)/d(p_t) * [p_t(1-p_t)] = d(Fl)/d(x)
+        Focal Loss for Dense Object Detection
+        https://arxiv.org/abs/1708.02002
+        Arguments:
+            y_true {tensor} -- ground truth labels, shape of [batch_size, num_cls]
+            y_pred {tensor} -- model's output, shape of [batch_size, num_cls]
+        Keyword Arguments:
+            gamma {float} -- (default: {2.0})
+            alpha {float} -- (default: {4.0})
+        Returns:
+            [tensor] -- loss.
+        """
+        epsilon = 1.e-9
+        y_true = tf.convert_to_tensor(y_true, tf.float32)
+        output = tf.convert_to_tensor(y_pred, tf.float32)
+
+        output = tf.clip_by_value(output, epsilon, 1 - epsilon)
+
+        ce = tf.multiply(y_true, -tf.log(output))
+        weight = tf.multiply(y_true, tf.pow(tf.subtract(1., output), gamma))
+        fl = tf.multiply(alpha, tf.multiply(weight, ce))
+        reduced_fl = tf.reduce_max(fl, axis=1)
+        return tf.reduce_mean(reduced_fl)
+    return focal_loss_fixed
+
+
 def main():
     args = parse_args()
 
@@ -101,7 +137,7 @@ def main():
 
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
-    # parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    # parallel_model.compile(optimizer=optimizer, loss=focal_loss(alpha=1), metrics=[binary_accuracy])
 
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
@@ -134,17 +170,16 @@ def main():
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
     random_brightness = RandomBrightness(p=0.1, limit=0.1)
 
-    train_generator = UpSamplingImageDataGenerator(x=img,
-                                                   y=target,
-                                                   indexes=train_indexes,
-                                                   batch_size=batch_size,
-                                                   shuffle=True,
-                                                   input_shape=input_shape,
-                                                   up_sampling_factor=UP_SAMPLING_FACTOR[args.label],
-                                                   horizontal_flip=horizontal_flip,
-                                                   vertical_flip=vertical_flip,
-                                                   shift_scale_rotate=shift_scale_rotate,
-                                                   random_brightness=random_brightness)
+    train_generator = ImageDataGenerator(x=img,
+                                         y=target,
+                                         indexes=train_indexes,
+                                         batch_size=batch_size,
+                                         shuffle=True,
+                                         input_shape=input_shape,
+                                         horizontal_flip=horizontal_flip,
+                                         vertical_flip=vertical_flip,
+                                         shift_scale_rotate=shift_scale_rotate,
+                                         random_brightness=random_brightness)
 
     valid_generator = ImageDataGenerator(x=img,
                                          y=target,

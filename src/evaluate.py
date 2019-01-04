@@ -137,8 +137,15 @@ def evaluate_validation(args):
     if not os.path.exists(visua_path):
         os.mkdir(visua_path)
 
+    test_predict_path = get_test_predict_path(args.net_name)
+    filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
+    assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
+
+    test_pred = np.load(filename)['pred']
+
     # visualize the aupr
     visua_precision_recall_curve(visua_path, args.net_name, valid_label, valid_pred)
+    visua_prob_distribution(visua_path, args.net_name, valid_pred, test_pred)
 
     # get the optimal threshold from validation data
     max_f1_list, optimal_thresholds = search_threshold(y_true=valid_label, y_pred=valid_pred,
@@ -165,8 +172,8 @@ def evaluate_validation(args):
 
     df1 = pd.read_csv(TRAINING_DATA_CSV)
     df2 = pd.read_csv(HPAV18_CSV)
-
     df = pd.concat([df1, df2])
+
     df['Predicted'] = valid_predicted_labels
     filename = os.path.join(training_predicted_path, "{}_f1_{}.csv".format(args.net_name, macro_f1))
     df.to_csv(filename, index=False)

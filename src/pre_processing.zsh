@@ -20,7 +20,7 @@ export PERL5LIB=/home/rs619065/perl5/lib/perl5:$PERL5LIB
 export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
 
 ### Job name
-#BSUB -J pre_processing
+#BSUB -J pre_proscessing
  
 ### File / path where STDOUT & STDERR will be written
 ###    %J is the job ID, %I is the array ID

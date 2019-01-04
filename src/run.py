@@ -36,6 +36,7 @@ def main():
 
 def run_predict():
     net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3']
+    net_name_list = ['GapNet-PL']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -55,8 +56,8 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18', 'ResNet34']
-    kfold_list = [0, 1, 2, 3, 4]
+    net_name_list = ['ResNet18']
+    kfold_list = [0, 1, 2]
 
     for net_name in net_name_list:
         history_path = get_history_path(net_name=net_name)
@@ -114,8 +115,8 @@ def run_training_single():
 
 
 def run_evaluate():
-    net_name_list = ['ResNet18', 'DenseNet169']
-    net_name_list = ['InceptionResNetV2']
+    net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2']
+    net_name_list = ['LightGBM']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
@@ -124,10 +125,9 @@ def run_evaluate():
             os.mkdir(submission_path)
 
         job_name = net_name
-        # command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
-        #         "./cluster_err/" + job_name + "_err.txt "
-        # command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
-        command = './evaluate.zsh '
+        command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
+                  "./cluster_err/" + job_name + "_err.txt "
+        command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
         os.system(command + " " + net_name)
 
 

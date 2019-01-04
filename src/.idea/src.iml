@@ -7,6 +7,5 @@
     <orderEntry type="module" module-name="SingleCellOpenChromatin" />
     <orderEntry type="module" module-name="keras-multiprocess-image-data-generator" />
     <orderEntry type="module" module-name="reg-gen" />
-    <orderEntry type="module" module-name="EMCR" />
   </component>
 </module>

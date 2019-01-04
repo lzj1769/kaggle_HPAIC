@@ -2,145 +2,116 @@ from __future__ import print_function
 from __future__ import division
 
 import sys
-import time
 import argparse
 import lightgbm as lgb
 from sklearn.metrics import log_loss
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 
 from utils import *
 from configure import *
 
+NET_NAMES = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2']
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', "--label", type=int, default=None, help="which label to predict")
-    parser.add_argument('-r', "--runs", type=int, default=100, help="number of runs for each label. DEFAULT: 100")
     parser.add_argument('-v', "--verbose", type=int, default=2, help="Verbosity mode. DEFAULT: 2")
     return parser.parse_args()
 
 
-def load_ensemble_data():
-    print('Loading data...', file=sys.stdout)
+def get_data():
+    x_train = None
+    x_test = None
 
-    ensemble_training_path = os.path.join(TRAINING_OUTPUT_PATH, "Ensemble")
-    filename = os.path.join(ensemble_training_path, "Ensemble.npz")
-    training_data = np.load(filename)
+    for net_name in NET_NAMES:
+        training_predicted_path = get_training_predict_path(net_name)
+        filename = os.path.join(training_predicted_path, "{}.npz".format(net_name))
+        assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
 
-    ensemble_test_path = os.path.join(TEST_OUTPUT_PATH, "Ensemble")
-    filename = os.path.join(ensemble_test_path, "Ensemble.npz")
-    test_data = np.load(filename)
+        if x_train is None:
+            x_train = np.load(filename)['pred']
 
-    return training_data, test_data
+        else:
+            x_train = np.append(x_train, np.load(filename)['pred'], axis=1)
 
+        test_predicted_path = get_test_predict_path(net_name)
+        filename = os.path.join(test_predicted_path, "{}.npz".format(net_name))
+        assert os.path.exists(filename), "the prediction {} does not exist".format(filename)
 
-def gbm_blender(train_indexes, test_indexes, params, label):
-    training_data, test_data = load_ensemble_data()
-    x = training_data['pred']
-    y = training_data['label'][:, label]
+        if x_test is None:
+            x_test = np.load(filename)['pred']
 
-    print(label)
+        else:
+            x_test = np.append(x_test, np.load(filename)['pred'], axis=1)
 
-    num_folds = len(train_indexes)
-    x_pred = np.zeros(shape=(x.shape[0], 1), dtype=np.float32)
-    for i in range(num_folds):
-        train_index = train_indexes[i]
-        test_index = test_indexes[i]
+    y_train = get_target()
 
-        x_train = x[train_index]
-        y_train = y[train_index]
-        x_valid = x[test_index]
-        y_valid = y[test_index]
-
-        print('Length of train: ', x_train.shape[0])
-        print('Length of validation: ', x_valid.shape[0])
-
-        # create dataset for lightgbm
-        lgb_train = lgb.Dataset(x_train, y_train)
-        lgb_eval = lgb.Dataset(x_valid, y_valid, reference=lgb_train)
-
-        print('Starting training...')
-        # train
-        gbm = lgb.train(params,
-                        lgb_train,
-                        num_boost_round=2000,
-                        valid_sets=lgb_eval,
-                        early_stopping_rounds=100)
-
-        print('Saving model...')
-        # save model to file
-        gbm.save_model('model.txt')
-
-        print('Starting predicting...')
-        # predict
-        y_pred = gbm.predict(x_valid, num_iteration=gbm.best_iteration)
-        # eval
-        print('The log loss of prediction is:', log_loss(y_valid, y_pred))
-
-        for i, index in enumerate(test_index):
-            x_pred[index] = y_pred[i]
-
-    np.savez(file="test.npz", pred=x_pred, label=y)
-
-    max_f1 = -np.inf
-    optimal_threshold = None
-    thresholds = np.linspace(0, 1, 1000)
-    for threshold in thresholds:
-        f1 = f1_score(y, x_pred > threshold)
-        if f1 > max_f1:
-            max_f1 = f1
-            optimal_threshold = threshold
-
-    print(max_f1)
-    print(optimal_threshold)
-
-
-def gbm_random_step(label, run):
-    random_state = int(time.time()) + label + run
-    num_folds = 5
-
-    training_data, test_data = load_ensemble_data()
-    X = training_data['pred']
-
-    train_indexes = list()
-    test_indexes = list()
-    kf = KFold(n_splits=num_folds, shuffle=True, random_state=random_state)
-    for train_index, test_index in kf.split(list(range(X.shape[0]))):
-        train_indexes.append(train_index)
-        test_indexes.append(test_index)
-
-    # specify your configurations as a dict
-    params = {
-        'boosting_type': 'gbdt',
-        'objective': 'binary',
-        'metric': {'binary_logloss'},
-        'num_leaves': 31,
-        'learning_rate': 0.01,
-        'feature_fraction': 0.8,
-        'bagging_fraction': 0.8,
-        'bagging_freq': 5,
-        'verbose': 1
-    }
-
-    return train_indexes, test_indexes, params
+    return x_train, y_train, x_test
 
 
 def main():
-    args = parse_args()
+    x_train, y_train, x_test = get_data()
 
-    gbm_training_path = os.path.join(TRAINING_OUTPUT_PATH, "LightGBM")
+    params = dict()
 
-    if not os.path.exists(gbm_training_path):
-        os.mkdir(gbm_training_path)
+    params["objective"] = "binary"
+    params["boosting"] = "gbdt"
+    params["metric"] = "binary_logloss"
+    params["num_leaves"] = 31
+    params["bagging_fraction"] = 0.8
+    params["feature_fraction"] = 0.8
+    params["learning_rate"] = 0.01
+    params["max_depth"] = -1
+    params["num_threads"] = 4
+    params["bagging_freq"] = 20
+    params["max_bin"] = 512
 
-    gbm_test_path = os.path.join(TEST_OUTPUT_PATH, "LightGBM")
+    x_pred = np.zeros(shape=(N_TRAINING, N_LABELS), dtype=np.float32)
+    test_pred = np.zeros(shape=(N_TEST, N_LABELS), dtype=np.float32)
 
-    if not os.path.exists(gbm_test_path):
-        os.mkdir(gbm_test_path)
+    for label in range(N_LABELS):
+        skf = StratifiedKFold(n_splits=5, random_state=label)
 
-    for r in range(args.runs):
-        train_indexes, test_indexes, params = gbm_random_step(label=args.label, run=r)
-        gbm_blender(train_indexes, test_indexes, params, label=args.label)
+        for i, (train_indexes, valid_indexes) in enumerate(skf.split(X=x_train, y=y_train[:, label])):
+
+            print('Length of train: {}'.format(len(train_indexes)), file=sys.stdout)
+            print('Length of validation: {}'.format(len(valid_indexes)), file=sys.stdout)
+
+            # create dataset for lightgbm
+            lgb_train = lgb.Dataset(x_train[train_indexes], y_train[train_indexes, label])
+            lgb_eval = lgb.Dataset(x_train[valid_indexes], y_train[valid_indexes, label], reference=lgb_train)
+
+            print('Starting training...')
+            # train
+            gbm = lgb.train(params,
+                            lgb_train,
+                            num_boost_round=2000,
+                            valid_sets=lgb_eval,
+                            early_stopping_rounds=50,
+                            verbose_eval=1)
+
+            print('Saving model...')
+            # save model to file
+            filename = os.path.join("/home/rs619065/HPAIC/model/LightGBM", "Label_{}_Kfold_{}.txt".format(label, i))
+            gbm.save_model(filename)
+
+            print('Starting predicting...')
+            # predict
+            y_pred = gbm.predict(x_train[valid_indexes], num_iteration=gbm.best_iteration)
+            # eval
+            print('The log loss of prediction is:', log_loss(y_train[valid_indexes, label], y_pred))
+
+            for j, index in enumerate(valid_indexes):
+                x_pred[index, label] = y_pred[j]
+
+            test_pred[:, label] += gbm.predict(x_test, num_iteration=gbm.best_iteration)
+
+    filename = "/home/rs619065/HPAIC/training/LightGBM/LightGBM.npz"
+    np.savez(file=filename, pred=x_pred, label=y_train)
+
+    test_pred /= 5
+    filename = "/home/rs619065/HPAIC/test/LightGBM/LightGBM.npz"
+    np.savez(file=filename, pred=test_pred)
 
 
 if __name__ == '__main__':
