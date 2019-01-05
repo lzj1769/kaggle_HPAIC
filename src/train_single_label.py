@@ -9,7 +9,7 @@ from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
 import keras.backend as K
 
-from generator import ImageDataGenerator
+from generator import ImageDataGenerator, UpSamplingImageDataGenerator
 from utils import *
 from configure import *
 from callback import EarlyStoppingWithTime
@@ -71,7 +71,6 @@ def build_callbacks(weights_path=None,
 
 
 def focal_loss(gamma=2., alpha=4.):
-
     gamma = float(gamma)
     alpha = float(alpha)
 
@@ -103,6 +102,7 @@ def focal_loss(gamma=2., alpha=4.):
         fl = tf.multiply(alpha, tf.multiply(weight, ce))
         reduced_fl = tf.reduce_max(fl, axis=1)
         return tf.reduce_mean(reduced_fl)
+
     return focal_loss_fixed
 
 
@@ -170,16 +170,17 @@ def main():
     shift_scale_rotate = ShiftScaleRotate(p=0.8, scale_limit=0.2, rotate_limit=90)
     random_brightness = RandomBrightness(p=0.1, limit=0.1)
 
-    train_generator = ImageDataGenerator(x=img,
-                                         y=target,
-                                         indexes=train_indexes,
-                                         batch_size=batch_size,
-                                         shuffle=True,
-                                         input_shape=input_shape,
-                                         horizontal_flip=horizontal_flip,
-                                         vertical_flip=vertical_flip,
-                                         shift_scale_rotate=shift_scale_rotate,
-                                         random_brightness=random_brightness)
+    train_generator = UpSamplingImageDataGenerator(x=img,
+                                                   y=target,
+                                                   indexes=train_indexes,
+                                                   batch_size=batch_size,
+                                                   shuffle=True,
+                                                   input_shape=input_shape,
+                                                   horizontal_flip=horizontal_flip,
+                                                   vertical_flip=vertical_flip,
+                                                   up_sampling_factor=2,
+                                                   shift_scale_rotate=shift_scale_rotate,
+                                                   random_brightness=random_brightness)
 
     valid_generator = ImageDataGenerator(x=img,
                                          y=target,

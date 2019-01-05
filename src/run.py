@@ -56,8 +56,8 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18']
-    kfold_list = [0, 1, 2]
+    net_name_list = ['DenseNet118', 'GapNet-PL']
+    kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
         history_path = get_history_path(net_name=net_name)
@@ -104,7 +104,7 @@ def run_training_single():
             os.mkdir(acc_loss_path)
 
         # run
-        for label in [0, 1, 2]:
+        for label in [8, 9, 10]:
             for k_fold in kfold_list:
                 exp_config = generate_exp_config_single_label(net_name, k_fold, label)
                 job_name = exp_config
@@ -116,7 +116,7 @@ def run_training_single():
 
 def run_evaluate():
     net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2']
-    net_name_list = ['LightGBM']
+    net_name_list = ['Average']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)

@@ -11,7 +11,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 from configure import *
 
-NET_NAMES = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2', 'LightGBM']
+NET_NAMES = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2', 'LightGBM', 'Average']
 
 
 def get_data():
