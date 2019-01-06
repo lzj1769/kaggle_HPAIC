@@ -7,7 +7,6 @@
 Implementation is based on Keras 2.0
 """
 from keras.models import Model
-from keras import backend as K
 from keras import layers
 
 import sys

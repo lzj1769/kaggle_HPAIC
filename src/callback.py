@@ -161,7 +161,7 @@ def build_callbacks(model=None,
                                   filename=history_filename,
                                   append=True)
 
-    learning_rate = ReduceLROnPlateau(patience=5, min_lr=1e-06, verbose=1)
+    learning_rate = ReduceLROnPlateau(patience=5, min_lr=1e-05, verbose=1)
 
     callbacks = [check_pointer, early_stopper, csv_pdf_logger, learning_rate]
 
