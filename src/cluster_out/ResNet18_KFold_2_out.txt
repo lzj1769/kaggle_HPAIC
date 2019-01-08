@@ -1269,3 +1269,55 @@ PS:
 
 Read file <./cluster_err/ResNet18_KFold_2_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@lng04>
+Subject: Job 46386070: <ResNet18_KFold_2> in cluster <rcc> Exited
+
+Job <ResNet18_KFold_2> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Sun Jan  6 19:01:20 2019
+Job was executed on host(s) <lng04>, in queue <normal>, as user <rs619065> in cluster <rcc> at Sun Jan  6 19:02:57 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Jan  6 19:02:57 2019
+Terminated at Sun Jan  6 23:17:34 2019
+Results reported at Sun Jan  6 23:17:34 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh ResNet18 2
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   40757.36 sec.
+    Max Memory :                                 64076 MB
+    Average Memory :                             43153.31 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               15924.00 MB
+    Max Swap :                                   -
+    Max Processes :                              21
+    Max Threads :                                473
+    Run time :                                   15277 sec.
+    Turnaround time :                            15374 sec.
+
+The output (if any) follows:
+
+Training model on 84511 samples, validate on 21166 samples
+Epoch 1/100
+ - 7304s - loss: 0.0843 - binary_accuracy: 0.9710 - val_loss: 0.0889 - val_binary_accuracy: 0.9695
+
+Epoch 00001: val_loss did not improve from 0.08106643
+Epoch 2/100
+ - 6810s - loss: 0.0837 - binary_accuracy: 0.9710 - val_loss: 0.0829 - val_binary_accuracy: 0.9717
+
+Epoch 00002: val_loss did not improve from 0.08106643
+Epoch 3/100
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_KFold_2_err.txt> for stderr output of this job.
+

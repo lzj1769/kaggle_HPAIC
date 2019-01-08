@@ -3,7 +3,6 @@ from __future__ import division
 
 import os
 import glob
-import math
 from collections import Counter
 import pandas as pd
 from sklearn.metrics import f1_score

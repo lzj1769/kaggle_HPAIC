@@ -165,6 +165,9 @@ def evaluate_validation(args):
         label_predict = np.arange(N_LABELS)[np.greater(valid_pred[i], optimal_thresholds)]
 
         if label_predict.size == 0:
+            label_predict = np.arange(N_LABELS)[np.greater(valid_pred[i], 0.1)]
+
+        if label_predict.size == 0:
             label_predict = [np.argmax(valid_pred[i])]
 
         str_predict_label = " ".join(str(label) for label in label_predict)
@@ -195,6 +198,9 @@ def get_submission(args, f1=None, threshold=0.1):
     output_test_labels = list()
     for i in range(test_pred.shape[0]):
         label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], threshold)]
+
+        if label_predict.size == 0:
+            label_predict = np.arange(N_LABELS)[np.greater(test_pred[i], 0.1)]
 
         if label_predict.size == 0:
             label_predict = [np.argmax(test_pred[i])]

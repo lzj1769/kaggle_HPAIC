@@ -2,24 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4a06e7c-8316-4e2f-898b-478b0318a371" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_0.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_3.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet18/ResNet18_KFold_4.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_0.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_2.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_3.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../acc_loss/ResNet34/ResNet34_KFold_4.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../history/ResNet18/ResNet18_KFold_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../history/ResNet18/ResNet18_KFold_0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/DenseNet118.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/DenseNet118.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/GapNet-PL.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/GapNet-PL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet18.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet18.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nets/ResNet34.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nets/ResNet34.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_0_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_0_err.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_0_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_0_out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/voting_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/voting_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_0_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_0_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_1_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_1_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_3_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_3_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_4_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet18_KFold_4_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_1_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_1_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_2_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_2_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_3_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_3_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_4_err.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_err/ResNet34_KFold_4_err.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_0_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_0_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_1_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_1_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_3_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_3_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_4_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet18_KFold_4_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_1_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_1_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_2_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_2_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_3_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_3_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_4_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cluster_out/ResNet34_KFold_4_out.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Estimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Plotting.py" afterDir="false" />
     </list>
@@ -50,31 +57,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/GapNet-PL.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="61" column="45" lean-forward="true" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
-              <folding>
-                <element signature="e#203#233#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/voting_classifier.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Nets/DenseNet118.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
+            <state relative-caret-position="293">
+              <caret line="96" column="32" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -82,76 +68,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_1_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="1069" column="53" lean-forward="true" selection-start-line="1069" selection-start-column="53" selection-end-line="1069" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_2_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="1251" column="53" lean-forward="true" selection-start-line="1251" selection-start-column="53" selection-end-line="1251" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="255" column="25" lean-forward="true" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
-              <folding>
-                <element signature="e#1109#2583#0" />
-                <element signature="e#2747#4764#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
-              <folding>
-                <element signature="e#1169#2643#0" />
-                <element signature="e#5007#9652#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_4_out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="909">
-              <caret line="431" lean-forward="true" selection-start-line="431" selection-end-line="431" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="202">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/callback.py">
+        <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="141" column="11" selection-start-line="141" selection-start-column="11" selection-end-line="141" selection-end-column="11" />
+            <state relative-caret-position="-616">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -243,7 +176,6 @@
         <option value="$PROJECT_DIR$/lightGBM_blender.zsh" />
         <option value="$PROJECT_DIR$/keras_blender.py" />
         <option value="$PROJECT_DIR$/Nets/SingleLabelResNet34.py" />
-        <option value="$PROJECT_DIR$/evaluate.py" />
         <option value="$PROJECT_DIR$/lightGBM_blender.py" />
         <option value="$PROJECT_DIR$/../../reg-gen/rgt/HINT/Estimation.py" />
         <option value="$PROJECT_DIR$/../../SingleCellOpenChromatin/Kuppe/check_duplicates.py" />
@@ -251,8 +183,6 @@
         <option value="$PROJECT_DIR$/create_ensemble.py" />
         <option value="$PROJECT_DIR$/average_ensemble.py" />
         <option value="$PROJECT_DIR$/train_single_label.py" />
-        <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/voting_classifier.py" />
         <option value="$PROJECT_DIR$/regression.py" />
         <option value="$PROJECT_DIR$/Nets/GapNet-PL.py" />
         <option value="$PROJECT_DIR$/train.py" />
@@ -260,6 +190,9 @@
         <option value="$PROJECT_DIR$/Nets/DenseNet118.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet18.py" />
         <option value="$PROJECT_DIR$/Nets/ResNet34.py" />
+        <option value="$PROJECT_DIR$/evaluate.py" />
+        <option value="$PROJECT_DIR$/voting_classifier.py" />
+        <option value="$PROJECT_DIR$/run.py" />
       </list>
     </option>
   </component>
@@ -294,27 +227,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="cluster_out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Nets" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -614,7 +527,7 @@
       <workItem from="1545331045382" duration="21950000" />
       <workItem from="1545651420298" duration="12125000" />
       <workItem from="1546422714536" duration="53262000" />
-      <workItem from="1546595479840" duration="33397000" />
+      <workItem from="1546595479840" duration="40444000" />
     </task>
     <task id="LOCAL-00001" summary="remove files">
       <created>1540560603965</created>
@@ -627,7 +540,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186681000" />
+    <option name="totallyTimeSpent" value="193728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
@@ -647,7 +560,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32992566" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50403875" side_tool="true" weight="0.55267423" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49596122" weight="0.3795411" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49596122" weight="0.43116635" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.34034416" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -688,131 +601,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet50.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/InceptionResNetV2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="1455" column="12" lean-forward="true" selection-start-line="1455" selection-start-column="12" selection-end-line="1455" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="220" column="18" lean-forward="true" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_single_label.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../reg-gen/rgt/HINT/Evaluation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet34_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4547">
-          <caret line="725" column="38" lean-forward="true" selection-start-line="725" selection-start-column="38" selection-end-line="725" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet34_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2413">
-          <caret line="569" column="10" lean-forward="true" selection-start-line="569" selection-start-column="10" selection-end-line="569" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet50_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="1421" column="28" selection-start-line="1421" selection-start-column="28" selection-end-line="1421" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/sklearn/linear_model/ridge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-889">
-          <caret line="469" column="25" selection-start-line="469" selection-start-column="25" selection-end-line="469" selection-end-column="25" />
-          <folding>
-            <element signature="e#1118#3093#0" />
-            <element signature="e#3155#3663#0" />
-            <element signature="e#3704#4525#0" />
-            <element signature="e#4605#6630#0" />
-            <element signature="e#6666#6984#0" />
-            <element signature="e#25904#32962#0" />
-            <element signature="e#32999#42097#0" />
-            <element signature="e#42137#44353#0" />
-            <element signature="e#44405#48934#0" />
-            <element signature="e#49003#55139#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/average_ensemble.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="3" column="18" lean-forward="true" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/keras_blender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="28" selection-start-line="28" selection-end-line="47" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/regression.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lightGBM_blender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="54" column="19" lean-forward="true" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -826,11 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19389" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_4_out.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -841,28 +628,6 @@
     <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_3_out.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-18825" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_2_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18306" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18935" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="2390" column="38" lean-forward="true" selection-start-line="2390" selection-start-column="38" selection-end-line="2390" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54259" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_2_out.txt">
@@ -953,81 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_0_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="553" column="11" lean-forward="true" selection-start-line="553" selection-start-column="11" selection-end-line="553" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_1_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9079" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_2_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9035" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_3_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9079" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_4_out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="909">
-          <caret line="431" lean-forward="true" selection-start-line="431" selection-end-line="431" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/callback.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="141" column="11" selection-start-line="141" selection-start-column="11" selection-end-line="141" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="255" column="25" lean-forward="true" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
-          <folding>
-            <element signature="e#1109#2583#0" />
-            <element signature="e#2747#4764#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
-          <folding>
-            <element signature="e#1169#2643#0" />
-            <element signature="e#5007#9652#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1041,34 +735,239 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lightGBM_blender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="210" column="26" lean-forward="true" selection-start-line="210" selection-start-column="26" selection-end-line="210" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/keras_blender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="118" column="29" lean-forward="true" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/voting_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet169_KFold_4_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="1483" column="12" lean-forward="true" selection-start-line="1462" selection-start-column="13" selection-end-line="1483" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="2373" column="12" lean-forward="true" selection-start-line="2373" selection-start-column="12" selection-end-line="2373" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet121_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="2495" column="12" lean-forward="true" selection-start-line="2495" selection-start-column="12" selection-end-line="2495" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="1844" column="12" lean-forward="true" selection-start-line="1844" selection-start-column="12" selection-end-line="1844" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="1834" lean-forward="true" selection-start-line="1834" selection-end-line="1834" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="1845" column="45" selection-start-line="1845" selection-start-column="45" selection-end-line="1845" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_3_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="1868" lean-forward="true" selection-start-line="1868" selection-end-line="1868" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionResNetV2_KFold_4_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="1860" column="11" selection-start-line="1860" selection-start-column="11" selection-end-line="1860" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19389" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19807" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="1057" column="12" lean-forward="true" selection-start-line="1057" selection-start-column="12" selection-end-line="1057" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="1081" column="53" lean-forward="true" selection-start-line="1081" selection-start-column="53" selection-end-line="1081" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="1265" lean-forward="true" selection-start-line="1265" selection-end-line="1265" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet34_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="1268" lean-forward="true" selection-start-line="1268" selection-end-line="1268" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet34_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="555" lean-forward="true" selection-start-line="555" selection-end-line="555" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="939">
+          <caret line="438" lean-forward="true" selection-start-line="438" selection-end-line="438" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_4_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="437" column="12" lean-forward="true" selection-start-line="437" selection-start-column="12" selection-end-line="437" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_3_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="439" column="57" lean-forward="true" selection-start-line="439" selection-start-column="57" selection-end-line="439" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="443" column="53" selection-start-line="443" selection-start-column="45" selection-end-line="443" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/DenseNet118_KFold_0_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="533" column="11" lean-forward="true" selection-start-line="533" selection-start-column="11" selection-end-line="533" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/InceptionV3_KFold_1_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="884" lean-forward="true" selection-start-line="884" selection-end-line="884" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet34_KFold_2_out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="1095" column="23" selection-start-line="1095" selection-start-column="23" selection-end-line="1095" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet18.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="255" column="25" lean-forward="true" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
+          <folding>
+            <element signature="e#1109#2583#0" />
+            <element signature="e#2747#4764#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Nets/ResNet34.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
+          <folding>
+            <element signature="e#1169#2643#0" />
+            <element signature="e#5007#9652#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Nets/DenseNet118.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
+        <state relative-caret-position="293">
+          <caret line="96" column="32" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_1_out.txt">
+    <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="1069" column="53" lean-forward="true" selection-start-line="1069" selection-start-column="53" selection-end-line="1069" selection-end-column="53" />
+        <state relative-caret-position="-616">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster_out/ResNet18_KFold_2_out.txt">
+    <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="1251" column="53" lean-forward="true" selection-start-line="1251" selection-start-column="53" selection-end-line="1251" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/voting_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="202">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>

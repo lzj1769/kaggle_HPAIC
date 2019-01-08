@@ -15,6 +15,7 @@ def parse_args():
     parser.add_argument('-p', '--predict', default=False, action='store_true')
     parser.add_argument('-e', '--evaluate', default=False, action='store_true')
     parser.add_argument('-ts', '--training-single', default=False, action='store_true')
+    parser.add_argument('-b', '--lightGBM', default=False, action='store_true')
     return parser.parse_args()
 
 
@@ -30,13 +31,13 @@ def main():
     if args.evaluate:
         run_evaluate()
 
-    if args.training_single:
-        run_training_single()
+    if args.lightGBM:
+        run_bayesian_lightgbm()
 
 
 def run_predict():
     net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3']
-    net_name_list = ['GapNet-PL']
+    net_name_list = ['ResNet34', 'ResNet18']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -56,7 +57,7 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['DenseNet118', 'GapNet-PL']
+    net_name_list = ['ResNet18_512', 'ResNet34_512']
     kfold_list = [0, 1, 2, 3, 4]
 
     for net_name in net_name_list:
@@ -84,39 +85,9 @@ def run_training():
             os.system(command + " " + net_name + " " + str(k_fold))
 
 
-def run_training_single():
-    net_name_list = ['SingleLabelResNet34']
-    kfold_list = [0, 1]
-
-    for net_name in net_name_list:
-        history_path = get_history_path(net_name=net_name)
-        weights_path = get_weights_path(net_name=net_name)
-        acc_loss_path = get_acc_loss_path(net_name=net_name)
-
-        # create the output path
-        if not os.path.exists(history_path):
-            os.mkdir(history_path)
-
-        if not os.path.exists(weights_path):
-            os.mkdir(weights_path)
-
-        if not os.path.exists(acc_loss_path):
-            os.mkdir(acc_loss_path)
-
-        # run
-        for label in [8, 9, 10]:
-            for k_fold in kfold_list:
-                exp_config = generate_exp_config_single_label(net_name, k_fold, label)
-                job_name = exp_config
-                command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
-                          "./cluster_err/" + job_name + "_err.txt "
-                command += "-W 120:00 -M 60000 -S 100 -gpu - -R gpu -R pascal ./train_single_label.zsh "
-                os.system(command + " " + net_name + " " + str(label) + " " + str(k_fold))
-
-
 def run_evaluate():
-    net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2']
-    net_name_list = ['Average']
+    net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2',
+                     'LightGBM']
 
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
@@ -129,6 +100,15 @@ def run_evaluate():
                   "./cluster_err/" + job_name + "_err.txt "
         command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
         os.system(command + " " + net_name)
+
+
+def run_bayesian_lightgbm():
+    for label in range(28):
+        job_name = "lightGBM_label_{}".format(label)
+        command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
+                  "./cluster_err/" + job_name + "_err.txt "
+        command += "-W 120:00 -M 10240 -S 100 -P izkf ./bayesian_lightGBM.zsh "
+        os.system(command + " " + str(label))
 
 
 if __name__ == '__main__':

@@ -1087,3 +1087,98 @@ PS:
 
 Read file <./cluster_err/ResNet18_KFold_1_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@lng03>
+Subject: Job 46374657: <ResNet18_KFold_1> in cluster <rcc> Exited
+
+Job <ResNet18_KFold_1> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Fri Jan  4 12:12:35 2019
+Job was executed on host(s) <lng03>, in queue <normal>, as user <rs619065> in cluster <rcc> at Sun Jan  6 19:00:56 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Jan  6 19:00:56 2019
+Terminated at Sun Jan  6 19:01:26 2019
+Results reported at Sun Jan  6 19:01:26 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh ResNet18 1
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   9.16 sec.
+    Max Memory :                                 2469 MB
+    Average Memory :                             5.00 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               77531.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                65
+    Run time :                                   30 sec.
+    Turnaround time :                            197331 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_KFold_1_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@lng08>
+Subject: Job 46386069: <ResNet18_KFold_1> in cluster <rcc> Exited
+
+Job <ResNet18_KFold_1> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Sun Jan  6 19:01:20 2019
+Job was executed on host(s) <lng08>, in queue <normal>, as user <rs619065> in cluster <rcc> at Sun Jan  6 19:02:04 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Jan  6 19:02:04 2019
+Terminated at Sun Jan  6 23:17:41 2019
+Results reported at Sun Jan  6 23:17:41 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh ResNet18 1
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   39883.00 sec.
+    Max Memory :                                 64253 MB
+    Average Memory :                             43401.80 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               15747.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              21
+    Max Threads :                                473
+    Run time :                                   15337 sec.
+    Turnaround time :                            15381 sec.
+
+The output (if any) follows:
+
+Training model on 84546 samples, validate on 21131 samples
+Epoch 1/100
+Epoch 1/100
+ - 7047s - loss: 0.0827 - binary_accuracy: 0.9715 - val_loss: 0.0886 - val_binary_accuracy: 0.9692
+
+Epoch 00001: val_loss did not improve from 0.08078370
+Epoch 2/100
+ - 6854s - loss: 0.0822 - binary_accuracy: 0.9717 - val_loss: 0.0856 - val_binary_accuracy: 0.9704
+
+Epoch 00002: val_loss did not improve from 0.08078370
+Epoch 3/100
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_KFold_1_err.txt> for stderr output of this job.
+

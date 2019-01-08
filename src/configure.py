@@ -18,12 +18,10 @@ DATA_DIR = "/work/rwth0233/HPAIC/data"
 
 TRAINING_DATA_512 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_512.npy"
 TRAINING_DATA_1024 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_1024.npy"
-TRAINING_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/train_2048.npy"
 
 LEAK_FILE = "/home/rs619065/HPAIC/input/TestEtraMatchingUnder_259_R14_G12_B10.csv"
 TEST_DATA_512 = "/home/rwth0233/HPAIC/data/test_512.npy"
 TEST_DATA_1024 = "/home/rwth0233/HPAIC/data/test_1024.npy"
-TEST_DATA_2048 = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/data/test_2048.npy"
 
 TRAINING_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/train"
 TEST_INPUT_DIR = "/hpcwork/izkf/projects/SingleCellOpenChromatin/HPAIC/input/test"
