@@ -1182,3 +1182,135 @@ PS:
 
 Read file <./cluster_err/ResNet18_KFold_1_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@lng05>
+Subject: Job 46386636: <ResNet18_KFold_1> in cluster <rcc> Exited
+
+Job <ResNet18_KFold_1> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Sun Jan  6 23:17:59 2019
+Job was executed on host(s) <lng05>, in queue <normal>, as user <rs619065> in cluster <rcc> at Sun Jan  6 23:21:55 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Sun Jan  6 23:21:55 2019
+Terminated at Tue Jan  8 16:39:45 2019
+Results reported at Tue Jan  8 16:39:45 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh ResNet18 1
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   413264.12 sec.
+    Max Memory :                                 63521 MB
+    Average Memory :                             53847.51 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               16479.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              21
+    Max Threads :                                473
+    Run time :                                   148670 sec.
+    Turnaround time :                            148906 sec.
+
+The output (if any) follows:
+
+Training model on 84546 samples, validate on 21131 samples
+Epoch 1/100
+Epoch 1/100 - 7069s - loss: 0.0806 - binary_accuracy: 0.9723 - val_loss: 0.0790 - val_binary_accuracy: 0.9728
+
+Epoch 00001: val_loss improved from 0.08078370 to 0.07904992, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 2/100
+ - 6813s - loss: 0.0802 - binary_accuracy: 0.9725 - val_loss: 0.0789 - val_binary_accuracy: 0.9728
+
+Epoch 00002: val_loss improved from 0.07904992 to 0.07891718, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 3/100
+ - 6371s - loss: 0.0800 - binary_accuracy: 0.9725 - val_loss: 0.0790 - val_binary_accuracy: 0.9727
+
+Epoch 00003: val_loss did not improve from 0.07891718
+Epoch 4/100
+ - 6369s - loss: 0.0798 - binary_accuracy: 0.9725 - val_loss: 0.0784 - val_binary_accuracy: 0.9730
+
+Epoch 00004: val_loss improved from 0.07891718 to 0.07844390, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 5/100
+ - 6361s - loss: 0.0797 - binary_accuracy: 0.9725 - val_loss: 0.0785 - val_binary_accuracy: 0.9729
+
+Epoch 00005: val_loss did not improve from 0.07844390
+Epoch 6/100
+ - 6571s - loss: 0.0796 - binary_accuracy: 0.9726 - val_loss: 0.0786 - val_binary_accuracy: 0.9730
+
+Epoch 00006: val_loss did not improve from 0.07844390
+Epoch 7/100
+ - 6800s - loss: 0.0795 - binary_accuracy: 0.9726 - val_loss: 0.0782 - val_binary_accuracy: 0.9729
+
+Epoch 00007: val_loss improved from 0.07844390 to 0.07822449, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 8/100
+ - 6394s - loss: 0.0794 - binary_accuracy: 0.9727 - val_loss: 0.0783 - val_binary_accuracy: 0.9729
+
+Epoch 00008: val_loss did not improve from 0.07822449
+Epoch 9/100
+ - 6836s - loss: 0.0791 - binary_accuracy: 0.9728 - val_loss: 0.0781 - val_binary_accuracy: 0.9730
+
+Epoch 00009: val_loss improved from 0.07822449 to 0.07813080, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 10/100
+ - 7036s - loss: 0.0792 - binary_accuracy: 0.9728 - val_loss: 0.0782 - val_binary_accuracy: 0.9728
+
+Epoch 00010: val_loss did not improve from 0.07813080
+Epoch 11/100
+ - 6997s - loss: 0.0791 - binary_accuracy: 0.9727 - val_loss: 0.0780 - val_binary_accuracy: 0.9729
+
+Epoch 00011: val_loss improved from 0.07813080 to 0.07798222, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 12/100
+ - 7154s - loss: 0.0790 - binary_accuracy: 0.9728 - val_loss: 0.0777 - val_binary_accuracy: 0.9731
+
+Epoch 00012: val_loss improved from 0.07798222 to 0.07771089, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 13/100
+ - 6770s - loss: 0.0788 - binary_accuracy: 0.9728 - val_loss: 0.0778 - val_binary_accuracy: 0.9730
+
+Epoch 00013: val_loss did not improve from 0.07771089
+Epoch 14/100
+ - 7023s - loss: 0.0787 - binary_accuracy: 0.9729 - val_loss: 0.0777 - val_binary_accuracy: 0.9732
+
+Epoch 00014: val_loss improved from 0.07771089 to 0.07765176, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 15/100
+ - 6612s - loss: 0.0786 - binary_accuracy: 0.9729 - val_loss: 0.0776 - val_binary_accuracy: 0.9731
+
+Epoch 00015: val_loss improved from 0.07765176 to 0.07763015, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 16/100
+ - 6511s - loss: 0.0784 - binary_accuracy: 0.9729 - val_loss: 0.0778 - val_binary_accuracy: 0.9732
+
+Epoch 00016: val_loss did not improve from 0.07763015
+Epoch 17/100
+ - 6730s - loss: 0.0783 - binary_accuracy: 0.9730 - val_loss: 0.0774 - val_binary_accuracy: 0.9733
+
+Epoch 00017: val_loss improved from 0.07763015 to 0.07743009, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 18/100
+ - 6519s - loss: 0.0783 - binary_accuracy: 0.9730 - val_loss: 0.0773 - val_binary_accuracy: 0.9733
+
+Epoch 00018: val_loss improved from 0.07743009 to 0.07732404, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 19/100
+ - 6652s - loss: 0.0783 - binary_accuracy: 0.9730 - val_loss: 0.0774 - val_binary_accuracy: 0.9732
+
+Epoch 00019: val_loss did not improve from 0.07732404
+Epoch 20/100
+ - 6803s - loss: 0.0781 - binary_accuracy: 0.9731 - val_loss: 0.0774 - val_binary_accuracy: 0.9733
+
+Epoch 00020: val_loss did not improve from 0.07732404
+Epoch 21/100
+ - 6979s - loss: 0.0780 - binary_accuracy: 0.9732 - val_loss: 0.0772 - val_binary_accuracy: 0.9733
+
+Epoch 00021: val_loss improved from 0.07732404 to 0.07719753, saving model to /home/rs619065/HPAIC/model/ResNet18/ResNet18_KFold_1.h5
+Epoch 22/100
+ - 6808s - loss: 0.0778 - binary_accuracy: 0.9732 - val_loss: 0.0772 - val_binary_accuracy: 0.9732
+
+Epoch 00022: val_loss did not improve from 0.07719753
+Epoch 23/100
+
+
+PS:
+
+Read file <./cluster_err/ResNet18_KFold_1_err.txt> for stderr output of this job.
+

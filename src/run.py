@@ -81,7 +81,7 @@ def run_training():
             job_name = exp_config
             command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                       "./cluster_err/" + job_name + "_err.txt "
-            command += "-W 120:00 -M 80000 -S 100 -gpu \"num=2\" -R gpu ./train.zsh "
+            command += "-W 120:00 -M 60000 -S 100 -gpu - -R gpu -R pascal ./train.zsh "
             os.system(command + " " + net_name + " " + str(k_fold))
 
 

@@ -8,9 +8,13 @@ from keras.losses import binary_crossentropy
 from keras.optimizers import Adam
 from keras.metrics import binary_accuracy
 from keras.utils.multi_gpu_utils import multi_gpu_model
-import keras.backend as K
 
-from callback import build_callbacks
+from callback import EarlyStoppingWithTime
+from callback import CSVPDFLogger
+from keras.callbacks import ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint
+
+# from callback import build_callbacks
 from generator import ImageDataGenerator
 from utils import *
 from configure import *
@@ -35,6 +39,36 @@ def parse_args():
     return parser.parse_args()
 
 
+def build_callbacks(weights_path=None,
+                    history_path=None,
+                    acc_loss_path=None,
+                    exp_config=None):
+    check_point_path = os.path.join(weights_path, "{}.h5".format(exp_config))
+    history_filename = os.path.join(history_path, "{}.log".format(exp_config))
+    pdf_filename = os.path.join(acc_loss_path, "{}.pdf".format(exp_config))
+
+    check_pointer = ModelCheckpoint(filepath=check_point_path,
+                                    monitor='val_loss',
+                                    save_best_only=True,
+                                    verbose=1)
+
+    early_stopper = EarlyStoppingWithTime(seconds=3600 * 110,
+                                          monitor='val_loss',
+                                          patience=20,
+                                          verbose=1,
+                                          restore_best_weights=True)
+
+    csv_pdf_logger = CSVPDFLogger(pdf_filename=pdf_filename,
+                                  filename=history_filename,
+                                  append=True)
+
+    learning_rate = ReduceLROnPlateau(patience=5, min_lr=1e-06, verbose=1)
+
+    callbacks = [check_pointer, early_stopper, csv_pdf_logger, learning_rate]
+
+    return callbacks
+
+
 def main():
     args = parse_args()
 
@@ -57,16 +91,15 @@ def main():
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
         optimizer = Adam(lr=learning_rate)
-
     else:
         model.summary()
         optimizer = Adam(lr=learning_rate)
 
-    parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus, cpu_merge=False)
+    # parallel_model = multi_gpu_model(model=model, gpus=args.n_gpus, cpu_merge=False)
 
     model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
-    parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
+    # parallel_model.compile(optimizer=optimizer, loss=binary_crossentropy, metrics=[binary_accuracy])
 
     print("load training and validation data...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
@@ -114,24 +147,24 @@ def main():
 
     history_path = get_history_path(net_name=args.net_name)
     acc_loss_path = get_acc_loss_path(net_name=args.net_name)
-    callbacks = build_callbacks(model=model,
-                                weights_path=weights_path,
+    callbacks = build_callbacks(weights_path=weights_path,
                                 history_path=history_path,
                                 acc_loss_path=acc_loss_path,
                                 exp_config=exp_config)
 
     print("training model...", file=sys.stderr)
     print("===========================================================================\n", file=sys.stderr)
-    parallel_model.fit_generator(generator=train_generator,
-                                 validation_data=valid_generator,
-                                 epochs=args.epochs,
-                                 verbose=args.verbose,
-                                 callbacks=callbacks,
-                                 use_multiprocessing=True,
-                                 workers=args.workers,
-                                 max_queue_size=max_queue_size)
+    model.fit_generator(generator=train_generator,
+                        validation_data=valid_generator,
+                        epochs=args.epochs,
+                        verbose=args.verbose,
+                        callbacks=callbacks,
+                        use_multiprocessing=True,
+                        workers=args.workers,
+                        max_queue_size=max_queue_size)
 
     print("complete!!", file=sys.stdout)
+    exit(0)
 
 
 if __name__ == '__main__':

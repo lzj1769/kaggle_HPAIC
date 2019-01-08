@@ -121,6 +121,7 @@ def predict_test(args):
     np.savez(file=filename, pred=test_pred)
 
     print("complete!!", file=sys.stdout)
+    exit(0)
 
 
 if __name__ == '__main__':

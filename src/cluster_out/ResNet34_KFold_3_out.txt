@@ -1068,3 +1068,110 @@ PS:
 
 Read file <./cluster_err/ResNet34_KFold_3_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@lng07>
+Subject: Job 46386643: <ResNet34_KFold_3> in cluster <rcc> Exited
+
+Job <ResNet34_KFold_3> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Sun Jan  6 23:18:01 2019
+Job was executed on host(s) <lng07>, in queue <normal>, as user <rs619065> in cluster <rcc> at Mon Jan  7 12:51:43 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Mon Jan  7 12:51:43 2019
+Terminated at Tue Jan  8 17:30:53 2019
+Results reported at Tue Jan  8 17:30:53 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./train.zsh ResNet34 3
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   328707.31 sec.
+    Max Memory :                                 37106 MB
+    Average Memory :                             30603.09 MB
+    Total Requested Memory :                     80000.00 MB
+    Delta Memory :                               42894.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              23
+    Max Threads :                                473
+    Run time :                                   103150 sec.
+    Turnaround time :                            151972 sec.
+
+The output (if any) follows:
+
+Training model on 84510 samples, validate on 21167 samples
+Epoch 1/100
+Epoch 1/100
+ - 6750s - loss: 0.0831 - binary_accuracy: 0.9717 - val_loss: 0.0805 - val_binary_accuracy: 0.9723
+
+Epoch 00001: val_loss did not improve from 0.08019134
+Epoch 2/100
+ - 6930s - loss: 0.0831 - binary_accuracy: 0.9718 - val_loss: 0.0801 - val_binary_accuracy: 0.9727
+
+Epoch 00002: val_loss improved from 0.08019134 to 0.08006853, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 3/100
+ - 7240s - loss: 0.0829 - binary_accuracy: 0.9718 - val_loss: 0.0799 - val_binary_accuracy: 0.9726
+
+Epoch 00003: val_loss improved from 0.08006853 to 0.07989680, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 4/100
+ - 7105s - loss: 0.0827 - binary_accuracy: 0.9719 - val_loss: 0.0794 - val_binary_accuracy: 0.9727
+
+Epoch 00004: val_loss improved from 0.07989680 to 0.07935011, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 5/100
+ - 7136s - loss: 0.0826 - binary_accuracy: 0.9718 - val_loss: 0.0801 - val_binary_accuracy: 0.9725
+
+Epoch 00005: val_loss did not improve from 0.07935011
+Epoch 6/100
+ - 6716s - loss: 0.0826 - binary_accuracy: 0.9720 - val_loss: 0.0799 - val_binary_accuracy: 0.9725
+
+Epoch 00006: val_loss did not improve from 0.07935011
+Epoch 7/100
+ - 6897s - loss: 0.0824 - binary_accuracy: 0.9720 - val_loss: 0.0796 - val_binary_accuracy: 0.9728
+
+Epoch 00007: val_loss did not improve from 0.07935011
+Epoch 8/100
+ - 6551s - loss: 0.0823 - binary_accuracy: 0.9720 - val_loss: 0.0802 - val_binary_accuracy: 0.9724
+
+Epoch 00008: val_loss did not improve from 0.07935011
+Epoch 9/100
+ - 6635s - loss: 0.0820 - binary_accuracy: 0.9722 - val_loss: 0.0794 - val_binary_accuracy: 0.9726
+
+Epoch 00009: val_loss did not improve from 0.07935011
+
+Epoch 00009: ReduceLROnPlateau reducing learning rate to 1e-06.
+Epoch 10/100
+ - 6782s - loss: 0.0815 - binary_accuracy: 0.9722 - val_loss: 0.0789 - val_binary_accuracy: 0.9728
+
+Epoch 00010: val_loss improved from 0.07935011 to 0.07889519, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 11/100
+ - 6506s - loss: 0.0812 - binary_accuracy: 0.9723 - val_loss: 0.0786 - val_binary_accuracy: 0.9730
+
+Epoch 00011: val_loss improved from 0.07889519 to 0.07855560, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 12/100
+ - 6756s - loss: 0.0813 - binary_accuracy: 0.9723 - val_loss: 0.0789 - val_binary_accuracy: 0.9729
+
+Epoch 00012: val_loss did not improve from 0.07855560
+Epoch 13/100
+ - 6877s - loss: 0.0812 - binary_accuracy: 0.9723 - val_loss: 0.0784 - val_binary_accuracy: 0.9731
+
+Epoch 00013: val_loss improved from 0.07855560 to 0.07844551, saving model to /home/rs619065/HPAIC/model/ResNet34/ResNet34_KFold_3.h5
+Epoch 14/100
+ - 7024s - loss: 0.0812 - binary_accuracy: 0.9723 - val_loss: 0.0785 - val_binary_accuracy: 0.9729
+
+Epoch 00014: val_loss did not improve from 0.07844551
+Epoch 15/100
+ - 6804s - loss: 0.0811 - binary_accuracy: 0.9724 - val_loss: 0.0785 - val_binary_accuracy: 0.9731
+
+Epoch 00015: val_loss did not improve from 0.07844551
+Epoch 16/100
+
+
+PS:
+
+Read file <./cluster_err/ResNet34_KFold_3_err.txt> for stderr output of this job.
+

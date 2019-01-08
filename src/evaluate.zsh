@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-module load cuda/90
-module load cudnn/7.0.5
-
 # PATH
 export PATH=/home/rs619065/local/bin:$PATH
 export PATH=/home/rs619065/.local/bin:$PATH
@@ -21,8 +18,5 @@ export PERL5LIB=/home/rs619065/perl5/lib/5.26.1:$PERL5LIB
 export PERL5LIB=/home/rs619065/perl5/lib/perl5:$PERL5LIB
 
 export RUBYLIB=$RUBYLIB:/home/rs619065/AMUSED:/home/rs619065/Ruby-DNA-Tools
-
-export CUDA_DEVICE_ORDER=PCI_BUS_ID
-export CUDA_VISIBLE_DEVICES=0
 
 python evaluate.py --net_name $1
