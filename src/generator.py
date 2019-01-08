@@ -58,6 +58,7 @@ class ImageDataGenerator(Sequence):
     def __len__(self):
         if self.learning_phase:
             return int(math.floor(self.n_samples / self.batch_size))
+            # return int(math.floor(self.n_samples / self.batch_size) / 2)
         else:
             return int(math.ceil(self.n_samples / self.batch_size))
 

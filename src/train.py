@@ -56,7 +56,7 @@ def main():
 
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
-        optimizer = Adam(lr=learning_rate * 0.1)
+        optimizer = Adam(lr=learning_rate)
 
     else:
         model.summary()
@@ -131,8 +131,7 @@ def main():
                                  workers=args.workers,
                                  max_queue_size=max_queue_size)
 
-    print("complete!!")
-    K.clear_session()
+    print("complete!!", file=sys.stdout)
 
 
 if __name__ == '__main__':

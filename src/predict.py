@@ -120,7 +120,7 @@ def predict_test(args):
     filename = os.path.join(test_predict_path, "{}.npz".format(args.net_name))
     np.savez(file=filename, pred=test_pred)
 
-    print("complete!!")
+    print("complete!!", file=sys.stdout)
 
 
 if __name__ == '__main__':
