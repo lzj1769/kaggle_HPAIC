@@ -997,3 +997,223 @@ PS:
 
 Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409157: <ResNet50> in cluster <rcc> Exited
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:32:54 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:33:00 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:33:00 2019
+Terminated at Wed Jan  9 14:33:16 2019
+Results reported at Wed Jan  9 14:33:16 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh ResNet50
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   8.34 sec.
+    Max Memory :                                 174 MB
+    Average Memory :                             53.00 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               10066.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   15 sec.
+    Turnaround time :                            22 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409267: <ResNet50> in cluster <rcc> Exited
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:36:08 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:36:15 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:36:15 2019
+Terminated at Wed Jan  9 14:36:30 2019
+Results reported at Wed Jan  9 14:36:30 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh ResNet50
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   8.24 sec.
+    Max Memory :                                 176 MB
+    Average Memory :                             71.00 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               10064.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   13 sec.
+    Turnaround time :                            22 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409275: <ResNet50> in cluster <rcc> Done
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:37:24 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:37:30 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:37:30 2019
+Terminated at Wed Jan  9 14:50:40 2019
+Results reported at Wed Jan  9 14:50:40 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh ResNet50
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   784.21 sec.
+    Max Memory :                                 390 MB
+    Average Memory :                             322.35 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9850.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   790 sec.
+    Turnaround time :                            796 sec.
+
+The output (if any) follows:
+
+[0.42642643 0.41141141 0.35835836 0.35435435 0.4024024  0.3033033
+ 0.32132132 0.39139139 0.31631632 0.33833834 0.28528529 0.35935936
+ 0.41141141 0.3033033  0.45445445 0.06806807 0.14714715 0.2002002
+ 0.23023023 0.28428428 0.16716717 0.34534535 0.27927928 0.37737738
+ 0.22722723 0.36736737 0.22922923 0.06706707]
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409299: <ResNet50> in cluster <rcc> Done
+
+Job <ResNet50> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:56:37 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:56:44 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:56:44 2019
+Terminated at Wed Jan  9 15:09:39 2019
+Results reported at Wed Jan  9 15:09:39 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh ResNet50
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   769.58 sec.
+    Max Memory :                                 389 MB
+    Average Memory :                             318.76 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9851.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   774 sec.
+    Turnaround time :                            782 sec.
+
+The output (if any) follows:
+
+[0.43243243 0.41341341 0.34734735 0.35635636 0.39239239 0.3013013
+ 0.32532533 0.37537538 0.34034034 0.36536537 0.2952953  0.37237237
+ 0.41841842 0.30930931 0.45545546 0.05805806 0.14614615 0.25125125
+ 0.23423423 0.23823824 0.17717718 0.32332332 0.27027027 0.37137137
+ 0.26726727 0.36836837 0.25525526 0.03903904]
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46412874: <ResNet50> in cluster <rcc> Done
+
+Job <ResNet50> was submitted from host <login> by user <rs619065> in cluster <rcc> at Wed Jan  9 18:58:34 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 18:58:40 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 18:58:40 2019
+Terminated at Wed Jan  9 19:11:34 2019
+Results reported at Wed Jan  9 19:11:34 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh ResNet50
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   766.10 sec.
+    Max Memory :                                 403 MB
+    Average Memory :                             331.79 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9837.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   773 sec.
+    Turnaround time :                            780 sec.
+
+The output (if any) follows:
+
+[0.43243243 0.41341341 0.34734735 0.35635636 0.39239239 0.3013013
+ 0.32532533 0.37537538 0.34034034 0.36536537 0.2952953  0.37237237
+ 0.41841842 0.30930931 0.45545546 0.05805806 0.14614615 0.25125125
+ 0.23423423 0.23823824 0.17717718 0.32332332 0.27027027 0.37137137
+ 0.26726727 0.36836837 0.25525526 0.03903904]
+
+
+PS:
+
+Read file <./cluster_err/ResNet50_err.txt> for stderr output of this job.
+

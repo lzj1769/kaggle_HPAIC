@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import division
 
 import os
+import math
 import glob
 from collections import Counter
 import pandas as pd
@@ -10,7 +11,10 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 from configure import *
 
-NET_NAMES = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2', 'LightGBM']
+NET_NAMES = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2', 'LightGBM',
+             'ResNet18_512', 'ResNet34_512']
+
+NET_NAMES = ['DenseNet121', 'DenseNet169', 'InceptionV3', 'InceptionResNetV2', 'LightGBM']
 
 
 def get_data():
@@ -55,7 +59,7 @@ def voting(df):
 
         for key in counts.keys():
             count = counts[key]
-            if count >= int(len(NET_NAMES) / 2.0):
+            if count >= math.ceil(len(NET_NAMES) / 2.0):
                 voting.append(key)
 
         # if majority class cannot be found

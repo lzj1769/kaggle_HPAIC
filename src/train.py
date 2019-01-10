@@ -90,7 +90,7 @@ def main():
 
     if os.path.exists(weights_filename):
         model.load_weights(weights_filename, by_name=True)
-        optimizer = Adam(lr=learning_rate)
+        optimizer = Adam(lr=learning_rate * 0.1)
     else:
         model.summary()
         optimizer = Adam(lr=learning_rate)

@@ -880,3 +880,223 @@ PS:
 
 Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409158: <DenseNet121> in cluster <rcc> Exited
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:32:55 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:33:00 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:33:00 2019
+Terminated at Wed Jan  9 14:33:14 2019
+Results reported at Wed Jan  9 14:33:14 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh DenseNet121
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   8.22 sec.
+    Max Memory :                                 179 MB
+    Average Memory :                             60.00 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               10061.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   14 sec.
+    Turnaround time :                            19 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409268: <DenseNet121> in cluster <rcc> Exited
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:36:08 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:36:15 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:36:15 2019
+Terminated at Wed Jan  9 14:36:30 2019
+Results reported at Wed Jan  9 14:36:30 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh DenseNet121
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   8.39 sec.
+    Max Memory :                                 176 MB
+    Average Memory :                             59.00 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               10064.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   13 sec.
+    Turnaround time :                            22 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409276: <DenseNet121> in cluster <rcc> Done
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:37:24 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:37:30 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:37:30 2019
+Terminated at Wed Jan  9 14:50:43 2019
+Results reported at Wed Jan  9 14:50:43 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh DenseNet121
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   787.47 sec.
+    Max Memory :                                 387 MB
+    Average Memory :                             322.27 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9853.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   793 sec.
+    Turnaround time :                            799 sec.
+
+The output (if any) follows:
+
+[0.44644645 0.36536537 0.34334334 0.30630631 0.33233233 0.31731732
+ 0.2952953  0.32732733 0.23323323 0.36336336 0.33533534 0.36136136
+ 0.29029029 0.38038038 0.36436436 0.13113113 0.14514515 0.23123123
+ 0.23123123 0.3023023  0.26526527 0.31631632 0.28728729 0.37337337
+ 0.40940941 0.40540541 0.15015015 0.03903904]
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46409300: <DenseNet121> in cluster <rcc> Done
+
+Job <DenseNet121> was submitted from host <login-g> by user <rs619065> in cluster <rcc> at Wed Jan  9 14:56:38 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 14:56:44 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 14:56:44 2019
+Terminated at Wed Jan  9 15:09:27 2019
+Results reported at Wed Jan  9 15:09:27 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh DenseNet121
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   757.94 sec.
+    Max Memory :                                 386 MB
+    Average Memory :                             315.60 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9854.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   763 sec.
+    Turnaround time :                            769 sec.
+
+The output (if any) follows:
+
+[0.44144144 0.36636637 0.30530531 0.2962963  0.30630631 0.31331331
+ 0.3033033  0.31131131 0.27327327 0.4004004  0.35535536 0.40540541
+ 0.28328328 0.34634635 0.31231231 0.11911912 0.19019019 0.57957958
+ 0.26626627 0.26126126 0.30730731 0.26926927 0.29229229 0.35035035
+ 0.51851852 0.40640641 0.1951952  0.03303303]
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@linuxihbc45>
+Subject: Job 46412875: <DenseNet121> in cluster <rcc> Done
+
+Job <DenseNet121> was submitted from host <login> by user <rs619065> in cluster <rcc> at Wed Jan  9 18:58:34 2019
+Job was executed on host(s) <linuxihbc45>, in queue <ih>, as user <rs619065> in cluster <rcc> at Wed Jan  9 18:58:40 2019
+</home/rs619065> was used as the home directory.
+</home/rs619065/HPAIC/src> was used as the working directory.
+Started at Wed Jan  9 18:58:40 2019
+Terminated at Wed Jan  9 19:11:36 2019
+Results reported at Wed Jan  9 19:11:36 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./evaluate.zsh DenseNet121
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   768.33 sec.
+    Max Memory :                                 394 MB
+    Average Memory :                             326.25 MB
+    Total Requested Memory :                     10240.00 MB
+    Delta Memory :                               9846.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                6
+    Run time :                                   776 sec.
+    Turnaround time :                            782 sec.
+
+The output (if any) follows:
+
+[0.44144144 0.36636637 0.30530531 0.2962963  0.30630631 0.31331331
+ 0.3033033  0.31131131 0.27327327 0.4004004  0.35535536 0.40540541
+ 0.28328328 0.34634635 0.31231231 0.11911912 0.19019019 0.57957958
+ 0.26626627 0.26126126 0.30730731 0.26926927 0.29229229 0.35035035
+ 0.51851852 0.40640641 0.1951952  0.03303303]
+
+
+PS:
+
+Read file <./cluster_err/DenseNet121_err.txt> for stderr output of this job.
+

@@ -94,7 +94,7 @@ def predict_test(args):
     print("load test data...", file=sys.stderr)
     print("=======================================================\n", file=sys.stderr)
     
-    img = np.load(test_data)
+    img = np.load(test_data, mmap_mode='r')
     test_generators = get_test_time_augmentation_generators(image=img,
                                                             batch_size=batch_size,
                                                             input_shape=input_shape)
@@ -126,5 +126,5 @@ def predict_test(args):
 
 if __name__ == '__main__':
     arguments = parse_args()
-    predict_validation(args=arguments)
+    #predict_validation(args=arguments)
     predict_test(args=arguments)

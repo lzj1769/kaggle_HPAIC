@@ -15,7 +15,7 @@ def parse_args():
     parser.add_argument('-p', '--predict', default=False, action='store_true')
     parser.add_argument('-e', '--evaluate', default=False, action='store_true')
     parser.add_argument('-ts', '--training-single', default=False, action='store_true')
-    parser.add_argument('-b', '--lightGBM', default=False, action='store_true')
+    parser.add_argument('-g', '--lightGBM', default=False, action='store_true')
     return parser.parse_args()
 
 
@@ -32,12 +32,12 @@ def main():
         run_evaluate()
 
     if args.lightGBM:
-        run_bayesian_lightgbm()
+        run_lightgbm()
 
 
 def run_predict():
     net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3']
-    net_name_list = ['ResNet18']
+    net_name_list = ['ResNet18_512', 'ResNet34_512']
 
     for net_name in net_name_list:
         training_predict_path = get_training_predict_path(net_name)
@@ -57,8 +57,8 @@ def run_predict():
 
 
 def run_training():
-    net_name_list = ['ResNet18_512', 'ResNet34_512']
-    kfold_list = [0, 1, 2, 3, 4]
+    net_name_list = ['ResNet34_512']
+    kfold_list = [0]
 
     for net_name in net_name_list:
         history_path = get_history_path(net_name=net_name)
@@ -87,8 +87,9 @@ def run_training():
 
 def run_evaluate():
     net_name_list = ['ResNet50', 'DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionV3', 'InceptionResNetV2',
-                     'LightGBM']
+                     'ResNet34']
 
+    net_name_list = ['LightGBM']
     for net_name in net_name_list:
         submission_path = get_submission_path(net_name=net_name)
         # create the output path
@@ -98,16 +99,16 @@ def run_evaluate():
         job_name = net_name
         command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                   "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 8:00 -M 10240 -S 100 -P izkf ./evaluate.zsh "
+        command += "-W 1:00 -M 10240 -S 100 -P rwth0233 ./evaluate.zsh "
         os.system(command + " " + net_name)
 
 
-def run_bayesian_lightgbm():
+def run_lightgbm():
     for label in range(28):
         job_name = "lightGBM_label_{}".format(label)
         command = "bsub -J " + job_name + " -o " + "./cluster_out/" + job_name + "_out.txt -e " + \
                   "./cluster_err/" + job_name + "_err.txt "
-        command += "-W 120:00 -M 10240 -S 100 -P izkf ./bayesian_lightGBM.zsh "
+        command += "-W 120:00 -M 20480 -S 100 -P rwth0233 ./lightGBM.zsh "
         os.system(command + " " + str(label))
 
 
